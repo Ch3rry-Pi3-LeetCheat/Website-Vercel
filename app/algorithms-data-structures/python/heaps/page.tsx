@@ -44,7 +44,7 @@ export default function HeapsPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -55,7 +55,7 @@ export default function HeapsPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -70,11 +70,11 @@ export default function HeapsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Keep the top 3 scores
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Push each score into the heap.</li>
-              <li>Remove the smallest when the heap grows past k.</li>
-              <li>Sort the remaining heap to read the winners.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: push every score into a min-heap. When the heap
+              grows beyond three items, pop the smallest so only the top scores
+              remain. Sorting the heap at the end gives you a readable list.
+            </p>
             <CodeBlock code={topKCode} title="Python" />
             <OutputBlock output={topKOutput} />
           </section>
@@ -83,11 +83,11 @@ export default function HeapsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Next task by earliest time
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Store tasks as (time, label) pairs.</li>
-              <li>Heapify to make the smallest time rise to the top.</li>
-              <li>Pop the next task to execute.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: store each task as a (time, label) pair so the time
+              drives priority. Heapify arranges the smallest time at the top.
+              Popping once returns the task you should handle next.
+            </p>
             <CodeBlock code={scheduleCode} title="Python" />
             <OutputBlock output={scheduleOutput} />
           </section>

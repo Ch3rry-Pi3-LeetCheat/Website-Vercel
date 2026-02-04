@@ -57,7 +57,7 @@ export default function TreesPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -68,7 +68,7 @@ export default function TreesPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -83,11 +83,12 @@ export default function TreesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: In-order traversal
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Build a small binary tree.</li>
-              <li>Traverse left, visit node, then traverse right.</li>
-              <li>Collect the values in order.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: start at the root, keep moving left until there is
+              no left child, then record the value. After recording, move to
+              the right subtree and repeat. This produces sorted output for a
+              binary search tree.
+            </p>
             <CodeBlock code={buildCode} title="Python" />
             <OutputBlock output={buildOutput} />
           </section>
@@ -96,11 +97,11 @@ export default function TreesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Level-order traversal (BFS)
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Start with a queue containing the root node.</li>
-              <li>Pop nodes in order and push their children.</li>
-              <li>The queue gives you level-by-level output.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: put the root in a queue, then repeatedly remove the
+              front node and add its children to the back. The queue ensures you
+              finish a level before moving deeper.
+            </p>
             <CodeBlock code={bfsCode} title="Python" />
             <OutputBlock output={bfsOutput} />
           </section>

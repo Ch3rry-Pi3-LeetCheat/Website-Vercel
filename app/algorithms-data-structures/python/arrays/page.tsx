@@ -48,7 +48,7 @@ export default function ArraysPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -59,7 +59,7 @@ export default function ArraysPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -74,11 +74,12 @@ export default function ArraysPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Indexing and slicing
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Build a list of values.</li>
-              <li>Read the first element directly.</li>
-              <li>Slice the last two and a middle range.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: we create a short list so positions are obvious.
+              Next we grab the value at index 0 (instant lookup). Then we slice
+              the last two elements with a negative index, and finally slice a
+              middle range to show how start and end bounds behave.
+            </p>
             <CodeBlock code={sliceCode} title="Python" />
             <OutputBlock output={sliceOutput} />
           </section>
@@ -87,11 +88,13 @@ export default function ArraysPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Two pointers to hit a target sum
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Start one pointer on each end of a sorted list.</li>
-              <li>Move the side that makes the sum too small or too big.</li>
-              <li>Stop when you hit the target.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: we place one pointer on the smallest value and one
+              on the largest. If the sum is too small, we must increase it, so
+              we move the left pointer right. If the sum is too large, we
+              decrease it by moving the right pointer left. This converges
+              toward the target without checking every pair.
+            </p>
             <CodeBlock code={twoPointerCode} title="Python" />
             <OutputBlock output={twoPointerOutput} />
           </section>

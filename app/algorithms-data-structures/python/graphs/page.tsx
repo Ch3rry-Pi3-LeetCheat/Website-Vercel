@@ -61,7 +61,7 @@ export default function GraphsPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -72,7 +72,7 @@ export default function GraphsPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -87,11 +87,12 @@ export default function GraphsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Shortest path with BFS
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Start from the source node.</li>
-              <li>Use a queue to explore neighbors by distance.</li>
-              <li>The first time you hit the target is the shortest path.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: start with the source node in a queue. Each pop
+              visits the next closest node, then enqueues its neighbors with
+              distance + 1. The first time you reach the target, you have the
+              shortest path because BFS explores in layers.
+            </p>
             <CodeBlock code={bfsCode} title="Python" />
             <OutputBlock output={bfsOutput} />
           </section>
@@ -100,11 +101,11 @@ export default function GraphsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Depth-first traversal
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Start at a node and go as deep as possible.</li>
-              <li>Mark nodes as visited to avoid cycles.</li>
-              <li>Backtrack when you hit a dead end.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: pick a start node and follow one path as far as it
+              goes. Mark each node so you never revisit it. When you hit a dead
+              end, return to the previous branch and continue.
+            </p>
             <CodeBlock code={dfsCode} title="Python" />
             <OutputBlock output={dfsOutput} />
           </section>

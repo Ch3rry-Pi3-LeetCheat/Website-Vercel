@@ -58,7 +58,7 @@ export default function LinkedListsPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -69,7 +69,7 @@ export default function LinkedListsPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -84,11 +84,12 @@ export default function LinkedListsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Build and traverse
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Create nodes and link them together.</li>
-              <li>Start at the head node.</li>
-              <li>Walk node by node until you reach the end.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: create a head node, then give it a pointer to the
+              second node, and so on. Traversal always begins at the head. Each
+              hop moves to <span className="font-mono text-white">next</span>{" "}
+              until that pointer is <span className="font-mono text-white">None</span>.
+            </p>
             <CodeBlock code={buildCode} title="Python" />
             <OutputBlock output={buildOutput} />
           </section>
@@ -97,11 +98,12 @@ export default function LinkedListsPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Reverse the list
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Keep a pointer to the previous node.</li>
-              <li>Flip the next pointer as you walk forward.</li>
-              <li>The last node becomes the new head.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: keep track of the previous node, then redirect the
+              current node&apos;s <span className="font-mono text-white">next</span>{" "}
+              pointer to that previous node. Move both pointers forward. By the
+              end, the last node you touched becomes the new head.
+            </p>
             <CodeBlock code={reverseCode} title="Python" />
             <OutputBlock output={reverseOutput} />
           </section>

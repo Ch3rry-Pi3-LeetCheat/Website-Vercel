@@ -67,6 +67,30 @@ body {
   background-position: 0 0, 12px 12px;
 }
 
+.intro-panel {
+  border: 1px solid rgba(66, 211, 255, 0.25);
+  background: linear-gradient(
+    145deg,
+    rgba(18, 35, 55, 0.9),
+    rgba(12, 20, 32, 0.85)
+  );
+  box-shadow:
+    0 0 28px rgba(66, 211, 255, 0.18),
+    0 16px 40px rgba(4, 8, 16, 0.45);
+}
+
+.intuition-panel {
+  border: 1px solid rgba(124, 92, 255, 0.28);
+  background: linear-gradient(
+    145deg,
+    rgba(34, 24, 64, 0.9),
+    rgba(15, 14, 30, 0.9)
+  );
+  box-shadow:
+    0 0 30px rgba(124, 92, 255, 0.2),
+    0 18px 44px rgba(4, 8, 16, 0.5);
+}
+
 .code-block {
   white-space: pre;
 }

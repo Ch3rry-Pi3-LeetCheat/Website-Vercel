@@ -43,7 +43,7 @@ export default function StacksQueuesPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -54,7 +54,7 @@ export default function StacksQueuesPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -69,11 +69,11 @@ export default function StacksQueuesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Stack push and pop
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Push tasks onto the stack.</li>
-              <li>Pop the most recent task.</li>
-              <li>The stack keeps the remaining order.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: push tasks in the order they arrive. When it is
+              time to act, pop the most recent task. Whatever remains in the
+              stack stays in the same order of undo/redo.
+            </p>
             <CodeBlock code={stackCode} title="Python" />
             <OutputBlock output={stackOutput} />
           </section>
@@ -82,11 +82,11 @@ export default function StacksQueuesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Queue enqueue and dequeue
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Append new tasks to the end of the queue.</li>
-              <li>Pop from the front when it is time to process.</li>
-              <li>The queue preserves arrival order.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: enqueue each incoming task at the back of the line.
+              When you are ready to handle work, dequeue from the front. This
+              keeps processing strictly in arrival order.
+            </p>
             <CodeBlock code={queueCode} title="Python" />
             <OutputBlock output={queueOutput} />
           </section>

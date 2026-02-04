@@ -46,7 +46,7 @@ export default function HashTablesPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="glass-panel rounded-2xl px-6 py-6">
+          <div className="intro-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
@@ -57,7 +57,7 @@ export default function HashTablesPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-6 py-6">
+          <div className="intuition-panel rounded-2xl px-6 py-6">
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
@@ -71,11 +71,11 @@ export default function HashTablesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 1: Count frequencies
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Start with an empty dictionary.</li>
-              <li>For each event, increment its count.</li>
-              <li>The dictionary becomes a frequency table.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: create an empty dictionary, then walk the list once.
+              For each item, look up its current count (defaulting to zero) and
+              add one. The result is a frequency table built in a single pass.
+            </p>
             <CodeBlock code={countCode} title="Python" />
             <OutputBlock output={countOutput} />
           </section>
@@ -84,11 +84,11 @@ export default function HashTablesPage() {
             <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
               Example 2: Two-sum with a lookup table
             </h3>
-            <ol className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Store each number as you see it.</li>
-              <li>Check if the complement already exists.</li>
-              <li>Return the first matching pair.</li>
-            </ol>
+            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+              Step by step: for each number, compute the complement you need.
+              If you have already seen that complement, you are done. If not,
+              store the current number in the dictionary and keep going.
+            </p>
             <CodeBlock code={twoSumCode} title="Python" />
             <OutputBlock output={twoSumOutput} />
           </section>
