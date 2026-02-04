@@ -66,3 +66,28 @@ body {
   background-size: 24px 24px, 48px 48px;
   background-position: 0 0, 12px 12px;
 }
+
+.code-block {
+  white-space: pre;
+}
+
+.token-comment {
+  color: #7f8fa6;
+}
+
+.token-string {
+  color: #f2c791;
+}
+
+.token-number {
+  color: #9ae6b4;
+}
+
+.token-keyword {
+  color: #7c5cff;
+  font-weight: 600;
+}
+
+.token-builtin {
+  color: #42d3ff;
+}
