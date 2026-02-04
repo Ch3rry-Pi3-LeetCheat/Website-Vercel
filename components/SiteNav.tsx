@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Library", href: "/topics" },
+  { label: "Algorithms", href: "/algorithms-data-structures" },
   { label: "Courses", href: "/courses" },
   { label: "Practice", href: "/practice" },
   { label: "Roadmap", href: "/roadmap" },
