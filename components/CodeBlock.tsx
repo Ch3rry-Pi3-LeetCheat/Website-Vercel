@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState } from "react";
 
 type CodeBlockProps = {
@@ -32,7 +33,7 @@ const pythonRules: TokenRule[] = [
 ];
 
 function highlightPython(code: string) {
-  const nodes: Array<string | JSX.Element> = [];
+  const nodes: Array<string | ReactNode> = [];
   let index = 0;
   let key = 0;
 
