@@ -180,3 +180,19 @@ details[open] .example-chevron {
 .token-builtin {
   color: #42d3ff;
 }
+
+.shiki-wrapper .shiki {
+  background-color: transparent !important;
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 15px;
+  line-height: 1.7;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.shiki-wrapper .shiki code {
+  font-family: inherit;
+  font-size: inherit;
+}

@@ -4,6 +4,8 @@ import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 
 const bfsCode = `from collections import deque
 
@@ -62,6 +64,14 @@ export default function GraphsPage() {
       title="Graphs in Python"
       description="Graphs model networks. They show up in routing, dependency, and connectivity problems."
       tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+          ]}
+          activeHref="/algorithms-data-structures/python/graphs"
+        />
+      }
     >
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>

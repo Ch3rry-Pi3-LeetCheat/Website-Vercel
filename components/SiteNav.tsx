@@ -6,7 +6,6 @@ const navLinks = [
   { label: "Courses", href: "/courses" },
   { label: "Practice", href: "/practice" },
   { label: "Roadmap", href: "/roadmap" },
-  { label: "Tutorials", href: "/tutorials" },
 ];
 
 export default function SiteNav() {

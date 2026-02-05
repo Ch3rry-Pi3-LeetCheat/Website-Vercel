@@ -4,6 +4,8 @@ import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 
 const stackCode = `stack = []
 stack.append("draft")
@@ -44,6 +46,14 @@ export default function StacksQueuesPage() {
       title="Stacks and queues in Python"
       description="Stacks and queues control order. They help you manage tasks, parse expressions, and model scheduling workflows."
       tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+          ]}
+          activeHref="/algorithms-data-structures/python/stacks-queues"
+        />
+      }
     >
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>

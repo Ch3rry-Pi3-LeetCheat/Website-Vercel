@@ -12,8 +12,8 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.2em]">
-          <Link href="/tutorials" className="transition hover:text-white">
-            Tutorials
+          <Link href="/topics" className="transition hover:text-white">
+            Library
           </Link>
           <Link href="/roadmap" className="transition hover:text-white">
             Roadmap

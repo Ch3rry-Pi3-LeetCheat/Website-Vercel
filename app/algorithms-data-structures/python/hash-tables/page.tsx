@@ -4,6 +4,8 @@ import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 
 const countCode = `events = ["api", "db", "api", "cache", "db", "api"]
 
@@ -47,6 +49,14 @@ export default function HashTablesPage() {
       title="Hash tables in Python"
       description="Dictionaries give you fast lookups. They power counting, indexing, and almost every classic interview pattern."
       tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+          ]}
+          activeHref="/algorithms-data-structures/python/hash-tables"
+        />
+      }
     >
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>

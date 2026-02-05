@@ -4,6 +4,8 @@ import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 
 const buildCode = `class Node:
     def __init__(self, value, left=None, right=None):
@@ -58,6 +60,14 @@ export default function TreesPage() {
       title="Trees in Python"
       description="Trees model hierarchies. They help you reason about recursion, searching, and structure in interview questions."
       tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+          ]}
+          activeHref="/algorithms-data-structures/python/trees"
+        />
+      }
     >
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>

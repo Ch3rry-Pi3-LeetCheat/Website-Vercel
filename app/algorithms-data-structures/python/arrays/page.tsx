@@ -4,6 +4,8 @@ import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 
 const sliceCode = `nums = [5, 12, 7, 3, 9]
 
@@ -49,6 +51,14 @@ export default function ArraysPage() {
       title="Arrays and lists in Python"
       description="Lists are Python&apos;s dynamic arrays. They give you instant indexing, flexible slicing, and the foundation for many interview patterns."
       tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+          ]}
+          activeHref="/algorithms-data-structures/python/arrays"
+        />
+      }
     >
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>

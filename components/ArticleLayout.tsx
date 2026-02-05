@@ -12,6 +12,7 @@ type ArticleLayoutProps = {
   title: string;
   description: string;
   tocItems: TocItem[];
+  rightRail?: ReactNode;
   children: ReactNode;
 };
 
@@ -20,11 +21,20 @@ export default function ArticleLayout({
   title,
   description,
   tocItems,
+  rightRail,
   children,
 }: ArticleLayoutProps) {
+  const hasRightRail = Boolean(rightRail);
+  const gridClass = hasRightRail
+    ? "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12 xl:grid-cols-[280px_1fr_260px]"
+    : "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12";
+  const maxWidthClass = hasRightRail
+    ? "max-w-[1600px] 2xl:max-w-[1720px]"
+    : "max-w-[1400px] 2xl:max-w-[1520px]";
+
   return (
     <div className="px-4 pb-20 pt-12 sm:px-6 lg:px-10">
-      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1520px] lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12">
+      <div className={`mx-auto w-full ${maxWidthClass} ${gridClass}`}>
         <aside className="hidden lg:sticky lg:top-28 lg:block lg:h-fit lg:self-start">
           <ArticleToc items={tocItems} />
         </aside>
@@ -44,6 +54,12 @@ export default function ArticleLayout({
 
           <section className="mt-10 grid gap-6">{children}</section>
         </div>
+
+        {rightRail ? (
+          <aside className="hidden xl:sticky xl:top-28 xl:block xl:h-fit xl:self-start">
+            {rightRail}
+          </aside>
+        ) : null}
       </div>
     </div>
   );
