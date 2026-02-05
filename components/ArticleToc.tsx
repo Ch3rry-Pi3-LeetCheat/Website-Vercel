@@ -35,13 +35,16 @@ export default function ArticleToc({ items }: ArticleTocProps) {
       ticking = true;
       window.requestAnimationFrame(() => {
         const offset = 140;
+        const scrollPosition = window.scrollY + offset;
         let current = elements[0];
+
         for (const el of elements) {
-          const top = el.getBoundingClientRect().top;
-          if (top - offset <= 0) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= scrollPosition) {
             current = el;
           }
         }
+
         setActiveId(current.id);
         ticking = false;
       });
