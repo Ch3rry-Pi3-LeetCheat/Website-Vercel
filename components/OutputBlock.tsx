@@ -12,7 +12,7 @@ export default function OutputBlock({
       <div className="border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
         {title}
       </div>
-      <pre className="max-h-[280px] overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-white/80">
+      <pre className="max-h-[280px] overflow-x-auto px-4 py-4 font-mono text-[15px] leading-7 text-white/80 md:text-[16px]">
         <code>{output}</code>
       </pre>
     </div>

@@ -1,4 +1,6 @@
+import ArticleToc from "@/components/ArticleToc";
 import CodeBlock from "@/components/CodeBlock";
+import CollapsibleExample from "@/components/CollapsibleExample";
 import OutputBlock from "@/components/OutputBlock";
 
 const sliceCode = `nums = [5, 12, 7, 3, 9]
@@ -31,50 +33,71 @@ print(nums[left], nums[right])`;
 const twoPointerOutput = `1 9`;
 
 export default function ArraysPage() {
+  const tocItems = [
+    { id: "introduction", label: "Introduction" },
+    { id: "intuition", label: "Intuition" },
+    { id: "example-1", label: "Example 1: Indexing and slicing" },
+    { id: "example-2", label: "Example 2: Two pointers" },
+  ];
+
   return (
     <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
+      <div className="mx-auto w-full max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+        <aside className="hidden lg:block">
+          <div className="sticky top-28">
+            <ArticleToc items={tocItems} />
+          </div>
+        </aside>
+
+        <div>
+          <header className="grid gap-4">
           <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
             Arrays & Lists
           </p>
           <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
             Arrays and lists in Python
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
+          <p className="max-w-2xl text-base leading-7 text-[color:var(--color-muted)]">
             Lists are Python&apos;s dynamic arrays. They give you instant indexing,
             flexible slicing, and the foundation for many interview patterns.
           </p>
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="intro-panel rounded-2xl px-6 py-6">
+          <div
+            id="introduction"
+            className="intro-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
               An array stores items in order, so you can jump directly to any
               position. In Python, a list behaves like a dynamic array: it grows
               as needed while still giving you fast reads by index.
             </p>
           </div>
 
-          <div className="intuition-panel rounded-2xl px-6 py-6">
+          <div
+            id="intuition"
+            className="intuition-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
               Picture a row of lockers with numbered doors. When you know the
               locker number, you open it instantly. Slicing is simply grabbing
               a continuous run of lockers and treating it as a smaller list.
             </p>
           </div>
 
-          <section className="grid gap-4">
-            <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-              Example 1: Indexing and slicing
-            </h3>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+          <CollapsibleExample
+            id="example-1"
+            title="Example 1: Indexing and slicing"
+            defaultOpen
+          >
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Step by step: we create a short list so positions are obvious.
               Next we grab the value at index 0 (instant lookup). Then we slice
               the last two elements with a negative index, and finally slice a
@@ -82,13 +105,13 @@ export default function ArraysPage() {
             </p>
             <CodeBlock code={sliceCode} title="Python" />
             <OutputBlock output={sliceOutput} />
-          </section>
+          </CollapsibleExample>
 
-          <section className="grid gap-4">
-            <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-              Example 2: Two pointers to hit a target sum
-            </h3>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+          <CollapsibleExample
+            id="example-2"
+            title="Example 2: Two pointers to hit a target sum"
+          >
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Step by step: we place one pointer on the smallest value and one
               on the largest. If the sum is too small, we must increase it, so
               we move the left pointer right. If the sum is too large, we
@@ -97,8 +120,9 @@ export default function ArraysPage() {
             </p>
             <CodeBlock code={twoPointerCode} title="Python" />
             <OutputBlock output={twoPointerOutput} />
-          </section>
+          </CollapsibleExample>
         </section>
+        </div>
       </div>
     </div>
   );

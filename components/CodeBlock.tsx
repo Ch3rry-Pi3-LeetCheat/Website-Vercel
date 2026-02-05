@@ -93,7 +93,7 @@ export default function CodeBlock({
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="overflow-x-auto px-4 py-4 font-mono text-sm leading-6 text-white/90">
+      <pre className="overflow-x-auto px-4 py-4 font-mono text-[15px] leading-7 text-white/90 md:text-[16px]">
         <code className="code-block">
           {language === "python" ? highlightPython(code) : code}
         </code>

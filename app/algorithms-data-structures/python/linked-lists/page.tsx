@@ -1,4 +1,6 @@
+import ArticleToc from "@/components/ArticleToc";
 import CodeBlock from "@/components/CodeBlock";
+import CollapsibleExample from "@/components/CollapsibleExample";
 import OutputBlock from "@/components/OutputBlock";
 
 const buildCode = `class Node:
@@ -40,17 +42,31 @@ values`;
 const reverseOutput = `[3, 2, 1]`;
 
 export default function LinkedListsPage() {
+  const tocItems = [
+    { id: "introduction", label: "Introduction" },
+    { id: "intuition", label: "Intuition" },
+    { id: "example-1", label: "Example 1: Build and traverse" },
+    { id: "example-2", label: "Example 2: Reverse the list" },
+  ];
+
   return (
     <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
+      <div className="mx-auto w-full max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+        <aside className="hidden lg:block">
+          <div className="sticky top-28">
+            <ArticleToc items={tocItems} />
+          </div>
+        </aside>
+
+        <div>
+          <header className="grid gap-4">
           <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
             Linked Lists
           </p>
           <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
             Linked lists in Python
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
+          <p className="max-w-2xl text-base leading-7 text-[color:var(--color-muted)]">
             Linked lists trade random access for flexible insertions and
             deletions. They show up in interviews because they force you to
             think about pointers and traversal.
@@ -58,47 +74,55 @@ export default function LinkedListsPage() {
         </header>
 
         <section className="mt-10 grid gap-6">
-          <div className="intro-panel rounded-2xl px-6 py-6">
+          <div
+            id="introduction"
+            className="intro-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Introduction
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
               A linked list is a chain of nodes. Each node stores a value and a
               pointer to the next node. You move through the list one hop at a
               time.
             </p>
           </div>
 
-          <div className="intuition-panel rounded-2xl px-6 py-6">
+          <div
+            id="intuition"
+            className="intuition-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
             <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
               Intuition
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
               Think of a linked list like train cars. Each car knows only the
               next car. To reach the third car, you must walk through the first
               two.
             </p>
           </div>
 
-          <section className="grid gap-4">
-            <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-              Example 1: Build and traverse
-            </h3>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+          <CollapsibleExample
+            id="example-1"
+            title="Example 1: Build and traverse"
+            defaultOpen
+          >
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Step by step: create a head node, then give it a pointer to the
               second node, and so on. Traversal always begins at the head. Each
               hop moves to <span className="font-mono text-white">next</span>{" "}
-              until that pointer is <span className="font-mono text-white">None</span>.
+              until that pointer is{" "}
+              <span className="font-mono text-white">None</span>.
             </p>
             <CodeBlock code={buildCode} title="Python" />
             <OutputBlock output={buildOutput} />
-          </section>
+          </CollapsibleExample>
 
-          <section className="grid gap-4">
-            <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-              Example 2: Reverse the list
-            </h3>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
+          <CollapsibleExample
+            id="example-2"
+            title="Example 2: Reverse the list"
+          >
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Step by step: keep track of the previous node, then redirect the
               current node&apos;s <span className="font-mono text-white">next</span>{" "}
               pointer to that previous node. Move both pointers forward. By the
@@ -106,8 +130,9 @@ export default function LinkedListsPage() {
             </p>
             <CodeBlock code={reverseCode} title="Python" />
             <OutputBlock output={reverseOutput} />
-          </section>
+          </CollapsibleExample>
         </section>
+        </div>
       </div>
     </div>
   );
