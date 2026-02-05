@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Dekko, JetBrains_Mono } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import "./globals.css";
@@ -7,6 +7,18 @@ import "./globals.css";
 const monoFont = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+});
+
+const displayFont = Dekko({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const bodyFont = Dekko({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const siteTitle = "Leet-Cheat";
@@ -39,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
+        className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
       >
         <div className="relative min-h-screen">
           <div className="pointer-events-none absolute inset-0 -z-10">

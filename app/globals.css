@@ -2,10 +2,6 @@
 
 :root {
   color-scheme: dark;
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   --color-background: #090c12;
   --color-surface: #121824;
   --color-surface-2: #1b2232;
@@ -36,7 +32,7 @@ body {
   min-height: 100%;
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-body);
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 .text-gradient {
