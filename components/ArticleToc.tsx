@@ -62,6 +62,10 @@ export default function ArticleToc({ items }: ArticleTocProps) {
     updateActive();
     window.addEventListener("scroll", updateActive, { passive: true });
     window.addEventListener("resize", updateActive);
+    document.addEventListener("scroll", updateActive, {
+      passive: true,
+      capture: true,
+    });
     const observer = new IntersectionObserver(updateActive, {
       rootMargin: "-30% 0px -55% 0px",
       threshold: 0,
@@ -71,6 +75,7 @@ export default function ArticleToc({ items }: ArticleTocProps) {
     return () => {
       window.removeEventListener("scroll", updateActive);
       window.removeEventListener("resize", updateActive);
+      document.removeEventListener("scroll", updateActive, true);
       observer.disconnect();
     };
   }, [itemIds]);

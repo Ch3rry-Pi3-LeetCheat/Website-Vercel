@@ -52,10 +52,8 @@ export default function LinkedListsPage() {
   return (
     <div className="px-4 pb-20 pt-12 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1520px] lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12">
-        <aside className="hidden lg:block lg:self-start">
-          <div className="sticky top-28">
-            <ArticleToc items={tocItems} />
-          </div>
+        <aside className="hidden lg:sticky lg:top-28 lg:block lg:h-fit lg:self-start">
+          <ArticleToc items={tocItems} />
         </aside>
 
         <div>
