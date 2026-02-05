@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
+import CollapsibleExample from "@/components/CollapsibleExample";
+import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
+import SketchDiagram from "@/components/SketchDiagram";
 
 const pageTitle = "Dataframe Slicing for Interview Questions";
 const pageDescription =
@@ -85,155 +88,136 @@ const safeAssignOutput = `  candidate  score   stage
 4       Eli     85  screen`;
 
 export default function DataframeSlicingPage() {
+  const tocItems = [
+    { id: "introduction", label: "Introduction" },
+    { id: "intuition", label: "Intuition" },
+    { id: "diagram", label: "Diagram: Slice mindset" },
+    { id: "example-1", label: "Example 1: Starter dataframe" },
+    { id: "example-2", label: "Example 2: Select columns" },
+    { id: "example-3", label: "Example 3: Filter rows" },
+    { id: "example-4", label: "Example 4: loc vs iloc" },
+    { id: "example-5", label: "Example 5: Top scorers" },
+    { id: "example-6", label: "Example 6: Safe assignment" },
+    { id: "takeaways", label: "Key takeaways" },
+  ];
+
   return (
-    <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.45fr]">
-        <article className="grid gap-10">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-            <Link href="/topics" className="hover:text-white">
-              Topics
-            </Link>
-            <span>/</span>
-            <Link href="/topics/python-programming" className="hover:text-white">
-              Python Programming
-            </Link>
-          </div>
+    <ArticleLayout
+      eyebrow="Python Programming"
+      title="Dataframe slicing for interview questions"
+      description="This guide shows how to slice pandas dataframes with confidence: select columns, filter rows, and use loc/iloc safely. These are the exact patterns you will reach for in interviews."
+      tocItems={tocItems}
+    >
+      <InfoPanel id="introduction" title="Introduction" variant="intro">
+        <p>
+          Dataframe slicing is about extracting exactly the rows and columns you
+          need without disturbing the rest of the table. This is the foundation
+          for almost every real-world data task.
+        </p>
+        <p>
+          Interview questions often disguise slicing as “filter the data” or
+          “find the top candidates.” If you can explain each slice, you can
+          explain the solution.
+        </p>
+      </InfoPanel>
 
-          <header className="grid gap-4">
-            <h1 className="text-4xl font-semibold text-white font-[var(--font-display)] md:text-5xl">
-              Dataframe slicing for interview questions
-            </h1>
-            <p className="max-w-2xl text-lg leading-7 text-[color:var(--color-muted)]">
-              This article shows how to slice pandas dataframes with confidence:
-              select columns, filter rows, and use <span className="font-mono text-white">loc</span>/
-              <span className="font-mono text-white">iloc</span> safely. These
-              are the exact patterns you will reach for in coding interviews.
-            </p>
-          </header>
+      <InfoPanel id="intuition" title="Intuition" variant="intuition">
+        <p>
+          Think of the dataframe as a grid. Slicing is choosing which rows and
+          columns to keep visible. You can use row masks, column lists, or both.
+        </p>
+        <p>
+          Your mental model should be: “Filter rows first, then select the
+          columns that matter.” That keeps logic clear and output readable.
+        </p>
+      </InfoPanel>
 
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              1. Create a clean starter dataframe
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              Use a list of records so each row is explicit. This mirrors how
-              data arrives from APIs or SQL queries and keeps the schema clear.
-            </p>
-            <CodeBlock code={setupCode} title="Python" />
-            <OutputBlock output={setupOutput} />
-          </section>
-
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              2. Select columns explicitly
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              In interviews, always be explicit about the columns you need.
-              This prevents accidental leakage of data and improves clarity.
-            </p>
-            <CodeBlock code={columnsCode} title="Python" />
-            <OutputBlock output={columnsOutput} />
-          </section>
-
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              3. Filter rows with boolean masks
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              Boolean masks are the core slicing tool. They read like a SQL
-              <span className="ml-1 font-mono text-white">WHERE</span> clause.
-            </p>
-            <CodeBlock code={filterCode} title="Python" />
-            <OutputBlock output={filterOutput} />
-          </section>
-
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              4. Use loc and iloc for safe indexing
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              <span className="font-mono text-white">loc</span> uses labels and
-              boolean masks; <span className="font-mono text-white">iloc</span>{" "}
-              uses integer positions. Interviewers love when you choose the
-              appropriate one and explain why.
-            </p>
-            <CodeBlock code={locCode} title="Python" />
-            <OutputBlock output={locOutput} />
-            <CodeBlock code={ilocCode} title="Python" />
-            <OutputBlock output={ilocOutput} />
-          </section>
-
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              5. Interview pattern: top scorers in Python
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              Combine filters with sorting to answer typical LeetCode-style
-              data questions. Make the output deterministic and index-reset so
-              it reads cleanly.
-            </p>
-            <CodeBlock code={interviewCode} title="Python" />
-            <OutputBlock output={interviewOutput} />
-          </section>
-
-          <section className="grid gap-4">
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              6. Safe assignment without chained indexing
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-              Avoid chained indexing because it can create silent copies. Use
-              <span className="ml-1 font-mono text-white">loc</span> when you
-              need to update values in place.
-            </p>
-            <CodeBlock code={safeAssignCode} title="Python" />
-            <OutputBlock output={safeAssignOutput} />
-          </section>
-
-          <section className="grid gap-4 rounded-3xl border border-white/10 bg-[color:var(--color-surface-2)] px-6 py-6">
-            <h3 className="text-xl font-semibold text-white">Key takeaways</h3>
-            <ul className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-              <li>Prefer explicit column lists when slicing.</li>
-              <li>Use boolean masks for rows and explain them clearly.</li>
-              <li>Reach for loc/iloc depending on labels vs positions.</li>
-              <li>Reset indexes after sorting for clean outputs.</li>
-              <li>Use loc for assignment to avoid silent copy bugs.</li>
-            </ul>
-          </section>
-        </article>
-
-        <aside className="grid gap-6">
-          <div className="glass-panel rounded-2xl px-5 py-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-              Article stats
-            </p>
-            <div className="mt-4 grid gap-3 text-sm text-[color:var(--color-muted)]">
-              <div className="flex items-center justify-between">
-                <span>Reading time</span>
-                <span className="text-white">18 min</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Skill level</span>
-                <span className="text-white">Beginner</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Track</span>
-                <span className="text-white">Python Programming</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-[color:var(--color-surface)] px-5 py-5 text-sm text-[color:var(--color-muted)]">
-            <h3 className="text-base font-semibold text-white">
-              Why this matters in interviews
-            </h3>
-            <p className="mt-3 leading-6">
-              Many data questions are really slicing problems disguised as
-              business requirements. If you can explain each mask and selection
-              step, you will earn clarity points quickly.
-            </p>
-          </div>
-        </aside>
+      <div id="diagram" className="scroll-mt-28">
+        <SketchDiagram
+          title="Sketch: slicing a table"
+          variant="table"
+          caption="Row filters + column selection are the two levers you pull."
+        />
       </div>
-    </div>
+
+      <CollapsibleExample
+        id="example-1"
+        title="Example 1: Create a clean starter dataframe"
+        defaultOpen
+      >
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: build a list of records so each row is explicit. This
+          mirrors real data sources and gives you a clean schema to slice.
+        </p>
+        <CodeBlock code={setupCode} title="Python" />
+        <OutputBlock output={setupOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample id="example-2" title="Example 2: Select columns">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: list the columns you want in a new order. This makes
+          your intent explicit and avoids accidental leakage of unused data.
+        </p>
+        <CodeBlock code={columnsCode} title="Python" />
+        <OutputBlock output={columnsOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample id="example-3" title="Example 3: Filter rows with masks">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: build a boolean mask that reads like a SQL WHERE clause,
+          then apply it to the dataframe to keep only the rows that match.
+        </p>
+        <CodeBlock code={filterCode} title="Python" />
+        <OutputBlock output={filterOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample id="example-4" title="Example 4: Use loc and iloc safely">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: use{" "}
+          <span className="font-mono text-white">loc</span> when selecting by
+          labels or masks, and{" "}
+          <span className="font-mono text-white">iloc</span> when selecting by
+          integer position. Choosing the right one signals clarity.
+        </p>
+        <CodeBlock code={locCode} title="Python" />
+        <OutputBlock output={locOutput} />
+        <CodeBlock code={ilocCode} title="Python" />
+        <OutputBlock output={ilocOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample id="example-5" title="Example 5: Top scorers in Python">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: filter down to Python candidates, sort by score, and
+          take the top results. Resetting the index gives you a clean final
+          table.
+        </p>
+        <CodeBlock code={interviewCode} title="Python" />
+        <OutputBlock output={interviewOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample id="example-6" title="Example 6: Safe assignment">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: use{" "}
+          <span className="font-mono text-white">loc</span> for assignment to
+          avoid chained indexing. That keeps your updates applied in place.
+        </p>
+        <CodeBlock code={safeAssignCode} title="Python" />
+        <OutputBlock output={safeAssignOutput} />
+      </CollapsibleExample>
+
+      <div
+        id="takeaways"
+        className="scroll-mt-28 rounded-3xl border border-white/10 bg-[color:var(--color-surface-2)] px-6 py-6"
+      >
+        <h3 className="text-xl font-semibold text-white">Key takeaways</h3>
+        <ul className="mt-3 grid gap-2 text-sm text-[color:var(--color-muted)]">
+          <li>Prefer explicit column lists when slicing.</li>
+          <li>Use boolean masks for rows and explain them clearly.</li>
+          <li>Reach for loc/iloc depending on labels vs positions.</li>
+          <li>Reset indexes after sorting for clean outputs.</li>
+          <li>Use loc for assignment to avoid silent copy bugs.</li>
+        </ul>
+      </div>
+    </ArticleLayout>
   );
 }

@@ -63,7 +63,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
-                href="/tutorials/python/dataframes"
+                href="/topics/python-programming/dataframes"
                 className="rounded-full bg-[color:var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[var(--shadow-glow)] transition hover:brightness-110"
               >
                 Start the Python track
@@ -151,7 +151,7 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/tutorials/python/dataframes"
+              href="/topics/python-programming/dataframes"
               className="rounded-2xl border border-white/15 bg-[color:var(--color-surface)] px-6 py-5 text-sm font-semibold text-white transition hover:border-white/40"
             >
               Read the full dataframe tutorial

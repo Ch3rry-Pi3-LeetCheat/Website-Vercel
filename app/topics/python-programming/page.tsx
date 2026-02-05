@@ -2,11 +2,19 @@ import Link from "next/link";
 
 const articles = [
   {
+    title: "Python Dataframes 101",
+    description:
+      "Create a dataframe, inspect structure, and validate outputs before analysis.",
+    href: "/topics/python-programming/dataframes",
+    duration: "18 min",
+    level: "Beginner",
+  },
+  {
     title: "Dataframe slicing for interview questions",
     description:
       "Row filters, column selection, and safe indexing patterns you can explain under pressure.",
     href: "/topics/python-programming/dataframe-slicing",
-    duration: "20 min",
+    duration: "24 min",
     level: "Beginner",
   },
 ];
@@ -22,7 +30,7 @@ export default function PythonProgrammingPage() {
           <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
             Foundations and interview-ready patterns
           </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
+          <p className="max-w-2xl text-base leading-7 text-[color:var(--color-muted)]">
             Deep dives into the Python patterns that show up in technical
             interviews, data problems, and ML workflows.
           </p>
@@ -42,7 +50,7 @@ export default function PythonProgrammingPage() {
               <h2 className="mt-4 text-xl font-semibold text-white">
                 {article.title}
               </h2>
-              <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
+              <p className="mt-2 text-base leading-7 text-[color:var(--color-muted)]">
                 {article.description}
               </p>
             </Link>

@@ -1,7 +1,9 @@
-import ArticleToc from "@/components/ArticleToc";
+import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import CollapsibleExample from "@/components/CollapsibleExample";
+import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
+import SketchDiagram from "@/components/SketchDiagram";
 
 const buildCode = `class Node:
     def __init__(self, value, left=None, right=None):
@@ -45,90 +47,77 @@ export default function TreesPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "diagram", label: "Diagram: Binary tree" },
     { id: "example-1", label: "Example 1: In-order traversal" },
     { id: "example-2", label: "Example 2: Level-order BFS" },
   ];
 
   return (
-    <div className="px-4 pb-20 pt-12 sm:px-6 lg:px-10">
-      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1520px] lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12">
-        <aside className="hidden lg:sticky lg:top-28 lg:block lg:h-fit lg:self-start">
-          <ArticleToc items={tocItems} />
-        </aside>
+    <ArticleLayout
+      eyebrow="Trees"
+      title="Trees in Python"
+      description="Trees model hierarchies. They help you reason about recursion, searching, and structure in interview questions."
+      tocItems={tocItems}
+    >
+      <InfoPanel id="introduction" title="Introduction" variant="intro">
+        <p>
+          A tree is a set of nodes with parent-child relationships. The most
+          common interview structure is a binary tree, where each node has up to
+          two children.
+        </p>
+        <p>
+          Trees let you divide a problem into smaller subtrees. That recursive
+          shape is why they appear in traversal, search, and hierarchy problems.
+        </p>
+      </InfoPanel>
 
-        <div>
-          <header className="grid gap-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Trees
-          </p>
-          <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
-            Trees in Python
-          </h1>
-          <p className="max-w-2xl text-base leading-7 text-[color:var(--color-muted)]">
-            Trees model hierarchies. They help you reason about recursion,
-            searching, and structure in interview questions.
-          </p>
-        </header>
+      <InfoPanel id="intuition" title="Intuition" variant="intuition">
+        <p>
+          Picture an org chart. You start at the CEO (root) and move down
+          through managers and teams. Each branch is a smaller problem you can
+          solve the same way.
+        </p>
+        <p>
+          If you can solve a tree for one node, you can solve it for every node
+          by applying the same logic recursively.
+        </p>
+      </InfoPanel>
 
-        <section className="mt-10 grid gap-6">
-          <div
-            id="introduction"
-            className="intro-panel scroll-mt-28 rounded-2xl px-6 py-6"
-          >
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              Introduction
-            </h2>
-            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
-              A tree is a set of nodes with parent-child relationships. The
-              most common interview structure is a binary tree, where each node
-              has up to two children.
-            </p>
-          </div>
-
-          <div
-            id="intuition"
-            className="intuition-panel scroll-mt-28 rounded-2xl px-6 py-6"
-          >
-            <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-              Intuition
-            </h2>
-            <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
-              Picture an org chart. You start at the CEO (root) and move down
-              through managers and teams. Each branch is a smaller problem you
-              can solve the same way.
-            </p>
-          </div>
-
-          <CollapsibleExample
-            id="example-1"
-            title="Example 1: In-order traversal"
-            defaultOpen
-          >
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Step by step: start at the root, keep moving left until there is
-              no left child, then record the value. After recording, move to
-              the right subtree and repeat. This produces sorted output for a
-              binary search tree.
-            </p>
-            <CodeBlock code={buildCode} title="Python" />
-            <OutputBlock output={buildOutput} />
-          </CollapsibleExample>
-
-          <CollapsibleExample
-            id="example-2"
-            title="Example 2: Level-order traversal (BFS)"
-          >
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Step by step: put the root in a queue, then repeatedly remove the
-              front node and add its children to the back. The queue ensures you
-              finish a level before moving deeper.
-            </p>
-            <CodeBlock code={bfsCode} title="Python" />
-            <OutputBlock output={bfsOutput} />
-          </CollapsibleExample>
-        </section>
-        </div>
+      <div id="diagram" className="scroll-mt-28">
+        <SketchDiagram
+          title="Sketch: binary tree"
+          variant="tree"
+          caption="Each node splits into left and right subtrees."
+        />
       </div>
-    </div>
+
+      <CollapsibleExample
+        id="example-1"
+        title="Example 1: In-order traversal"
+        defaultOpen
+      >
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: start at the root, keep moving left until there is no
+          left child, then record the value. After recording, move to the right
+          subtree and repeat. This produces sorted output for a binary search
+          tree.
+        </p>
+        <CodeBlock code={buildCode} title="Python" />
+        <OutputBlock output={buildOutput} />
+      </CollapsibleExample>
+
+      <CollapsibleExample
+        id="example-2"
+        title="Example 2: Level-order traversal (BFS)"
+      >
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Step by step: put the root in a queue, then repeatedly remove the
+          front node and add its children to the back. The queue ensures you
+          finish a level before moving deeper.
+        </p>
+        <CodeBlock code={bfsCode} title="Python" />
+        <OutputBlock output={bfsOutput} />
+      </CollapsibleExample>
+    </ArticleLayout>
   );
 }
