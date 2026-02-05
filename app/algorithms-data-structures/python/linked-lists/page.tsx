@@ -259,7 +259,7 @@ export default function LinkedListsPage() {
         <img
           src="/diagrams/linked-lists/node-chain.svg"
           alt="Linked list node chain"
-          className="mt-4 w-full max-w-3xl"
+          className="mt-4 w-full max-w-3xl mx-auto"
         />
         <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
           Each node points to the next one, so traversal is a hop-by-hop walk

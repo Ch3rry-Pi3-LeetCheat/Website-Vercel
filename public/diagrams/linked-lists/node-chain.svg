@@ -1,1 +1,104 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 666.3273809523816 110.69047619047524" width="666.3273809523816" height="110.69047619047524"><!-- svg-source:excalidraw --><metadata></metadata><defs><style class="style-fonts">      @font-face { font-family: Excalifont; src: url(data:font/woff2;base64,d09GMgABAAAAAATYAA4AAAAACFgAAASGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbgRIcNAZgAEQRCAqHDIVKCwwAATYCJAMUBCAFgxgHIBuXBsiOwradM8ZK0vk5lBPCxkOwju/N7O6HEqgsHCLEElTqhXopXvv5ECq8B++mfyHUPIKtpGqBqlLT0M1rLoGZ29ewiT4xnTpVEwtINk/RbPS19SnRXDCdQ6yCtV5BJtkaYD1f4Frr5vI1Fdd0kScuXtKcqgJtcBIphFIItFgVgXtwlJoLgnsdjdUgeNRYUgWC5wXNtSDAhb/R8+xBYy0Y4kilFIYmafaF2EJDleCFCFIGQcM7Jcpr0HW0lG0GXGSMnZkb86CnKSc5+cBZzhM30f4CfXi6g3OydLgJp5QUrf8n6RWt0ToK8B6AeMfJB0YZIlGgEyrQiWsVaNIkcUqBkrquUPGC/y/Vu+odkKN0XUNC1W60oJFYBIgHEJW8vpBS3tzAwszdsILbzGatQJuLLS9vwjRhe50PC3eLkeOkYovyCEkq95ADexBkYDsycMLlgNumfmxZvZXfz5pMPXB64H+AVJI6ZmCen/Pq59kqUf8ybNy5VY2xuzZtxZbRguXt1borFJtT6wC5Q3cjVEneCLXmsftYDN+Hs73Q4MdwfAXsDVDYXwBBbGbUambK5UnkHfHADmKv2nHv06OeB70O5U26K4jNWiGiO8k7p+GTYrlYuWfLDnKLDtniwl7CN9nl9uduVPOAv7bpmAbfhC0bTzpfZ246qhPvMluvmUyROvnyfmPtgVq+Wxerk5MH8Hsau13quL3Gk8nOG2GXRnYuxeWA7AAfrkod1QFqRivfZ8Ky+6amTA7cEG5Jdp68eNCVd5IZNMqcQjecjtHrnHyaYIwZ6kd9bIosd8QH9coXeJntlvZrIvJ9TFZGdt4sbPZa/savbjQ0N5KN2SJxYXbR2jCmC/5cFvWgiT0+qysyHQOL+cSRBwjKkb8SIhkdRvEDbhk2zacpuK3/8S7PeabyeUYe7o64x1/yLLZfSLTIaLSq2Bz0dM3qWTKdtF/NmzHPKP9WLRQeTLjjKD1ERLvENuTGrLXSId0PEtH2RmkyV7KUf6aeW9EP+639Hr08/qd+1qaBUcbrznTTD2dcI1ADtKNR35coTre2XMcJu/hDtlAphcwp06pJcZpjVIGPXCSMSrb92t8Aq/mOX1trITt954F0b/05O/J3uWc4i+/iyJpzH0jA5eJdx9LKiKxU3k9FNxuyIp25WVdQApdUv31kfqAwdchm4MGr2EYne+yj0UwiK4MbMxfnsOqrNr2mb9HGKzg5XyWzDTj2hC7bBQCB4MZPn7/WW4T9amiCfgGfOtzjAPi8++uu/9/87+J+VQYDaJIgeLO0shbIv39mCHiWqigUn+HgkVGccy235IMQgsoJNIBECOwAQKOrUFEaAc89G0zodJ1JHT4whXmjTGlSIVPZ4riPBpPAoXZFClSrUKpOrWZespUo06JagUaMEo2aVKgqxY833wZCyXTRoV65+m2KhDcaxZUEjRbIbbsINb5t+Tg5ZNKFhsbzdOnFEtTrEGWFMuWHPu2qiBsKzRdNilKoAxV9Z7FGBdp4o0SrVo2KB03OKyFc4rXmSjFvKDD1f5UxAA==); }      @font-face { font-family: Virgil; src: url(data:font/woff2;base64,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); }</style></defs><rect x="0" y="0" width="666.3273809523816" height="110.69047619047524" fill="#ffffff"></rect><g stroke-linecap="round" transform="translate(10 10) rotate(0 81 45)"><path d="M22.5 0 C52.48 0, 82.46 0, 139.5 0 C154.5 0, 162 7.5, 162 22.5 C162 35.67, 162 48.84, 162 67.5 C162 82.5, 154.5 90, 139.5 90 C97.87 90, 56.24 90, 22.5 90 C7.5 90, 0 82.5, 0 67.5 C0 55.41, 0 43.32, 0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="none" stroke-width="0" fill="#0091e2"></path><path d="M22.5 0 C62.82 0, 103.14 0, 139.5 0 M22.5 0 C52.78 0, 83.07 0, 139.5 0 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M162 22.5 C162 37.16, 162 51.81, 162 67.5 M162 22.5 C162 34.91, 162 47.33, 162 67.5 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M139.5 90 C103.61 90, 67.73 90, 22.5 90 M139.5 90 C112.84 90, 86.18 90, 22.5 90 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M0 67.5 C0 54.23, 0 40.95, 0 22.5 M0 67.5 C0 58.31, 0 49.11, 0 22.5 M0 22.5 C0 7.5, 7.5 0, 22.5 0 M0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(49.76200866699219 32.5) rotate(0 41.23799133300781 22.5)"><text x="41.23799133300781" y="31.716" font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji" font-size="36px" fill="#ffffff" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">Head</text></g><g stroke-linecap="round" transform="translate(252.75 10.333333333332575) rotate(0 81 45)"><path d="M22.5 0 C51.59 0, 80.69 0, 139.5 0 C154.5 0, 162 7.5, 162 22.5 C162 31.92, 162 41.34, 162 67.5 C162 82.5, 154.5 90, 139.5 90 C113.52 90, 87.53 90, 22.5 90 C7.5 90, 0 82.5, 0 67.5 C0 53.4, 0 39.3, 0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="none" stroke-width="0" fill="#0091e2"></path><path d="M22.5 0 C62.18 0, 101.87 0, 139.5 0 M22.5 0 C54.81 0, 87.12 0, 139.5 0 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M162 22.5 C162 39.81, 162 57.13, 162 67.5 M162 22.5 C162 34.12, 162 45.75, 162 67.5 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M139.5 90 C105.35 90, 71.21 90, 22.5 90 M139.5 90 C104.42 90, 69.34 90, 22.5 90 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M0 67.5 C0 51.46, 0 35.42, 0 22.5 M0 67.5 C0 49.73, 0 31.96, 0 22.5 M0 22.5 C0 7.5, 7.5 0, 22.5 0 M0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(292.02601623535156 32.833333333332575) rotate(0 41.72398376464844 22.5)"><text x="41.72398376464844" y="31.716" font-family="Virgil, sans-serif, Segoe UI Emoji" font-size="36px" fill="#ffffff" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">Next</text></g><g stroke-linecap="round"><g transform="translate(172 55.71428571428578) rotate(0 40.459375000000364 0.5238095238091773)"><path d="M0 0 C21.9 0.28, 43.8 0.57, 80.92 1.05 M0 0 C28.62 0.37, 57.24 0.74, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(172 55.71428571428578) rotate(0 40.459375000000364 0.5238095238091773)"><path d="M57.32 9.29 C63.7 7.06, 70.09 4.83, 80.92 1.05 M57.32 9.29 C65.67 6.38, 74.01 3.46, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(172 55.71428571428578) rotate(0 40.459375000000364 0.5238095238091773)"><path d="M57.54 -7.81 C63.87 -5.41, 70.19 -3.01, 80.92 1.05 M57.54 -7.81 C65.81 -4.67, 74.08 -1.54, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g></g><mask></mask><g stroke-linecap="round" transform="translate(494.32738095238165 10.690476190475238) rotate(0 81 45)"><path d="M22.5 0 C68.69 0, 114.88 0, 139.5 0 C154.5 0, 162 7.5, 162 22.5 C162 40.48, 162 58.46, 162 67.5 C162 82.5, 154.5 90, 139.5 90 C114.85 90, 90.19 90, 22.5 90 C7.5 90, 0 82.5, 0 67.5 C0 57.01, 0 46.51, 0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="none" stroke-width="0" fill="#0091e2"></path><path d="M22.5 0 C60.88 0, 99.27 0, 139.5 0 M22.5 0 C56.87 0, 91.24 0, 139.5 0 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M139.5 0 C154.5 0, 162 7.5, 162 22.5 M162 22.5 C162 32.67, 162 42.85, 162 67.5 M162 22.5 C162 36.09, 162 49.69, 162 67.5 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M162 67.5 C162 82.5, 154.5 90, 139.5 90 M139.5 90 C110.84 90, 82.18 90, 22.5 90 M139.5 90 C115.71 90, 91.93 90, 22.5 90 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M22.5 90 C7.5 90, 0 82.5, 0 67.5 M0 67.5 C0 58.41, 0 49.32, 0 22.5 M0 67.5 C0 54.91, 0 42.33, 0 22.5 M0 22.5 C0 7.5, 7.5 0, 22.5 0 M0 22.5 C0 7.5, 7.5 0, 22.5 0" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(540.1733968825574 33.19047619047524) rotate(0 35.15398406982422 22.5)"><text x="35.15398406982422" y="31.716" font-family="Virgil, sans-serif, Segoe UI Emoji" font-size="36px" fill="#ffffff" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">Tail</text></g><g stroke-linecap="round"><g transform="translate(413.57738095238165 56.07142857142935) rotate(0 40.459375000000364 0.5238095238087226)"><path d="M0 0 C28.58 0.37, 57.16 0.74, 80.92 1.05 M0 0 C32.26 0.42, 64.53 0.84, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(413.57738095238165 56.07142857142935) rotate(0 40.459375000000364 0.5238095238087226)"><path d="M57.32 9.29 C65.65 6.38, 73.99 3.47, 80.92 1.05 M57.32 9.29 C66.73 6.01, 76.14 2.72, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g><g transform="translate(413.57738095238165 56.07142857142935) rotate(0 40.459375000000364 0.5238095238087226)"><path d="M57.54 -7.81 C65.8 -4.68, 74.05 -1.55, 80.92 1.05 M57.54 -7.81 C66.86 -4.28, 76.18 -0.75, 80.92 1.05" stroke="#1e1e1e" stroke-width="4" fill="none"></path></g></g><mask></mask></svg>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 720 160"
+  width="720"
+  height="160"
+  role="img"
+  aria-label="Linked list node chain with head, next, tail"
+>
+  <defs>
+    <marker
+      id="arrowhead"
+      markerWidth="12"
+      markerHeight="8"
+      refX="10"
+      refY="4"
+      orient="auto"
+    >
+      <path d="M0,0 L10,4 L0,8" fill="#1e1e1e" />
+    </marker>
+  </defs>
+
+  <rect
+    x="20"
+    y="20"
+    width="200"
+    height="120"
+    rx="28"
+    fill="#0091e2"
+    stroke="#1e1e1e"
+    stroke-width="6"
+  />
+  <rect
+    x="260"
+    y="20"
+    width="200"
+    height="120"
+    rx="28"
+    fill="#0091e2"
+    stroke="#1e1e1e"
+    stroke-width="6"
+  />
+  <rect
+    x="500"
+    y="20"
+    width="200"
+    height="120"
+    rx="28"
+    fill="#0091e2"
+    stroke="#1e1e1e"
+    stroke-width="6"
+  />
+
+  <line
+    x1="220"
+    y1="80"
+    x2="260"
+    y2="80"
+    stroke="#1e1e1e"
+    stroke-width="6"
+    stroke-linecap="round"
+    marker-end="url(#arrowhead)"
+  />
+  <line
+    x1="460"
+    y1="80"
+    x2="500"
+    y2="80"
+    stroke="#1e1e1e"
+    stroke-width="6"
+    stroke-linecap="round"
+    marker-end="url(#arrowhead)"
+  />
+
+  <text
+    x="120"
+    y="95"
+    text-anchor="middle"
+    font-size="42"
+    font-family="Segoe Print, Segoe UI, Comic Sans MS, sans-serif"
+    fill="#ffffff"
+  >
+    Head
+  </text>
+  <text
+    x="360"
+    y="95"
+    text-anchor="middle"
+    font-size="42"
+    font-family="Segoe Print, Segoe UI, Comic Sans MS, sans-serif"
+    fill="#ffffff"
+  >
+    Next
+  </text>
+  <text
+    x="600"
+    y="95"
+    text-anchor="middle"
+    font-size="42"
+    font-family="Segoe Print, Segoe UI, Comic Sans MS, sans-serif"
+    fill="#ffffff"
+  >
+    Tail
+  </text>
+</svg>
