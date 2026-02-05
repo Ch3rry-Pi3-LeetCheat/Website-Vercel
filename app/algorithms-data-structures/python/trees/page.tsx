@@ -51,7 +51,7 @@ export default function TreesPage() {
 
   return (
     <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+      <div className="mx-auto w-full max-w-[1200px] xl:max-w-[1320px] lg:grid lg:grid-cols-[260px_1fr] lg:gap-12">
         <aside className="hidden lg:block">
           <div className="sticky top-28">
             <ArticleToc items={tocItems} />

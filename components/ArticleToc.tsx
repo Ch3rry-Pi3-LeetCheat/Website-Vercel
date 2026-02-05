@@ -26,22 +26,35 @@ export default function ArticleToc({ items }: ArticleTocProps) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    let ticking = false;
 
-        if (visible.length) {
-          setActiveId(visible[0].target.id);
+    const updateActive = () => {
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const offset = 140;
+        let current = elements[0];
+        for (const el of elements) {
+          const top = el.getBoundingClientRect().top;
+          if (top - offset <= 0) {
+            current = el;
+          }
         }
-      },
-      { rootMargin: "-18% 0px -55% 0px", threshold: [0.1, 0.4, 0.8] }
-    );
+        setActiveId(current.id);
+        ticking = false;
+      });
+    };
 
-    elements.forEach((el) => observer.observe(el));
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, [itemIds]);
 
   return (
