@@ -196,3 +196,7 @@ details[open] .example-chevron {
   font-family: inherit;
   font-size: inherit;
 }
+
+.text-base {
+  font-size: 1.0625rem;
+}
