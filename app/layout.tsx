@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import "./globals.css";
-
-const displayFont = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const bodyFont = IBM_Plex_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 const monoFont = JetBrains_Mono({
   variable: "--font-mono",
@@ -50,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
+        className={`${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
       >
         <div className="relative min-h-screen">
           <div className="pointer-events-none absolute inset-0 -z-10">
