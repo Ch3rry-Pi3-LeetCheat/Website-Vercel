@@ -112,7 +112,7 @@ while fast and fast.next:
 # slow is now the middle node`;
 
 export default function LinkedListsPage() {
-  const tocItems = [
+  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
     { id: "two-moves", label: "Core mental model" },
@@ -315,15 +315,15 @@ export default function LinkedListsPage() {
         <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
           <p>
             <strong className="text-white">Iteration 1:</strong> current=1,
-            nxt=2, rewire 1 → None, move forward.
+            nxt=2, rewire 1 -> None, move forward.
           </p>
           <p>
             <strong className="text-white">Iteration 2:</strong> current=2,
-            nxt=3, rewire 2 → 1, move forward.
+            nxt=3, rewire 2 -> 1, move forward.
           </p>
           <p>
             <strong className="text-white">Iteration 3:</strong> current=3,
-            nxt=None, rewire 3 → 2, stop.
+            nxt=None, rewire 3 -> 2, stop.
           </p>
         </div>
         <p className="text-sm text-[color:var(--color-muted)]">
