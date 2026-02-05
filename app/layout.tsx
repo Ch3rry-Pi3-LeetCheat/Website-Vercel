@@ -52,7 +52,7 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
       >
-        <div className="relative min-h-screen overflow-x-hidden">
+        <div className="relative min-h-screen">
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,92,255,0.22),_transparent_45%)]" />
             <div className="absolute -top-20 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[rgba(66,211,255,0.15)] blur-3xl" />

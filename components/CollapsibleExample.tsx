@@ -16,12 +16,8 @@ export default function CollapsibleExample({
   defaultOpen = false,
 }: CollapsibleExampleProps) {
   return (
-    <details
-      id={id}
-      className="example-panel scroll-mt-28 rounded-2xl"
-      open={defaultOpen}
-    >
-      <summary className="example-summary">
+    <details className="example-panel rounded-2xl" open={defaultOpen}>
+      <summary id={id} className="example-summary scroll-mt-28">
         <span className="text-xl font-semibold text-white font-[var(--font-display)]">
           {title}
         </span>

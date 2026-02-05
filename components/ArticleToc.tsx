@@ -27,6 +27,11 @@ export default function ArticleToc({ items }: ArticleTocProps) {
     }
 
     let ticking = false;
+    const getScrollTop = () =>
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
     const updateActive = () => {
       if (ticking) {
@@ -34,12 +39,16 @@ export default function ArticleToc({ items }: ArticleTocProps) {
       }
       ticking = true;
       window.requestAnimationFrame(() => {
-        const offset = 140;
-        const scrollPosition = window.scrollY + offset;
-        let current = elements[0];
+        const offset = 160;
+        const scrollPosition = getScrollTop() + offset;
+        const sorted = [...elements].sort(
+          (a, b) =>
+            a.getBoundingClientRect().top - b.getBoundingClientRect().top
+        );
+        let current = sorted[0];
 
-        for (const el of elements) {
-          const top = el.getBoundingClientRect().top + window.scrollY;
+        for (const el of sorted) {
+          const top = el.getBoundingClientRect().top + getScrollTop();
           if (top <= scrollPosition) {
             current = el;
           }
@@ -53,10 +62,16 @@ export default function ArticleToc({ items }: ArticleTocProps) {
     updateActive();
     window.addEventListener("scroll", updateActive, { passive: true });
     window.addEventListener("resize", updateActive);
+    const observer = new IntersectionObserver(updateActive, {
+      rootMargin: "-30% 0px -55% 0px",
+      threshold: 0,
+    });
+    elements.forEach((el) => observer.observe(el));
 
     return () => {
       window.removeEventListener("scroll", updateActive);
       window.removeEventListener("resize", updateActive);
+      observer.disconnect();
     };
   }, [itemIds]);
 
