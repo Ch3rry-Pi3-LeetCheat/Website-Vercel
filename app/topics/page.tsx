@@ -19,8 +19,8 @@ const tracks = [
     title: "LLMs & Agents",
     description:
       "Prompting, retrieval, evaluation, and production-grade agent patterns.",
-    href: "/topics/llms",
-    status: "Coming soon",
+    href: "/llms",
+    status: "Active",
   },
 ];
 
