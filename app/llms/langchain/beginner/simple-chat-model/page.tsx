@@ -79,13 +79,13 @@ const prettyPrintCode = `# Pretty-print the response for readability
 response.pretty_print()`;
 
 const prettyPrintOutput = `================================== Ai Message ==================================
-Hi there! How can I assist you today->`;
+Hi there! How can I assist you today?`;
 
 const contentPrintCode = `# Print the response content as a plain string
 print(response.content)`;
 
 export default function SimpleChatModelPage() {
-  const tocItems: { id: string; label: string; level->: 1 | 2 }[] = [
+  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "overview", label: "Overview" },
     { id: "load-env", label: "Loading environment variables" },
     { id: "init-model", label: "Initialising the chat model" },
