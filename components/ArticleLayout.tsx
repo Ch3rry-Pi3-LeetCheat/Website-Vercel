@@ -26,8 +26,8 @@ export default function ArticleLayout({
 }: ArticleLayoutProps) {
   const hasRightRail = Boolean(rightRail);
   const gridClass = hasRightRail
-    ? "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12 xl:grid-cols-[280px_1fr_260px]"
-    : "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12";
+    ? "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-12 xl:grid-cols-[280px_minmax(0,1fr)_260px]"
+    : "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-12";
   const maxWidthClass = hasRightRail
     ? "max-w-[1440px] 2xl:max-w-[1560px]"
     : "max-w-[1320px] 2xl:max-w-[1440px]";
