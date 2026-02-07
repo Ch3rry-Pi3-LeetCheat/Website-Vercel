@@ -29,8 +29,8 @@ export default function ArticleLayout({
     ? "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12 xl:grid-cols-[280px_1fr_260px]"
     : "lg:grid lg:grid-cols-[280px_1fr] lg:items-start lg:gap-12";
   const maxWidthClass = hasRightRail
-    ? "max-w-[1600px] 2xl:max-w-[1720px]"
-    : "max-w-[1400px] 2xl:max-w-[1520px]";
+    ? "max-w-[1440px] 2xl:max-w-[1560px]"
+    : "max-w-[1320px] 2xl:max-w-[1440px]";
 
   return (
     <div className="px-4 pb-20 pt-12 sm:px-6 lg:px-10">
