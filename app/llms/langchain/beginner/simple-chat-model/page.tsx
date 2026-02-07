@@ -24,7 +24,7 @@ response = model.invoke(input="Hiya!")`;
 const responseInspectCode = `# Display the raw AIMessage object
 response`;
 
-const responseOutput = `AIMessage(content='Hi there! How can I assist you today->', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 10, 'prompt_tokens': 10, 'total_tokens': 20, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_29330a9688', 'id': 'chatcmpl-D1HbVuqzrvbHqIp0TQTIx8GcbQnwZ', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None}, id='lc_run--019bec70-b845-7483-bd84-00a843dcce74-0', tool_calls=[], invalid_tool_calls=[], usage_metadata={'input_tokens': 10, 'output_tokens': 10, 'total_tokens': 20, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})`;
+const responseOutput = `AIMessage(content='Hi there! How can I assist you today?', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 10, 'prompt_tokens': 10, 'total_tokens': 20, 'completion_tokens_details': {'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, 'prompt_tokens_details': {'audio_tokens': 0, 'cached_tokens': 0}}, 'model_provider': 'openai', 'model_name': 'gpt-4o-mini-2024-07-18', 'system_fingerprint': 'fp_29330a9688', 'id': 'chatcmpl-D1HbVuqzrvbHqIp0TQTIx8GcbQnwZ', 'service_tier': 'default', 'finish_reason': 'stop', 'logprobs': None}, id='lc_run--019bec70-b845-7483-bd84-00a843dcce74-0', tool_calls=[], invalid_tool_calls=[], usage_metadata={'input_tokens': 10, 'output_tokens': 10, 'total_tokens': 20, 'input_token_details': {'audio': 0, 'cache_read': 0}, 'output_token_details': {'audio': 0, 'reasoning': 0}})`;
 
 const typeCode = `# Check the Python type of the response
 type(response)`;
@@ -44,7 +44,7 @@ response_dict = response.model_dump()
 pprint(response_dict)`;
 
 const dumpOutput = `{'additional_kwargs': {'refusal': None},
- 'content': 'Hi there! How can I assist you today->',
+ 'content': 'Hi there! How can I assist you today?',
  'id': 'lc_run--019bec70-b845-7483-bd84-00a843dcce74-0',
  'invalid_tool_calls': [],
  'name': None,
@@ -218,30 +218,30 @@ export default function SimpleChatModelPage() {
         </p>
         <ul className="grid gap-2 text-sm text-[color:var(--color-muted)]">
           <li>
-            <span className="font-mono text-white">langchain_core</span> -> a
+            <span className="font-mono text-white">langchain_core</span> - a
             Python package
           </li>
           <li>
-            <span className="font-mono text-white">messages</span> -> a
-            sub-package / module namespace inside langchain_core related to chat
-            messages
+            <span className="font-mono text-white">messages</span> - a
+            sub-package / module namespace inside langchain_core related to
+            chat messages
           </li>
           <li>
-            <span className="font-mono text-white">ai</span> -> a module (a .py
+            <span className="font-mono text-white">ai</span> - a module (a .py
             file) inside messages that defines AI-related message types
           </li>
           <li>
-            <span className="font-mono text-white">AIMessage</span> -> a class
+            <span className="font-mono text-white">AIMessage</span> - a class
             defined in that module
           </li>
         </ul>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So, <span className="font-mono text-white">AIMessage</span> is a
           class, located at: package{" "}
-          <span className="font-mono text-white">langchain_core</span> ->{" "}
-          subpackage <span className="font-mono text-white">messages</span> ->{" "}
-          module <span className="font-mono text-white">ai</span> -> class{" "}
-          <span className="font-mono text-white">AIMessage</span>.
+          <span className="font-mono text-white">langchain_core</span>, then
+          subpackage <span className="font-mono text-white">messages</span>,
+          then module <span className="font-mono text-white">ai</span>, then
+          class <span className="font-mono text-white">AIMessage</span>.
         </p>
       </section>
 
@@ -252,7 +252,7 @@ export default function SimpleChatModelPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           BUT... Didn&apos;t we only install the{" "}
           <span className="font-mono text-white">langchain</span> package, and
-          not <span className="font-mono text-white">langchain_core</span>-> Yes,
+          not <span className="font-mono text-white">langchain_core</span>? Yes,
           but when we install{" "}
           <span className="font-mono text-white">langchain</span>, we
           implicitly install{" "}
@@ -332,7 +332,7 @@ export default function SimpleChatModelPage() {
           For example, we can extract the content using:
         </p>
         <CodeBlock code={contentCode} title="Python" />
-        <OutputBlock output="'Hi there! How can I assist you today->'" />
+        <OutputBlock output="'Hi there! How can I assist you today?'" />
       </section>
 
       <section id="pretty-print" className="scroll-mt-28 grid gap-4">
@@ -370,7 +370,7 @@ export default function SimpleChatModelPage() {
           or when you want behaviour that feels like a traditional chatbot.
         </p>
         <CodeBlock code={contentPrintCode} title="Python" />
-        <OutputBlock output="Hi there! How can I assist you today->" />
+        <OutputBlock output="Hi there! How can I assist you today?" />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Here, the response is returned as a plain Python string. At this
           point, all of the additional metadata has been ignored, and we are
