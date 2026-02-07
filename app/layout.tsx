@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Dekko, JetBrains_Mono } from "next/font/google";
+import {
+  Google_Sans,
+  Google_Sans_Flex,
+  JetBrains_Mono,
+} from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import "./globals.css";
@@ -9,16 +13,18 @@ const monoFont = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const displayFont = Dekko({
+const displayFont = Google_Sans_Flex({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
+  weight: "variable",
+  display: "swap",
 });
 
-const bodyFont = Dekko({
+const bodyFont = Google_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: "400",
+  weight: "variable",
+  display: "swap",
 });
 
 const siteTitle = "Leet-Cheat";
