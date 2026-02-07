@@ -15,7 +15,7 @@ export default async function CodeBlock({
   const highlighted = await highlightCode(code, language);
 
   return (
-    <div className="glass-panel rounded-2xl">
+    <div className="glass-panel min-w-0 rounded-2xl">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
         <span>{title ?? language}</span>
         <CodeCopyButton code={code} />
