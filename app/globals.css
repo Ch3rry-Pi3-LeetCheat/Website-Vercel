@@ -167,6 +167,10 @@ details[open] .example-chevron {
   padding: 0.05em 0.35em;
   border-radius: 0.35em;
   font-weight: 600;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .token-comment {
