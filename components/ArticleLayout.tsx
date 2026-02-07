@@ -39,7 +39,7 @@ export default function ArticleLayout({
           <ArticleToc items={tocItems} />
         </aside>
 
-        <div>
+        <div className="min-w-0">
           <header className="grid gap-4">
             <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
               {eyebrow}
