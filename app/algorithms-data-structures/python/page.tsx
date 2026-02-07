@@ -4,37 +4,37 @@ const structures = [
   {
     title: "Arrays & Lists",
     description: "Indexing, slicing, and two-pointer interview patterns.",
-    href: "/algorithms-data-structures/python/arrays",
+    href: "/algorithms-data-structures/python/arrays/beginner",
   },
   {
     title: "Linked Lists",
     description: "Pointers, traversal, and in-place mutation patterns.",
-    href: "/algorithms-data-structures/python/linked-lists",
+    href: "/algorithms-data-structures/python/linked-lists/beginner",
   },
   {
     title: "Stacks & Queues",
     description: "LIFO/FIFO mechanics for parsing and scheduling tasks.",
-    href: "/algorithms-data-structures/python/stacks-queues",
+    href: "/algorithms-data-structures/python/stacks-queues/beginner",
   },
   {
     title: "Hash Tables",
     description: "Fast lookups, counting, and collision intuition.",
-    href: "/algorithms-data-structures/python/hash-tables",
+    href: "/algorithms-data-structures/python/hash-tables/beginner",
   },
   {
     title: "Trees",
     description: "Traversal, recursion, and BST interview templates.",
-    href: "/algorithms-data-structures/python/trees",
+    href: "/algorithms-data-structures/python/trees/beginner",
   },
   {
     title: "Heaps",
     description: "Priority queues, top-k problems, and scheduling.",
-    href: "/algorithms-data-structures/python/heaps",
+    href: "/algorithms-data-structures/python/heaps/beginner",
   },
   {
     title: "Graphs",
     description: "Adjacency lists, BFS/DFS, and shortest paths.",
-    href: "/algorithms-data-structures/python/graphs",
+    href: "/algorithms-data-structures/python/graphs/beginner",
   },
 ];
 
@@ -44,14 +44,14 @@ export default function AlgorithmsPythonPage() {
       <div className="mx-auto w-full max-w-5xl">
         <header className="grid gap-4">
           <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Algorithms • Python
+            Algorithms - Python
           </p>
           <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
             Data structures in Python
           </h1>
           <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
-            Each module focuses on the data structure, the operations that
-            matter, and the interview patterns that appear repeatedly.
+            Each module builds from first principles, then grows into the
+            interview patterns that appear repeatedly.
           </p>
         </header>
 
