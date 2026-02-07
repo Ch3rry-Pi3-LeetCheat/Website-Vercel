@@ -7,6 +7,36 @@ const lessons = [
       "The smallest possible LangChain chat example, plus a clean look at what the model returns.",
     href: "/llms/langchain/beginner/simple-chat-model",
   },
+  {
+    title: "Explicit Message Types",
+    description:
+      "Use SystemMessage and HumanMessage to make roles explicit and outputs easier to steer.",
+    href: "/llms/langchain/beginner/explicit-message-types",
+  },
+  {
+    title: "Multi-Turn Chat",
+    description:
+      "Track history manually and resend it each turn to preserve context.",
+    href: "/llms/langchain/beginner/multi-turn-chat",
+  },
+  {
+    title: "Prompt Templates (Part 1)",
+    description:
+      "Build reusable prompts with PromptTemplate and ChatPromptTemplate.",
+    href: "/llms/langchain/beginner/prompt-templates-part-1",
+  },
+  {
+    title: "Prompt Templates (Part 2)",
+    description:
+      "Compare string prompts vs message-based templates and see how history scales.",
+    href: "/llms/langchain/beginner/prompt-templates-part-2",
+  },
+  {
+    title: "Output Parsers",
+    description:
+      "Turn model text into reliable data with string, JSON, and Pydantic parsers.",
+    href: "/llms/langchain/beginner/output-parsers",
+  },
 ];
 
 export default function LangChainBeginnerPage() {

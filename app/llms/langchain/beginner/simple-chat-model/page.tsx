@@ -102,7 +102,7 @@ export default function SimpleChatModelPage() {
   return (
     <ArticleLayout
       eyebrow="LLMs - LangChain - Beginner"
-      title="LangChain: Simple Chat Model"
+      title="Simple Chat Model"
       description="Build the smallest possible LangChain chat example, then peek under the hood to see exactly what the model returns."
       tocItems={tocItems}
       rightRail={
