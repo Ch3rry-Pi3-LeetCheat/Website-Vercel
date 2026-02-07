@@ -59,7 +59,7 @@ export default function HeapsPage() {
         <p>
           A heap is a tree-based structure that always keeps the smallest item
           at the top. Python&apos;s{" "}
-          <span className="font-mono text-white">heapq</span> gives you a min-heap
+          <span className="font-mono inline-code">heapq</span> gives you a min-heap
           out of the box.
         </p>
         <p>

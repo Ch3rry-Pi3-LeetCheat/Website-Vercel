@@ -160,6 +160,15 @@ details[open] .example-chevron {
   white-space: pre;
 }
 
+.inline-code {
+  color: var(--color-accent-2);
+  background: rgba(66, 211, 255, 0.12);
+  border: 1px solid rgba(66, 211, 255, 0.22);
+  padding: 0.05em 0.35em;
+  border-radius: 0.35em;
+  font-weight: 600;
+}
+
 .token-comment {
   color: #7f8fa6;
 }

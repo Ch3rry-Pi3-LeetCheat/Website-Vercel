@@ -174,9 +174,9 @@ export default function DataframeSlicingPage() {
       <CollapsibleExample id="example-4" title="Example 4: Use loc and iloc safely">
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Step by step: use{" "}
-          <span className="font-mono text-white">loc</span> when selecting by
+          <span className="font-mono inline-code">loc</span> when selecting by
           labels or masks, and{" "}
-          <span className="font-mono text-white">iloc</span> when selecting by
+          <span className="font-mono inline-code">iloc</span> when selecting by
           integer position. Choosing the right one signals clarity.
         </p>
         <CodeBlock code={locCode} title="Python" />
@@ -198,7 +198,7 @@ export default function DataframeSlicingPage() {
       <CollapsibleExample id="example-6" title="Example 6: Safe assignment">
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Step by step: use{" "}
-          <span className="font-mono text-white">loc</span> for assignment to
+          <span className="font-mono inline-code">loc</span> for assignment to
           avoid chained indexing. That keeps your updates applied in place.
         </p>
         <CodeBlock code={safeAssignCode} title="Python" />

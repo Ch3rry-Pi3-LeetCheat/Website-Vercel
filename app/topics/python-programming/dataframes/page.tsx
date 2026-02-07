@@ -127,7 +127,7 @@ export default function DataframesPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Step by step: when data arrives as individual records, put each row
           in a dictionary, collect them into a list, and let pandas stitch them
-          together with <span className="font-mono text-white">from_records</span>.
+          together with <span className="font-mono inline-code">from_records</span>.
         </p>
         <CodeBlock code={rowsCode} title="Python" />
         <OutputBlock output={rowsOutput} />

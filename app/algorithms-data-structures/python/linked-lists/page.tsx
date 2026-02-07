@@ -147,7 +147,7 @@ export default function LinkedListsPage() {
         <p>
           A linked list is a chain of nodes. Each node stores a{" "}
           <strong className="text-white">value</strong> and a pointer to the{" "}
-          <span className="font-mono text-white">next</span> node. There is{" "}
+          <span className="font-mono inline-code">next</span> node. There is{" "}
           <strong className="text-white">no direct indexing</strong>, so every
           lookup walks node-by-node.
         </p>
@@ -155,7 +155,7 @@ export default function LinkedListsPage() {
           Interviews love linked lists because they force{" "}
           <strong className="text-white">pointer reasoning</strong>: traversal,
           rewiring, and guarding against{" "}
-          <span className="font-mono text-white">None</span>. The most common
+          <span className="font-mono inline-code">None</span>. The most common
           patterns are the <strong className="text-white">dummy node</strong>,
           <strong className="text-white"> fast/slow pointers</strong>, and{" "}
           <strong className="text-white">in-place reversal</strong>.
@@ -169,8 +169,8 @@ export default function LinkedListsPage() {
         <ul className="mt-3 grid gap-2 text-sm text-[color:var(--color-muted)]">
           <li>
             <strong className="text-white">Pointer reasoning:</strong> you must
-            explain where <span className="font-mono text-white">current</span>
-            and <span className="font-mono text-white">next</span> point.
+            explain where <span className="font-mono inline-code">current</span>
+            and <span className="font-mono inline-code">next</span> point.
           </li>
           <li>
             <strong className="text-white">Traversal + rewiring:</strong> the
@@ -228,8 +228,8 @@ export default function LinkedListsPage() {
         <div className="glass-panel rounded-2xl px-6 py-5 text-sm text-[color:var(--color-muted)]">
           <strong className="text-white">If you remember one thing:</strong>{" "}
           always know where{" "}
-          <span className="font-mono text-white">current</span> points, where{" "}
-          <span className="font-mono text-white">current.next</span> points, and
+          <span className="font-mono inline-code">current</span> points, where{" "}
+          <span className="font-mono inline-code">current.next</span> points, and
           what you are about to change.
         </div>
       </section>
@@ -240,8 +240,8 @@ export default function LinkedListsPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A node has two fields:{" "}
-          <span className="font-mono text-white">value</span> and{" "}
-          <span className="font-mono text-white">next</span>. Keeping it minimal
+          <span className="font-mono inline-code">value</span> and{" "}
+          <span className="font-mono inline-code">next</span>. Keeping it minimal
           helps you focus on pointer movement, not class noise.
         </p>
         <CodeBlock code={nodeClassCode} title="Python" />
@@ -263,8 +263,8 @@ export default function LinkedListsPage() {
         />
         <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
           Each node points to the next one, so traversal is a hop-by-hop walk
-          from <span className="font-mono text-white">head</span> to{" "}
-          <span className="font-mono text-white">None</span>.
+          from <span className="font-mono inline-code">head</span> to{" "}
+          <span className="font-mono inline-code">None</span>.
         </p>
       </div>
 
@@ -277,17 +277,17 @@ export default function LinkedListsPage() {
           Step by step:{" "}
           <strong className="text-white">current starts at head</strong>. Each
           loop reads the value, then hops forward with{" "}
-          <span className="font-mono text-white">current = current.next</span>.
+          <span className="font-mono inline-code">current = current.next</span>.
           The loop ends when{" "}
-          <span className="font-mono text-white">current</span> becomes{" "}
-          <span className="font-mono text-white">None</span>.
+          <span className="font-mono inline-code">current</span> becomes{" "}
+          <span className="font-mono inline-code">None</span>.
         </p>
         <CodeBlock code={buildCode} title="Python" />
         <OutputBlock output={buildOutput} />
         <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
           <strong className="text-white">Common bug:</strong> forgetting to
           advance{" "}
-          <span className="font-mono text-white">current</span> causes an
+          <span className="font-mono inline-code">current</span> causes an
           infinite loop.
         </div>
         <p className="text-sm text-[color:var(--color-muted)]">
@@ -310,7 +310,7 @@ export default function LinkedListsPage() {
             What breaks if you don&apos;t store nxt first?
           </strong>{" "}
           You lose access to the remainder of the list because you overwrite{" "}
-          <span className="font-mono text-white">current.next</span>.
+          <span className="font-mono inline-code">current.next</span>.
         </div>
         <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
           <p>
@@ -360,7 +360,7 @@ export default function LinkedListsPage() {
           <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
             A dummy node makes head edge cases disappear. You always insert or
             remove after the dummy, then return{" "}
-            <span className="font-mono text-white">dummy.next</span>.
+            <span className="font-mono inline-code">dummy.next</span>.
           </p>
           <CodeBlock code={dummyCode} title="Python" />
         </div>
@@ -390,14 +390,14 @@ export default function LinkedListsPage() {
           <ul className="mt-3 grid gap-2 text-sm text-[color:var(--color-muted)]">
             <li>
               Store{" "}
-              <span className="font-mono text-white">nxt = current.next</span>{" "}
+              <span className="font-mono inline-code">nxt = current.next</span>{" "}
               before rewiring.
             </li>
             <li>Do not lose the head unless you mean to.</li>
             <li>
               Always guard{" "}
-              <span className="font-mono text-white">current</span> and{" "}
-              <span className="font-mono text-white">current.next</span> before
+              <span className="font-mono inline-code">current</span> and{" "}
+              <span className="font-mono inline-code">current.next</span> before
               accessing.
             </li>
           </ul>

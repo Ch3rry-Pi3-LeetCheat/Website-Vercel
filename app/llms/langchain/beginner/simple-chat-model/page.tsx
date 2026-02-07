@@ -144,7 +144,7 @@ export default function SimpleChatModelPage() {
           variables. The python-dotenv library reads this file and adds the
           variables to the process environment, making them accessible to our
           model via{" "}
-          <span className="font-mono text-white">os.getenv(...)</span>.
+          <span className="font-mono inline-code">os.getenv(...)</span>.
         </p>
         <CodeBlock code={loadDotenvCode} title="Python" />
         <OutputBlock output="True" />
@@ -155,14 +155,14 @@ export default function SimpleChatModelPage() {
           Initialising the chat model
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The <span className="font-mono text-white">init_chat_model</span>{" "}
+          The <span className="font-mono inline-code">init_chat_model</span>{" "}
           helper function selects and configures the appropriate chat model
           based on the arguments provided. In this case, we are using a
           lightweight OpenAI model suitable for simple examples and
           demonstrations.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The returned <span className="font-mono text-white">model</span>{" "}
+          The returned <span className="font-mono inline-code">model</span>{" "}
           object acts as a callable interface to the underlying language model.
         </p>
         <CodeBlock code={initModelCode} title="Python" />
@@ -175,7 +175,7 @@ export default function SimpleChatModelPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           With the chat model initialised, we can now send it an input prompt
           (e.g., &quot;Hiya!&quot;). The{" "}
-          <span className="font-mono text-white">invoke()</span> method executes
+          <span className="font-mono inline-code">invoke()</span> method executes
           a single model call and returns the model&apos;s response.
         </p>
         <CodeBlock code={invokeCode} title="Python" />
@@ -193,7 +193,7 @@ export default function SimpleChatModelPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           When we call a chat model in LangChain, the result is not just a plain
           string. Instead, LangChain returns an{" "}
-          <span className="font-mono text-white">AIMessage</span> object. This
+          <span className="font-mono inline-code">AIMessage</span> object. This
           object contains:
         </p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
@@ -212,36 +212,36 @@ export default function SimpleChatModelPage() {
         <CodeBlock code={typeCode} title="Python" />
         <OutputBlock output="langchain_core.messages.ai.AIMessage" />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Think of <span className="font-mono text-white">AIMessage</span> as a
+          Think of <span className="font-mono inline-code">AIMessage</span> as a
           fully-qualified "address" for a Python class inside the LangChain
           codebase. It can be broken down like this:
         </p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
           <li>
-            <span className="font-mono text-white">langchain_core</span> - a
+            <span className="font-mono inline-code">langchain_core</span> - a
             Python package
           </li>
           <li>
-            <span className="font-mono text-white">messages</span> - a
+            <span className="font-mono inline-code">messages</span> - a
             sub-package / module namespace inside langchain_core related to
             chat messages
           </li>
           <li>
-            <span className="font-mono text-white">ai</span> - a module (a .py
+            <span className="font-mono inline-code">ai</span> - a module (a .py
             file) inside messages that defines AI-related message types
           </li>
           <li>
-            <span className="font-mono text-white">AIMessage</span> - a class
+            <span className="font-mono inline-code">AIMessage</span> - a class
             defined in that module
           </li>
         </ul>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          So, <span className="font-mono text-white">AIMessage</span> is a
+          So, <span className="font-mono inline-code">AIMessage</span> is a
           class, located at: package{" "}
-          <span className="font-mono text-white">langchain_core</span>, then
-          subpackage <span className="font-mono text-white">messages</span>,
-          then module <span className="font-mono text-white">ai</span>, then
-          class <span className="font-mono text-white">AIMessage</span>.
+          <span className="font-mono inline-code">langchain_core</span>, then
+          subpackage <span className="font-mono inline-code">messages</span>,
+          then module <span className="font-mono inline-code">ai</span>, then
+          class <span className="font-mono inline-code">AIMessage</span>.
         </p>
       </section>
 
@@ -251,12 +251,12 @@ export default function SimpleChatModelPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           BUT... Didn&apos;t we only install the{" "}
-          <span className="font-mono text-white">langchain</span> package, and
-          not <span className="font-mono text-white">langchain_core</span>? Yes,
+          <span className="font-mono inline-code">langchain</span> package, and
+          not <span className="font-mono inline-code">langchain_core</span>? Yes,
           but when we install{" "}
-          <span className="font-mono text-white">langchain</span>, we
+          <span className="font-mono inline-code">langchain</span>, we
           implicitly install{" "}
-          <span className="font-mono text-white">langchain-core</span>. We can
+          <span className="font-mono inline-code">langchain-core</span>. We can
           prove this below:
         </p>
         <CodeBlock code={coreVersionCode} title="Python" />
@@ -271,7 +271,7 @@ export default function SimpleChatModelPage() {
           Now, let's take the AIMessage object returned by the model and convert
           it into a standard Python dictionary. LangChain message objects are
           built using Pydantic, which means they provide a{" "}
-          <span className="font-mono text-white">.model_dump()</span> method.
+          <span className="font-mono inline-code">.model_dump()</span> method.
           This method extracts all fields from the object into a plain data
           structure that is easier to inspect, log, or serialise.
         </p>
@@ -340,10 +340,10 @@ export default function SimpleChatModelPage() {
           Pretty-printing the response
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Because <span className="font-mono text-white">response</span> is an
+          Because <span className="font-mono inline-code">response</span> is an
           AIMessage object (not a plain string), printing it directly can look
           noisy and hard to read. LangChain provides a built-in helper method,{" "}
-          <span className="font-mono text-white">.pretty_print()</span>, which
+          <span className="font-mono inline-code">.pretty_print()</span>, which
           formats the message in a clean, human-readable way. This is especially
           useful in notebooks and live demos.
         </p>
@@ -365,7 +365,7 @@ export default function SimpleChatModelPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           If all you care about is the text generated by the model, you can
           access it directly using the{" "}
-          <span className="font-mono text-white">content</span> attribute. This
+          <span className="font-mono inline-code">content</span> attribute. This
           is often the most convenient option when building simple applications
           or when you want behaviour that feels like a traditional chatbot.
         </p>
