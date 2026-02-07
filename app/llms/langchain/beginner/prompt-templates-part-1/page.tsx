@@ -120,11 +120,20 @@ export default function PromptTemplatesPart1Page() {
           Prompt templates let you write a prompt once, then fill in the blanks.
           This makes prompts easy to reuse and easy to debug.
         </p>
-        <p>In LangChain v1, templates live in langchain_core.prompts.</p>
+        <p>
+          In LangChain v1, templates live in{" "}
+          <span className="font-mono inline-code">langchain_core.prompts</span>.
+        </p>
         <p>We will cover three practical patterns:</p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>PromptTemplate for plain strings</li>
-          <li>ChatPromptTemplate for system + human messages</li>
+          <li>
+            <span className="font-mono inline-code">PromptTemplate</span> for
+            plain strings
+          </li>
+          <li>
+            <span className="font-mono inline-code">ChatPromptTemplate</span>{" "}
+            for system + human messages
+          </li>
           <li>Using templates directly with a chat model</li>
         </ul>
         <p>Quick tip: it is always worth printing the final prompt before you call a model.</p>

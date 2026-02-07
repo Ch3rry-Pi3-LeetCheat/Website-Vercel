@@ -209,15 +209,20 @@ export default function MultiTurnChatPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So, let's give our model some memory. We start with an empty history
-          list. This list will hold System, Human, and AI messages in order. The
-          first entry into our history list will be a SystemMessage that
+          list. This list will hold{" "}
+          <span className="font-mono inline-code">System</span>,{" "}
+          <span className="font-mono inline-code">Human</span>, and{" "}
+          <span className="font-mono inline-code">AI</span> messages in order.
+          The first entry into our history list will be a{" "}
+          <span className="font-mono inline-code">SystemMessage</span> that
           controls the assistant's behavior.
         </p>
         <CodeBlock code={systemCode} title="Python" />
         <OutputBlock output={systemOutput} />
         <p className="text-sm text-[color:var(--color-muted)]">
-          Output note: You should see a list with a single SystemMessage. It
-          looks a bit nerdy because it's a Python object, not a chat bubble.
+          Output note: You should see a list with a single{" "}
+          <span className="font-mono inline-code">SystemMessage</span>. It looks
+          a bit nerdy because it's a Python object, not a chat bubble.
         </p>
       </section>
 
@@ -226,8 +231,9 @@ export default function MultiTurnChatPage() {
           Turn 1: Ask the first question
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We add a HumanMessage, send the full history to the model, and then
-          store the reply as an AIMessage.
+          We add a <span className="font-mono inline-code">HumanMessage</span>,
+          send the full history to the model, and then store the reply as an{" "}
+          <span className="font-mono inline-code">AIMessage</span>.
         </p>
         <CodeBlock code={turn1Code} title="Python" />
         <OutputBlock output={turn1Output} />
@@ -242,8 +248,9 @@ export default function MultiTurnChatPage() {
           Turn 2: Follow-up with context
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We add another HumanMessage that depends on the first answer, and send
-          the entire history again.
+          We add another{" "}
+          <span className="font-mono inline-code">HumanMessage</span> that
+          depends on the first answer, and send the entire history again.
         </p>
         <CodeBlock code={turn2Code} title="Python" />
         <OutputBlock output={turn2Output} />
@@ -274,7 +281,11 @@ export default function MultiTurnChatPage() {
         </h2>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
           <li>Multi-turn chat = keep a history list and resend it each turn.</li>
-          <li>Store AI responses as AIMessage so the model can use them later.</li>
+          <li>
+            Store AI responses as{" "}
+            <span className="font-mono inline-code">AIMessage</span> so the
+            model can use them later.
+          </li>
           <li>
             System rules apply to every turn as long as they stay in history.
           </li>

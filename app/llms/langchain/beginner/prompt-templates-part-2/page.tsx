@@ -156,14 +156,19 @@ export default function PromptTemplatesPart2Page() {
     >
       <InfoPanel id="overview" title="Overview" variant="intro">
         <p>
-          Welcome back! In this notebook, we compare PromptTemplate and
-          ChatPromptTemplate side-by-side.
+          Welcome back! In this notebook, we compare{" "}
+          <span className="font-mono inline-code">PromptTemplate</span> and{" "}
+          <span className="font-mono inline-code">ChatPromptTemplate</span>{" "}
+          side-by-side.
         </p>
         <p>
-          The key idea: PromptTemplate builds one string, while
-          ChatPromptTemplate builds a structured list of messages. That
-          structure is why ChatPromptTemplate is the preferred approach for
-          chat, history, and tools.
+          The key idea:{" "}
+          <span className="font-mono inline-code">PromptTemplate</span> builds
+          one string, while{" "}
+          <span className="font-mono inline-code">ChatPromptTemplate</span>{" "}
+          builds a structured list of messages. That structure is why{" "}
+          <span className="font-mono inline-code">ChatPromptTemplate</span> is
+          the preferred approach for chat, history, and tools.
         </p>
         <p>Why this matters:</p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
@@ -192,8 +197,9 @@ export default function PromptTemplatesPart2Page() {
           Approach A: PromptTemplate (history as text)
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We will do the string version first. With PromptTemplate, history is
-          just a string blob. You must invent labels like USER/ASSISTANT and
+          We will do the string version first. With{" "}
+          <span className="font-mono inline-code">PromptTemplate</span>, history
+          is just a string blob. You must invent labels like USER/ASSISTANT and
           keep the formatting consistent yourself.
         </p>
         <CodeBlock code={stringPromptCode} title="Python" />
@@ -241,11 +247,16 @@ export default function PromptTemplatesPart2Page() {
         </p>
         <CodeBlock code={chatSetupCode} title="Python" />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We define a chat prompt with a MessagesPlaceholder for history.
+          We define a chat prompt with a{" "}
+          <span className="font-mono inline-code">MessagesPlaceholder</span>{" "}
+          for history.
         </p>
         <CodeBlock code={chatPromptCode} title="Python" />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We create real HumanMessage and AIMessage objects for history.
+          We create real{" "}
+          <span className="font-mono inline-code">HumanMessage</span> and{" "}
+          <span className="font-mono inline-code">AIMessage</span> objects for
+          history.
         </p>
         <CodeBlock code={chatHistoryCode} title="Python" />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -270,8 +281,10 @@ export default function PromptTemplatesPart2Page() {
         <CodeBlock code={chatAppendCode} title="Python" />
         <OutputBlock output={chatHistoryOutput} />
         <p className="text-sm text-[color:var(--color-muted)]">
-          Output note: You should see a list of HumanMessage and AIMessage
-          objects with the new turn appended.
+          Output note: You should see a list of{" "}
+          <span className="font-mono inline-code">HumanMessage</span> and{" "}
+          <span className="font-mono inline-code">AIMessage</span> objects with
+          the new turn appended.
         </p>
       </section>
 
@@ -280,11 +293,18 @@ export default function PromptTemplatesPart2Page() {
           Key takeaways
         </h2>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>PromptTemplate outputs one string; you must manage history formatting yourself.</li>
-          <li>ChatPromptTemplate outputs messages; history stays structured and reusable.</li>
           <li>
-            For real chat apps (memory, tools, multi-turn), ChatPromptTemplate
-            is the safer default.
+            <span className="font-mono inline-code">PromptTemplate</span>{" "}
+            outputs one string; you must manage history formatting yourself.
+          </li>
+          <li>
+            <span className="font-mono inline-code">ChatPromptTemplate</span>{" "}
+            outputs messages; history stays structured and reusable.
+          </li>
+          <li>
+            For real chat apps (memory, tools, multi-turn),{" "}
+            <span className="font-mono inline-code">ChatPromptTemplate</span> is
+            the safer default.
           </li>
         </ul>
       </section>

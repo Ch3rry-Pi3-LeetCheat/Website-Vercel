@@ -124,10 +124,22 @@ export default function ExplicitMessageTypesPage() {
           objects.
         </p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>SystemMessage sets the assistant's behavior, tone, and constraints.</li>
-          <li>HumanMessage represents the user's actual request.</li>
-          <li>AIMessage is the assistant's output (useful to store for later turns).</li>
-          <li>Order matters: system message first, then user message, then the AI reply.</li>
+          <li>
+            <span className="font-mono inline-code">SystemMessage</span> sets the
+            assistant's behavior, tone, and constraints.
+          </li>
+          <li>
+            <span className="font-mono inline-code">HumanMessage</span>{" "}
+            represents the user's actual request.
+          </li>
+          <li>
+            <span className="font-mono inline-code">AIMessage</span> is the
+            assistant's output (useful to store for later turns).
+          </li>
+          <li>
+            Order matters: system message first, then user message, then the AI
+            reply.
+          </li>
         </ul>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This structure makes conversations easier to extend and debug.
@@ -140,14 +152,18 @@ export default function ExplicitMessageTypesPage() {
           Sending the messages
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We pass the list into model.invoke(...) and get back an AIMessage. We
-          then pretty-print it so it reads like a clean chat response.
+          We pass the list into{" "}
+          <span className="font-mono inline-code">model.invoke(...)</span> and
+          get back an{" "}
+          <span className="font-mono inline-code">AIMessage</span>. We then
+          pretty-print it so it reads like a clean chat response.
         </p>
         <CodeBlock code={sendCode} title="Python" />
         <OutputBlock output={responseOutput} />
         <p className="text-sm text-[color:var(--color-muted)]">
           Output note: You should see a neat two-bullet reply. Nice - that's
-          your SystemMessage steering the format.
+          your <span className="font-mono inline-code">SystemMessage</span>{" "}
+          steering the format.
         </p>
       </section>
 
@@ -157,7 +173,11 @@ export default function ExplicitMessageTypesPage() {
         </h2>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
           <li>Explicit message types give you control and clarity.</li>
-          <li>System = rules, Human = request, AI = response.</li>
+          <li>
+            <span className="font-mono inline-code">System</span> = rules,{" "}
+            <span className="font-mono inline-code">Human</span> = request,{" "}
+            <span className="font-mono inline-code">AI</span> = response.
+          </li>
           <li>The ordered list is the foundation for multi-turn chat.</li>
         </ul>
       </section>

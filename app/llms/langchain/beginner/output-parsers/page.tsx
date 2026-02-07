@@ -183,12 +183,25 @@ export default function OutputParsersPage() {
       }
     >
       <InfoPanel id="overview" title="Overview" variant="intro">
-        <p>In this notebook we learn Output Parsers in LangChain v1.</p>
+        <p>
+          In this notebook we learn{" "}
+          <span className="font-mono inline-code">Output Parsers</span> in
+          LangChain v1.
+        </p>
         <p>You will see three parsers:</p>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>StrOutputParser - plain Python string</li>
-          <li>JsonOutputParser - Python dict</li>
-          <li>PydanticOutputParser - validated, typed objects</li>
+          <li>
+            <span className="font-mono inline-code">StrOutputParser</span> -
+            plain Python string
+          </li>
+          <li>
+            <span className="font-mono inline-code">JsonOutputParser</span> -
+            Python dict
+          </li>
+          <li>
+            <span className="font-mono inline-code">PydanticOutputParser</span>{" "}
+            - validated, typed objects
+          </li>
         </ul>
         <p>
           Why this matters: LLMs generate text. Output parsers turn that text
@@ -228,18 +241,22 @@ export default function OutputParsersPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           When to use: When you want the model response as a plain Python string,
-          not an AIMessage object.
+          not an <span className="font-mono inline-code">AIMessage</span> object.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Intuition (under the hood): The prompt formats variables into message
-          objects (System/Human). The model returns an AIMessage (it is not a
-          string yet). StrOutputParser extracts only the .content and returns a
-          str. Think of it as the bridge from LLM world to normal Python.
+          objects (System/Human). The model returns an{" "}
+          <span className="font-mono inline-code">AIMessage</span> (it is not a
+          string yet).{" "}
+          <span className="font-mono inline-code">StrOutputParser</span>{" "}
+          extracts only the .content and returns a str. Think of it as the
+          bridge from LLM world to normal Python.
         </p>
         <CodeBlock code={strParserCode} title="Python" />
         <OutputBlock output={strParserOutput} />
         <p className="text-sm text-[color:var(--color-muted)]">
-          Output note: The result is a Python string, not an AIMessage.
+          Output note: The result is a Python string, not an{" "}
+          <span className="font-mono inline-code">AIMessage</span>.
         </p>
       </section>
 
@@ -293,9 +310,18 @@ export default function OutputParsersPage() {
           Key takeaways
         </h2>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>StrOutputParser: best for plain strings.</li>
-          <li>JsonOutputParser: best for simple structured data as dicts.</li>
-          <li>PydanticOutputParser: best for validated, typed outputs.</li>
+          <li>
+            <span className="font-mono inline-code">StrOutputParser</span>: best
+            for plain strings.
+          </li>
+          <li>
+            <span className="font-mono inline-code">JsonOutputParser</span>:
+            best for simple structured data as dicts.
+          </li>
+          <li>
+            <span className="font-mono inline-code">PydanticOutputParser</span>:
+            best for validated, typed outputs.
+          </li>
         </ul>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           One clean teaching line: Output parsers turn an LLM from a text
