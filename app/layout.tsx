@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import MathJaxProvider from "@/components/MathJaxProvider";
 import "./globals.css";
 
 const monoFont = JetBrains_Mono({
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} min-h-full bg-[color:var(--color-background)] text-[color:var(--color-foreground)] antialiased`}
       >
+        <MathJaxProvider />
         <div className="relative min-h-screen">
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,92,255,0.22),_transparent_45%)]" />

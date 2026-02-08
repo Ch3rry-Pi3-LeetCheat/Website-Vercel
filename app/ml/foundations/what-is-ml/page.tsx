@@ -1,8 +1,10 @@
+
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
+import { MathBlock, MathInline } from "@/components/Math";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const tinyExampleCode = `import numpy as np
@@ -24,10 +26,11 @@ export default function WhatIsMlPage() {
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
     { id: "definition", label: "Core definition" },
+    { id: "loss", label: "Loss and learning" },
     { id: "loop", label: "Learning loop" },
     { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Tiny example" },
-    { id: "takeaways", label: "Key takeaways" },
+    { id: "pitfalls", label: "Common pitfalls" },
   ];
 
   return (
@@ -62,6 +65,10 @@ export default function WhatIsMlPage() {
           feedback. Over time it gets better at predicting the right
           answer for new inputs.
         </p>
+        <p>
+          The model is not memorizing exact answers. It is learning a
+          rule that generalizes beyond the training data.
+        </p>
       </InfoPanel>
 
       <section id="definition" className="scroll-mt-28 grid gap-4">
@@ -70,9 +77,34 @@ export default function WhatIsMlPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A model learns a function that maps input{" "}
-          <span className="font-mono inline-code">features</span> to an
-          output <span className="font-mono inline-code">label</span>.
-          The model improves by minimizing error on training data.
+          <MathInline tex="x" className="font-mono inline-code" /> to an
+          output <MathInline tex="\\hat{y}" className="font-mono inline-code" />.
+          We typically write this as{" "}
+          <MathInline tex="\\hat{y} = f(x; \\theta)" className="font-mono inline-code" />
+          where <MathInline tex="\\theta" className="font-mono inline-code" />
+          are the parameters the model learns.
+        </p>
+        <MathBlock
+          tex="\\hat{y} = f(x; \\theta)"
+          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+        />
+      </section>
+
+      <section id="loss" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Loss and learning
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Learning means adjusting <MathInline tex="\\theta" className="font-mono inline-code" />
+          to reduce error. A common loss for regression is mean squared error:
+        </p>
+        <MathBlock
+          tex="L(\\theta) = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2"
+          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Training is just the process of finding parameters that make this
+          loss as small as possible.
         </p>
       </section>
 
@@ -114,14 +146,14 @@ export default function WhatIsMlPage() {
         <OutputBlock output={tinyExampleOutput} />
       </section>
 
-      <section id="takeaways" className="scroll-mt-28 grid gap-4">
+      <section id="pitfalls" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Key takeaways
+          Common pitfalls
         </h2>
         <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>ML learns patterns from data instead of fixed rules.</li>
-          <li>Features in, labels out, loss guides improvement.</li>
-          <li>Even tiny examples show the core workflow.</li>
+          <li>Too little data leads to unstable models.</li>
+          <li>Data leakage makes the model look better than it is.</li>
+          <li>Picking the wrong metric hides real mistakes.</li>
         </ul>
       </section>
     </ArticleLayout>

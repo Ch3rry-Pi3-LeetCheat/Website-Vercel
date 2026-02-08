@@ -1,8 +1,10 @@
+
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
+import { MathBlock } from "@/components/Math";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const metricsCode = `tp = 8
@@ -22,6 +24,7 @@ export default function MetricsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "formulas", label: "Metric formulas" },
     { id: "example", label: "Compute metrics" },
     { id: "when", label: "When to use" },
   ];
@@ -46,6 +49,9 @@ export default function MetricsPage() {
           Metrics turn predictions into numbers so you can compare models
           fairly. The wrong metric can hide a bad model.
         </p>
+        <p>
+          Always choose the metric that matches the real cost of mistakes.
+        </p>
       </InfoPanel>
 
       <InfoPanel id="intuition" title="Intuition" variant="intuition">
@@ -55,6 +61,16 @@ export default function MetricsPage() {
           "How many of the true positives did we catch?"
         </p>
       </InfoPanel>
+
+      <section id="formulas" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Metric formulas
+        </h2>
+        <MathBlock
+          tex="\\begin{aligned}\\text{Accuracy} &= \\frac{TP + TN}{TP + TN + FP + FN} \\\\ \\text{Precision} &= \\frac{TP}{TP + FP} \\\\ \\text{Recall} &= \\frac{TP}{TP + FN} \\\\ F_1 &= \\frac{2 \\cdot \\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}\\end{aligned}"
+          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+        />
+      </section>
 
       <section id="example" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -72,6 +88,7 @@ export default function MetricsPage() {
           <li>Accuracy for balanced classes and simple baselines.</li>
           <li>Precision when false positives are costly.</li>
           <li>Recall when false negatives are costly.</li>
+          <li>F1 when you want a single number that balances both.</li>
         </ul>
       </section>
     </ArticleLayout>

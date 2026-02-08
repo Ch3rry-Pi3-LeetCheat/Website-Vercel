@@ -66,6 +66,16 @@ export default function MlRootPage() {
             </Link>
           ))}
         </div>
+
+        <div className="mt-8 glass-panel rounded-2xl px-6 py-6">
+          <h2 className="text-lg font-semibold text-white">How to use this section</h2>
+          <ul className="mt-3 grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+            <li>Start with Foundations to build the mental model.</li>
+            <li>Move to Classical ML once the basics feel intuitive.</li>
+            <li>Use Evaluation and Data Prep to avoid real-world mistakes.</li>
+            <li>Deep Learning and Production close the gap to practical systems.</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

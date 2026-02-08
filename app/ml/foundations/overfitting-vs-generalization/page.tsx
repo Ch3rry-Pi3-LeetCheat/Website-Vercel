@@ -1,8 +1,10 @@
+
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
+import { MathBlock } from "@/components/Math";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const scoreCode = `train_accuracy = 1.00
@@ -16,8 +18,10 @@ export default function OverfittingPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "gap", label: "Generalization gap" },
     { id: "example", label: "Small example" },
     { id: "signals", label: "Warning signs" },
+    { id: "fixes", label: "Ways to fix" },
   ];
 
   return (
@@ -40,6 +44,9 @@ export default function OverfittingPage() {
           Overfitting happens when the model memorizes the training data
           but fails on new inputs. Generalization is the real goal.
         </p>
+        <p>
+          A model should learn a rule, not a list of answers.
+        </p>
       </InfoPanel>
 
       <InfoPanel id="intuition" title="Intuition" variant="intuition">
@@ -48,6 +55,27 @@ export default function OverfittingPage() {
           struggle on a new exam. That is overfitting.
         </p>
       </InfoPanel>
+
+      <section id="gap" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Generalization gap
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The gap between training and test error is a warning sign. A
+          large gap means the model is not generalizing.
+        </p>
+        <MathBlock
+          tex="\\text{gap} = E_{test} - E_{train}"
+          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Regularization shrinks model weights to reduce overfitting:
+        </p>
+        <MathBlock
+          tex="L_{total} = L + \\lambda \\|w\\|_2^2"
+          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+        />
+      </section>
 
       <section id="example" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -66,6 +94,21 @@ export default function OverfittingPage() {
           <li>Model is overly complex for a small dataset.</li>
           <li>Predictions look great on training but fail on new data.</li>
         </ul>
+      </section>
+
+      <section id="fixes" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Ways to fix overfitting
+        </h2>
+        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+          <li>Gather more data or augment existing data.</li>
+          <li>Use simpler models or stronger regularization.</li>
+          <li>Stop training earlier (early stopping).</li>
+        </ul>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The goal is not perfect training accuracy. The goal is strong
+          performance on new examples.
+        </p>
       </section>
     </ArticleLayout>
   );
