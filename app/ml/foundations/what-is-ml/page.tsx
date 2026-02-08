@@ -76,14 +76,47 @@ export default function WhatIsMlPage() {
           Core definition
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A model learns a function that maps input{" "}
-          <MathInline tex={String.raw`x`} className="math-inline" /> to an
-          output <MathInline tex={String.raw`\hat{y}`} className="math-inline" />.
+          A model learns a function that maps an input{" "}
+          <MathInline tex={String.raw`x`} className="math-inline" />
+          {" "}to an output{" "}
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
+          {" "}which is the model&apos;s{" "}
+          <span className="text-white">predicted value</span>.
           We typically write this as{" "}
           <MathInline tex={String.raw`\hat{y} = f(x; \theta)`} className="math-inline" />
-          where <MathInline tex={String.raw`\theta`} className="math-inline" />
-          are the parameters the model learns.
+          {" "}where{" "}
+          <MathInline tex={String.raw`\theta`} className="math-inline" />
+          {" "}are the parameters the model learns.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Here is the plain-English mapping:
+        </p>
+        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+          <li>
+            <MathInline tex={String.raw`x`} className="math-inline" />
+            {" "}is the input features. Example: a house&apos;s square
+            footage and number of bedrooms.
+          </li>
+          <li>
+            <MathInline tex={String.raw`y`} className="math-inline" />
+            {" "}is the true label. Example: the actual sale price.
+          </li>
+          <li>
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
+            {" "}(&quot;y-hat&quot;) is the model&apos;s prediction of{" "}
+            <MathInline tex={String.raw`y`} className="math-inline" />.
+          </li>
+          <li>
+            <MathInline tex={String.raw`f(\cdot)`} className="math-inline" />
+            {" "}is the model itself (e.g., a straight line, a tree, or a
+            neural network).
+          </li>
+          <li>
+            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            {" "}are the model parameters (weights and biases) that training
+            adjusts to improve predictions.
+          </li>
+        </ul>
         <MathBlock
           tex={String.raw`\hat{y} = f(x; \theta)`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
@@ -95,8 +128,9 @@ export default function WhatIsMlPage() {
           Loss and learning
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Learning means adjusting <MathInline tex={String.raw`\theta`} className="math-inline" />
-          to reduce error. A common loss for regression is mean squared error:
+          Learning means adjusting{" "}
+          <MathInline tex={String.raw`\theta`} className="math-inline" />
+          {" "}to reduce error. A common loss for regression is mean squared error:
         </p>
         <MathBlock
           tex={String.raw`L(\theta) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}

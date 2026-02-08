@@ -78,8 +78,9 @@ export default function DataTypesFeaturesLabelsPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We often store features in a matrix{" "}
-          <MathInline tex={String.raw`X`} className="math-inline" /> with
-          shape <MathInline tex={String.raw`n \times d`} className="math-inline" />.
+          <MathInline tex={String.raw`X`} className="math-inline" />
+          {" "}with shape{" "}
+          <MathInline tex={String.raw`n \times d`} className="math-inline" />.
           Each row is one example and each column is a feature.
         </p>
         <MathBlock
