@@ -177,6 +177,16 @@ details[open] .example-chevron {
 .math-inline {
   color: var(--color-accent-2);
   font-weight: 600;
+  display: inline;
+}
+
+.math-inline mjx-container {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.math-inline mjx-container > svg {
+  display: inline-block !important;
 }
 
 .shiki-wrapper {

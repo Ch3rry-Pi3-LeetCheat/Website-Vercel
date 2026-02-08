@@ -4,8 +4,9 @@ type MathProps = {
 };
 
 export function MathInline({ tex, className }: MathProps) {
+  const classes = ["math-inline", className].filter(Boolean).join(" ");
   return (
-    <span className={className}>{`\\(${tex}\\)`}</span>
+    <span className={classes}>{`\\(${tex}\\)`}</span>
   );
 }
 
