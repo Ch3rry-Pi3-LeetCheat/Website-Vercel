@@ -57,7 +57,7 @@ export default function DeepLearningBasicsPage() {
           Neuron equation
         </h2>
         <MathBlock
-          tex="a = \\sigma(w^T x + b)"
+          tex={String.raw`a = \sigma(w^T x + b)`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -71,7 +71,7 @@ export default function DeepLearningBasicsPage() {
           Activation functions
         </h2>
         <MathBlock
-          tex="\\sigma(z) = \\frac{1}{1 + e^{-z}}, \\quad \\text{ReLU}(z) = \\max(0, z)"
+          tex={String.raw`\sigma(z) = \frac{1}{1 + e^{-z}}, \quad \text{ReLU}(z) = \max(0, z)`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -85,7 +85,7 @@ export default function DeepLearningBasicsPage() {
           Training update
         </h2>
         <MathBlock
-          tex="w \\leftarrow w - \\eta \\nabla_w L"
+          tex={String.raw`w \leftarrow w - \eta \nabla_w L`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">

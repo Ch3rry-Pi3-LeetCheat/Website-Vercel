@@ -67,7 +67,7 @@ export default function MetricsPage() {
           Metric formulas
         </h2>
         <MathBlock
-          tex="\\begin{aligned}\\text{Accuracy} &= \\frac{TP + TN}{TP + TN + FP + FN} \\\\ \\text{Precision} &= \\frac{TP}{TP + FP} \\\\ \\text{Recall} &= \\frac{TP}{TP + FN} \\\\ F_1 &= \\frac{2 \\cdot \\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}\\end{aligned}"
+          tex={String.raw`\begin{aligned}\text{Accuracy} &= \frac{TP + TN}{TP + TN + FP + FN} \\ \text{Precision} &= \frac{TP}{TP + FP} \\ \text{Recall} &= \frac{TP}{TP + FN} \\ F_1 &= \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}\end{aligned}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

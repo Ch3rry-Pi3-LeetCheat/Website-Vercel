@@ -78,12 +78,12 @@ export default function DataTypesFeaturesLabelsPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We often store features in a matrix{" "}
-          <MathInline tex="X" className="math-inline" /> with
-          shape <MathInline tex="n \\times d" className="math-inline" />.
+          <MathInline tex={String.raw`X`} className="math-inline" /> with
+          shape <MathInline tex={String.raw`n \times d`} className="math-inline" />.
           Each row is one example and each column is a feature.
         </p>
         <MathBlock
-          tex="X \\in \\mathbb{R}^{n \\times d}, \\quad y \\in \\mathbb{R}^{n}"
+          tex={String.raw`X \in \mathbb{R}^{n \times d}, \quad y \in \mathbb{R}^{n}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

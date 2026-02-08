@@ -66,7 +66,7 @@ export default function ClassicalMlPage() {
           numeric value.
         </p>
         <MathBlock
-          tex="\\hat{y} = w^T x + b"
+          tex={String.raw`\hat{y} = w^T x + b`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>
@@ -79,7 +79,7 @@ export default function ClassicalMlPage() {
           Logistic regression predicts probabilities for binary classes.
         </p>
         <MathBlock
-          tex="p = \\sigma(w^T x + b) = \\frac{1}{1 + e^{-z}}"
+          tex={String.raw`p = \sigma(w^T x + b) = \frac{1}{1 + e^{-z}}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>
@@ -93,7 +93,7 @@ export default function ClassicalMlPage() {
           neighbors in feature space.
         </p>
         <MathBlock
-          tex="d(x, x_i) = \\sqrt{\\sum_{j=1}^{d} (x_j - x_{ij})^2}"
+          tex={String.raw`d(x, x_i) = \sqrt{\sum_{j=1}^{d} (x_j - x_{ij})^2}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>
@@ -107,7 +107,7 @@ export default function ClassicalMlPage() {
           gradient boosting combine many trees to improve accuracy.
         </p>
         <MathBlock
-          tex="H = -\\sum_{i=1}^{k} p_i \\log p_i"
+          tex={String.raw`H = -\sum_{i=1}^{k} p_i \log p_i`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

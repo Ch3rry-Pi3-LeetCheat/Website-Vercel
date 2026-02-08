@@ -81,7 +81,7 @@ export default function MlInProductionPage() {
           can degrade silently.
         </p>
         <MathBlock
-          tex="P_{train}(x) \\neq P_{prod}(x)"
+          tex={String.raw`P_{train}(x) \neq P_{prod}(x)`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

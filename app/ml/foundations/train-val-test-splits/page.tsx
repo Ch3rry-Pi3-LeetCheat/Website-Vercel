@@ -73,7 +73,7 @@ export default function TrainValTestPage() {
           is 70/15/15 or 80/10/10 depending on dataset size.
         </p>
         <MathBlock
-          tex="D = D_{train} \\cup D_{val} \\cup D_{test}, \\quad D_{train} \\cap D_{val} = \\varnothing"
+          tex={String.raw`D = D_{train} \cup D_{val} \cup D_{test}, \quad D_{train} \cap D_{val} = \varnothing`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">

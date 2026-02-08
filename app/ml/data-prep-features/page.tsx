@@ -65,11 +65,11 @@ export default function DataPrepFeaturesPage() {
           transforms are z-score and min-max scaling.
         </p>
         <MathBlock
-          tex="z = \\frac{x - \\mu}{\\sigma}"
+          tex={String.raw`z = \frac{x - \mu}{\sigma}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <MathBlock
-          tex="x' = \\frac{x - x_{min}}{x_{max} - x_{min}}"
+          tex={String.raw`x' = \frac{x - x_{min}}{x_{max} - x_{min}}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

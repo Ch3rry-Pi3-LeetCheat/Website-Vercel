@@ -66,7 +66,7 @@ export default function EvaluationTuningPage() {
           fold. You repeat this k times and average the scores.
         </p>
         <MathBlock
-          tex="\\bar{s} = \\frac{1}{k} \\sum_{i=1}^{k} s_i"
+          tex={String.raw`\bar{s} = \frac{1}{k} \sum_{i=1}^{k} s_i`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>

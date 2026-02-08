@@ -77,15 +77,15 @@ export default function WhatIsMlPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A model learns a function that maps input{" "}
-          <MathInline tex="x" className="math-inline" /> to an
-          output <MathInline tex="\\hat{y}" className="math-inline" />.
+          <MathInline tex={String.raw`x`} className="math-inline" /> to an
+          output <MathInline tex={String.raw`\hat{y}`} className="math-inline" />.
           We typically write this as{" "}
-          <MathInline tex="\\hat{y} = f(x; \\theta)" className="math-inline" />
-          where <MathInline tex="\\theta" className="math-inline" />
+          <MathInline tex={String.raw`\hat{y} = f(x; \theta)`} className="math-inline" />
+          where <MathInline tex={String.raw`\theta`} className="math-inline" />
           are the parameters the model learns.
         </p>
         <MathBlock
-          tex="\\hat{y} = f(x; \\theta)"
+          tex={String.raw`\hat{y} = f(x; \theta)`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>
@@ -95,11 +95,11 @@ export default function WhatIsMlPage() {
           Loss and learning
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Learning means adjusting <MathInline tex="\\theta" className="math-inline" />
+          Learning means adjusting <MathInline tex={String.raw`\theta`} className="math-inline" />
           to reduce error. A common loss for regression is mean squared error:
         </p>
         <MathBlock
-          tex="L(\\theta) = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2"
+          tex={String.raw`L(\theta) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">

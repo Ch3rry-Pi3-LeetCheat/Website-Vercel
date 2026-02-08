@@ -65,14 +65,14 @@ export default function OverfittingPage() {
           large gap means the model is not generalizing.
         </p>
         <MathBlock
-          tex="\\text{gap} = E_{test} - E_{train}"
+          tex={String.raw`\text{gap} = E_{test} - E_{train}`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Regularization shrinks model weights to reduce overfitting:
         </p>
         <MathBlock
-          tex="L_{total} = L + \\lambda \\|w\\|_2^2"
+          tex={String.raw`L_{total} = L + \lambda \|w\|_2^2`}
           className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
         />
       </section>
