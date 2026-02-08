@@ -77,11 +77,11 @@ export default function WhatIsMlPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A model learns a function that maps input{" "}
-          <MathInline tex="x" className="font-mono inline-code" /> to an
-          output <MathInline tex="\\hat{y}" className="font-mono inline-code" />.
+          <MathInline tex="x" className="math-inline" /> to an
+          output <MathInline tex="\\hat{y}" className="math-inline" />.
           We typically write this as{" "}
-          <MathInline tex="\\hat{y} = f(x; \\theta)" className="font-mono inline-code" />
-          where <MathInline tex="\\theta" className="font-mono inline-code" />
+          <MathInline tex="\\hat{y} = f(x; \\theta)" className="math-inline" />
+          where <MathInline tex="\\theta" className="math-inline" />
           are the parameters the model learns.
         </p>
         <MathBlock
@@ -95,7 +95,7 @@ export default function WhatIsMlPage() {
           Loss and learning
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Learning means adjusting <MathInline tex="\\theta" className="font-mono inline-code" />
+          Learning means adjusting <MathInline tex="\\theta" className="math-inline" />
           to reduce error. A common loss for regression is mean squared error:
         </p>
         <MathBlock

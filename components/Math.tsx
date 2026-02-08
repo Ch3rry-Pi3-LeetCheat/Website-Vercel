@@ -5,18 +5,12 @@ type MathProps = {
 
 export function MathInline({ tex, className }: MathProps) {
   return (
-    <span
-      className={className}
-      dangerouslySetInnerHTML={{ __html: `\\(${tex}\\)` }}
-    />
+    <span className={className}>{`\\(${tex}\\)`}</span>
   );
 }
 
 export function MathBlock({ tex, className }: MathProps) {
   return (
-    <div
-      className={className}
-      dangerouslySetInnerHTML={{ __html: `\\[${tex}\\]` }}
-    />
+    <div className={className}>{`\\[${tex}\\]`}</div>
   );
 }

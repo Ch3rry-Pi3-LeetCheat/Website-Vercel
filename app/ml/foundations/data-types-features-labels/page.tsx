@@ -78,8 +78,8 @@ export default function DataTypesFeaturesLabelsPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We often store features in a matrix{" "}
-          <MathInline tex="X" className="font-mono inline-code" /> with
-          shape <MathInline tex="n \\times d" className="font-mono inline-code" />.
+          <MathInline tex="X" className="math-inline" /> with
+          shape <MathInline tex="n \\times d" className="math-inline" />.
           Each row is one example and each column is a feature.
         </p>
         <MathBlock
