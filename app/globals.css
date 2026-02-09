@@ -204,7 +204,7 @@ details[open] .example-chevron {
 
 .flashcard {
   perspective: 1200px;
-  max-width: 720px;
+  max-width: 640px;
   margin: 0 auto;
   width: 100%;
 }
@@ -240,6 +240,10 @@ details[open] .example-chevron {
   padding: 18px 22px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 10px;
   min-height: 120px;
 }
 

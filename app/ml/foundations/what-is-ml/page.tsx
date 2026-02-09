@@ -253,7 +253,7 @@ export default function WhatIsMlPage() {
           When we put it all together, we often write:
         </p>
         <MathBlock
-          tex={String.raw`{\color{rgb}{0.96,0.45,0.71}\hat{y}} = {\color{rgb}{0.26,0.83,1}f}({\color{rgb}{0.26,0.83,1}x}; {\color{rgb}{0.65,0.55,0.98}\theta})`}
+          tex={String.raw`\hat{y} = f(x; \theta)`}
           className="math-center math-lg text-white/90"
         />
       </section>
@@ -310,21 +310,21 @@ export default function WhatIsMlPage() {
             Use one feature: floor area. A simple rule is:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}price} = {\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}} + {\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}} \times {\color{rgb}{0.26,0.83,1}floor\_area}`}
+            tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
-            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}}`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "}is a baseline price, and{" "}
-            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}}`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
             {" "}is how much price rises per extra square metre.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Take the row with floor area 68. If{" "}
-            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}} {\color{white}{= 50000}}`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_0 = 50000`} className="math-inline math-theta" />
             {" "}and{" "}
-            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}} {\color{white}{= 2000}}`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_1 = 2000`} className="math-inline math-theta" />
             {", "}then:
           </p>
           <MathBlock
@@ -540,15 +540,18 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <div className="grid gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                      Question 1
-                    </span>
-                    <span>What is a feature?</span>
-                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Question 1
+                  </span>
+                  <span>What is a feature?</span>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-white">A:</span> An input variable the model uses.
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Answer
+                  </span>
+                  <span>
+                    <span className="text-white">A:</span> An input variable the model uses.
+                  </span>
                 </div>
               </div>
             </summary>
@@ -558,24 +561,27 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <div className="grid gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                      Question 2
-                    </span>
-                    <span>
-                      What is the difference between{" "}
-                      <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                      and{" "}
-                      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
-                    </span>
-                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Question 2
+                  </span>
+                  <span>
+                    What is the difference between{" "}
+                    <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                    and{" "}
+                    <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
+                  </span>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-white">A:</span>{" "}
-                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                  is the true answer;{" "}
-                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
-                  is the model&apos;s prediction.
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Answer
+                  </span>
+                  <span>
+                    <span className="text-white">A:</span>{" "}
+                    <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                    is the true answer;{" "}
+                    <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
+                    is the model&apos;s prediction.
+                  </span>
                 </div>
               </div>
             </summary>
@@ -585,19 +591,22 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <div className="grid gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                      Question 3
-                    </span>
-                    <span>
-                      What does{" "}
-                      <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />{" "}
-                      represent?
-                    </span>
-                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Question 3
+                  </span>
+                  <span>
+                    What does{" "}
+                    <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />{" "}
+                    represent?
+                  </span>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-white">A:</span> The adjustable settings inside the model.
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Answer
+                  </span>
+                  <span>
+                    <span className="text-white">A:</span> The adjustable settings inside the model.
+                  </span>
                 </div>
               </div>
             </summary>
@@ -607,16 +616,19 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <div className="grid gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                      Question 4
-                    </span>
-                    <span>Why do we square errors?</span>
-                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Question 4
+                  </span>
+                  <span>Why do we square errors?</span>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-white">A:</span> To make all errors positive and
-                  penalise big mistakes more.
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Answer
+                  </span>
+                  <span>
+                    <span className="text-white">A:</span> To make all errors positive and
+                    penalise big mistakes more.
+                  </span>
                 </div>
               </div>
             </summary>
@@ -626,16 +638,19 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <div className="grid gap-2">
-                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                      Question 5
-                    </span>
-                    <span>What is supervised learning?</span>
-                  </div>
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Question 5
+                  </span>
+                  <span>What is supervised learning?</span>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-white">A:</span> Learning from examples where the
-                  correct answers are known.
+                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                    Answer
+                  </span>
+                  <span>
+                    <span className="text-white">A:</span> Learning from examples where the
+                    correct answers are known.
+                  </span>
                 </div>
               </div>
             </summary>
