@@ -33,9 +33,9 @@ export default function WhatIsMlPage() {
     { id: "mental-model", label: "A concrete mental model" },
     { id: "examples", label: "Real-world examples" },
     { id: "dataset", label: "A tiny dataset" },
-    { id: "model-plain", label: "Model before maths" },
-    { id: "notation", label: "Now the notation" },
-    { id: "function-intro", label: "Understanding f(x; θ)" },
+    { id: "model-plain", label: "What is a model?" },
+    { id: "notation", label: "Now, let’s introduce some notation" },
+    { id: "function-intro", label: "Understanding ŷ = f(x; θ)" },
     { id: "training", label: "Training and loss" },
     { id: "loop", label: "Learning loop (step-by-step)" },
     { id: "types", label: "Supervised vs unsupervised" },
@@ -64,10 +64,10 @@ export default function WhatIsMlPage() {
     >
       <InfoPanel id="mental-model" title="A concrete mental model" variant="intro">
         <p>
-          Machine learning is a way of teaching a computer by showing it
-          examples. Instead of writing every rule yourself, you show
-          inputs and the correct outputs, then let the computer discover
-          the pattern.
+          Machine learning (ML) is a way of teaching a computer by
+          showing it examples. Instead of writing every rule yourself,
+          you show inputs and the correct outputs, then let the computer
+          discover the pattern.
         </p>
         <p>
           Think of it like tutoring. A student does not memorise every
@@ -184,7 +184,7 @@ export default function WhatIsMlPage() {
 
       <section id="model-plain" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          A model (before any maths)
+          What is a model?
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A model is simply a rule that turns inputs into a prediction.
@@ -199,7 +199,7 @@ export default function WhatIsMlPage() {
 
       <section id="notation" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Now the notation (tied to the table)
+          Now, let&apos;s introduce some notation
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We use a few symbols to describe the same idea in a compact way.
@@ -226,6 +226,13 @@ export default function WhatIsMlPage() {
             {" "}are the adjustable settings inside the model.
           </li>
         </ul>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          When we put it all together, we often write:
+        </p>
+        <MathBlock
+          tex={String.raw`\hat{y} = f(x; \theta)`}
+          className="text-center text-white/90"
+        />
       </section>
 
       <section id="function-intro" className="scroll-mt-28 grid gap-6">
@@ -274,7 +281,7 @@ export default function WhatIsMlPage() {
           </p>
           <MathBlock
             tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
-            className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+            className="text-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
@@ -290,17 +297,14 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`\theta_1 = 2000`} className="math-inline" />
             {", "}then:
           </p>
-          <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-            <li>
-              price = 50,000 + 2,000 × 68
-            </li>
-            <li>
-              price = 50,000 + 136,000
-            </li>
-            <li>
-              price = 186,000
-            </li>
-          </ul>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+              price &= 50{,}000 + 2{,}000 \times 68 \\
+              &= 50{,}000 + 136{,}000 \\
+              &= 186{,}000
+            \end{aligned}`}
+            className="text-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The true price for that row is 265,000, so the model is too
             low. Training changes{" "}
@@ -326,11 +330,11 @@ export default function WhatIsMlPage() {
           mistakes count more.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Mean squared error averages those squared mistakes:
+          Mean squared error (MSE) averages those squared mistakes:
         </p>
         <MathBlock
           tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
-          className="rounded-2xl bg-white/5 px-4 py-3 text-white/90"
+          className="text-center text-white/90"
         />
       </section>
 
