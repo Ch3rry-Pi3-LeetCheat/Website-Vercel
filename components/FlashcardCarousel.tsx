@@ -69,7 +69,7 @@ export default function FlashcardCarousel({ cards }: FlashcardCarouselProps) {
                 </span>
                 <span>{card.question}</span>
               </div>
-              <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+              <div className="flashcard-face flashcard-back text-base leading-7 text-white">
                 <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
                   Answer
                 </span>
