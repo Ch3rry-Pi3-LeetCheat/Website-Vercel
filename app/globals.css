@@ -286,6 +286,10 @@ details.flashcard[open] .flashcard-inner {
   color: #a78bfa;
 }
 
+.math-neutral {
+  color: var(--color-text);
+}
+
 .shiki-wrapper {
   max-width: 100%;
   overflow-x: auto;

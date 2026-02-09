@@ -7,24 +7,36 @@ import { MathBlock, MathInline } from "@/components/Math";
 import FlashcardCarousel from "@/components/FlashcardCarousel";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
-const tinyExampleCode = `import pandas as pd
-from sklearn.linear_model import LinearRegression
+const tinyExampleCode = `# Install dependencies (once)
+# pip install pandas scikit-learn
 
-data = pd.DataFrame({
-    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],
-    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],
-    "distance_to_centre_km": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],
-    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],
-})
+try:
+    # Import the core libraries
+    import pandas as pd
+    from sklearn.linear_model import LinearRegression
 
-X = data[["floor_area_m2", "bedrooms", "distance_to_centre_km"]]
-y = data["price_gbp"]
+    # Build a tiny dataset (each row is one house)
+    data = pd.DataFrame({
+        "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],
+        "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],
+        "distance_to_centre_km": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],
+        "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],
+    })
 
-model = LinearRegression()
-model.fit(X, y)
+    # Split into inputs (features) and the target (label)
+    X = data[["floor_area_m2", "bedrooms", "distance_to_centre_km"]]
+    y = data["price_gbp"]
 
-prediction = model.predict([[100, 3, 4.0]])[0]
-print(round(prediction, 0))`;
+    # Create and train the model
+    model = LinearRegression()
+    model.fit(X, y)
+
+    # Predict the price of a new house
+    prediction = model.predict([[100, 3, 4.0]])[0]
+    print(round(prediction, 0))
+except Exception as e:
+    # Print a helpful error if something goes wrong
+    print("Error:", e)`;
 
 const tinyExampleOutput = `330000.0`;
 
@@ -326,10 +338,10 @@ export default function WhatIsMlPage() {
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Take the row with floor area 68. If{" "}
-            <MathInline tex={String.raw`\theta_0 = 50000`} className="math-inline math-theta" />
-            {" "}and{" "}
-            <MathInline tex={String.raw`\theta_1 = 2000`} className="math-inline math-theta" />
-            {", "}then:
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            {" "} <span className="text-white">= 50,000</span> and{" "}
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            {" "} <span className="text-white">= 2,000</span>, then:
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
@@ -430,7 +442,35 @@ export default function WhatIsMlPage() {
           Python example
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The code below uses the same table.{" "}
+          The code below uses the same table and relies on{" "}
+          <span className="font-mono inline-code">pandas</span> and{" "}
+          <span className="font-mono inline-code">scikit-learn</span>{" "}
+          (<span className="font-mono inline-code">sklearn</span>). We import{" "}
+          <span className="font-mono inline-code">LinearRegression</span> from{" "}
+          <span className="font-mono inline-code">sklearn.linear_model</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Helpful docs:{" "}
+          <a
+            href="https://pandas.pydata.org/docs/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+          >
+            Pandas documentation
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+            target="_blank"
+            rel="noreferrer"
+            className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+          >
+            scikit-learn LinearRegression
+          </a>
+          .
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           <span className="font-mono inline-code">fit()</span> finds the best
           settings, and <span className="font-mono inline-code">predict()</span>{" "}
           returns a price for a new house.
@@ -439,7 +479,7 @@ export default function WhatIsMlPage() {
         <OutputBlock output={tinyExampleOutput} />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The output is the predicted price for a 100{" "}
-          <MathInline tex={String.raw`m^2`} className="math-inline" />
+          <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
           {", "}3-bedroom house 4 km from the centre.
         </p>
       </section>
