@@ -540,7 +540,12 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  Q1: What is a feature?
+                  <div className="grid gap-2">
+                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                      Question 1
+                    </span>
+                    <span>What is a feature?</span>
+                  </div>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
                   <span className="text-white">A:</span> An input variable the model uses.
@@ -553,17 +558,24 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  Q2: What is the difference between{" "}
-                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                  and{" "}
-                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
+                  <div className="grid gap-2">
+                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                      Question 2
+                    </span>
+                    <span>
+                      What is the difference between{" "}
+                      <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                      and{" "}
+                      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
+                    </span>
+                  </div>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
                   <span className="text-white">A:</span>{" "}
-                  <MathInline tex={String.raw`y`} className="math-inline math-y" /> is
-                  the true answer;{" "}
-                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" /> is
-                  the model&apos;s prediction.
+                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                  is the true answer;{" "}
+                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
+                  is the model&apos;s prediction.
                 </div>
               </div>
             </summary>
@@ -573,8 +585,16 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  Q3: What does{" "}
-                  <MathInline tex={String.raw`\theta`} className="math-inline math-theta" /> represent?
+                  <div className="grid gap-2">
+                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                      Question 3
+                    </span>
+                    <span>
+                      What does{" "}
+                      <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />{" "}
+                      represent?
+                    </span>
+                  </div>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
                   <span className="text-white">A:</span> The adjustable settings inside the model.
@@ -587,7 +607,12 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  Q4: Why do we square errors?
+                  <div className="grid gap-2">
+                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                      Question 4
+                    </span>
+                    <span>Why do we square errors?</span>
+                  </div>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
                   <span className="text-white">A:</span> To make all errors positive and
@@ -601,7 +626,12 @@ export default function WhatIsMlPage() {
             <summary className="flashcard-summary">
               <div className="flashcard-inner">
                 <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  Q5: What is supervised learning?
+                  <div className="grid gap-2">
+                    <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
+                      Question 5
+                    </span>
+                    <span>What is supervised learning?</span>
+                  </div>
                 </div>
                 <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
                   <span className="text-white">A:</span> Learning from examples where the

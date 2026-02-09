@@ -16,7 +16,8 @@ const mathJaxConfig = `
   window.MathJax = {
     tex: {
       inlineMath: [["\\\\(", "\\\\)"], ["$", "$"]],
-      displayMath: [["\\\\[", "\\\\]"], ["$$", "$$"]]
+      displayMath: [["\\\\[", "\\\\]"], ["$$", "$$"]],
+      packages: { "[+]": ["color"] }
     },
     svg: { fontCache: "global" }
   };
