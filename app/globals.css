@@ -202,6 +202,22 @@ details[open] .example-chevron {
   font-size: 1.25rem;
 }
 
+.math-x {
+  color: var(--color-accent-2);
+}
+
+.math-y {
+  color: var(--color-accent-3);
+}
+
+.math-yhat {
+  color: #f472b6;
+}
+
+.math-theta {
+  color: #a78bfa;
+}
+
 .shiki-wrapper {
   max-width: 100%;
   overflow-x: auto;

@@ -1,6 +1,6 @@
 export const mlFoundationsLessons = [
   {
-    label: "What is ML?",
+    label: "What is Machine Learning?",
     description: "A clear definition, the core learning loop, and a tiny example.",
     href: "/ml/foundations/what-is-ml",
   },

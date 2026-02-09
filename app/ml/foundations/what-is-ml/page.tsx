@@ -1,4 +1,3 @@
-
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
@@ -34,10 +33,10 @@ export default function WhatIsMlPage() {
     { id: "examples", label: "Real-world examples" },
     { id: "dataset", label: "A tiny dataset" },
     { id: "model-plain", label: "What is a model?" },
-    { id: "notation", label: "Now, let’s introduce some notation" },
-    { id: "function-intro", label: "Understanding ŷ = f(x; θ)" },
+    { id: "notation", label: "Introducing some notation" },
+    { id: "function-intro", label: "Understanding y-hat = f(x; theta)" },
     { id: "training", label: "Training and loss" },
-    { id: "loop", label: "Learning loop (step-by-step)" },
+    { id: "loop", label: "Learning loop" },
     { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Python example" },
     { id: "confusions", label: "Common confusions" },
@@ -55,71 +54,74 @@ export default function WhatIsMlPage() {
       tocItems={tocItems}
       rightRail={
         <RightRail
-          sections={[
-            { title: "Within Foundations", links: mlFoundationsLessons },
-          ]}
+          sections={[{ title: "Within Foundations", links: mlFoundationsLessons }]}
           activeHref="/ml/foundations/what-is-ml"
         />
       }
     >
       <InfoPanel id="mental-model" title="A concrete mental model" variant="intro">
         <p>
-          Machine learning (ML) is a way of teaching a computer by
-          showing it examples. Instead of writing every rule yourself,
-          you show inputs and the correct outputs, then let the computer
-          discover the pattern.
+          Machine learning (ML) is a way of teaching a computer by showing it
+          examples. Instead of writing every rule yourself, you show inputs and
+          the correct outputs, then let the computer discover the pattern.
         </p>
         <p>
-          Think of it like tutoring. A student does not memorise every
-          question. They learn a rule that helps with new questions.
+          Think of it like tutoring. A student does not memorise every question.
+          They learn a rule that helps with new questions.
         </p>
       </InfoPanel>
 
       <InfoPanel id="examples" title="Real-world examples" variant="intuition">
         <p>
-          Let&apos;s make “learning patterns from data” feel concrete. In
-          each example, the inputs are the clues and the output is the
-          answer the model should predict.
+          Let&apos;s make learning patterns from data feel concrete. In each
+          example, the inputs are the clues and the output is the answer the
+          model should predict.
         </p>
         <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
-            <span className="text-white">House prices:</span> inputs are
-            floor area, bedrooms, and distance to the centre. Output is
-            price. A good prediction is close enough to guide buyers and
-            sellers.
+            <span className="text-white">House prices:</span> inputs are floor
+            area, bedrooms, and distance to the centre. Output is price. A good
+            prediction is close enough to guide buyers and sellers.
           </li>
           <li>
-            <span className="text-white">Spam detection:</span> inputs are
-            words, links, and sender info. Output is spam or not spam. A
-            good prediction catches spam without blocking real emails.
+            <span className="text-white">Spam detection:</span> inputs are words,
+            links, and sender info. Output is spam or not spam. A good prediction
+            catches spam without blocking real emails.
           </li>
           <li>
             <span className="text-white">Fraud detection:</span> inputs are
-            amount, time, location, and device. Output is fraud or not
-            fraud. A good prediction flags risky transactions quickly
-            without too many false alarms.
+            amount, time, location, and device. Output is fraud or not fraud. A
+            good prediction flags risky transactions quickly without too many
+            false alarms.
           </li>
         </ul>
       </InfoPanel>
 
       <section id="dataset" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          A tiny dataset (look at the data first)
+          A tiny dataset
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Each row is one house. The first three columns are the inputs
-          (features). The last column is the output (label) we want to
-          predict.
+          (features). The last column is the output (label) we want to predict.
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
               <thead>
                 <tr className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-2)]">
-                  <th className="py-2">floor_area_m2</th>
-                  <th className="py-2">bedrooms</th>
-                  <th className="py-2">distance_to_centre_km</th>
-                  <th className="py-2">price_gbp</th>
+                  <th className="py-2">
+                    <span className="math-x">floor_area_m2</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-x">bedrooms</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-x">distance_to_centre_km</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-y">price_gbp</span>
+                  </th>
                 </tr>
               </thead>
               <tbody className="text-sm">
@@ -176,9 +178,9 @@ export default function WhatIsMlPage() {
           </div>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          More rows help because the model sees more situations. That
-          makes it easier to learn a pattern that works on new houses,
-          not just the ones in the table.
+          More rows help because the model sees more situations. That makes it
+          easier to learn a pattern that works on new houses, not just the ones
+          in the table.
         </p>
       </section>
 
@@ -187,19 +189,18 @@ export default function WhatIsMlPage() {
           What is a model?
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A model is simply a rule that turns inputs into a prediction.
-          For houses, the rule might be: “bigger area usually means higher
-          price”.
+          A model is simply a rule that turns inputs into a prediction. For
+          houses, the rule might be: bigger area usually means higher price.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The rule can be simple or complex, but its job is always the
-          same: take features and produce a predicted price.
+          The rule can be simple or complex, but its job is always the same:
+          take features and produce a predicted price.
         </p>
       </section>
 
       <section id="notation" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Now, let&apos;s introduce some notation
+          Introducing some notation
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We use a few symbols to describe the same idea in a compact way.
@@ -207,22 +208,22 @@ export default function WhatIsMlPage() {
         </p>
         <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
-            <MathInline tex={String.raw`x`} className="math-inline" />
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {" "}is the input features. Example:{" "}
             <span className="text-white">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
           </li>
           <li>
-            <MathInline tex={String.raw`y`} className="math-inline" />
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
             {" "}is the true answer. Example:{" "}
             <span className="text-white">price_gbp</span>.
           </li>
           <li>
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
-            {" "}(&quot;y-hat&quot;) is the model&apos;s prediction of{" "}
-            <MathInline tex={String.raw`y`} className="math-inline" />.
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {" "}(y-hat) is the model&apos;s prediction of{" "}
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />.
           </li>
           <li>
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}are the adjustable settings inside the model.
           </li>
         </ul>
@@ -238,19 +239,22 @@ export default function WhatIsMlPage() {
       <section id="function-intro" className="scroll-mt-28 grid gap-6">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Understanding{" "}
-          <MathInline tex={String.raw`\hat{y} = f(x; \theta)`} className="math-inline" />
+          <MathInline
+            tex={String.raw`\hat{y} = f(x; \theta)`}
+            className="math-inline math-yhat"
+          />
         </h2>
 
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Layer 1: Plain English</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <MathInline tex={String.raw`f`} className="math-inline" />
+            <MathInline tex={String.raw`f`} className="math-inline math-x" />
             {" "}is the rule the computer is using.{" "}
-            <MathInline tex={String.raw`x`} className="math-inline" />
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {" "}is the information we feed into that rule.{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}are the knobs that control how the rule behaves. The output{" "}
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}is the prediction we get back.
           </p>
         </div>
@@ -258,19 +262,19 @@ export default function WhatIsMlPage() {
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Layer 2: Visual intuition</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Imagine plotting points on a graph: floor area on the x‑axis and
-            price on the y‑axis. A very simple model draws a straight line
+            Imagine plotting points on a graph: floor area on the x-axis and
+            price on the y-axis. A very simple model draws a straight line
             through those points. That line <span className="text-white">is</span>{" "}
             the function{" "}
-            <MathInline tex={String.raw`f`} className="math-inline" />.
+            <MathInline tex={String.raw`f`} className="math-inline math-x" />.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The settings{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}control the slope and position of the line. Changing{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
-            {" "}rotates or shifts the line. Learning means adjusting the
-            line so it fits the dots better.
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+            {" "}rotates or shifts the line. Learning means adjusting the line
+            so it fits the dots better.
           </p>
         </div>
 
@@ -285,16 +289,16 @@ export default function WhatIsMlPage() {
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "}is a baseline price, and{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
             {" "}is how much price rises per extra square metre.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Take the row with floor area 68. If{" "}
-            <MathInline tex={String.raw`\theta_0 = 50000`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_0 = 50000`} className="math-inline math-theta" />
             {" "}and{" "}
-            <MathInline tex={String.raw`\theta_1 = 2000`} className="math-inline" />
+            <MathInline tex={String.raw`\theta_1 = 2000`} className="math-inline math-theta" />
             {", "}then:
           </p>
           <MathBlock
@@ -306,9 +310,9 @@ export default function WhatIsMlPage() {
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The true price for that row is 265,000, so the model is too
-            low. Training changes{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            The true price for that row is 265,000, so the model is too low.
+            Training changes{" "}
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}to bring predictions closer.
           </p>
         </div>
@@ -316,18 +320,17 @@ export default function WhatIsMlPage() {
 
       <section id="training" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Training and loss (intuition first)
+          Training and loss
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Training means adjusting the model&apos;s settings to make
-          predictions less wrong. We need a numeric score of wrongness.
-          That score is called <span className="text-white">loss</span>.
+          Training means adjusting the model&apos;s settings to make predictions
+          less wrong. We need a numeric score of wrongness. That score is called{" "}
+          <span className="text-white">loss</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Suppose a house really costs 265,000 but the model predicts
-          240,000. The error is 25,000. If we square it, we get
-          625,000,000. Squaring keeps errors positive and makes big
-          mistakes count more.
+          Suppose a house really costs 265,000 but the model predicts 240,000.
+          The error is 25,000. If we square it, we get 625,000,000. Squaring
+          keeps errors positive and makes big mistakes count more.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mean squared error (MSE) averages those squared mistakes:
@@ -340,7 +343,7 @@ export default function WhatIsMlPage() {
 
       <section id="loop" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Learning loop (step-by-step)
+          Learning loop
         </h2>
         <ol className="grid list-decimal list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>Start with a guess for the model&apos;s settings.</li>
@@ -353,39 +356,39 @@ export default function WhatIsMlPage() {
 
       <section id="types" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Supervised vs unsupervised (concrete)
+          Supervised vs unsupervised
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In supervised learning, we have labels (the answers). In
-          unsupervised learning, we do not.
+          In supervised learning, we have labels (the answers). In unsupervised
+          learning, we do not.
         </p>
         <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
-            <span className="text-white">Supervised:</span> predict price
-            from features. This is regression because the output is a number.
+            <span className="text-white">Supervised:</span> predict price from
+            features. This is regression because the output is a number.
           </li>
           <li>
-            <span className="text-white">Unsupervised:</span> group houses
-            by similarity (size, bedrooms, distance). “Similarity” means
-            the feature values are close together.
+            <span className="text-white">Unsupervised:</span> group houses by
+            similarity (size, bedrooms, distance). Similarity means the feature
+            values are close together.
           </li>
         </ul>
       </section>
 
       <section id="example" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Python example (matches the dataset)
+          Python example
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The code below uses the same table.{" "}
           <span className="text-white">fit()</span> finds the best settings,
-          and <span className="text-white">predict()</span> returns a price
-          for a new house.
+          and <span className="text-white">predict()</span> returns a price for
+          a new house.
         </p>
         <CodeBlock code={tinyExampleCode} title="Python" />
         <OutputBlock output={tinyExampleOutput} />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The output is the predicted price for a 100 m², 3‑bedroom house
+          The output is the predicted price for a 100 m^2, 3-bedroom house
           4 km from the centre.
         </p>
       </section>
@@ -397,27 +400,27 @@ export default function WhatIsMlPage() {
         <ul className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
             <span className="text-white">Is the model memorising the data?</span>{" "}
-            It can, but the goal is to learn a pattern that works on new
-            examples, not just the training rows.
+            It can, but the goal is to learn a pattern that works on new examples,
+            not just the training rows.
           </li>
           <li>
             <span className="text-white">How is this different from normal programming?</span>{" "}
-            In normal programming you write the rules. In ML, the model
-            learns the rules from examples.
+            In normal programming you write the rules. In ML, the model learns
+            the rules from examples.
           </li>
           <li>
-            <span className="text-white">What does “generalise” mean?</span>{" "}
+            <span className="text-white">What does generalise mean?</span>{" "}
             It means the model works well on new, unseen data.
           </li>
           <li>
             <span className="text-white">Why can models be wrong after training?</span>{" "}
-            Real data is messy, and the model may be too simple or trained
-            on limited examples.
+            Real data is messy, and the model may be too simple or trained on
+            limited examples.
           </li>
           <li>
             <span className="text-white">Training vs test data?</span>{" "}
-            Training data teaches the model. Test data checks how well the
-            model performs on new examples.
+            Training data teaches the model. Test data checks how well the model
+            performs on new examples.
           </li>
         </ul>
       </section>
@@ -431,16 +434,16 @@ export default function WhatIsMlPage() {
           <li>Features are inputs; labels are outputs.</li>
           <li>A model is just a rule that makes predictions.</li>
           <li>
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}is the prediction,{" "}
-            <MathInline tex={String.raw`y`} className="math-inline" />
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
             {" "}is the true answer.
           </li>
           <li>
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}are the adjustable settings the model learns.
           </li>
-          <li>Learning is guess → measure error → adjust → repeat.</li>
+          <li>Learning is guess -> measure error -> adjust -> repeat.</li>
           <li>Loss measures how wrong the model is.</li>
           <li>Supervised uses labels; unsupervised does not.</li>
           <li>More data usually improves learning.</li>
@@ -459,19 +462,19 @@ export default function WhatIsMlPage() {
           </p>
           <p>
             <span className="text-white">Q2:</span> What is the difference between{" "}
-            <MathInline tex={String.raw`y`} className="math-inline" />
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
             {" "}and{" "}
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />?
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
             <br />
             <span className="text-white">A:</span>{" "}
-            <MathInline tex={String.raw`y`} className="math-inline" />
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
             {" "}is the true answer;{" "}
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline" />
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}is the model&apos;s prediction.
           </p>
           <p>
             <span className="text-white">Q3:</span> What does{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline" />
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}represent?
             <br />
             <span className="text-white">A:</span> The adjustable settings inside the model.
@@ -479,14 +482,14 @@ export default function WhatIsMlPage() {
           <p>
             <span className="text-white">Q4:</span> Why do we square errors?
             <br />
-            <span className="text-white">A:</span> To make all errors positive and
-            penalise big mistakes more.
+            <span className="text-white">A:</span> To make all errors positive and penalise
+            big mistakes more.
           </p>
           <p>
             <span className="text-white">Q5:</span> What is supervised learning?
             <br />
-            <span className="text-white">A:</span> Learning from examples where the
-            correct answers are known.
+            <span className="text-white">A:</span> Learning from examples where the correct
+            answers are known.
           </p>
         </div>
       </section>
