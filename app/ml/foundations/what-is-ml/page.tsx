@@ -443,7 +443,7 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}are the adjustable settings the model learns.
           </li>
-          <li>Learning is guess -> measure error -> adjust -> repeat.</li>
+          <li>Learning is guess &gt; measure error &gt; adjust &gt; repeat.</li>
           <li>Loss measures how wrong the model is.</li>
           <li>Supervised uses labels; unsupervised does not.</li>
           <li>More data usually improves learning.</li>
