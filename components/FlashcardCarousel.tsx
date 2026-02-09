@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 type Flashcard = {
   question: ReactNode;
@@ -32,6 +32,12 @@ export default function FlashcardCarousel({ cards }: FlashcardCarouselProps) {
   const next = () => {
     if (showNext) goTo(index + 1);
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.MathJax?.typesetPromise) {
+      window.MathJax.typesetPromise();
+    }
+  }, [index, flipped]);
 
   return (
     <div className="grid gap-4">
