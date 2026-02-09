@@ -202,6 +202,54 @@ details[open] .example-chevron {
   font-size: 1.25rem;
 }
 
+.flashcard {
+  perspective: 1200px;
+}
+
+.flashcard-summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.flashcard-summary::-webkit-details-marker {
+  display: none;
+}
+
+.flashcard-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  min-height: 120px;
+}
+
+.flashcard-face {
+  backface-visibility: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: linear-gradient(
+    160deg,
+    rgba(15, 20, 30, 0.92),
+    rgba(9, 12, 18, 0.88)
+  );
+  box-shadow:
+    0 0 24px rgba(124, 92, 255, 0.12),
+    0 16px 40px rgba(4, 8, 16, 0.5);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  min-height: 120px;
+}
+
+.flashcard-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+details.flashcard[open] .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
 .math-x {
   color: var(--color-accent-2);
 }

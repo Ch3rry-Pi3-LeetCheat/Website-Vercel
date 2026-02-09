@@ -253,7 +253,7 @@ export default function WhatIsMlPage() {
           When we put it all together, we often write:
         </p>
         <MathBlock
-          tex={String.raw`\color{#f472b6}{\hat{y}} = \color{#42d3ff}{f}(\color{#42d3ff}{x}; \color{#a78bfa}{\theta})`}
+          tex={String.raw`{\color{rgb}{0.96,0.45,0.71}\hat{y}} = {\color{rgb}{0.26,0.83,1}f}({\color{rgb}{0.26,0.83,1}x}; {\color{rgb}{0.65,0.55,0.98}\theta})`}
           className="math-center math-lg text-white/90"
         />
       </section>
@@ -310,21 +310,21 @@ export default function WhatIsMlPage() {
             Use one feature: floor area. A simple rule is:
           </p>
           <MathBlock
-            tex={String.raw`\color{white}{price} = \color{#a78bfa}{\theta}_{\color{white}{0}} + \color{#a78bfa}{\theta}_{\color{white}{1}} \times \color{#42d3ff}{floor\_area}`}
+            tex={String.raw`{\color{white}price} = {\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}} + {\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}} \times {\color{rgb}{0.26,0.83,1}floor\_area}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
-            <MathInline tex={String.raw`\color{#a78bfa}{\theta}_{\color{white}{0}}`} className="math-inline" />
+            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}}`} className="math-inline" />
             {" "}is a baseline price, and{" "}
-            <MathInline tex={String.raw`\color{#a78bfa}{\theta}_{\color{white}{1}}`} className="math-inline" />
+            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}}`} className="math-inline" />
             {" "}is how much price rises per extra square metre.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Take the row with floor area 68. If{" "}
-            <MathInline tex={String.raw`\color{#a78bfa}{\theta}_{\color{white}{0}} \color{white}{= 50000}`} className="math-inline" />
+            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{0}} {\color{white}{= 50000}}`} className="math-inline" />
             {" "}and{" "}
-            <MathInline tex={String.raw`\color{#a78bfa}{\theta}_{\color{white}{1}} \color{white}{= 2000}`} className="math-inline" />
+            <MathInline tex={String.raw`{\color{rgb}{0.65,0.55,0.98}\theta}_{\color{white}{1}} {\color{white}{= 2000}}`} className="math-inline" />
             {", "}then:
           </p>
           <MathBlock
@@ -536,68 +536,79 @@ export default function WhatIsMlPage() {
           Mini-checkpoint
         </h2>
         <div className="grid gap-4">
-          <details className="example-panel rounded-2xl">
-            <summary className="example-summary text-base leading-7 text-white">
-              <span>Q1: What is a feature?</span>
-              <span className="example-chevron">▾</span>
+          <details className="flashcard">
+            <summary className="flashcard-summary">
+              <div className="flashcard-inner">
+                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
+                  Q1: What is a feature?
+                </div>
+                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+                  <span className="text-white">A:</span> An input variable the model uses.
+                </div>
+              </div>
             </summary>
-            <div className="px-6 pb-6 text-base leading-7 text-[color:var(--color-muted)]">
-              <span className="text-white">A:</span> An input variable the model uses.
-            </div>
           </details>
 
-          <details className="example-panel rounded-2xl">
-            <summary className="example-summary text-base leading-7 text-white">
-              <span>
-                Q2: What is the difference between{" "}
-                <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                and{" "}
-                <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
-              </span>
-              <span className="example-chevron">▾</span>
+          <details className="flashcard">
+            <summary className="flashcard-summary">
+              <div className="flashcard-inner">
+                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
+                  Q2: What is the difference between{" "}
+                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                  and{" "}
+                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
+                </div>
+                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+                  <span className="text-white">A:</span>{" "}
+                  <MathInline tex={String.raw`y`} className="math-inline math-y" /> is
+                  the true answer;{" "}
+                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" /> is
+                  the model&apos;s prediction.
+                </div>
+              </div>
             </summary>
-            <div className="px-6 pb-6 text-base leading-7 text-[color:var(--color-muted)]">
-              <span className="text-white">A:</span>{" "}
-              <MathInline tex={String.raw`y`} className="math-inline math-y" /> is
-              the true answer;{" "}
-              <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" /> is
-              the model&apos;s prediction.
-            </div>
           </details>
 
-          <details className="example-panel rounded-2xl">
-            <summary className="example-summary text-base leading-7 text-white">
-              <span>
-                Q3: What does{" "}
-                <MathInline tex={String.raw`\theta`} className="math-inline math-theta" /> represent?
-              </span>
-              <span className="example-chevron">▾</span>
+          <details className="flashcard">
+            <summary className="flashcard-summary">
+              <div className="flashcard-inner">
+                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
+                  Q3: What does{" "}
+                  <MathInline tex={String.raw`\theta`} className="math-inline math-theta" /> represent?
+                </div>
+                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+                  <span className="text-white">A:</span> The adjustable settings inside the model.
+                </div>
+              </div>
             </summary>
-            <div className="px-6 pb-6 text-base leading-7 text-[color:var(--color-muted)]">
-              <span className="text-white">A:</span> The adjustable settings inside the model.
-            </div>
           </details>
 
-          <details className="example-panel rounded-2xl">
-            <summary className="example-summary text-base leading-7 text-white">
-              <span>Q4: Why do we square errors?</span>
-              <span className="example-chevron">▾</span>
+          <details className="flashcard">
+            <summary className="flashcard-summary">
+              <div className="flashcard-inner">
+                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
+                  Q4: Why do we square errors?
+                </div>
+                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+                  <span className="text-white">A:</span> To make all errors positive and
+                  penalise big mistakes more.
+                </div>
+              </div>
             </summary>
-            <div className="px-6 pb-6 text-base leading-7 text-[color:var(--color-muted)]">
-              <span className="text-white">A:</span> To make all errors positive and
-              penalise big mistakes more.
-            </div>
           </details>
 
-          <details className="example-panel rounded-2xl">
-            <summary className="example-summary text-base leading-7 text-white">
-              <span>Q5: What is supervised learning?</span>
-              <span className="example-chevron">▾</span>
+          <details className="flashcard">
+            <summary className="flashcard-summary">
+              <div className="flashcard-inner">
+                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
+                  Q5: What is supervised learning?
+                </div>
+                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
+                  <span className="text-white">A:</span> Learning from examples where the
+                  correct answers are known.
+                </div>
+              </div>
             </summary>
-            <div className="px-6 pb-6 text-base leading-7 text-[color:var(--color-muted)]">
-              <span className="text-white">A:</span> Learning from examples where the
-              correct answers are known.
-            </div>
           </details>
         </div>
       </section>
