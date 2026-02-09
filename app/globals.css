@@ -198,6 +198,10 @@ details[open] .example-chevron {
   margin: 0 auto !important;
 }
 
+.math-lg {
+  font-size: 1.25rem;
+}
+
 .shiki-wrapper {
   max-width: 100%;
   overflow-x: auto;

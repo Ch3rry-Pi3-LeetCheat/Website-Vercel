@@ -50,7 +50,7 @@ export default function WhatIsMlPage() {
   return (
     <ArticleLayout
       eyebrow="ML - Foundations"
-      title="What is ML?"
+      title="What is Machine Learning?"
       description="A simple definition, the mental model, and a tiny example you can run immediately."
       tocItems={tocItems}
       rightRail={
@@ -81,7 +81,7 @@ export default function WhatIsMlPage() {
           each example, the inputs are the clues and the output is the
           answer the model should predict.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
             <span className="text-white">House prices:</span> inputs are
             floor area, bedrooms, and distance to the centre. Output is
@@ -205,7 +205,7 @@ export default function WhatIsMlPage() {
           We use a few symbols to describe the same idea in a compact way.
           Each symbol maps directly to the dataset above.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
             <MathInline tex={String.raw`x`} className="math-inline" />
             {" "}is the input features. Example:{" "}
@@ -231,7 +231,7 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\hat{y} = f(x; \theta)`}
-          className="math-center text-white/90"
+          className="math-center math-lg text-white/90"
         />
       </section>
 
@@ -281,7 +281,7 @@ export default function WhatIsMlPage() {
           </p>
           <MathBlock
             tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
-            className="math-center text-white/90"
+            className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
@@ -303,7 +303,7 @@ export default function WhatIsMlPage() {
               &= 50{,}000 + 136{,}000 \\
               &= 186{,}000
             \end{aligned}`}
-            className="math-center text-white/90"
+            className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The true price for that row is 265,000, so the model is too
@@ -334,7 +334,7 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
-          className="math-center text-white/90"
+          className="math-center math-lg text-white/90"
         />
       </section>
 
@@ -342,7 +342,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Learning loop (step-by-step)
         </h2>
-        <ol className="grid list-decimal list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ol className="grid list-decimal list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>Start with a guess for the model&apos;s settings.</li>
           <li>Use the model to predict prices for all rows.</li>
           <li>Measure how wrong the predictions are (loss).</li>
@@ -359,7 +359,7 @@ export default function WhatIsMlPage() {
           In supervised learning, we have labels (the answers). In
           unsupervised learning, we do not.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
             <span className="text-white">Supervised:</span> predict price
             from features. This is regression because the output is a number.
@@ -394,7 +394,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Common confusions
         </h2>
-        <ul className="grid gap-3 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <li>
             <span className="text-white">Is the model memorising the data?</span>{" "}
             It can, but the goal is to learn a pattern that works on new
@@ -426,7 +426,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What you should remember
         </h2>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>ML learns patterns from examples, not hard-coded rules.</li>
           <li>Features are inputs; labels are outputs.</li>
           <li>A model is just a rule that makes predictions.</li>
@@ -451,7 +451,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Mini-checkpoint
         </h2>
-        <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
             <span className="text-white">Q1:</span> What is a feature?
             <br />
@@ -495,7 +495,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Glossary
         </h2>
-        <ul className="grid gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li><span className="text-white">Feature:</span> An input the model uses.</li>
           <li><span className="text-white">Label:</span> The true output we want to predict.</li>
           <li><span className="text-white">Model:</span> The rule that maps inputs to predictions.</li>
@@ -511,7 +511,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Where this goes next
         </h2>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
+        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <li>Regression vs classification in more detail.</li>
           <li>Evaluation and train/test splits.</li>
           <li>Overfitting and how to spot it.</li>
