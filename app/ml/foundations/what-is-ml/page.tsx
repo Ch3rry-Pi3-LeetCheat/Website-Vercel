@@ -77,24 +77,31 @@ export default function WhatIsMlPage() {
           example, the inputs are the clues and the output is the answer the
           model should predict.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>
-            <span className="text-white">House prices:</span> inputs are floor
-            area, bedrooms, and distance to the centre. Output is price. A good
-            prediction is close enough to guide buyers and sellers.
-          </li>
-          <li>
-            <span className="text-white">Spam detection:</span> inputs are words,
-            links, and sender info. Output is spam or not spam. A good prediction
-            catches spam without blocking real emails.
-          </li>
-          <li>
-            <span className="text-white">Fraud detection:</span> inputs are
-            amount, time, location, and device. Output is fraud or not fraud. A
-            good prediction flags risky transactions quickly without too many
-            false alarms.
-          </li>
-        </ul>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">House prices</div>
+            <div>
+              Inputs are floor area, bedrooms, and distance to the centre. Output
+              is price. A good prediction is close enough to guide buyers and
+              sellers.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Spam detection</div>
+            <div>
+              Inputs are words, links, and sender info. Output is spam or not
+              spam. A good prediction catches spam without blocking real emails.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Fraud detection</div>
+            <div>
+              Inputs are amount, time, location, and device. Output is fraud or
+              not fraud. A good prediction flags risky transactions quickly
+              without too many false alarms.
+            </div>
+          </div>
+        </div>
       </InfoPanel>
 
       <section id="dataset" className="scroll-mt-28 grid gap-4">
@@ -109,7 +116,7 @@ export default function WhatIsMlPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
               <thead>
-                <tr className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-2)]">
+                <tr className="text-xs uppercase tracking-[0.2em]">
                   <th className="py-2">
                     <span className="math-x">floor_area_m2</span>
                   </th>
@@ -206,27 +213,42 @@ export default function WhatIsMlPage() {
           We use a few symbols to describe the same idea in a compact way.
           Each symbol maps directly to the dataset above.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>
-            <MathInline tex={String.raw`x`} className="math-inline math-x" />
-            {" "}is the input features. Example:{" "}
-            <span className="text-white">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
-          </li>
-          <li>
-            <MathInline tex={String.raw`y`} className="math-inline math-y" />
-            {" "}is the true answer. Example:{" "}
-            <span className="text-white">price_gbp</span>.
-          </li>
-          <li>
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-            {" "}(y-hat) is the model&apos;s prediction of{" "}
-            <MathInline tex={String.raw`y`} className="math-inline math-y" />.
-          </li>
-          <li>
-            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-            {" "}are the adjustable settings inside the model.
-          </li>
-        </ul>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">
+              <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            </div>
+            <div>
+              The input features. Example:{" "}
+              <span className="text-white">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">
+              <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            </div>
+            <div>
+              The true answer. Example:{" "}
+              <span className="text-white">price_gbp</span>.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">
+              <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            </div>
+            <div>
+              The model&apos;s prediction of{" "}
+              <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+              (we say “y-hat”).
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">
+              <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+            </div>
+            <div>The adjustable settings inside the model.</div>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           When we put it all together, we often write:
         </p>
@@ -239,10 +261,14 @@ export default function WhatIsMlPage() {
       <section id="function-intro" className="scroll-mt-28 grid gap-6">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Understanding{" "}
-          <MathInline
-            tex={String.raw`\hat{y} = f(x; \theta)`}
-            className="math-inline math-yhat"
-          />
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          {" "}={" "}
+          <MathInline tex={String.raw`f`} className="math-inline math-x" />
+          {" ("}
+          <MathInline tex={String.raw`x`} className="math-inline math-x" />
+          {"; "}
+          <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+          {")"}
         </h2>
 
         <div className="grid gap-3">
@@ -345,13 +371,28 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Learning loop
         </h2>
-        <ol className="grid list-decimal list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>Start with a guess for the model&apos;s settings.</li>
-          <li>Use the model to predict prices for all rows.</li>
-          <li>Measure how wrong the predictions are (loss).</li>
-          <li>Adjust the settings to reduce the loss.</li>
-          <li>Repeat until the loss stops improving.</li>
-        </ol>
+        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">1.</div>
+            <div>Start with a guess for the model&apos;s settings.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">2.</div>
+            <div>Use the model to predict prices for all rows.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">3.</div>
+            <div>Measure how wrong the predictions are (loss).</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">4.</div>
+            <div>Adjust the settings to reduce the loss.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">5.</div>
+            <div>Repeat until the loss stops improving.</div>
+          </div>
+        </div>
       </section>
 
       <section id="types" className="scroll-mt-28 grid gap-4">
@@ -362,17 +403,22 @@ export default function WhatIsMlPage() {
           In supervised learning, we have labels (the answers). In unsupervised
           learning, we do not.
         </p>
-        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>
-            <span className="text-white">Supervised:</span> predict price from
-            features. This is regression because the output is a number.
-          </li>
-          <li>
-            <span className="text-white">Unsupervised:</span> group houses by
-            similarity (size, bedrooms, distance). Similarity means the feature
-            values are close together.
-          </li>
-        </ul>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Supervised</div>
+            <div>
+              Predict price from features. This is regression because the
+              output is a number.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Unsupervised</div>
+            <div>
+              Group houses by similarity (size, bedrooms, distance). Similarity
+              means the feature values are close together.
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="example" className="scroll-mt-28 grid gap-4">
@@ -381,9 +427,9 @@ export default function WhatIsMlPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The code below uses the same table.{" "}
-          <span className="text-white">fit()</span> finds the best settings,
-          and <span className="text-white">predict()</span> returns a price for
-          a new house.
+          <span className="font-mono inline-code">fit()</span> finds the best
+          settings, and <span className="font-mono inline-code">predict()</span>{" "}
+          returns a price for a new house.
         </p>
         <CodeBlock code={tinyExampleCode} title="Python" />
         <OutputBlock output={tinyExampleOutput} />
@@ -397,57 +443,92 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Common confusions
         </h2>
-        <ul className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>
-            <span className="text-white">Is the model memorising the data?</span>{" "}
-            It can, but the goal is to learn a pattern that works on new examples,
-            not just the training rows.
-          </li>
-          <li>
-            <span className="text-white">How is this different from normal programming?</span>{" "}
-            In normal programming you write the rules. In ML, the model learns
-            the rules from examples.
-          </li>
-          <li>
-            <span className="text-white">What does generalise mean?</span>{" "}
-            It means the model works well on new, unseen data.
-          </li>
-          <li>
-            <span className="text-white">Why can models be wrong after training?</span>{" "}
-            Real data is messy, and the model may be too simple or trained on
-            limited examples.
-          </li>
-          <li>
-            <span className="text-white">Training vs test data?</span>{" "}
-            Training data teaches the model. Test data checks how well the model
-            performs on new examples.
-          </li>
-        </ul>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Is the model memorising the data?</div>
+            <div>
+              It can, but the goal is to learn a pattern that works on new examples,
+              not just the training rows.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">How is this different from normal programming?</div>
+            <div>
+              In normal programming you write the rules. In ML, the model learns
+              the rules from examples.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">What does generalise mean?</div>
+            <div>It means the model works well on new, unseen data.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Why can models be wrong after training?</div>
+            <div>
+              Real data is messy, and the model may be too simple or trained on
+              limited examples.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Training vs test data?</div>
+            <div>
+              Training data teaches the model. Test data checks how well the model
+              performs on new examples.
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="remember" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What you should remember
         </h2>
-        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>ML learns patterns from examples, not hard-coded rules.</li>
-          <li>Features are inputs; labels are outputs.</li>
-          <li>A model is just a rule that makes predictions.</li>
-          <li>
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-            {" "}is the prediction,{" "}
-            <MathInline tex={String.raw`y`} className="math-inline math-y" />
-            {" "}is the true answer.
-          </li>
-          <li>
-            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-            {" "}are the adjustable settings the model learns.
-          </li>
-          <li>Learning is guess &gt; measure error &gt; adjust &gt; repeat.</li>
-          <li>Loss measures how wrong the model is.</li>
-          <li>Supervised uses labels; unsupervised does not.</li>
-          <li>More data usually improves learning.</li>
-        </ul>
+        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>ML learns patterns from examples, not hard-coded rules.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Features are inputs; labels are outputs.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>A model is just a rule that makes predictions.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>
+              <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+              {" "}is the prediction,{" "}
+              <MathInline tex={String.raw`y`} className="math-inline math-y" />
+              {" "}is the true answer.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>
+              <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+              {" "}are the adjustable settings the model learns.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Learning is guess &gt; measure error &gt; adjust &gt; repeat.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Loss measures how wrong the model is.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Supervised uses labels; unsupervised does not.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>More data usually improves learning.</div>
+          </div>
+        </div>
       </section>
 
       <section id="checkpoint" className="scroll-mt-28 grid gap-4">
@@ -498,28 +579,64 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Glossary
         </h2>
-        <ul className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li><span className="text-white">Feature:</span> An input the model uses.</li>
-          <li><span className="text-white">Label:</span> The true output we want to predict.</li>
-          <li><span className="text-white">Model:</span> The rule that maps inputs to predictions.</li>
-          <li><span className="text-white">Prediction:</span> The model&apos;s output.</li>
-          <li><span className="text-white">Parameters:</span> The adjustable settings the model learns.</li>
-          <li><span className="text-white">Loss:</span> A number measuring how wrong predictions are.</li>
-          <li><span className="text-white">Training:</span> Adjusting parameters to reduce loss.</li>
-          <li><span className="text-white">Generalise:</span> Perform well on unseen data.</li>
-        </ul>
+        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Feature</div>
+            <div>An input the model uses.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Label</div>
+            <div>The true output we want to predict.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Model</div>
+            <div>The rule that maps inputs to predictions.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Prediction</div>
+            <div>The model&apos;s output.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Parameters</div>
+            <div>The adjustable settings the model learns.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Loss</div>
+            <div>A number measuring how wrong predictions are.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Training</div>
+            <div>Adjusting parameters to reduce loss.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Generalise</div>
+            <div>Perform well on unseen data.</div>
+          </div>
+        </div>
       </section>
 
       <section id="next" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Where this goes next
         </h2>
-        <ul className="grid list-disc list-inside gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <li>Regression vs classification in more detail.</li>
-          <li>Evaluation and train/test splits.</li>
-          <li>Overfitting and how to spot it.</li>
-          <li>Gradient descent (later).</li>
-        </ul>
+        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Regression vs classification in more detail.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Evaluation and train/test splits.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Overfitting and how to spot it.</div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">•</div>
+            <div>Gradient descent (later).</div>
+          </div>
+        </div>
       </section>
     </ArticleLayout>
   );
