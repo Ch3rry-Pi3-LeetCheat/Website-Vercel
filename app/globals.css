@@ -189,6 +189,15 @@ details[open] .example-chevron {
   display: inline-block !important;
 }
 
+.math-center {
+  text-align: center;
+}
+
+.math-center mjx-container {
+  display: inline-block !important;
+  margin: 0 auto !important;
+}
+
 .shiki-wrapper {
   max-width: 100%;
   overflow-x: auto;

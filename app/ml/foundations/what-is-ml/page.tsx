@@ -231,7 +231,7 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\hat{y} = f(x; \theta)`}
-          className="text-center text-white/90"
+          className="math-center text-white/90"
         />
       </section>
 
@@ -281,7 +281,7 @@ export default function WhatIsMlPage() {
           </p>
           <MathBlock
             tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
-            className="text-center text-white/90"
+            className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
@@ -303,7 +303,7 @@ export default function WhatIsMlPage() {
               &= 50{,}000 + 136{,}000 \\
               &= 186{,}000
             \end{aligned}`}
-            className="text-center text-white/90"
+            className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The true price for that row is 265,000, so the model is too
@@ -334,7 +334,7 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
-          className="text-center text-white/90"
+          className="math-center text-white/90"
         />
       </section>
 
