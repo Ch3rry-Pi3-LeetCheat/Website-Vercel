@@ -4,6 +4,7 @@ import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
+import FlashcardCarousel from "@/components/FlashcardCarousel";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const tinyExampleCode = `import pandas as pd
@@ -239,7 +240,7 @@ export default function WhatIsMlPage() {
             <div>
               The model&apos;s prediction of{" "}
               <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-              (we say “y-hat”).
+              (we say "y-hat").
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
@@ -288,8 +289,11 @@ export default function WhatIsMlPage() {
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Layer 2: Visual intuition</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Imagine plotting points on a graph: floor area on the x-axis and
-            price on the y-axis. A very simple model draws a straight line
+            Imagine plotting points on a graph: floor area on the{" "}
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            {"-axis and price on the "}
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            {"-axis. A very simple model draws a straight line "}
             through those points. That line <span className="text-white">is</span>{" "}
             the function{" "}
             <MathInline tex={String.raw`f`} className="math-inline math-x" />.
@@ -434,8 +438,9 @@ export default function WhatIsMlPage() {
         <CodeBlock code={tinyExampleCode} title="Python" />
         <OutputBlock output={tinyExampleOutput} />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The output is the predicted price for a 100 m^2, 3-bedroom house
-          4 km from the centre.
+          The output is the predicted price for a 100{" "}
+          <MathInline tex={String.raw`m^2`} className="math-inline" />
+          {", "}3-bedroom house 4 km from the centre.
         </p>
       </section>
 
@@ -485,19 +490,19 @@ export default function WhatIsMlPage() {
         </h2>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>ML learns patterns from examples, not hard-coded rules.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Features are inputs; labels are outputs.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>A model is just a rule that makes predictions.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>
               <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
               {" "}is the prediction,{" "}
@@ -506,26 +511,26 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>
               <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
               {" "}are the adjustable settings the model learns.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Learning is guess &gt; measure error &gt; adjust &gt; repeat.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Loss measures how wrong the model is.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Supervised uses labels; unsupervised does not.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>More data usually improves learning.</div>
           </div>
         </div>
@@ -535,127 +540,50 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Mini-checkpoint
         </h2>
-        <div className="grid gap-4">
-          <details className="flashcard">
-            <summary className="flashcard-summary">
-              <div className="flashcard-inner">
-                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Question 1
-                  </span>
-                  <span>What is a feature?</span>
-                </div>
-                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Answer
-                  </span>
-                  <span>
-                    <span className="text-white">A:</span> An input variable the model uses.
-                  </span>
-                </div>
-              </div>
-            </summary>
-          </details>
-
-          <details className="flashcard">
-            <summary className="flashcard-summary">
-              <div className="flashcard-inner">
-                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Question 2
-                  </span>
-                  <span>
-                    What is the difference between{" "}
-                    <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                    and{" "}
-                    <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
-                  </span>
-                </div>
-                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Answer
-                  </span>
-                  <span>
-                    <span className="text-white">A:</span>{" "}
-                    <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                    is the true answer;{" "}
-                    <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
-                    is the model&apos;s prediction.
-                  </span>
-                </div>
-              </div>
-            </summary>
-          </details>
-
-          <details className="flashcard">
-            <summary className="flashcard-summary">
-              <div className="flashcard-inner">
-                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Question 3
-                  </span>
-                  <span>
-                    What does{" "}
-                    <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />{" "}
-                    represent?
-                  </span>
-                </div>
-                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Answer
-                  </span>
-                  <span>
-                    <span className="text-white">A:</span> The adjustable settings inside the model.
-                  </span>
-                </div>
-              </div>
-            </summary>
-          </details>
-
-          <details className="flashcard">
-            <summary className="flashcard-summary">
-              <div className="flashcard-inner">
-                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Question 4
-                  </span>
-                  <span>Why do we square errors?</span>
-                </div>
-                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Answer
-                  </span>
-                  <span>
-                    <span className="text-white">A:</span> To make all errors positive and
-                    penalise big mistakes more.
-                  </span>
-                </div>
-              </div>
-            </summary>
-          </details>
-
-          <details className="flashcard">
-            <summary className="flashcard-summary">
-              <div className="flashcard-inner">
-                <div className="flashcard-face flashcard-front text-base leading-7 text-white">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Question 5
-                  </span>
-                  <span>What is supervised learning?</span>
-                </div>
-                <div className="flashcard-face flashcard-back text-base leading-7 text-[color:var(--color-muted)]">
-                  <span className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-accent-2)]">
-                    Answer
-                  </span>
-                  <span>
-                    <span className="text-white">A:</span> Learning from examples where the
-                    correct answers are known.
-                  </span>
-                </div>
-              </div>
-            </summary>
-          </details>
-        </div>
+        <FlashcardCarousel
+          cards={[
+            {
+              question: <>What is a feature?</>,
+              answer: <>An input variable the model uses.</>,
+            },
+            {
+              question: (
+                <>
+                  What is the difference between{" "}
+                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                  and{" "}
+                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />?
+                </>
+              ),
+              answer: (
+                <>
+                  <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
+                  is the true answer;{" "}
+                  <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
+                  is the model&apos;s prediction.
+                </>
+              ),
+            },
+            {
+              question: (
+                <>
+                  What does{" "}
+                  <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />{" "}
+                  represent?
+                </>
+              ),
+              answer: <>The adjustable settings inside the model.</>,
+            },
+            {
+              question: <>Why do we square errors?</>,
+              answer: <>To make all errors positive and penalise big mistakes more.</>,
+            },
+            {
+              question: <>What is supervised learning?</>,
+              answer: <>Learning from examples where the correct answers are known.</>,
+            },
+          ]}
+        />
       </section>
 
       <section id="glossary" className="scroll-mt-28 grid gap-4">
@@ -704,19 +632,19 @@ export default function WhatIsMlPage() {
         </h2>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Regression vs classification in more detail.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Evaluation and train/test splits.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Overfitting and how to spot it.</div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">•</div>
+            <div className="text-white font-semibold">&bull;</div>
             <div>Gradient descent (later).</div>
           </div>
         </div>
@@ -724,3 +652,4 @@ export default function WhatIsMlPage() {
     </ArticleLayout>
   );
 }
+
