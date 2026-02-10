@@ -204,7 +204,7 @@ details[open] .example-chevron {
 
 .flashcard {
   perspective: 1200px;
-  max-width: 520px;
+  max-width: 440px;
   margin: 0 auto;
   width: 100%;
 }
@@ -231,7 +231,7 @@ details[open] .example-chevron {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s ease;
-  min-height: 120px;
+  min-height: 160px;
 }
 
 .flashcard-face {

@@ -438,14 +438,8 @@ export default function WhatIsMlPage() {
           Python example
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Here is a tiny, end-to-end example in Python using the same table.
-        </p>
-        <CodeBlock code={tinyExampleCode} title="Python" />
-        <OutputBlock output={tinyExampleOutput} />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The output is the predicted price for a 100{" "}
-          <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
-          {", "}3-bedroom house 4 km from the centre.
+          Below is a step-by-step breakdown of a tiny example using the same
+          table. Each block is short and does one job.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This example uses{" "}
@@ -525,6 +519,31 @@ export default function WhatIsMlPage() {
             title="Python"
           />
 
+          <p className="text-white font-semibold">Inspect the learned settings</p>
+          <p>
+            The model stores its learned baseline and slopes as{" "}
+            <span className="font-mono inline-code">intercept_</span> and{" "}
+            <span className="font-mono inline-code">coef_</span>. These line up
+            with the{" "}
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+            {" "}values we discussed earlier:
+          </p>
+          <CodeBlock
+            code={`intercept = model.intercept_\ncoefficients = model.coef_\nprint(intercept)\nprint(coefficients)`}
+            title="Python"
+          />
+          <MathBlock
+            tex={String.raw`price = \theta_0 + \theta_1 \cdot floor\_area\_m2 + \theta_2 \cdot bedrooms + \theta_3 \cdot distance\_to\_centre\_km`}
+            className="math-center math-lg text-white/90"
+          />
+          <p>
+            In other words:{" "}
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            {" "}is the baseline price, and each{" "}
+            <MathInline tex={String.raw`\theta_i`} className="math-inline math-theta" />
+            {" "}tells you how the price changes when one feature goes up by one.
+          </p>
+
           <p className="text-white font-semibold">Make a prediction</p>
           <p>
             Ask the model for a price using{" "}
@@ -534,6 +553,12 @@ export default function WhatIsMlPage() {
             code={`prediction = model.predict([[100, 3, 4.0]])[0]\nprint(round(prediction, 0))`}
             title="Python"
           />
+          <OutputBlock output={tinyExampleOutput} />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The output is the predicted price for a 100{" "}
+            <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
+            {", "}3-bedroom house 4 km from the centre.
+          </p>
         </div>
       </section>
 
@@ -633,11 +658,15 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Mini-checkpoint
         </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This section uses flashcards. Click a card to flip it for the answer,
+          and use the arrows or dots to move between questions.
+        </p>
         <FlashcardCarousel
           cards={[
             {
               question: <>What is a feature?</>,
-              answer: <>An input variable the model uses.</>,
+              answer: <>An input variable the model uses, like floor_area_m2 or bedrooms.</>,
             },
             {
               question: (
@@ -651,7 +680,7 @@ export default function WhatIsMlPage() {
               answer: (
                 <>
                   <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
-                  is the true answer;{" "}
+                  is the true answer from the data;{" "}
                   <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
                   is the model&apos;s prediction.
                 </>
@@ -665,15 +694,15 @@ export default function WhatIsMlPage() {
                   represent?
                 </>
               ),
-              answer: <>The adjustable settings inside the model.</>,
+              answer: <>The adjustable settings inside the model, like the intercept and slopes of a line.</>,
             },
             {
               question: <>Why do we square errors?</>,
-              answer: <>To make all errors positive and penalise big mistakes more.</>,
+              answer: <>To make all errors positive and to penalise big mistakes more than small ones.</>,
             },
             {
               question: <>What is supervised learning?</>,
-              answer: <>Learning from examples where the correct answers are known.</>,
+              answer: <>Learning from labelled examples where the correct answers are already known.</>,
             },
           ]}
         />
