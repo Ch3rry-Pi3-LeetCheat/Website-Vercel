@@ -224,7 +224,7 @@ export default function WhatIsMlPage() {
         </p>
         <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
+            <div className="text-white font-semibold flex items-center justify-center">
               <MathInline tex={String.raw`x`} className="math-inline math-x" />
             </div>
             <div>
@@ -233,7 +233,7 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
+            <div className="text-white font-semibold flex items-center justify-center">
               <MathInline tex={String.raw`y`} className="math-inline math-y" />
             </div>
             <div>
@@ -242,7 +242,7 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
+            <div className="text-white font-semibold flex items-center justify-center">
               <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             </div>
             <div>
@@ -252,7 +252,7 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
+            <div className="text-white font-semibold flex items-center justify-center">
               <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             </div>
             <div>The adjustable settings inside the model.</div>
@@ -481,54 +481,59 @@ export default function WhatIsMlPage() {
           settings, and <span className="font-mono inline-code">predict()</span>{" "}
           returns a price for a new house.
         </p>
-        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Install + import</div>
-            <div>
-              First, install and import the libraries. You will run{" "}
-              <span className="font-mono inline-code">pip install pandas scikit-learn</span>{" "}
-              once, then use{" "}
-              <span className="font-mono inline-code">import pandas as pd</span>{" "}
-              and{" "}
-              <span className="font-mono inline-code">from sklearn.linear_model import LinearRegression</span>.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Create the table</div>
-            <div>
-              We build a{" "}
-              <span className="font-mono inline-code">pd.DataFrame</span>{" "}
-              so each row is a house and each column is a feature or label.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Split X and y</div>
-            <div>
-              We define{" "}
-              <span className="font-mono inline-code">X</span>{" "}
-              as the feature columns and{" "}
-              <span className="font-mono inline-code">y</span>{" "}
-              as the target column.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Fit the model</div>
-            <div>
-              <span className="font-mono inline-code">LinearRegression()</span>{" "}
-              creates the model, and{" "}
-              <span className="font-mono inline-code">model.fit(X, y)</span>{" "}
-              chooses the best settings from the data.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Make a prediction</div>
-            <div>
-              <span className="font-mono inline-code">model.predict([[100, 3, 4.0]])</span>{" "}
-              returns a price for a new house with 100{" "}
-              <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
-              {", "}3 bedrooms, and distance 4.0 km.
-            </div>
-          </div>
+        <div className="grid gap-4 text-base leading-7 text-[color:var(--color-muted)]">
+          <p className="text-white font-semibold">Install + import</p>
+          <p>
+            You will run{" "}
+            <span className="font-mono inline-code">pip install pandas scikit-learn</span>{" "}
+            once, then import the libraries:
+          </p>
+          <CodeBlock
+            code={`import pandas as pd\nfrom sklearn.linear_model import LinearRegression`}
+            title="Python"
+          />
+
+          <p className="text-white font-semibold">Create the table</p>
+          <p>
+            Build a{" "}
+            <span className="font-mono inline-code">pd.DataFrame</span>{" "}
+            so each row is a house and each column is a feature or label:
+          </p>
+          <CodeBlock
+            code={`data = pd.DataFrame({\n    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],\n    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],\n    "distance_to_centre_km": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],\n    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],\n})`}
+            title="Python"
+          />
+
+          <p className="text-white font-semibold">Split features and target</p>
+          <p>
+            Select the feature columns for{" "}
+            <span className="font-mono inline-code">X</span> and the label column for{" "}
+            <span className="font-mono inline-code">y</span>:
+          </p>
+          <CodeBlock
+            code={`X = data[["floor_area_m2", "bedrooms", "distance_to_centre_km"]]\ny = data["price_gbp"]`}
+            title="Python"
+          />
+
+          <p className="text-white font-semibold">Fit the model</p>
+          <p>
+            Create the model and train it with{" "}
+            <span className="font-mono inline-code">fit()</span>:
+          </p>
+          <CodeBlock
+            code={`model = LinearRegression()\nmodel.fit(X, y)`}
+            title="Python"
+          />
+
+          <p className="text-white font-semibold">Make a prediction</p>
+          <p>
+            Ask the model for a price using{" "}
+            <span className="font-mono inline-code">predict()</span>:
+          </p>
+          <CodeBlock
+            code={`prediction = model.predict([[100, 3, 4.0]])[0]\nprint(round(prediction, 0))`}
+            title="Python"
+          />
         </div>
       </section>
 
