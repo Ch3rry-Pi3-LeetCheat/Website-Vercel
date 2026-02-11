@@ -26,6 +26,14 @@ export default function LineFitAnimator({
   showTrail = false,
 }: LineFitAnimatorProps) {
   const xScale = 100;
+  const scaledData = useMemo(() => {
+    return data.map((point) => ({
+      rawX: point[xKey],
+      rawY: point[yKey],
+      x: point[xKey] / xScale,
+      y: point[yKey] / yScale,
+    }));
+  }, [data, xKey, yKey, yScale]);
   const initialTheta0 = useMemo(() => {
     const avgY =
       scaledData.reduce((acc, point) => acc + point.y, 0) / scaledData.length;
@@ -46,15 +54,6 @@ export default function LineFitAnimator({
     setTheta1(initialTheta1);
     setIteration(0);
   }, [initialTheta0]);
-
-  const scaledData = useMemo(() => {
-    return data.map((point) => ({
-      rawX: point[xKey],
-      rawY: point[yKey],
-      x: point[xKey] / xScale,
-      y: point[yKey] / yScale,
-    }));
-  }, [data, xKey, yKey, yScale]);
 
   const bounds = useMemo(() => {
     const xs = scaledData.map((p) => p.x);
