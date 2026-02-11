@@ -6,6 +6,7 @@ import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
 import FlashcardCarousel from "@/components/FlashcardCarousel";
 import LineFitAnimator from "@/components/ml/LineFitAnimator";
+import LineGuessPlot from "@/components/ml/LineGuessPlot";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
@@ -132,7 +133,18 @@ export default function WhatIsMlPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Each row is one house. The first three columns are the inputs
-          (features). The last column is the output (label) we want to predict.
+          (<span className="math-x">features</span>). The last column is the
+          output (<span className="math-y">label</span>) we want to{" "}
+          <span className="math-yhat">predict</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          <span className="math-x font-mono">floor_area_m2</span> is the size of
+          the house, <span className="math-x font-mono">bedrooms</span> is the
+          number of bedrooms,{" "}
+          <span className="math-x font-mono">distance_to_centre_km</span> is how
+          far the house is from the centre, and{" "}
+          <span className="math-y font-mono">price_gbp</span> is the price we
+          want to predict.
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
@@ -311,6 +323,13 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}rotates or shifts the line. Learning means adjusting the line
             so it fits the dots better.
+          </p>
+          <LineGuessPlot data={HOUSE_DATA} xKey="floor_area_m2" yKey="price_gbp" yScale={1000} />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We do not start by knowing the true relationship between floor space
+            and price, so we begin with guesses. Some lines are too steep or too
+            flat. We might get lucky for a simple problem, but in general we
+            need a robust way to discover the best line.
           </p>
         </div>
 
@@ -495,46 +514,53 @@ export default function WhatIsMlPage() {
           <span className="text-white">clustering</span>, which we&apos;ll cover
           in other lessons.
         </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This example uses{" "}
-          <span className="font-mono inline-code">pandas</span> and{" "}
-          <span className="font-mono inline-code">scikit-learn</span>{" "}
-          (<span className="font-mono inline-code">sklearn</span>). We import{" "}
-          <span className="font-mono inline-code">LinearRegression</span> from{" "}
-          <span className="font-mono inline-code">sklearn.linear_model</span>.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Helpful docs:{" "}
-          <a
-            href="https://pandas.pydata.org/docs/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
-          >
-            Pandas documentation
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
-          >
-            scikit-learn LinearRegression
-          </a>
-          .
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          <span className="font-mono inline-code">fit()</span> finds the best
-          settings, and <span className="font-mono inline-code">predict()</span>{" "}
-          returns a price for a new house.
-        </p>
         <div className="grid gap-4 text-base leading-7 text-[color:var(--color-muted)]">
           <p className="text-white font-semibold">Install + import</p>
           <p>
-            You will run{" "}
-            <span className="font-mono inline-code">pip install pandas scikit-learn</span>{" "}
-            once, then import the libraries:
+            This example uses{" "}
+            <span className="font-mono inline-code">pandas</span> and{" "}
+            <span className="font-mono inline-code">scikit-learn</span>{" "}
+            (<span className="font-mono inline-code">sklearn</span>). We import{" "}
+            <span className="font-mono inline-code">LinearRegression</span> from{" "}
+            <span className="font-mono inline-code">sklearn.linear_model</span>.
+          </p>
+          <p>
+            Helpful docs:{" "}
+            <a
+              href="https://pandas.pydata.org/docs/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+            >
+              Pandas documentation
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+            >
+              scikit-learn LinearRegression
+            </a>
+            .
+          </p>
+          <p>
+            In your project terminal, run the following command:
+          </p>
+          <CodeBlock
+            code={`pip install pandas scikit-learn`}
+            title="Terminal"
+          />
+          <p>
+            If you are working in a notebook (like Jupyter), use:
+          </p>
+          <CodeBlock
+            code={`!pip install pandas scikit-learn`}
+            title="Notebook"
+          />
+          <p>
+            Once installed, import the libraries:
           </p>
           <CodeBlock
             code={`import pandas as pd\nfrom sklearn.linear_model import LinearRegression`}
@@ -572,6 +598,22 @@ export default function WhatIsMlPage() {
             code={`model = LinearRegression()\nmodel.fit(X, y)`}
             title="Python"
           />
+          <p>
+            Intuitively,{" "}
+            <span className="font-mono inline-code">fit()</span> adjusts the
+            model so the line matches the data as closely as possible. It learns
+            the parameters{" "}
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+            , including the intercept{" "}
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            {" "}and the feature slopes{" "}
+            <MathInline tex={String.raw`\theta_1, \theta_2, \theta_3`} className="math-inline math-theta" />
+            , so the predictions{" "}
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {" "}get closer to the true values{" "}
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            .
+          </p>
 
           <p className="text-white font-semibold">Inspect the learned settings</p>
           <p>
