@@ -47,6 +47,8 @@ prediction = model.predict([[100, 3, 4.0]])[0]
 print(round(prediction, 0))`;
 
 const tinyExampleOutput = `330000.0`;
+const interceptOutput = `124452.03
+[2049.63, 14689.77, -8379.36]`;
 
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
@@ -374,10 +376,12 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We repeat this for the other{" "}
-          <span className="text-white">n = 8</span> rows, one row at a time.
-          Then we add all the squared errors together and divide by{" "}
-          <span className="text-white">n</span> to get the average error.
+          We repeat this for the other rows{" "}
+          <span className="text-white">(from floor area 68 up to 160)</span>,
+          one row at a time. Then we add all the squared errors together and
+          divide by{" "}
+          <MathInline tex={String.raw`n`} className="math-inline" />
+          {" "}to get the average error.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mean squared error (MSE) averages those squared mistakes:
@@ -547,11 +551,22 @@ export default function WhatIsMlPage() {
             {" "}values we discussed earlier:
           </p>
           <CodeBlock
-            code={`intercept = model.intercept_\ncoefficients = model.coef_\nprint(intercept)\nprint(coefficients)`}
+            code={`intercept = model.intercept_\ncoefficients = model.coef_\nprint(round(intercept, 2))\nprint([round(c, 2) for c in coefficients])`}
             title="Python"
           />
+          <OutputBlock output={interceptOutput} />
+          <p>
+            These numbers can now be plugged into the price equation:
+          </p>
           <MathBlock
             tex={String.raw`price = \theta_0 + \theta_1 \cdot floor\_area\_m2 + \theta_2 \cdot bedrooms + \theta_3 \cdot distance\_to\_centre\_km`}
+            className="math-center math-lg text-white/90"
+          />
+          <p>
+            As follows:
+          </p>
+          <MathBlock
+            tex={String.raw`price = 124{,}452.03 + 2{,}049.63 \cdot floor\_area\_m2 + 14{,}689.77 \cdot bedrooms - 8{,}379.36 \cdot distance\_to\_centre\_km`}
             className="math-center math-lg text-white/90"
           />
           <p>
@@ -571,12 +586,16 @@ export default function WhatIsMlPage() {
             code={`prediction = model.predict([[100, 3, 4.0]])[0]\nprint(round(prediction, 0))`}
             title="Python"
           />
-          <OutputBlock output={tinyExampleOutput} />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The output is the predicted price for a 100{" "}
-            <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
-            {", "}3-bedroom house 4 km from the centre.
-          </p>
+        <OutputBlock output={tinyExampleOutput} />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The output is the predicted price for a{" "}
+          <span className="math-x">100</span>{" "}
+          <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
+          {", "}<span className="math-x">3</span>-bedroom house{" "}
+          <span className="math-x">4</span> km from the centre. That predicted
+          price is{" "}
+          <span className="math-yhat">£330,000</span>.
+        </p>
         </div>
       </section>
 
