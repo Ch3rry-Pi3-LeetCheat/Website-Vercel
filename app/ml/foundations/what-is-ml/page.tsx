@@ -763,7 +763,9 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Why can models be wrong after training?</div>
+            <div className="text-white font-semibold">
+              Why can <span className="math-model">models</span> be wrong after training?
+            </div>
             <div>
               Real data is messy, and the <span className="math-model">model</span> may
               be too simple or trained on limited examples.
