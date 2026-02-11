@@ -200,7 +200,7 @@ export default function WhatIsMlPage() {
             </div>
             <div>
               The input features. Example:{" "}
-              <span className="text-white">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
+              <span className="math-x font-mono">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
@@ -209,7 +209,7 @@ export default function WhatIsMlPage() {
             </div>
             <div>
               The true answer. Example:{" "}
-              <span className="text-white">price_gbp</span>.
+              <span className="math-y font-mono">price_gbp</span>.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
@@ -252,7 +252,7 @@ export default function WhatIsMlPage() {
         </h2>
 
         <div className="grid gap-3">
-          <h3 className="text-lg font-semibold text-white">Layer 1: Plain English</h3>
+          <h3 className="text-lg font-semibold text-white">Plain English</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <MathInline tex={String.raw`f`} className="math-inline math-x" />
             {" "}is the rule the computer is using.{" "}
@@ -266,7 +266,7 @@ export default function WhatIsMlPage() {
         </div>
 
         <div className="grid gap-3">
-          <h3 className="text-lg font-semibold text-white">Layer 2: Visual intuition</h3>
+          <h3 className="text-lg font-semibold text-white">Visual intuition</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Imagine plotting points on a graph: floor area on the{" "}
             <MathInline tex={String.raw`x`} className="math-inline math-x" />
@@ -288,7 +288,7 @@ export default function WhatIsMlPage() {
         </div>
 
         <div className="grid gap-3">
-          <h3 className="text-lg font-semibold text-white">Layer 3: Concrete numbers</h3>
+          <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Use one feature: floor area. A simple rule is:
           </p>
@@ -366,7 +366,10 @@ export default function WhatIsMlPage() {
           Squared error makes negatives positive and emphasises big misses:
         </p>
         <MathBlock
-          tex={String.raw`(\hat{y} - y)^2 = (-79{,}000)^2`}
+          tex={String.raw`\begin{aligned}
+            (\hat{y} - y)^2 &= (-79{,}000)^2 \\
+            &= 6{,}241{,}000{,}000
+          \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -383,12 +386,14 @@ export default function WhatIsMlPage() {
       </section>
 
       <section id="loop" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Learning loop
-        </h2>
+        </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Models learn by making a guess, checking how wrong it is, and nudging
-          the settings in a better direction.
+          the settings in a better direction. The goal is to reduce this error
+          across repeated learning loops so the model fits the data better over
+          time.
         </p>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
@@ -416,7 +421,7 @@ export default function WhatIsMlPage() {
           id="visual-intuition"
           className="mt-6 text-xl font-semibold text-white font-[var(--font-display)]"
         >
-          Visual intuition: fitting a line
+          Visual intuition
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For the visual, we will use just one feature:{" "}
