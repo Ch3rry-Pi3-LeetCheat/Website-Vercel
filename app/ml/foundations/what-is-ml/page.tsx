@@ -658,7 +658,7 @@ export default function WhatIsMlPage() {
           />
           <p>
             Intuitively,{" "}
-            <span className="font-mono inline-code">fit()</span> adjusts the
+            <span className="font-mono inline-code">fit()</span> adjusts the 
             <span className="math-model">model</span> so the line matches the
             data as closely as possible. It learns
             the parameters{" "}
