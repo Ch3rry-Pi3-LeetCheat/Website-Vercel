@@ -402,7 +402,8 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The true price for that row is{" "}
             <span className="text-white">£</span>
-            <span className="math-y">210,000</span>, so the model is too low.
+            <span className="math-y">210,000</span>, so the{" "}
+            <span className="math-model">model</span> is too low.
             Training changes{" "}
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}to bring predictions closer.
@@ -415,7 +416,8 @@ export default function WhatIsMlPage() {
           Training and loss
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Training means adjusting the model&apos;s settings to make predictions
+          Training means adjusting the{" "}
+          <span className="math-model">model</span>&apos;s settings to make predictions
           less wrong. We need a numeric score of wrongness. That score is called{" "}
           <span className="text-white">loss</span>.
         </p>
@@ -425,7 +427,8 @@ export default function WhatIsMlPage() {
           {" "} <span className="text-white">= 52</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
           {" "} <span className="text-white">= 210,000</span>. Using the same rule
-          from above, the model predicts{" "}
+          from above, the{" "}
+          <span className="math-model">model</span> predicts{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "} <span className="text-white">= 154,000</span>.
         </p>
@@ -472,7 +475,7 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The full model could use all three features, but the loss idea is the
+          The full <span className="math-model">model</span> could use all three features, but the loss idea is the
           same.
         </p>
       </section>
@@ -484,7 +487,8 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Models learn by making a guess, checking how wrong it is, and nudging
           the settings in a better direction. The goal is to reduce this error
-          across repeated learning loops so the model fits the data better over
+          across repeated learning loops so the{" "}
+          <span className="math-model">model</span> fits the data better over
           time.
         </p>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
