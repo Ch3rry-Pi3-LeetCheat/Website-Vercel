@@ -43,7 +43,7 @@ export default function LineFitAnimator({
 
   const [theta0, setTheta0] = useState(initialTheta0);
   const [theta1, setTheta1] = useState(initialTheta1);
-  const [learningRate] = useState(0.08);
+  const [learningRate] = useState(0.15);
   const [isPlaying, setIsPlaying] = useState(false);
   const [iteration, setIteration] = useState(0);
   const [showErrors, setShowErrors] = useState(showErrorBars);
