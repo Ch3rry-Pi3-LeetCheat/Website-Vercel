@@ -850,7 +850,12 @@ export default function WhatIsMlPage() {
           cards={[
             {
               question: <>What is a feature?</>,
-              answer: <>An input variable the model uses, like floor_area_m2 or bedrooms.</>,
+              answer: (
+                <>
+                  An input variable the <span className="math-model">model</span> uses,
+                  like floor_area_m2 or bedrooms.
+                </>
+              ),
             },
             {
               question: (
@@ -866,7 +871,7 @@ export default function WhatIsMlPage() {
                   <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
                   is the true answer from the data;{" "}
                   <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
-                  is the model&apos;s prediction.
+                  is the <span className="math-model">model</span>&apos;s prediction.
                 </>
               ),
             },
@@ -878,7 +883,13 @@ export default function WhatIsMlPage() {
                   represent?
                 </>
               ),
-              answer: <>The adjustable settings inside the model, like the intercept and slopes of a line.</>,
+              answer: (
+                <>
+                  The adjustable settings inside the{" "}
+                  <span className="math-model">model</span>, like the intercept and
+                  slopes of a line.
+                </>
+              ),
             },
             {
               question: <>Why do we square errors?</>,
@@ -899,7 +910,9 @@ export default function WhatIsMlPage() {
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Feature</div>
-            <div>An input the model uses.</div>
+            <div>
+              An input the <span className="math-model">model</span> uses.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Label</div>
@@ -911,11 +924,16 @@ export default function WhatIsMlPage() {
           </div>
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Prediction</div>
-            <div>The model&apos;s output.</div>
+            <div>
+              The <span className="math-model">model</span>&apos;s output.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Parameters</div>
-            <div>The adjustable settings the model learns.</div>
+            <div>
+              The adjustable settings the <span className="math-model">model</span>{" "}
+              learns.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Loss</div>
