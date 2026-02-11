@@ -1,4 +1,4 @@
-import ArticleLayout from "@/components/ArticleLayout";
+﻿import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
@@ -602,7 +602,7 @@ export default function WhatIsMlPage() {
           {", "}<span className="math-x">3</span>-bedroom house{" "}
           <span className="math-x">4</span> km from the centre. That predicted
           price is{" "}
-          <span className="math-yhat">£330,000</span>.
+          £<span className="math-yhat">330,000</span>.
         </p>
         </div>
       </section>
@@ -796,4 +796,7 @@ export default function WhatIsMlPage() {
     </ArticleLayout>
   );
 }
+
+
+
 
