@@ -387,8 +387,8 @@ export default function WhatIsMlPage() {
             {" "} <span className="text-white">= 2,000</span>.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Take the first row with floor area{" "}
-            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            Take the first row with{" "}
+            <span className="math-x font-mono">floor_area</span>
             {" "} <span className="text-white">= 52</span>, then:
           </p>
           <MathBlock
@@ -423,7 +423,7 @@ export default function WhatIsMlPage() {
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Let&apos;s use the first row of the table:{" "}
-          <MathInline tex={String.raw`x`} className="math-inline math-x" />
+          <span className="math-x font-mono">floor_area</span>
           {" "} <span className="text-white">= 52</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
           {" "} <span className="text-white">= 210,000</span>. Using the same rule
@@ -464,8 +464,8 @@ export default function WhatIsMlPage() {
           <span className="text-white">(from floor area 68 up to 160)</span>,
           one row at a time. Then we add all the squared errors together and
           divide by{" "}
-          <MathInline tex={String.raw`n`} className="math-inline" />
-          {" "}to get the average error.
+          <MathInline tex={String.raw`n`} className="math-inline text-white" />
+          {" "} (the number of rows/houses in the dataset) to get the average error.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mean squared error (MSE) averages those squared mistakes:
@@ -497,7 +497,13 @@ export default function WhatIsMlPage() {
             <div>
               Start with a guess for the{" "}
               <span className="math-model">model</span>&apos;s settings (
-              <MathInline tex={String.raw`\theta_0, \theta_1, \theta_2, \dots`} className="math-inline math-theta" />
+              <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+              <span className="text-[color:var(--color-muted)]">, </span>
+              <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+              <span className="text-[color:var(--color-muted)]">, </span>
+              <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+              <span className="text-[color:var(--color-muted)]">, </span>
+              <MathInline tex={String.raw`\dots`} className="math-inline math-theta" />
               ).
             </div>
           </div>
@@ -667,9 +673,9 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "}and the feature slopes{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
-            <span className="text-white">, </span>
+            <span className="text-[color:var(--color-muted)]">, </span>
             <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
-            <span className="text-white">, </span>
+            <span className="text-[color:var(--color-muted)]">, </span>
             <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
             , so the predictions{" "}
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />

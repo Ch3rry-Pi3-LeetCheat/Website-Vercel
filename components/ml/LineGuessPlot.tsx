@@ -24,16 +24,24 @@ export default function LineGuessPlot({
 
   const xs = points.map((p) => p.x);
   const ys = points.map((p) => p.y);
-  const minX = Math.min(...xs);
   const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
   const maxY = Math.max(...ys);
-  const yPadding = (maxY - minY) * 0.15;
+
+  const xTickStart = 5;
+  const xTickStep = 25;
+  const yTickStart = 200;
+  const yTickStep = 50;
+
+  const xTickEnd =
+    xTickStart + Math.ceil((maxX - xTickStart) / xTickStep) * xTickStep;
+  const yTickEnd =
+    yTickStart + Math.ceil((maxY - yTickStart) / yTickStep) * yTickStep;
+
   const bounds = {
-    minX,
-    maxX,
-    minY: minY - yPadding,
-    maxY: maxY + yPadding,
+    minX: xTickStart,
+    maxX: xTickEnd,
+    minY: yTickStart,
+    maxY: yTickEnd,
   };
 
   const plotWidth = CHART_WIDTH - PADDING.left - PADDING.right;
@@ -56,23 +64,23 @@ export default function LineGuessPlot({
     { intercept: intercept - 30, slope: slope + 0.8 },
     { intercept: intercept + 18, slope: slope + 0.2 },
     { intercept: intercept - 18, slope: slope - 0.2 },
-    { intercept: intercept + 8, slope: slope + 0.05 },
-    { intercept: intercept - 8, slope: slope - 0.05 },
+    { intercept: intercept + 100, slope: 0.05 },
+    { intercept: intercept + 200, slope: -0.6 },
   ];
   const workedExampleLine = {
     intercept: 50,
     slope: 2,
   };
 
-  const xTicks = Array.from({ length: 5 }, (_, i) => {
-    const t = i / 4;
-    const raw = minX + t * (maxX - minX);
+  const xTickCount = Math.floor((xTickEnd - xTickStart) / xTickStep) + 1;
+  const xTicks = Array.from({ length: xTickCount }, (_, i) => {
+    const raw = xTickStart + i * xTickStep;
     return { raw, x: xToSvg(raw) };
   });
 
-  const yTicks = Array.from({ length: 5 }, (_, i) => {
-    const t = i / 4;
-    const raw = minY + t * (maxY - minY);
+  const yTickCount = Math.floor((yTickEnd - yTickStart) / yTickStep) + 1;
+  const yTicks = Array.from({ length: yTickCount }, (_, i) => {
+    const raw = yTickStart + i * yTickStep;
     return { raw, y: yToSvg(raw) };
   });
 
@@ -92,7 +100,7 @@ export default function LineGuessPlot({
             y={PADDING.top}
             width={plotWidth}
             height={plotHeight}
-            rx={12}
+            rx={0}
             fill="rgba(10, 14, 22, 0.6)"
             stroke="rgba(148, 163, 184, 0.25)"
           />

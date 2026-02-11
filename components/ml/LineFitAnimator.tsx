@@ -55,21 +55,27 @@ export default function LineFitAnimator({
     setIteration(0);
   }, [initialTheta0]);
 
-  const bounds = useMemo(() => {
-    const xs = scaledData.map((p) => p.x);
-    const ys = scaledData.map((p) => p.y);
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    const minY = Math.min(...ys);
-    const maxY = Math.max(...ys);
-    const yPadding = (maxY - minY) * 0.15;
-    return {
-      minX,
-      maxX,
-      minY: minY - yPadding,
-      maxY: maxY + yPadding,
-    };
-  }, [scaledData]);
+  const rawXValues = scaledData.map((p) => p.rawX);
+  const rawYValues = scaledData.map((p) => p.rawY);
+  const rawXMax = Math.max(...rawXValues);
+  const rawYMax = Math.max(...rawYValues);
+
+  const xTickStart = 5;
+  const xTickStep = 25;
+  const yTickStart = 200 * yScale;
+  const yTickStep = 50 * yScale;
+
+  const xTickEnd =
+    xTickStart + Math.ceil((rawXMax - xTickStart) / xTickStep) * xTickStep;
+  const yTickEnd =
+    yTickStart + Math.ceil((rawYMax - yTickStart) / yTickStep) * yTickStep;
+
+  const bounds = {
+    minX: xTickStart / xScale,
+    maxX: xTickEnd / xScale,
+    minY: yTickStart / yScale,
+    maxY: yTickEnd / yScale,
+  };
 
   const mse = useMemo(() => {
     const errors = scaledData.map((p) => {
@@ -151,26 +157,17 @@ export default function LineFitAnimator({
   const theta0Raw = theta0 * yScale;
   const theta1Raw = (theta1 * yScale) / xScale;
 
-  const rawXValues = scaledData.map((p) => p.rawX);
-  const rawYValues = scaledData.map((p) => p.rawY);
-  const rawXMin = Math.min(...rawXValues);
-  const rawXMax = Math.max(...rawXValues);
-  const rawYMin = Math.min(...rawYValues);
-  const rawYMax = Math.max(...rawYValues);
-
-  const xTickCount = 5;
-  const yTickCount = 5;
+  const xTickCount = Math.floor((xTickEnd - xTickStart) / xTickStep) + 1;
+  const yTickCount = Math.floor((yTickEnd - yTickStart) / yTickStep) + 1;
   const xTicks = Array.from({ length: xTickCount }, (_, i) => {
-    const t = i / (xTickCount - 1);
-    const raw = rawXMin + t * (rawXMax - rawXMin);
+    const raw = xTickStart + i * xTickStep;
     return {
       raw,
       x: xToSvg(raw / xScale),
     };
   });
   const yTicks = Array.from({ length: yTickCount }, (_, i) => {
-    const t = i / (yTickCount - 1);
-    const raw = rawYMin + t * (rawYMax - rawYMin);
+    const raw = yTickStart + i * yTickStep;
     return {
       raw,
       y: yToSvg(raw / yScale),
@@ -265,7 +262,7 @@ export default function LineFitAnimator({
             y={PADDING.top}
             width={plotWidth}
             height={plotHeight}
-            rx={12}
+            rx={0}
             fill="rgba(10, 14, 22, 0.6)"
             stroke="rgba(148, 163, 184, 0.25)"
           />
