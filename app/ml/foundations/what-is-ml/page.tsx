@@ -563,18 +563,19 @@ export default function WhatIsMlPage() {
             className="math-center math-lg text-white/90"
           />
           <p>
-            As follows:
-          </p>
-          <MathBlock
-            tex={String.raw`price = 124{,}452.03 + 2{,}049.63 \cdot floor\_area\_m2 + 14{,}689.77 \cdot bedrooms - 8{,}379.36 \cdot distance\_to\_centre\_km`}
-            className="math-center math-lg text-white/90"
-          />
-          <p>
             In other words:{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
-            {" "}is the baseline price, and each{" "}
-            <MathInline tex={String.raw`\theta_i`} className="math-inline math-theta" />
-            {" "}tells you how the price changes when one feature goes up by one.
+            {" "}is the baseline price{" "}
+            <span className="text-white">(£124,452.03)</span>,{" "}
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            {" "}is the floor area effect{" "}
+            <span className="text-white">(£2,049.63 per m²)</span>,{" "}
+            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            {" "}is the bedrooms effect{" "}
+            <span className="text-white">(£14,689.77 per bedroom)</span>, and{" "}
+            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            {" "}is the distance effect{" "}
+            <span className="text-white">(-£8,379.36 per km)</span>.
           </p>
 
           <p className="text-white font-semibold">Make a prediction</p>
