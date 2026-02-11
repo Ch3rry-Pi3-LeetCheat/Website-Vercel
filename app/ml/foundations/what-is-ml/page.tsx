@@ -7,6 +7,7 @@ import { MathBlock, MathInline } from "@/components/Math";
 import FlashcardCarousel from "@/components/FlashcardCarousel";
 import LineFitAnimator from "@/components/ml/LineFitAnimator";
 import LineGuessPlot from "@/components/ml/LineGuessPlot";
+import WorkedExamplePlot from "@/components/ml/WorkedExamplePlot";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
@@ -50,6 +51,9 @@ print(round(prediction, 0))`;
 const tinyExampleOutput = `330000.0`;
 const interceptOutput = `124452.03
 [2049.63, 14689.77, -8379.36]`;
+
+const WORKED_EXAMPLE_LINE = { intercept: 50, slope: 2 };
+const WORKED_EXAMPLE_X = 110;
 
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
@@ -338,7 +342,7 @@ export default function WhatIsMlPage() {
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Each line below is a different guess at how floor area might map
               to price. The{" "}
-              <span className="math-theta">purple line</span> is the worked
+              <span className="text-[#ef4444]">red line</span> is the worked
               example we use below.
             </p>
             <LineGuessPlot data={HOUSE_DATA} xKey="floor_area_m2" yKey="price_gbp" yScale={1000} />
@@ -352,6 +356,18 @@ export default function WhatIsMlPage() {
 
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We&apos;ll use the{" "}
+            <span className="text-[#ef4444]">red line</span> in the plot below
+            as our worked example.
+          </p>
+          <WorkedExamplePlot
+            data={HOUSE_DATA}
+            xKey="floor_area_m2"
+            yKey="price_gbp"
+            yScale={1000}
+            line={WORKED_EXAMPLE_LINE}
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We will use one feature,{" "}
             <span className="math-x">floor area</span>, so we can keep the
@@ -378,31 +394,32 @@ export default function WhatIsMlPage() {
             {" "}controls its steepness.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            In the plot above, the{" "}
-            <span className="math-theta">purple line</span> is our worked
-            example. We will use it to make a prediction. It uses{" "}
+            That red line uses{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "} <span className="text-white">= 50,000</span> and{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
             {" "} <span className="text-white">= 2,000</span>.
+            We&apos;ll pick a data point at random to demonstrate, for example{" "}
+            <span className="math-x font-mono">floor_area</span>
+            {" "} <span className="text-white">= 110</span>.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Take the first row with{" "}
+            Take the row with{" "}
             <span className="math-x font-mono">floor_area</span>
-            {" "} <span className="text-white">= 52</span>, then:
+            {" "} <span className="text-white">= 110</span>, then:
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-              price &= 50{,}000 + 2{,}000 \times 52 \\
-              &= 50{,}000 + 104{,}000 \\
-              &= 154{,}000
+              price &= 50{,}000 + 2{,}000 \times 110 \\
+              &= 50{,}000 + 220{,}000 \\
+              &= 270{,}000
             \end{aligned}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The true price for that row is{" "}
             <span className="text-white">£</span>
-            <span className="math-y">210,000</span>, so the{" "}
+            <span className="math-y">365,000</span>, so the{" "}
             <span className="math-model">model</span> is too low.
             Training changes{" "}
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
@@ -422,20 +439,29 @@ export default function WhatIsMlPage() {
           <span className="text-white">loss</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Let&apos;s use the first row of the table:{" "}
+          Let&apos;s pick a data point at random to demonstrate, for example:{" "}
           <span className="math-x font-mono">floor_area</span>
-          {" "} <span className="text-white">= 52</span>,{" "}
+          {" "} <span className="text-white">= 110</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "} <span className="text-white">= 210,000</span>. Using the same rule
+          {" "} <span className="text-white">= 365,000</span>. Using the same rule
           from above, the{" "}
           <span className="math-model">model</span> predicts{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          {" "} <span className="text-white">= 154,000</span>.
+          {" "} <span className="text-white">= 270,000</span>.
         </p>
+        <WorkedExamplePlot
+          data={HOUSE_DATA}
+          xKey="floor_area_m2"
+          yKey="price_gbp"
+          yScale={1000}
+          line={WORKED_EXAMPLE_LINE}
+          highlightX={WORKED_EXAMPLE_X}
+          showErrorBar
+        />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The true price{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "}is <span className="math-y">£210,000</span>. The error is the
+          {" "}is <span className="math-y">£365,000</span>. The error is the
           difference between the predicted price{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}and the true price{" "}
@@ -444,8 +470,8 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            \hat{y} - y &= 154{,}000 - 210{,}000 \\
-            &= -56{,}000
+            \hat{y} - y &= 270{,}000 - 365{,}000 \\
+            &= -95{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -454,16 +480,15 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            (\hat{y} - y)^2 &= (-56{,}000)^2 \\
-            &= 3{,}136{,}000{,}000
+            (\hat{y} - y)^2 &= (-95{,}000)^2 \\
+            &= 9{,}025{,}000{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We repeat this for the other rows{" "}
-          <span className="text-white">(from floor area 68 up to 160)</span>,
-          one row at a time. Then we add all the squared errors together and
-          divide by{" "}
+          We repeat this for the other{" "}
+          <span className="text-white">7 rows</span>, one row at a time. Then we
+          add all the squared errors together and divide by{" "}
           <MathInline tex={String.raw`n`} className="math-inline text-white" />
           {" "} (the number of rows/houses in the dataset) to get the average error.
         </p>

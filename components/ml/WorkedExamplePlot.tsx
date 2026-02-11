@@ -1,22 +1,38 @@
 type DataPoint = Record<string, number>;
 
-type LineGuessPlotProps = {
+type WorkedExampleLine = {
+  intercept: number;
+  slope: number;
+};
+
+type WorkedExamplePlotProps = {
   data: DataPoint[];
   xKey: string;
   yKey: string;
   yScale?: number;
+  line: WorkedExampleLine;
+  highlightX?: number;
+  showErrorBar?: boolean;
 };
 
 const CHART_WIDTH = 640;
 const CHART_HEIGHT = 360;
 const PADDING = { top: 24, right: 24, bottom: 48, left: 64 };
 
-export default function LineGuessPlot({
+const X_TICK_START = 50;
+const X_TICK_STEP = 25;
+const Y_TICK_START = 200;
+const Y_TICK_STEP = 50;
+
+export default function WorkedExamplePlot({
   data,
   xKey,
   yKey,
   yScale = 1000,
-}: LineGuessPlotProps) {
+  line,
+  highlightX,
+  showErrorBar = false,
+}: WorkedExamplePlotProps) {
   const points = data.map((row) => ({
     x: row[xKey],
     y: row[yKey] / yScale,
@@ -27,20 +43,15 @@ export default function LineGuessPlot({
   const maxX = Math.max(...xs);
   const maxY = Math.max(...ys);
 
-  const xTickStart = 50;
-  const xTickStep = 25;
-  const yTickStart = 200;
-  const yTickStep = 50;
-
   const xTickEnd =
-    xTickStart + Math.ceil((maxX - xTickStart) / xTickStep) * xTickStep;
+    X_TICK_START + Math.ceil((maxX - X_TICK_START) / X_TICK_STEP) * X_TICK_STEP;
   const yTickEnd =
-    yTickStart + Math.ceil((maxY - yTickStart) / yTickStep) * yTickStep;
+    Y_TICK_START + Math.ceil((maxY - Y_TICK_START) / Y_TICK_STEP) * Y_TICK_STEP;
 
   const bounds = {
-    minX: xTickStart,
+    minX: X_TICK_START,
     maxX: xTickEnd,
-    minY: yTickStart,
+    minY: Y_TICK_START,
     maxY: yTickEnd,
   };
 
@@ -52,41 +63,43 @@ export default function LineGuessPlot({
   const yToSvg = (y: number) =>
     PADDING.top + plotHeight - ((y - bounds.minY) / (bounds.maxY - bounds.minY)) * plotHeight;
 
-  const meanX = xs.reduce((acc, val) => acc + val, 0) / xs.length;
-  const meanY = ys.reduce((acc, val) => acc + val, 0) / ys.length;
-  const slope =
-    xs.reduce((acc, x, idx) => acc + (x - meanX) * (ys[idx] - meanY), 0) /
-    xs.reduce((acc, x) => acc + (x - meanX) ** 2, 0);
-  const intercept = meanY - slope * meanX;
-
-  const nearlyFlatSlope = 0.1;
-  const negativeSlope = -0.7;
-  const guessLines = [
-    { intercept: intercept + 35, slope: slope - 0.9 },
-    { intercept: intercept - 30, slope: slope + 0.8 },
-    { intercept: intercept + 18, slope: slope + 0.2 },
-    { intercept: intercept - 18, slope: slope - 0.2 },
-    { intercept: bounds.minY + 20, slope: nearlyFlatSlope },
-    { intercept: bounds.maxY - 10, slope: negativeSlope },
-  ];
-  const workedExampleLine = {
-    intercept: 50,
-    slope: 2,
-  };
-
-  const xTickCount = Math.floor((xTickEnd - xTickStart) / xTickStep) + 1;
+  const xTickCount = Math.floor((xTickEnd - X_TICK_START) / X_TICK_STEP) + 1;
+  const yTickCount = Math.floor((yTickEnd - Y_TICK_START) / Y_TICK_STEP) + 1;
   const xTicks = Array.from({ length: xTickCount }, (_, i) => {
-    const raw = xTickStart + i * xTickStep;
+    const raw = X_TICK_START + i * X_TICK_STEP;
     return { raw, x: xToSvg(raw) };
   });
-
-  const yTickCount = Math.floor((yTickEnd - yTickStart) / yTickStep) + 1;
   const yTicks = Array.from({ length: yTickCount }, (_, i) => {
-    const raw = yTickStart + i * yTickStep;
+    const raw = Y_TICK_START + i * Y_TICK_STEP;
     return { raw, y: yToSvg(raw) };
   });
 
-  const lineY = (x: number, b0: number, b1: number) => b0 + b1 * x;
+  const lineY = (x: number) => line.intercept + line.slope * x;
+  const lineStartY = Math.min(
+    bounds.maxY,
+    Math.max(bounds.minY, lineY(bounds.minX))
+  );
+  const lineEndY = Math.min(
+    bounds.maxY,
+    Math.max(bounds.minY, lineY(bounds.maxX))
+  );
+
+  const highlightPoint = highlightX
+    ? points.find((point) => point.x === highlightX)
+    : undefined;
+
+  const predictedAtHighlight =
+    highlightX !== undefined ? lineY(highlightX) : undefined;
+  const actualAtHighlight = highlightPoint?.y;
+  const gapValue =
+    predictedAtHighlight !== undefined && actualAtHighlight !== undefined
+      ? Math.abs(predictedAtHighlight - actualAtHighlight) * yScale
+      : undefined;
+
+  const formatGap = (value: number) =>
+    value.toLocaleString("en-GB", {
+      maximumFractionDigits: 0,
+    });
 
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
@@ -95,7 +108,7 @@ export default function LineGuessPlot({
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           className="h-auto w-full"
           role="img"
-          aria-label="Scatter plot of floor area versus price with multiple candidate lines"
+          aria-label="Scatter plot of floor area versus price with worked example line"
         >
           <rect
             x={PADDING.left}
@@ -151,69 +164,62 @@ export default function LineGuessPlot({
             </g>
           ))}
 
-          {guessLines.map((line, idx) => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, line.intercept, line.slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, line.intercept, line.slope))
-            );
-            return (
-              <line
-                key={`guess-${idx}`}
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
-                stroke="rgba(56, 189, 248, 0.22)"
-                strokeWidth={2}
-              />
-            );
-          })}
+          <line
+            x1={xToSvg(bounds.minX)}
+            y1={yToSvg(lineStartY)}
+            x2={xToSvg(bounds.maxX)}
+            y2={yToSvg(lineEndY)}
+            stroke="#ef4444"
+            strokeWidth={3}
+          />
 
-          {(() => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, intercept, slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, intercept, slope))
-            );
-            return (
-              <line
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
-                stroke="#38bdf8"
-                strokeWidth={3}
-              />
-            );
-          })()}
+          {showErrorBar && highlightX !== undefined && actualAtHighlight !== undefined && predictedAtHighlight !== undefined && (
+            (() => {
+              const x = xToSvg(highlightX);
+              const yActual = yToSvg(actualAtHighlight);
+              const yPredicted = yToSvg(predictedAtHighlight);
+              const topY = Math.min(yActual, yPredicted);
+              const bottomY = Math.max(yActual, yPredicted);
+              const midY = (topY + bottomY) / 2;
+              const braceX = x + 12;
+              const braceWidth = 6;
+              const braceGap = Math.max(6, (bottomY - topY) * 0.15);
+              const bracePath = `M ${braceX} ${topY}
+                C ${braceX + braceWidth} ${topY} ${braceX + braceWidth} ${midY - braceGap} ${braceX} ${midY - 2}
+                C ${braceX - braceWidth} ${midY + 2} ${braceX - braceWidth} ${bottomY} ${braceX} ${bottomY}`;
 
-          {(() => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, workedExampleLine.intercept, workedExampleLine.slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, workedExampleLine.intercept, workedExampleLine.slope))
-            );
-            return (
-              <line
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
-                stroke="#ef4444"
-                strokeWidth={3}
-              />
-            );
-          })()}
+              return (
+                <g>
+                  <line
+                    x1={x}
+                    y1={yPredicted}
+                    x2={x}
+                    y2={yActual}
+                    stroke="rgba(244, 114, 182, 0.6)"
+                    strokeWidth={2}
+                  />
+                  <path
+                    d={bracePath}
+                    fill="none"
+                    stroke="rgba(244, 114, 182, 0.8)"
+                    strokeWidth={1.6}
+                  />
+                  {gapValue !== undefined && (
+                    <text
+                      x={braceX + 10}
+                      y={midY}
+                      textAnchor="start"
+                      dominantBaseline="middle"
+                      fill="rgba(226, 232, 240, 0.9)"
+                      fontSize="12"
+                    >
+                      £{formatGap(gapValue)} gap
+                    </text>
+                  )}
+                </g>
+              );
+            })()
+          )}
 
           {points.map((point, idx) => (
             <circle
@@ -246,23 +252,22 @@ export default function LineGuessPlot({
           </text>
         </svg>
       </div>
+
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-[color:var(--color-muted)]">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-white" />
           <span>Data points (houses)</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[#38bdf8]" />
-          <span>Best fit line</span>
-        </div>
-        <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[#ef4444]" />
           <span>Worked example line</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[rgba(56,189,248,0.3)]" />
-          <span>Other guesses</span>
-        </div>
+        {showErrorBar && (
+          <div className="flex items-center gap-2">
+            <span className="h-4 w-0.5 bg-[#f472b6]" />
+            <span>Error gap at floor area {highlightX}</span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export default function LineFitAnimator({
   const rawXMax = Math.max(...rawXValues);
   const rawYMax = Math.max(...rawYValues);
 
-  const xTickStart = 5;
+  const xTickStart = 50;
   const xTickStep = 25;
   const yTickStart = 200 * yScale;
   const yTickStep = 50 * yScale;
