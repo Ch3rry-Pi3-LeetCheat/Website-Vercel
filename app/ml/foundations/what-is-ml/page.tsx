@@ -337,18 +337,19 @@ export default function WhatIsMlPage() {
           <span className="text-white">loss</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Let&apos;s reuse the same row and prediction from above:{" "}
+          Let&apos;s use the first row of the table:{" "}
           <MathInline tex={String.raw`x`} className="math-inline math-x" />
-          {" "} <span className="text-white">= 68</span>,{" "}
-          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          {" "} <span className="text-white">= 186,000</span>, and{" "}
+          {" "} <span className="text-white">= 52</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "} <span className="text-white">= 265,000</span>.
+          {" "} <span className="text-white">= 210,000</span>. We will reuse the
+          simple rule from above to get a prediction{" "}
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          .
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The true price{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "}is <span className="text-white">265,000</span>. The error is the
+          {" "}is <span className="text-white">210,000</span>. The error is the
           difference between the predicted price{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}and the true price{" "}
@@ -357,8 +358,8 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            \hat{y} - y &= 186{,}000 - 265{,}000 \\
-            &= -79{,}000
+            \hat{y} - y &= 186{,}000 - 210{,}000 \\
+            &= -24{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -367,11 +368,17 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            (\hat{y} - y)^2 &= (-79{,}000)^2 \\
-            &= 6{,}241{,}000{,}000
+            (\hat{y} - y)^2 &= (-24{,}000)^2 \\
+            &= 576{,}000{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We repeat this for the other{" "}
+          <span className="text-white">n = 8</span> rows, one row at a time.
+          Then we add all the squared errors together and divide by{" "}
+          <span className="text-white">n</span> to get the average error.
+        </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mean squared error (MSE) averages those squared mistakes:
         </p>
