@@ -27,7 +27,7 @@ export default function LineGuessPlot({
   const maxX = Math.max(...xs);
   const maxY = Math.max(...ys);
 
-  const xTickStart = 5;
+  const xTickStart = 50;
   const xTickStep = 25;
   const yTickStart = 200;
   const yTickStep = 50;
@@ -59,13 +59,15 @@ export default function LineGuessPlot({
     xs.reduce((acc, x) => acc + (x - meanX) ** 2, 0);
   const intercept = meanY - slope * meanX;
 
+  const nearlyFlatSlope = 0.1;
+  const negativeSlope = -0.7;
   const guessLines = [
     { intercept: intercept + 35, slope: slope - 0.9 },
     { intercept: intercept - 30, slope: slope + 0.8 },
     { intercept: intercept + 18, slope: slope + 0.2 },
     { intercept: intercept - 18, slope: slope - 0.2 },
-    { intercept: intercept + 100, slope: 0.05 },
-    { intercept: intercept + 200, slope: -0.6 },
+    { intercept: meanY - nearlyFlatSlope * meanX, slope: nearlyFlatSlope },
+    { intercept: meanY - negativeSlope * meanX, slope: negativeSlope },
   ];
   const workedExampleLine = {
     intercept: 50,
