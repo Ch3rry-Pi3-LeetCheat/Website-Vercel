@@ -51,13 +51,13 @@ const tinyExampleOutput = `330000.0`;
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "mental-model", label: "A concrete mental model" },
-    { id: "examples", label: "Real-world examples" },
-    { id: "dataset", label: "A tiny dataset" },
+    { id: "examples", label: "Real-world examples", level: 2 },
+    { id: "dataset", label: "A tiny dataset", level: 2 },
     { id: "model-plain", label: "What is a model?" },
     { id: "notation", label: "Introducing some notation" },
-    { id: "function-intro", label: "Understanding y-hat = f(x; theta)" },
+    { id: "function-intro", label: "Understanding ŷ = f(x; θ)", level: 2 },
     { id: "training", label: "Training and loss" },
-    { id: "loop", label: "Learning loop" },
+    { id: "loop", label: "Learning loop", level: 2 },
     { id: "visual-intuition", label: "Visual intuition", level: 2 },
     { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Python example" },
@@ -65,7 +65,6 @@ export default function WhatIsMlPage() {
     { id: "remember", label: "What you should remember" },
     { id: "checkpoint", label: "Mini-checkpoint" },
     { id: "glossary", label: "Glossary" },
-    { id: "next", label: "Where this goes next" },
   ];
 
   return (
@@ -776,29 +775,6 @@ export default function WhatIsMlPage() {
         </div>
       </section>
 
-      <section id="next" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Where this goes next
-        </h2>
-        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>Regression vs classification in more detail.</div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>Evaluation and train/test splits.</div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>Overfitting and how to spot it.</div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>Gradient descent (later).</div>
-          </div>
-        </div>
-      </section>
     </ArticleLayout>
   );
 }

@@ -43,7 +43,7 @@ export default function LineFitAnimator({
 
   const [theta0, setTheta0] = useState(initialTheta0);
   const [theta1, setTheta1] = useState(initialTheta1);
-  const [learningRate] = useState(0.15);
+  const [learningRate] = useState(0.22);
   const [isPlaying, setIsPlaying] = useState(false);
   const [iteration, setIteration] = useState(0);
   const [showErrors, setShowErrors] = useState(showErrorBars);
@@ -142,7 +142,11 @@ export default function LineFitAnimator({
   const lineStart = { x: bounds.minX, y: lineY(bounds.minX) };
   const lineEnd = { x: bounds.maxX, y: lineY(bounds.maxX) };
 
-  const formatNumber = (value: number) => value.toFixed(1);
+  const formatNumber = (value: number) =>
+    value.toLocaleString("en-GB", {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
 
   const theta0Raw = theta0 * yScale;
   const theta1Raw = (theta1 * yScale) / xScale;
@@ -375,7 +379,7 @@ export default function LineFitAnimator({
         </svg>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[color:var(--color-muted)]">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-[color:var(--color-muted)]">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-white" />
           <span>Data points (houses)</span>
