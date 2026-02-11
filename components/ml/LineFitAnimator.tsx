@@ -180,7 +180,8 @@ export default function LineFitAnimator({
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
       <p className="text-sm text-[color:var(--color-muted)]">
-        Use Play to run the loop, Step for one update, and Reset to start over.
+        <span className="text-white font-semibold">Instructions:</span> Use Play
+        to run the loop, Step for one update, and Reset to start over.
       </p>
 
       <div className="mt-4 grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-2 lg:grid-cols-4">

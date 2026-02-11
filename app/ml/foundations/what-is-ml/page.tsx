@@ -464,6 +464,13 @@ export default function WhatIsMlPage() {
           will cover in a separate lesson.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We are also using a <span className="text-white">regression</span>{" "}
+          model because the output is a number. Other common task types include{" "}
+          <span className="text-white">classification</span> and{" "}
+          <span className="text-white">clustering</span>, which we&apos;ll cover
+          in other lessons.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This example uses{" "}
           <span className="font-mono inline-code">pandas</span> and{" "}
           <span className="font-mono inline-code">scikit-learn</span>{" "}
