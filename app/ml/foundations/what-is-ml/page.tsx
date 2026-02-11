@@ -59,7 +59,6 @@ export default function WhatIsMlPage() {
     { id: "training", label: "Training and loss" },
     { id: "loop", label: "Learning loop", level: 2 },
     { id: "visual-intuition", label: "Visual intuition", level: 2 },
-    { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Python example" },
     { id: "confusions", label: "Common confusions" },
     { id: "remember", label: "What you should remember" },
@@ -338,37 +337,36 @@ export default function WhatIsMlPage() {
           <span className="text-white">loss</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Use one row from the table: floor area 68 and price 265,000. Imagine
-          a simple line that predicts:
-        </p>
-        <MathBlock
-          tex={String.raw`\hat{y} = 120{,}000 + 1{,}500 \times x`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For this row,{" "}
+          Let&apos;s reuse the same row and prediction from above:{" "}
           <MathInline tex={String.raw`x`} className="math-inline math-x" />
-          {" "} <span className="text-white">= 68</span>, so:
+          {" "} <span className="text-white">= 68</span>,{" "}
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          {" "} <span className="text-white">= 186,000</span>, and{" "}
+          <MathInline tex={String.raw`y`} className="math-inline math-y" />
+          {" "} <span className="text-white">= 265,000</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The true price{" "}
+          <MathInline tex={String.raw`y`} className="math-inline math-y" />
+          {" "}is <span className="text-white">265,000</span>. The error is the
+          difference between the predicted price{" "}
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          {" "}and the true price{" "}
+          <MathInline tex={String.raw`y`} className="math-inline math-y" />
+          {", so:"}
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            \hat{y} &= 120{,}000 + 1{,}500 \times 68 \\
-            &= 222{,}000
+            \hat{y} - y &= 186{,}000 - 265{,}000 \\
+            &= -79{,}000
           \end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The true price is 265,000, so the error is:
-        </p>
-        <MathBlock
-          tex={String.raw`\hat{y} - y = 222{,}000 - 265{,}000 = -43{,}000`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Squared error makes negatives positive and emphasises big misses:
         </p>
         <MathBlock
-          tex={String.raw`(\hat{y} - y)^2 = (-43{,}000)^2`}
+          tex={String.raw`(\hat{y} - y)^2 = (-79{,}000)^2`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -434,32 +432,6 @@ export default function WhatIsMlPage() {
         />
       </section>
 
-      <section id="types" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Supervised vs unsupervised
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In supervised learning, we have labels (the answers). In unsupervised
-          learning, we do not.
-        </p>
-        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Supervised</div>
-            <div>
-              Predict price from features. This is regression because the
-              output is a number.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Unsupervised</div>
-            <div>
-              Group houses by similarity (size, bedrooms, distance). Similarity
-              means the feature values are close together.
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="example" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Python example
@@ -467,6 +439,13 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Below is a step-by-step breakdown of a tiny example using the same
           table. Each block is short and does one job.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This is <span className="text-white">supervised learning</span> because
+          the training data includes labels (the prices). Two other major types
+          are <span className="text-white">unsupervised learning</span> and{" "}
+          <span className="text-white">reinforcement learning</span>, which we
+          will cover in a separate lesson.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This example uses{" "}
