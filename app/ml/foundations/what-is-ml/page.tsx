@@ -666,7 +666,11 @@ export default function WhatIsMlPage() {
             , including the intercept{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "}and the feature slopes{" "}
-            <MathInline tex={String.raw`\theta_1, \theta_2, \theta_3`} className="math-inline math-theta" />
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <span className="text-white">, </span>
+            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <span className="text-white">, </span>
+            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
             , so the predictions{" "}
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}get closer to the true values{" "}
