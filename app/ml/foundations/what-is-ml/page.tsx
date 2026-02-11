@@ -536,7 +536,7 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For the visual, we will use just one feature:{" "}
           <span className="math-x font-mono">floor_area_m2</span>. This keeps the
-          plot 2D. Real models can still use the full table above.
+          plot 2D. Real <span className="math-model">models</span> can still use the full table above.
         </p>
         <LineFitAnimator
           data={HOUSE_DATA}
