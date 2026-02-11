@@ -795,7 +795,10 @@ export default function WhatIsMlPage() {
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
             <div className="text-white font-semibold">&bull;</div>
-            <div>A model is just a rule that makes predictions.</div>
+            <div>
+              A <span className="math-model">model</span> is just a rule that makes
+              predictions.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
             <div className="text-white font-semibold">&bull;</div>
@@ -810,7 +813,8 @@ export default function WhatIsMlPage() {
             <div className="text-white font-semibold">&bull;</div>
             <div>
               <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-              {" "}are the adjustable settings the model learns.
+              {" "}are the adjustable settings the{" "}
+              <span className="math-model">model</span> learns.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
@@ -819,7 +823,9 @@ export default function WhatIsMlPage() {
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
             <div className="text-white font-semibold">&bull;</div>
-            <div>Loss measures how wrong the model is.</div>
+            <div>
+              Loss measures how wrong the <span className="math-model">model</span> is.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
             <div className="text-white font-semibold">&bull;</div>
