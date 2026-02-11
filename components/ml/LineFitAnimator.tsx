@@ -142,20 +142,57 @@ export default function LineFitAnimator({
   const lineStart = { x: bounds.minX, y: lineY(bounds.minX) };
   const lineEnd = { x: bounds.maxX, y: lineY(bounds.maxX) };
 
+  const formatNumber = (value: number) => value.toFixed(1);
+
+  const theta0Raw = theta0 * yScale;
+  const theta1Raw = (theta1 * yScale) / xScale;
+
+  const rawXValues = scaledData.map((p) => p.rawX);
+  const rawYValues = scaledData.map((p) => p.rawY);
+  const rawXMin = Math.min(...rawXValues);
+  const rawXMax = Math.max(...rawXValues);
+  const rawYMin = Math.min(...rawYValues);
+  const rawYMax = Math.max(...rawYValues);
+
+  const xTickCount = 5;
+  const yTickCount = 5;
+  const xTicks = Array.from({ length: xTickCount }, (_, i) => {
+    const t = i / (xTickCount - 1);
+    const raw = rawXMin + t * (rawXMax - rawXMin);
+    return {
+      raw,
+      x: xToSvg(raw / xScale),
+    };
+  });
+  const yTicks = Array.from({ length: yTickCount }, (_, i) => {
+    const t = i / (yTickCount - 1);
+    const raw = rawYMin + t * (rawYMax - rawYMin);
+    return {
+      raw,
+      y: yToSvg(raw / yScale),
+    };
+  });
+
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
-      <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
-        <div className="grid gap-1">
-          <div className="text-white font-semibold">Current line</div>
+      <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
+        <div className="flex flex-wrap items-center gap-4">
           <div>
-            <span className="text-white">theta0:</span> {theta0.toFixed(2)}{" "}
-            <span className="text-white">theta1:</span> {theta1.toFixed(2)}
+            <span className="text-white">Intercept (θ₀):</span> £{formatNumber(theta0Raw)}
           </div>
           <div>
-            <span className="text-white">Loss (MSE):</span> {mse.toFixed(4)}{" "}
-            <span className="text-white">Iter:</span> {iteration}
+            <span className="text-white">Slope (θ₁):</span> £{formatNumber(theta1Raw)} per m²
+          </div>
+          <div>
+            <span className="text-white">Loss (MSE):</span> {mse.toFixed(1)}
+          </div>
+          <div>
+            <span className="text-white">Training loop:</span> {iteration}
           </div>
         </div>
+      </div>
+
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -179,9 +216,6 @@ export default function LineFitAnimator({
             Reset
           </button>
         </div>
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-[color:var(--color-muted)]">
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
@@ -192,22 +226,7 @@ export default function LineFitAnimator({
         </label>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[color:var(--color-muted)]">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-white" />
-          <span>Data points (houses)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[#38bdf8]" />
-          <span>Model line (prediction)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="h-4 w-0.5 bg-[#f472b6]" />
-          <span>Error bars (distance to line)</span>
-        </div>
-      </div>
-
-      <div className="mt-6 w-full overflow-hidden">
+      <div className="mt-4 w-full overflow-hidden">
         <svg
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           className="h-auto w-full"
@@ -223,6 +242,48 @@ export default function LineFitAnimator({
             fill="rgba(10, 14, 22, 0.6)"
             stroke="rgba(148, 163, 184, 0.25)"
           />
+
+          {xTicks.map((tick, idx) => (
+            <g key={`x-${idx}`}>
+              <line
+                x1={tick.x}
+                y1={PADDING.top + plotHeight}
+                x2={tick.x}
+                y2={PADDING.top + plotHeight + 6}
+                stroke="rgba(148, 163, 184, 0.35)"
+              />
+              <text
+                x={tick.x}
+                y={PADDING.top + plotHeight + 20}
+                textAnchor="middle"
+                fill="rgba(226, 232, 240, 0.9)"
+                fontSize="12"
+              >
+                {Math.round(tick.raw)}
+              </text>
+            </g>
+          ))}
+
+          {yTicks.map((tick, idx) => (
+            <g key={`y-${idx}`}>
+              <line
+                x1={PADDING.left - 6}
+                y1={tick.y}
+                x2={PADDING.left}
+                y2={tick.y}
+                stroke="rgba(148, 163, 184, 0.35)"
+              />
+              <text
+                x={PADDING.left - 10}
+                y={tick.y + 4}
+                textAnchor="end"
+                fill="rgba(226, 232, 240, 0.9)"
+                fontSize="12"
+              >
+                {(tick.raw / yScale).toFixed(0)}
+              </text>
+            </g>
+          ))}
 
           {showTrail &&
             trail.map((entry, idx) => (
@@ -288,6 +349,21 @@ export default function LineFitAnimator({
             Price (£000s)
           </text>
         </svg>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[color:var(--color-muted)]">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-white" />
+          <span>Data points (houses)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-0.5 w-5 bg-[#38bdf8]" />
+          <span>Model line (prediction)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-4 w-0.5 bg-[#f472b6]" />
+          <span>Error bars (distance to line)</span>
+        </div>
       </div>
     </div>
   );

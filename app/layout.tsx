@@ -4,6 +4,7 @@ import {
   Google_Sans_Flex,
   JetBrains_Mono,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import MathJaxProvider from "@/components/MathJaxProvider";
@@ -71,6 +72,7 @@ export default function RootLayout({
           <SiteNav />
           <main className="relative">{children}</main>
           <SiteFooter />
+          <Analytics />
         </div>
       </body>
     </html>
