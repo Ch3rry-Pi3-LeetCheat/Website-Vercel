@@ -495,7 +495,8 @@ export default function WhatIsMlPage() {
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">1.</div>
             <div>
-              Start with a guess for the model&apos;s settings (
+              Start with a guess for the{" "}
+              <span className="math-model">model</span>&apos;s settings (
               <MathInline tex={String.raw`\theta_0, \theta_1, \theta_2, \dots`} className="math-inline math-theta" />
               ).
             </div>
@@ -503,7 +504,8 @@ export default function WhatIsMlPage() {
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">2.</div>
             <div>
-              Use the model to{" "}
+              Use the{" "}
+              <span className="math-model">model</span> to{" "}
               <span className="math-yhat font-semibold">predict</span> prices for
               all rows.
             </div>
