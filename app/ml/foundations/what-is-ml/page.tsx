@@ -659,7 +659,8 @@ export default function WhatIsMlPage() {
           <p>
             Intuitively,{" "}
             <span className="font-mono inline-code">fit()</span> adjusts the
-            model so the line matches the data as closely as possible. It learns
+            <span className="math-model">model</span> so the line matches the
+            data as closely as possible. It learns
             the parameters{" "}
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             , including the intercept{" "}
