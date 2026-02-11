@@ -26,16 +26,26 @@ export default function LineFitAnimator({
   showTrail = false,
 }: LineFitAnimatorProps) {
   const xScale = 100;
-  const initialTheta0 = 40;
-  const initialTheta1 = 15;
+  const initialTheta0 = useMemo(() => {
+    const avgY =
+      scaledData.reduce((acc, point) => acc + point.y, 0) / scaledData.length;
+    return avgY;
+  }, [scaledData]);
+  const initialTheta1 = 0;
 
   const [theta0, setTheta0] = useState(initialTheta0);
   const [theta1, setTheta1] = useState(initialTheta1);
-  const [learningRate, setLearningRate] = useState(0.02);
+  const [learningRate] = useState(0.08);
   const [isPlaying, setIsPlaying] = useState(false);
   const [iteration, setIteration] = useState(0);
   const [showErrors, setShowErrors] = useState(showErrorBars);
   const [trail, setTrail] = useState<{ theta0: number; theta1: number }[]>([]);
+
+  useEffect(() => {
+    setTheta0(initialTheta0);
+    setTheta1(initialTheta1);
+    setIteration(0);
+  }, [initialTheta0]);
 
   const scaledData = useMemo(() => {
     return data.map((point) => ({
@@ -111,11 +121,15 @@ export default function LineFitAnimator({
 
   useEffect(() => {
     if (!isPlaying) return;
+    if (iteration >= 250) {
+      setIsPlaying(false);
+      return;
+    }
     const id = window.setInterval(() => {
       step();
     }, 120);
     return () => window.clearInterval(id);
-  }, [isPlaying, learningRate, theta0, theta1, scaledData, showTrail]);
+  }, [isPlaying, iteration, learningRate, theta0, theta1, scaledData, showTrail]);
 
   const plotWidth = CHART_WIDTH - PADDING.left - PADDING.right;
   const plotHeight = CHART_HEIGHT - PADDING.top - PADDING.bottom;
@@ -165,22 +179,6 @@ export default function LineFitAnimator({
           >
             Reset
           </button>
-        </div>
-      </div>
-
-      <div className="mt-4 grid gap-3 text-sm text-[color:var(--color-muted)] md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
-        <label className="text-white font-semibold">Learning rate</label>
-        <div className="flex items-center gap-3">
-          <input
-            type="range"
-            min={0.001}
-            max={0.08}
-            step={0.001}
-            value={learningRate}
-            onChange={(event) => setLearningRate(Number(event.target.value))}
-            className="w-full"
-          />
-          <span className="text-white">{learningRate.toFixed(3)}</span>
         </div>
       </div>
 
