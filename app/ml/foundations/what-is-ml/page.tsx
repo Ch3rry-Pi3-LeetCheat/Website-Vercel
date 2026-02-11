@@ -5,7 +5,19 @@ import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
 import FlashcardCarousel from "@/components/FlashcardCarousel";
+import LineFitAnimator from "@/components/ml/LineFitAnimator";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
+
+const HOUSE_DATA = [
+  { floor_area_m2: 52, bedrooms: 1, distance_to_centre_km: 4.5, price_gbp: 210000 },
+  { floor_area_m2: 68, bedrooms: 2, distance_to_centre_km: 3.2, price_gbp: 265000 },
+  { floor_area_m2: 75, bedrooms: 2, distance_to_centre_km: 6.0, price_gbp: 255000 },
+  { floor_area_m2: 90, bedrooms: 3, distance_to_centre_km: 5.5, price_gbp: 310000 },
+  { floor_area_m2: 110, bedrooms: 3, distance_to_centre_km: 2.8, price_gbp: 365000 },
+  { floor_area_m2: 130, bedrooms: 4, distance_to_centre_km: 7.5, price_gbp: 390000 },
+  { floor_area_m2: 145, bedrooms: 4, distance_to_centre_km: 3.0, price_gbp: 460000 },
+  { floor_area_m2: 160, bedrooms: 5, distance_to_centre_km: 8.0, price_gbp: 455000 },
+];
 
 const tinyExampleCode = `# Install dependencies (once)
 # pip install pandas scikit-learn
@@ -45,6 +57,7 @@ export default function WhatIsMlPage() {
     { id: "notation", label: "Introducing some notation" },
     { id: "function-intro", label: "Understanding y-hat = f(x; theta)" },
     { id: "training", label: "Training and loss" },
+    { id: "visual-line", label: "Visual intuition: fitting a line" },
     { id: "loop", label: "Learning loop" },
     { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Python example" },
@@ -141,54 +154,14 @@ export default function WhatIsMlPage() {
                 </tr>
               </thead>
               <tbody className="text-sm">
-                <tr>
-                  <td className="py-2">52</td>
-                  <td className="py-2">1</td>
-                  <td className="py-2">4.5</td>
-                  <td className="py-2">210000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">68</td>
-                  <td className="py-2">2</td>
-                  <td className="py-2">3.2</td>
-                  <td className="py-2">265000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">75</td>
-                  <td className="py-2">2</td>
-                  <td className="py-2">6.0</td>
-                  <td className="py-2">255000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">90</td>
-                  <td className="py-2">3</td>
-                  <td className="py-2">5.5</td>
-                  <td className="py-2">310000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">110</td>
-                  <td className="py-2">3</td>
-                  <td className="py-2">2.8</td>
-                  <td className="py-2">365000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">130</td>
-                  <td className="py-2">4</td>
-                  <td className="py-2">7.5</td>
-                  <td className="py-2">390000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">145</td>
-                  <td className="py-2">4</td>
-                  <td className="py-2">3.0</td>
-                  <td className="py-2">460000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">160</td>
-                  <td className="py-2">5</td>
-                  <td className="py-2">8.0</td>
-                  <td className="py-2">455000</td>
-                </tr>
+                {HOUSE_DATA.map((row) => (
+                  <tr key={`${row.floor_area_m2}-${row.distance_to_centre_km}`}>
+                    <td className="py-2">{row.floor_area_m2}</td>
+                    <td className="py-2">{row.bedrooms}</td>
+                    <td className="py-2">{row.distance_to_centre_km}</td>
+                    <td className="py-2">{row.price_gbp}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -366,16 +339,63 @@ export default function WhatIsMlPage() {
           <span className="text-white">loss</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Suppose a house really costs 265,000 but the model predicts 240,000.
-          The error is 25,000. If we square it, we get 625,000,000. Squaring
-          keeps errors positive and makes big mistakes count more.
+          Use one row from the table: floor area 68 and price 265,000. Imagine
+          a simple line that predicts:
         </p>
+        <MathBlock
+          tex={String.raw`\hat{y} = 120{,}000 + 1{,}500 \times x`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For this row,{" "}
+          <MathInline tex={String.raw`x = 68`} className="math-inline math-x" />
+          {", "}so:
+        </p>
+        <MathBlock
+          tex={String.raw`\hat{y} = 120{,}000 + 1{,}500 \times 68 = 222{,}000`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The true price is 265,000, so the error is:
+        </p>
+        <MathBlock
+          tex={String.raw`\hat{y} - y = 222{,}000 - 265{,}000 = -43{,}000`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Squared error makes negatives positive and emphasises big misses:
+        </p>
+        <MathBlock
+          tex={String.raw`(\hat{y} - y)^2 = (-43{,}000)^2`}
+          className="math-center math-lg text-white/90"
+        />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mean squared error (MSE) averages those squared mistakes:
         </p>
         <MathBlock
           tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
           className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The full model could use all three features, but the loss idea is the
+          same.
+        </p>
+      </section>
+
+      <section id="visual-line" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Visual intuition: fitting a line (one feature)
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We&apos;re simplifying to one feature so we can draw it on a 2D graph.
+          Real models can use many features, like the full table above.
+        </p>
+        <LineFitAnimator
+          data={HOUSE_DATA}
+          xKey="floor_area_m2"
+          yKey="price_gbp"
+          yScale={1000}
+          showErrorBars
         />
       </section>
 
