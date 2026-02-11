@@ -192,6 +192,21 @@ export default function LineFitAnimator({
         </label>
       </div>
 
+      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[color:var(--color-muted)]">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-white" />
+          <span>Data points (houses)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-0.5 w-5 bg-[#38bdf8]" />
+          <span>Model line (prediction)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-4 w-0.5 bg-[#f472b6]" />
+          <span>Error bars (distance to line)</span>
+        </div>
+      </div>
+
       <div className="mt-6 w-full overflow-hidden">
         <svg
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
