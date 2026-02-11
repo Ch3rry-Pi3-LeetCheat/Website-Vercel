@@ -564,7 +564,8 @@ export default function WhatIsMlPage() {
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We are also using a <span className="text-white">regression</span>{" "}
-          model because the output is a number. Other common task types include{" "}
+          <span className="math-model">model</span> because the output is a number.
+          Other common task types include{" "}
           <span className="text-white">classification</span> and{" "}
           <span className="text-white">clustering</span>, which we&apos;ll cover
           in other lessons.
@@ -644,9 +645,11 @@ export default function WhatIsMlPage() {
             title="Python"
           />
 
-          <p className="text-white font-semibold">Fit the model</p>
+          <p className="text-white font-semibold">
+            Fit the <span className="math-model">model</span>
+          </p>
           <p>
-            Create the model and train it with{" "}
+            Create the <span className="math-model">model</span> and train it with{" "}
             <span className="font-mono inline-code">fit()</span>:
           </p>
           <CodeBlock
