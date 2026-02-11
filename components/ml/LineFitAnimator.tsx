@@ -179,7 +179,7 @@ export default function LineFitAnimator({
         Use Play to run the loop, Step for one update, and Reset to start over.
       </p>
 
-      <div className="mt-3 grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
           <div className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
             Intercept (θ₀)
@@ -214,7 +214,7 @@ export default function LineFitAnimator({
         </div>
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -248,7 +248,7 @@ export default function LineFitAnimator({
         </label>
       </div>
 
-      <div className="mt-2 w-full overflow-hidden">
+      <div className="mt-1 w-full overflow-hidden">
         <svg
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           className="h-auto w-full"

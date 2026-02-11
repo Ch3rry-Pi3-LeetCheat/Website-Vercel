@@ -348,11 +348,14 @@ export default function WhatIsMlPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For this row,{" "}
-          <MathInline tex={String.raw`x = 68`} className="math-inline math-x" />
-          {", "}so:
+          <MathInline tex={String.raw`x`} className="math-inline math-x" />
+          {" "} <span className="text-white">= 68</span>, so:
         </p>
         <MathBlock
-          tex={String.raw`\hat{y} = 120{,}000 + 1{,}500 \times 68 = 222{,}000`}
+          tex={String.raw`\begin{aligned}
+            \hat{y} &= 120{,}000 + 1{,}500 \times 68 \\
+            &= 222{,}000
+          \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
