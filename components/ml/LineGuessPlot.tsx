@@ -52,11 +52,17 @@ export default function LineGuessPlot({
   const intercept = meanY - slope * meanX;
 
   const guessLines = [
-    { intercept: intercept + 40, slope: slope - 1.2 },
-    { intercept: intercept - 40, slope: slope + 1.1 },
-    { intercept: intercept + 20, slope: slope + 0.3 },
-    { intercept: intercept - 20, slope: slope - 0.3 },
+    { intercept: intercept + 35, slope: slope - 0.9 },
+    { intercept: intercept - 30, slope: slope + 0.8 },
+    { intercept: intercept + 18, slope: slope + 0.2 },
+    { intercept: intercept - 18, slope: slope - 0.2 },
+    { intercept: intercept + 8, slope: slope + 0.05 },
+    { intercept: intercept - 8, slope: slope - 0.05 },
   ];
+  const workedExampleLine = {
+    intercept: 50,
+    slope: 2,
+  };
 
   const xTicks = Array.from({ length: 5 }, (_, i) => {
     const t = i / 4;
@@ -135,26 +141,69 @@ export default function LineGuessPlot({
             </g>
           ))}
 
-          {guessLines.map((line, idx) => (
-            <line
-              key={`guess-${idx}`}
-              x1={xToSvg(bounds.minX)}
-              y1={yToSvg(lineY(bounds.minX, line.intercept, line.slope))}
-              x2={xToSvg(bounds.maxX)}
-              y2={yToSvg(lineY(bounds.maxX, line.intercept, line.slope))}
-              stroke="rgba(56, 189, 248, 0.25)"
-              strokeWidth={2}
-            />
-          ))}
+          {guessLines.map((line, idx) => {
+            const startY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.minX, line.intercept, line.slope))
+            );
+            const endY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.maxX, line.intercept, line.slope))
+            );
+            return (
+              <line
+                key={`guess-${idx}`}
+                x1={xToSvg(bounds.minX)}
+                y1={yToSvg(startY)}
+                x2={xToSvg(bounds.maxX)}
+                y2={yToSvg(endY)}
+                stroke="rgba(56, 189, 248, 0.22)"
+                strokeWidth={2}
+              />
+            );
+          })}
 
-          <line
-            x1={xToSvg(bounds.minX)}
-            y1={yToSvg(lineY(bounds.minX, intercept, slope))}
-            x2={xToSvg(bounds.maxX)}
-            y2={yToSvg(lineY(bounds.maxX, intercept, slope))}
-            stroke="#38bdf8"
-            strokeWidth={3}
-          />
+          {(() => {
+            const startY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.minX, intercept, slope))
+            );
+            const endY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.maxX, intercept, slope))
+            );
+            return (
+              <line
+                x1={xToSvg(bounds.minX)}
+                y1={yToSvg(startY)}
+                x2={xToSvg(bounds.maxX)}
+                y2={yToSvg(endY)}
+                stroke="#38bdf8"
+                strokeWidth={3}
+              />
+            );
+          })()}
+
+          {(() => {
+            const startY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.minX, workedExampleLine.intercept, workedExampleLine.slope))
+            );
+            const endY = Math.min(
+              bounds.maxY,
+              Math.max(bounds.minY, lineY(bounds.maxX, workedExampleLine.intercept, workedExampleLine.slope))
+            );
+            return (
+              <line
+                x1={xToSvg(bounds.minX)}
+                y1={yToSvg(startY)}
+                x2={xToSvg(bounds.maxX)}
+                y2={yToSvg(endY)}
+                stroke="#a855f7"
+                strokeWidth={3}
+              />
+            );
+          })()}
 
           {points.map((point, idx) => (
             <circle
@@ -195,6 +244,10 @@ export default function LineGuessPlot({
         <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[#38bdf8]" />
           <span>Best fit line</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="h-0.5 w-5 bg-[#a855f7]" />
+          <span>Worked example line</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[rgba(56,189,248,0.3)]" />

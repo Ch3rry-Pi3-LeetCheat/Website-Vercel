@@ -97,8 +97,8 @@ export default function WhatIsMlPage() {
       <InfoPanel id="examples" title="Real-world examples" variant="intuition">
         <p>
           Let&apos;s make learning patterns from data feel concrete. In each
-          example, the inputs are the clues and the output is the answer the
-          model should predict.
+          example, the inputs are the clues and the output is the answer the{" "}
+          <span className="math-model">model</span> should predict.
         </p>
         <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
@@ -179,19 +179,21 @@ export default function WhatIsMlPage() {
           </div>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          More rows help because the model sees more situations. That makes it
-          easier to learn a pattern that works on new houses, not just the ones
-          in the table.
+          More rows help because the{" "}
+          <span className="math-model">model</span> sees more situations. That
+          makes it easier to learn a pattern that works on new houses, not just
+          the ones in the table.
         </p>
       </section>
 
       <section id="model-plain" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          What is a model?
+          What is a <span className="math-model">model</span>?
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A model is simply a rule that turns inputs into a prediction. For
-          houses, the rule might be: bigger area usually means higher price.
+          A <span className="math-model">model</span> is simply a rule that
+          turns inputs into a prediction. For houses, the rule might be: bigger
+          area usually means higher price.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The rule can be simple or complex, but its job is always the same:
@@ -231,7 +233,7 @@ export default function WhatIsMlPage() {
               <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             </div>
             <div>
-              The model&apos;s prediction of{" "}
+              The <span className="math-model">model</span>&apos;s prediction of{" "}
               <MathInline tex={String.raw`y`} className="math-inline math-y" />{" "}
               (we say "y-hat").
             </div>
@@ -240,7 +242,10 @@ export default function WhatIsMlPage() {
             <div className="text-white font-semibold flex items-center justify-center">
               <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             </div>
-            <div>The adjustable settings inside the model.</div>
+            <div>
+              The adjustable settings inside the{" "}
+              <span className="math-model">model</span>.
+            </div>
           </div>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -257,7 +262,7 @@ export default function WhatIsMlPage() {
           Understanding{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}={" "}
-          <MathInline tex={String.raw`f`} className="math-inline math-x" />
+          <MathInline tex={String.raw`f`} className="math-inline math-model" />
           {" ("}
           <MathInline tex={String.raw`x`} className="math-inline math-x" />
           {"; "}
@@ -268,7 +273,7 @@ export default function WhatIsMlPage() {
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Plain English</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            <MathInline tex={String.raw`f`} className="math-inline math-model" />
             {" "}is the rule the computer is using.{" "}
             <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {" "}is the information we feed into that rule.{" "}
@@ -279,7 +284,7 @@ export default function WhatIsMlPage() {
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Think of{" "}
-            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            <MathInline tex={String.raw`f`} className="math-inline math-model" />
             {" "}as the relationship between the inputs{" "}
             <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {" "}and the predicted price{" "}
@@ -287,7 +292,7 @@ export default function WhatIsMlPage() {
             {": if a feature changes in "}
             <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {", "}
-            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            <MathInline tex={String.raw`f`} className="math-inline math-model" />
             {" "}tells you how the predicted price{" "}
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}should change.
@@ -295,7 +300,7 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             For example, you would expect a larger floor area to increase the
             price. The function{" "}
-            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            <MathInline tex={String.raw`f`} className="math-inline math-model" />
             {" "}captures how much the predicted price{" "}
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}moves when floor area{" "}
@@ -314,7 +319,7 @@ export default function WhatIsMlPage() {
             {"-axis. A very simple model draws a straight line "}
             through those points. That line <span className="text-white">is</span>{" "}
             the function{" "}
-            <MathInline tex={String.raw`f`} className="math-inline math-x" />.
+            <MathInline tex={String.raw`f`} className="math-inline math-model" />.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The settings{" "}
@@ -324,19 +329,31 @@ export default function WhatIsMlPage() {
             {" "}rotates or shifts the line. Learning means adjusting the line
             so it fits the dots better.
           </p>
-          <LineGuessPlot data={HOUSE_DATA} xKey="floor_area_m2" yKey="price_gbp" yScale={1000} />
+          <div className="grid gap-3">
+            <h4 className="text-base font-semibold text-white">
+              Possible relationships
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Each line below is a different guess at how floor area might map
+              to price. The{" "}
+              <span className="math-theta">purple line</span> is the worked
+              example we use below.
+            </p>
+            <LineGuessPlot data={HOUSE_DATA} xKey="floor_area_m2" yKey="price_gbp" yScale={1000} />
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We do not start by knowing the true relationship between floor space
-            and price, so we begin with guesses. Some lines are too steep or too
-            flat. We might get lucky for a simple problem, but in general we
-            need a robust way to discover the best line.
+            Some guesses are too steep or too flat. We might get lucky for a
+            simple problem, but in general we need a robust way to discover the
+            best line.
           </p>
         </div>
 
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Use one feature: floor area. A simple rule is:
+            We will use one feature,{" "}
+            <span className="math-x">floor area</span>, so we can keep the
+            example simple. A simple rule is:
           </p>
           <MathBlock
             tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
@@ -345,27 +362,44 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
-            {" "}is a baseline price, and{" "}
+            {" "}is the baseline price — the model&apos;s starting point when
+            floor area is zero (not a real house, but a useful reference).{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
             {" "}is how much price rises per extra square metre.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Take the row with floor area 68. If{" "}
+            In other words,{" "}
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            {" "}anchors the line, and{" "}
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            {" "}controls its steepness.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            In the plot above, the{" "}
+            <span className="math-theta">purple line</span> is our worked
+            example. We will use it to make a prediction. It uses{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "} <span className="text-white">= 50,000</span> and{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
-            {" "} <span className="text-white">= 2,000</span>, then:
+            {" "} <span className="text-white">= 2,000</span>.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Take the first row with floor area{" "}
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            {" "} <span className="text-white">= 52</span>, then:
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-              price &= 50{,}000 + 2{,}000 \times 68 \\
-              &= 50{,}000 + 136{,}000 \\
-              &= 186{,}000
+              price &= 50{,}000 + 2{,}000 \times 52 \\
+              &= 50{,}000 + 104{,}000 \\
+              &= 154{,}000
             \end{aligned}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The true price for that row is 265,000, so the model is too low.
+            The true price for that row is{" "}
+            <span className="text-white">£</span>
+            <span className="math-y">210,000</span>, so the model is too low.
             Training changes{" "}
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             {" "}to bring predictions closer.
@@ -387,15 +421,15 @@ export default function WhatIsMlPage() {
           <MathInline tex={String.raw`x`} className="math-inline math-x" />
           {" "} <span className="text-white">= 52</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "} <span className="text-white">= 210,000</span>. We will reuse the
-          simple rule from above to get a prediction{" "}
+          {" "} <span className="text-white">= 210,000</span>. Using the same rule
+          from above, the model predicts{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          .
+          {" "} <span className="text-white">= 154,000</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The true price{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "}is <span className="text-white">210,000</span>. The error is the
+          {" "}is <span className="math-y">£210,000</span>. The error is the
           difference between the predicted price{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}and the true price{" "}
@@ -404,8 +438,8 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            \hat{y} - y &= 186{,}000 - 210{,}000 \\
-            &= -24{,}000
+            \hat{y} - y &= 154{,}000 - 210{,}000 \\
+            &= -56{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -414,8 +448,8 @@ export default function WhatIsMlPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-            (\hat{y} - y)^2 &= (-24{,}000)^2 \\
-            &= 576{,}000{,}000
+            (\hat{y} - y)^2 &= (-56{,}000)^2 \\
+            &= 3{,}136{,}000{,}000
           \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -453,11 +487,19 @@ export default function WhatIsMlPage() {
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">1.</div>
-            <div>Start with a guess for the model&apos;s settings.</div>
+            <div>
+              Start with a guess for the model&apos;s settings (
+              <MathInline tex={String.raw`\theta_0, \theta_1, \theta_2, \dots`} className="math-inline math-theta" />
+              ).
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">2.</div>
-            <div>Use the model to predict prices for all rows.</div>
+            <div>
+              Use the model to{" "}
+              <span className="math-yhat font-semibold">predict</span> prices for
+              all rows.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">3.</div>
@@ -465,7 +507,11 @@ export default function WhatIsMlPage() {
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">4.</div>
-            <div>Adjust the settings to reduce the loss.</div>
+            <div>
+              Adjust the{" "}
+              <span className="math-theta font-semibold">settings</span> to reduce
+              the loss.
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">5.</div>

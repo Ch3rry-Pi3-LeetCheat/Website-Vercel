@@ -286,6 +286,10 @@ details.flashcard[open] .flashcard-inner {
   color: #a78bfa;
 }
 
+.math-model {
+  color: #86efac;
+}
+
 .math-neutral {
   color: var(--color-text);
 }
