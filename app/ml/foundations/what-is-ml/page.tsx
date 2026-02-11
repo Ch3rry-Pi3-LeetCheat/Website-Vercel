@@ -265,6 +265,31 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}is the prediction we get back.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Think of{" "}
+            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            {" "}as the relationship between the inputs{" "}
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            {" "}and the predicted price{" "}
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {": if a feature changes in "}
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            {", "}
+            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            {" "}tells you how the predicted price{" "}
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {" "}should change.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For example, you would expect a larger floor area to increase the
+            price. The function{" "}
+            <MathInline tex={String.raw`f`} className="math-inline math-x" />
+            {" "}captures how much the predicted price{" "}
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {" "}moves when floor area{" "}
+            <MathInline tex={String.raw`x`} className="math-inline math-x" />
+            {" "}goes up.
+          </p>
         </div>
 
         <div className="grid gap-3">
