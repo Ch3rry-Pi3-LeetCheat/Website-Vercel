@@ -316,7 +316,9 @@ export default function WhatIsMlPage() {
             <MathInline tex={String.raw`x`} className="math-inline math-x" />
             {"-axis and price on the "}
             <MathInline tex={String.raw`y`} className="math-inline math-y" />
-            {"-axis. A very simple model draws a straight line "}
+            {"-axis. A very simple "}
+            <span className="math-model">model</span>
+            {" draws a straight line "}
             through those points. That line <span className="text-white">is</span>{" "}
             the function{" "}
             <MathInline tex={String.raw`f`} className="math-inline math-model" />.
@@ -362,7 +364,8 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
-            {" "}is the baseline price — the model&apos;s starting point when
+            {" "}is the baseline price — the{" "}
+            <span className="math-model">model</span>&apos;s starting point when
             floor area is zero (not a real house, but a useful reference).{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
             {" "}is how much price rises per extra square metre.
