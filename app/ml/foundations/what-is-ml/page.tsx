@@ -57,8 +57,8 @@ export default function WhatIsMlPage() {
     { id: "notation", label: "Introducing some notation" },
     { id: "function-intro", label: "Understanding y-hat = f(x; theta)" },
     { id: "training", label: "Training and loss" },
-    { id: "visual-line", label: "Visual intuition: fitting a line" },
     { id: "loop", label: "Learning loop" },
+    { id: "visual-intuition", label: "Visual intuition", level: 2 },
     { id: "types", label: "Supervised vs unsupervised" },
     { id: "example", label: "Python example" },
     { id: "confusions", label: "Common confusions" },
@@ -382,27 +382,14 @@ export default function WhatIsMlPage() {
         </p>
       </section>
 
-      <section id="visual-line" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Visual intuition: fitting a line (one feature)
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We&apos;re simplifying to one feature so we can draw it on a 2D graph.
-          Real models can use many features, like the full table above.
-        </p>
-        <LineFitAnimator
-          data={HOUSE_DATA}
-          xKey="floor_area_m2"
-          yKey="price_gbp"
-          yScale={1000}
-          showErrorBars
-        />
-      </section>
-
       <section id="loop" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Learning loop
         </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Models learn by making a guess, checking how wrong it is, and nudging
+          the settings in a better direction.
+        </p>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">1.</div>
@@ -425,6 +412,24 @@ export default function WhatIsMlPage() {
             <div>Repeat until the loss stops improving.</div>
           </div>
         </div>
+        <h3
+          id="visual-intuition"
+          className="mt-6 text-xl font-semibold text-white font-[var(--font-display)]"
+        >
+          Visual intuition: fitting a line
+        </h3>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For the visual, we will use just one feature:{" "}
+          <span className="math-x font-mono">floor_area_m2</span>. This keeps the
+          plot 2D. Real models can still use the full table above.
+        </p>
+        <LineFitAnimator
+          data={HOUSE_DATA}
+          xKey="floor_area_m2"
+          yKey="price_gbp"
+          yScale={1000}
+          showErrorBars
+        />
       </section>
 
       <section id="types" className="scroll-mt-28 grid gap-4">

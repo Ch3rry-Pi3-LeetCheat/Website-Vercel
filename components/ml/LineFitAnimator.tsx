@@ -175,24 +175,46 @@ export default function LineFitAnimator({
 
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
-      <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
-        <div className="flex flex-wrap items-center gap-4">
-          <div>
-            <span className="text-white">Intercept (θ₀):</span> £{formatNumber(theta0Raw)}
+      <p className="text-sm text-[color:var(--color-muted)]">
+        Use Play to run the loop, Step for one update, and Reset to start over.
+      </p>
+
+      <div className="mt-3 grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+          <div className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
+            Intercept (θ₀)
           </div>
-          <div>
-            <span className="text-white">Slope (θ₁):</span> £{formatNumber(theta1Raw)} per m²
+          <div className="mt-1 text-base font-semibold text-white">
+            £{formatNumber(theta0Raw)}
           </div>
-          <div>
-            <span className="text-white">Loss (MSE):</span> {mse.toFixed(1)}
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+          <div className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
+            Slope (θ₁)
           </div>
-          <div>
-            <span className="text-white">Training loop:</span> {iteration}
+          <div className="mt-1 text-base font-semibold text-white">
+            £{formatNumber(theta1Raw)} per m²
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+          <div className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
+            Loss (MSE)
+          </div>
+          <div className="mt-1 text-base font-semibold text-white">
+            {mse.toFixed(1)}
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+          <div className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
+            Learning loop
+          </div>
+          <div className="mt-1 text-base font-semibold text-white">
+            {iteration}
           </div>
         </div>
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-4 text-sm text-[color:var(--color-muted)]">
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -226,7 +248,7 @@ export default function LineFitAnimator({
         </label>
       </div>
 
-      <div className="mt-4 w-full overflow-hidden">
+      <div className="mt-2 w-full overflow-hidden">
         <svg
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           className="h-auto w-full"
@@ -249,15 +271,16 @@ export default function LineFitAnimator({
                 x1={tick.x}
                 y1={PADDING.top + plotHeight}
                 x2={tick.x}
-                y2={PADDING.top + plotHeight + 6}
-                stroke="rgba(148, 163, 184, 0.35)"
+                y2={PADDING.top + plotHeight + 8}
+                stroke="rgba(226, 232, 240, 0.65)"
+                strokeWidth={1.2}
               />
               <text
                 x={tick.x}
                 y={PADDING.top + plotHeight + 20}
                 textAnchor="middle"
-                fill="rgba(226, 232, 240, 0.9)"
-                fontSize="12"
+                fill="rgba(226, 232, 240, 0.95)"
+                fontSize="12.5"
               >
                 {Math.round(tick.raw)}
               </text>
@@ -267,18 +290,19 @@ export default function LineFitAnimator({
           {yTicks.map((tick, idx) => (
             <g key={`y-${idx}`}>
               <line
-                x1={PADDING.left - 6}
+                x1={PADDING.left - 8}
                 y1={tick.y}
                 x2={PADDING.left}
                 y2={tick.y}
-                stroke="rgba(148, 163, 184, 0.35)"
+                stroke="rgba(226, 232, 240, 0.65)"
+                strokeWidth={1.2}
               />
               <text
                 x={PADDING.left - 10}
                 y={tick.y + 4}
                 textAnchor="end"
-                fill="rgba(226, 232, 240, 0.9)"
-                fontSize="12"
+                fill="rgba(226, 232, 240, 0.95)"
+                fontSize="12.5"
               >
                 {(tick.raw / yScale).toFixed(0)}
               </text>
