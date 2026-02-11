@@ -676,7 +676,8 @@ export default function WhatIsMlPage() {
 
           <p className="text-white font-semibold">Inspect the learned settings</p>
           <p>
-            The model stores its learned baseline and slopes as{" "}
+            The <span className="math-model">model</span> stores its learned
+            baseline and slopes as{" "}
             <span className="font-mono inline-code">intercept_</span> and{" "}
             <span className="font-mono inline-code">coef_</span>. These line up
             with the{" "}
