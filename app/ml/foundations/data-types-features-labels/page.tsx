@@ -4,17 +4,18 @@ import InfoPanel from "@/components/InfoPanel";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
 import ColumnRolePicker from "@/components/ml/ColumnRolePicker";
+import LeakageCheckQuiz from "@/components/ml/LeakageCheckQuiz";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
-  { floor_area_m2: 52, bedrooms: 1, distance_to_centre_km: 4.5, price_gbp: 210000 },
-  { floor_area_m2: 68, bedrooms: 2, distance_to_centre_km: 3.2, price_gbp: 265000 },
-  { floor_area_m2: 75, bedrooms: 2, distance_to_centre_km: 6.0, price_gbp: 255000 },
-  { floor_area_m2: 90, bedrooms: 3, distance_to_centre_km: 5.5, price_gbp: 310000 },
-  { floor_area_m2: 110, bedrooms: 3, distance_to_centre_km: 2.8, price_gbp: 365000 },
-  { floor_area_m2: 130, bedrooms: 4, distance_to_centre_km: 7.5, price_gbp: 390000 },
-  { floor_area_m2: 145, bedrooms: 4, distance_to_centre_km: 3.0, price_gbp: 460000 },
-  { floor_area_m2: 160, bedrooms: 5, distance_to_centre_km: 8.0, price_gbp: 455000 },
+  { floor_area_m2: 52, bedrooms: 1, distance_to_centre_km: 4.5, property_type: "flat", price_gbp: 210000 },
+  { floor_area_m2: 68, bedrooms: 2, distance_to_centre_km: 3.2, property_type: "flat", price_gbp: 265000 },
+  { floor_area_m2: 75, bedrooms: 2, distance_to_centre_km: 6.0, property_type: "terrace", price_gbp: 255000 },
+  { floor_area_m2: 90, bedrooms: 3, distance_to_centre_km: 5.5, property_type: "terrace", price_gbp: 310000 },
+  { floor_area_m2: 110, bedrooms: 3, distance_to_centre_km: 2.8, property_type: "semi", price_gbp: 365000 },
+  { floor_area_m2: 130, bedrooms: 4, distance_to_centre_km: 7.5, property_type: "semi", price_gbp: 390000 },
+  { floor_area_m2: 145, bedrooms: 4, distance_to_centre_km: 3.0, property_type: "detached", price_gbp: 460000 },
+  { floor_area_m2: 160, bedrooms: 5, distance_to_centre_km: 8.0, property_type: "detached", price_gbp: 455000 },
 ];
 
 const currentLessonHref = "/ml/foundations/data-types-features-labels";
@@ -27,10 +28,13 @@ export default function DataTypesFeaturesLabelsPage() {
     { id: "recap", label: "Quick recap" },
     { id: "dataset", label: "Example dataset" },
     { id: "roles", label: "Features vs label" },
+    { id: "label-type", label: "Label decides problem type" },
     { id: "types", label: "Common data types" },
     { id: "prep", label: "From raw to model-ready" },
+    { id: "quality", label: "Feature quality" },
     { id: "notation", label: "Notation (X and y)" },
     { id: "traps", label: "Common traps" },
+    { id: "leakage-check", label: "Leakage check", level: 2 },
     { id: "checkpoint", label: "Mini-checkpoint" },
     { id: "summary", label: "Summary" },
   ];
@@ -50,13 +54,18 @@ export default function DataTypesFeaturesLabelsPage() {
     >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
-          This lesson is about one core idea: if you cannot clearly separate{" "}
-          <span className="math-x">features</span> from the{" "}
-          <span className="math-y">label</span>, model training gets messy fast.
+          This lesson is one of the highest-leverage pieces of ML: defining{" "}
+          <span className="math-x">features</span> and the{" "}
+          <span className="math-y">label</span> correctly.
         </p>
         <p>
-          We&apos;ll use a concrete example, keep the notation light, and build up
-          to what a model can actually consume.
+          If this split is unclear, training can look good while real-world
+          performance is poor. If this split is clean, everything that follows
+          gets easier.
+        </p>
+        <p>
+          We will stay concrete: one running dataset, practical examples, and
+          quick checks you can apply to your own projects.
         </p>
       </InfoPanel>
 
@@ -65,20 +74,24 @@ export default function DataTypesFeaturesLabelsPage() {
           Quick recap
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In the previous lesson we used{" "}
-          <MathInline tex={String.raw`\hat{y} = f(x;\theta)`} className="math-inline" />
-          . Here, we make that concrete:
+          From the previous lesson:
+          {" "}
+          <MathInline tex={String.raw`\hat{y} = f(x;\theta)`} className="math-inline" />.
         </p>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
-            <span className="math-x">x</span> is the set of input columns (the features).
+            <span className="math-x">x</span> is the input vector (your features).
           </p>
           <p>
-            <span className="math-y">y</span> is the output column we want to predict (the label).
+            <span className="math-y">y</span> is the true output (your label).
           </p>
           <p>
-            <span className="math-yhat">ŷ</span> is the model&apos;s predicted version of{" "}
-            <span className="math-y">y</span>.
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            {" "}is the model&apos;s predicted output.
+          </p>
+          <p>
+            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+            {" "}are learned settings that connect features to predictions.
           </p>
         </div>
       </section>
@@ -88,8 +101,8 @@ export default function DataTypesFeaturesLabelsPage() {
           Example dataset
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We will reuse this house-price dataset from the previous lesson so the
-          concepts stack cleanly.
+          We will reuse a house-price dataset. Reusing one table helps new
+          concepts stack rather than reset each section.
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
@@ -106,6 +119,9 @@ export default function DataTypesFeaturesLabelsPage() {
                     <span className="math-x">distance_to_centre_km</span>
                   </th>
                   <th className="py-2">
+                    <span className="math-x">property_type</span>
+                  </th>
+                  <th className="py-2">
                     <span className="math-y">price_gbp</span>
                   </th>
                 </tr>
@@ -116,6 +132,7 @@ export default function DataTypesFeaturesLabelsPage() {
                     <td className="py-2">{row.floor_area_m2}</td>
                     <td className="py-2">{row.bedrooms}</td>
                     <td className="py-2">{row.distance_to_centre_km}</td>
+                    <td className="py-2">{row.property_type}</td>
                     <td className="py-2">{row.price_gbp}</td>
                   </tr>
                 ))}
@@ -130,20 +147,61 @@ export default function DataTypesFeaturesLabelsPage() {
           Features vs label
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For this table, the first three columns are{" "}
-          <span className="math-x">features</span> and{" "}
-          <span className="math-y">price_gbp</span> is the{" "}
-          <span className="math-y">label</span>.
+          In this table, everything except{" "}
+          <span className="math-y">price_gbp</span> is a candidate feature.
+          {" "}
+          <span className="math-y">price_gbp</span> is the label.
         </p>
         <MathBlock
-          tex={String.raw`\underbrace{(floor\_area\_m2,\ bedrooms,\ distance\_to\_centre\_km)}_{\text{features }x} \longrightarrow \underbrace{price\_gbp}_{\text{label }y}`}
+          tex={String.raw`\underbrace{(floor\_area\_m2,\ bedrooms,\ distance\_to\_centre\_km,\ property\_type)}_{\text{features }x} \longrightarrow \underbrace{price\_gbp}_{\text{label }y}`}
           className="math-center math-lg text-white/90"
         />
+        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <p>
+            Practical test: <span className="text-white">can this value be known when I make a new prediction?</span>
+          </p>
+          <p>
+            If yes, it can be a feature. If it is what you are trying to
+            predict, it is the label. If neither, consider dropping it.
+          </p>
+        </div>
+      </section>
+
+      <section id="label-type" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Label decides problem type
+        </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A useful check: ask <span className="text-white">“Is this column known at prediction time?”</span>
-          . If yes, it can be a feature. If it is the thing we want to predict,
-          it is the label.
+          Your label type determines what kind of ML problem you are solving.
         </p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <thead>
+              <tr className="border-b border-white/10 text-white">
+                <th className="py-2 pr-4">Label shape</th>
+                <th className="py-2 pr-4">Example label</th>
+                <th className="py-2">Problem type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">Continuous number</td>
+                <td className="py-2 pr-4">price_gbp = 365000</td>
+                <td className="py-2">Regression</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">Two classes</td>
+                <td className="py-2 pr-4">spam = yes/no</td>
+                <td className="py-2">Binary classification</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4">Many classes</td>
+                <td className="py-2 pr-4">topic = sports/news/politics</td>
+                <td className="py-2">Multiclass classification</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="types" className="scroll-mt-28 grid gap-4">
@@ -163,12 +221,12 @@ export default function DataTypesFeaturesLabelsPage() {
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Numeric</td>
                 <td className="py-2 pr-4">52, 130, 390000</td>
-                <td className="py-2">Often used directly (sometimes scaled).</td>
+                <td className="py-2">Often usable directly, sometimes scaled.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Categorical</td>
-                <td className="py-2 pr-4">flat, house, detached</td>
-                <td className="py-2">Encode to numbers (e.g., one-hot encoding).</td>
+                <td className="py-2 pr-4">flat, semi, detached</td>
+                <td className="py-2">Encode categories to numeric columns.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Boolean</td>
@@ -177,13 +235,13 @@ export default function DataTypesFeaturesLabelsPage() {
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Text</td>
-                <td className="py-2 pr-4">“great location”</td>
-                <td className="py-2">Convert to vectors/embeddings first.</td>
+                <td className="py-2 pr-4">&quot;great location&quot;</td>
+                <td className="py-2">Convert to numeric vectors first.</td>
               </tr>
               <tr>
                 <td className="py-2 pr-4">Datetime</td>
                 <td className="py-2 pr-4">2026-02-12</td>
-                <td className="py-2">Extract useful parts (day, month, season, age).</td>
+                <td className="py-2">Extract useful parts (month, age, weekday).</td>
               </tr>
             </tbody>
           </table>
@@ -195,28 +253,75 @@ export default function DataTypesFeaturesLabelsPage() {
           From raw to model-ready
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Raw columns are not automatically usable. We usually need a light
-          preparation pass before training.
+          Raw columns are rarely perfect. Usually we apply light preprocessing
+          before training.
         </p>
         <div className="grid gap-3 md:grid-cols-3">
           <div className="glass-panel rounded-2xl p-4">
-            <p className="text-white font-semibold">Categorical values</p>
+            <p className="text-white font-semibold">Encode categories</p>
             <p className="mt-1 text-sm text-[color:var(--color-muted)]">
-              Convert categories to numeric features (for example, one-hot columns).
+              Example: property_type -&gt; flat/semi/detached binary flags.
             </p>
           </div>
           <div className="glass-panel rounded-2xl p-4">
-            <p className="text-white font-semibold">Missing values</p>
+            <p className="text-white font-semibold">Handle missing values</p>
             <p className="mt-1 text-sm text-[color:var(--color-muted)]">
-              Fill, drop, or flag missing entries so training stays stable.
+              Fill, drop, or add a missing indicator, depending on context.
             </p>
           </div>
           <div className="glass-panel rounded-2xl p-4">
-            <p className="text-white font-semibold">Scale mismatches</p>
+            <p className="text-white font-semibold">Scale when needed</p>
             <p className="mt-1 text-sm text-[color:var(--color-muted)]">
-              Bring very different numeric ranges closer together when needed.
+              Helpful when feature magnitudes are very different.
             </p>
           </div>
+        </div>
+        <MathBlock
+          tex={String.raw`property\_type = detached \;\Rightarrow\; [is\_flat,\ is\_semi,\ is\_detached] = [0,\ 0,\ 1]`}
+          className="math-center math-lg text-white/90"
+        />
+      </section>
+
+      <section id="quality" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Feature quality
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Not all features are equally useful. Strong features carry predictive
+          signal that is available at prediction time.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <thead>
+              <tr className="border-b border-white/10 text-white">
+                <th className="py-2 pr-4">Column</th>
+                <th className="py-2 pr-4">Quality</th>
+                <th className="py-2">Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">floor_area_m2</td>
+                <td className="py-2 pr-4 text-emerald-400">Strong</td>
+                <td className="py-2">Direct relation to price in many markets.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">distance_to_centre_km</td>
+                <td className="py-2 pr-4 text-emerald-400">Strong</td>
+                <td className="py-2">Captures location effects.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">listing_id</td>
+                <td className="py-2 pr-4 text-rose-400">Weak</td>
+                <td className="py-2">Usually an identifier, not a true signal.</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4">sale_price_last_month</td>
+                <td className="py-2 pr-4 text-rose-400">Dangerous</td>
+                <td className="py-2">May leak near-target information.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -225,9 +330,9 @@ export default function DataTypesFeaturesLabelsPage() {
           Notation (X and y)
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We usually write the feature table as{" "}
+          We write the feature matrix as{" "}
           <MathInline tex={String.raw`X`} className="math-inline math-x" />
-          {" "}and the label column as{" "}
+          {" "}and the label vector as{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />.
         </p>
         <MathBlock
@@ -236,12 +341,14 @@ export default function DataTypesFeaturesLabelsPage() {
         />
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
-            Here: <span className="text-white">n = 8</span> rows and{" "}
-            <span className="text-white">d = 3</span> feature columns.
+            In this dataset: <span className="text-white">n = 8</span> rows.
           </p>
           <p>
-            Row 5 in this dataset is:
-            {" "}
+            If we use numeric columns only, then{" "}
+            <span className="text-white">d = 3</span> features.
+          </p>
+          <p>
+            Row 5 can be written as{" "}
             <MathInline
               tex={String.raw`x^{(5)} = (110,\ 3,\ 2.8),\quad y^{(5)} = 365000`}
               className="math-inline"
@@ -265,24 +372,58 @@ export default function DataTypesFeaturesLabelsPage() {
             </thead>
             <tbody>
               <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Using an ID as a feature</td>
-                <td className="py-2">IDs usually carry no predictive pattern.</td>
+                <td className="py-2 pr-4">Using IDs as features</td>
+                <td className="py-2">Creates noise and fake patterns.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Data leakage</td>
-                <td className="py-2">Feature contains future/target info the model should not have.</td>
+                <td className="py-2">Model sees information it would not have in production.</td>
               </tr>
               <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Label mixed into features</td>
-                <td className="py-2">Model appears perfect in training but fails in real use.</td>
+                <td className="py-2 pr-4">Label in feature set</td>
+                <td className="py-2">Training score looks excellent but does not generalize.</td>
               </tr>
               <tr>
-                <td className="py-2 pr-4">Wrong label choice</td>
-                <td className="py-2">You optimize for the wrong business outcome.</td>
+                <td className="py-2 pr-4">Ambiguous label definition</td>
+                <td className="py-2">You optimize the wrong target.</td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <section id="leakage-check" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Leakage check
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If a column would not be known when you make a real prediction, it
+            should not be used as a feature.
+          </p>
+          <LeakageCheckQuiz
+            items={[
+              {
+                column: "floor_area_m2",
+                canUseAtPrediction: true,
+                reason: "Known before price prediction.",
+              },
+              {
+                column: "price_reduction_after_30_days",
+                canUseAtPrediction: false,
+                reason: "Happens after listing - future information.",
+              },
+              {
+                column: "agent_notes",
+                canUseAtPrediction: true,
+                reason: "Can be known if entered before prediction.",
+              },
+              {
+                column: "final_sold_price",
+                canUseAtPrediction: false,
+                reason: "This is effectively the target itself.",
+              },
+            ]}
+          />
+        </section>
       </section>
 
       <section id="checkpoint" className="scroll-mt-28 grid gap-4">
@@ -290,15 +431,15 @@ export default function DataTypesFeaturesLabelsPage() {
           Mini-checkpoint
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Quick interaction: classify each column role.
+          Assign each column as Feature, Label, or Ignore.
         </p>
         <ColumnRolePicker
           columns={[
             { name: "floor_area_m2", answer: "feature", hint: "Known before prediction." },
-            { name: "bedrooms", answer: "feature", hint: "Input clue about size/utility." },
-            { name: "distance_to_centre_km", answer: "feature", hint: "Input clue about location." },
-            { name: "price_gbp", answer: "label", hint: "This is the target we want to predict." },
-            { name: "listing_id", answer: "ignore", hint: "Identifier, usually not meaningful." },
+            { name: "bedrooms", answer: "feature", hint: "Input clue about utility/size." },
+            { name: "distance_to_centre_km", answer: "feature", hint: "Location clue." },
+            { name: "price_gbp", answer: "label", hint: "Target to predict." },
+            { name: "listing_id", answer: "ignore", hint: "Identifier, usually no stable signal." },
           ]}
         />
       </section>
@@ -308,12 +449,12 @@ export default function DataTypesFeaturesLabelsPage() {
           Summary
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Clean feature/label definitions are the foundation of every ML project.
-          If this part is wrong, model performance and evaluation become misleading.
+          Good ML starts with disciplined data framing: clear label, sensible
+          features, correct types, and leakage checks.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Next, we&apos;ll use this structure to discuss how to properly split data
-          into train, validation, and test sets so performance numbers are honest.
+          Next, we will make that discipline measurable by splitting data into
+          train/validation/test sets.
         </p>
       </section>
 
@@ -324,7 +465,7 @@ export default function DataTypesFeaturesLabelsPage() {
             className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10"
           >
             Next Article
-            <span aria-hidden>→</span>
+            <span aria-hidden>&rarr;</span>
           </Link>
         </section>
       ) : null}
