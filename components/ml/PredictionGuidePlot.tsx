@@ -203,7 +203,7 @@ export default function PredictionGuidePlot({
             <line
               x1={predictionXSvg - 8}
               y1={horizontalGuideY}
-              x2={xToSvg(bounds.minX) + 10}
+              x2={xToSvg(bounds.minX) + 5}
               y2={horizontalGuideY}
               stroke={guideColor}
               strokeWidth={2}
