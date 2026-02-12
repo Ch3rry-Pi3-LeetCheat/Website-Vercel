@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 type DataPoint = Record<string, number>;
 
 type WorkedExampleLine = {
@@ -33,6 +35,7 @@ export default function WorkedExamplePlot({
   highlightX,
   showErrorBar = false,
 }: WorkedExamplePlotProps) {
+  const clipId = useId();
   const points = data.map((row) => ({
     x: row[xKey],
     y: row[yKey] / yScale,
@@ -75,14 +78,8 @@ export default function WorkedExamplePlot({
   });
 
   const lineY = (x: number) => line.intercept + line.slope * x;
-  const lineStartY = Math.min(
-    bounds.maxY,
-    Math.max(bounds.minY, lineY(bounds.minX))
-  );
-  const lineEndY = Math.min(
-    bounds.maxY,
-    Math.max(bounds.minY, lineY(bounds.maxX))
-  );
+  const lineStartY = lineY(bounds.minX);
+  const lineEndY = lineY(bounds.maxX);
 
   const highlightPoint = highlightX
     ? points.find((point) => point.x === highlightX)
@@ -100,6 +97,16 @@ export default function WorkedExamplePlot({
           role="img"
           aria-label="Scatter plot of floor area versus price with worked example line"
         >
+          <defs>
+            <clipPath id={clipId}>
+              <rect
+                x={PADDING.left}
+                y={PADDING.top}
+                width={plotWidth}
+                height={plotHeight}
+              />
+            </clipPath>
+          </defs>
           <rect
             x={PADDING.left}
             y={PADDING.top}
@@ -154,38 +161,40 @@ export default function WorkedExamplePlot({
             </g>
           ))}
 
-          <line
-            x1={xToSvg(bounds.minX)}
-            y1={yToSvg(lineStartY)}
-            x2={xToSvg(bounds.maxX)}
-            y2={yToSvg(lineEndY)}
-            stroke="#ef4444"
-            strokeWidth={3}
-          />
-
-          {showErrorBar &&
-            highlightX !== undefined &&
-            actualAtHighlight !== undefined &&
-            predictedAtHighlight !== undefined && (
-              <line
-                x1={xToSvg(highlightX)}
-                y1={yToSvg(predictedAtHighlight)}
-                x2={xToSvg(highlightX)}
-                y2={yToSvg(actualAtHighlight)}
-                stroke="rgba(244, 114, 182, 0.65)"
-                strokeWidth={2}
-              />
-            )}
-
-          {points.map((point, idx) => (
-            <circle
-              key={`pt-${idx}`}
-              cx={xToSvg(point.x)}
-              cy={yToSvg(point.y)}
-              r={5}
-              fill="#f8fafc"
+          <g clipPath={`url(#${clipId})`}>
+            <line
+              x1={xToSvg(bounds.minX)}
+              y1={yToSvg(lineStartY)}
+              x2={xToSvg(bounds.maxX)}
+              y2={yToSvg(lineEndY)}
+              stroke="#ef4444"
+              strokeWidth={3}
             />
-          ))}
+
+            {showErrorBar &&
+              highlightX !== undefined &&
+              actualAtHighlight !== undefined &&
+              predictedAtHighlight !== undefined && (
+                <line
+                  x1={xToSvg(highlightX)}
+                  y1={yToSvg(predictedAtHighlight)}
+                  x2={xToSvg(highlightX)}
+                  y2={yToSvg(actualAtHighlight)}
+                  stroke="rgba(244, 114, 182, 0.65)"
+                  strokeWidth={2}
+                />
+              )}
+
+            {points.map((point, idx) => (
+              <circle
+                key={`pt-${idx}`}
+                cx={xToSvg(point.x)}
+                cy={yToSvg(point.y)}
+                r={5}
+                fill="#f8fafc"
+              />
+            ))}
+          </g>
 
           <text
             x={CHART_WIDTH / 2}
