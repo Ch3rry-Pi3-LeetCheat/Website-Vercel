@@ -83,6 +83,11 @@ export default function PredictionGuidePlot({
   const lineStartY = lineY(bounds.minX);
   const lineEndY = lineY(bounds.maxX);
   const predictedY = lineY(predictionX);
+  const predictedPrice = Math.round(predictedY * yScale);
+  const verticalMidY = (yToSvg(bounds.minY) + yToSvg(predictedY)) / 2;
+  const horizontalMidX = (xToSvg(bounds.minX) + xToSvg(predictionX)) / 2;
+  const guideColor = "rgba(248, 250, 252, 0.9)";
+  const arrowId = `${clipId}-arrow`;
 
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
@@ -102,6 +107,17 @@ export default function PredictionGuidePlot({
                 height={plotHeight}
               />
             </clipPath>
+            <marker
+              id={arrowId}
+              markerWidth="8"
+              markerHeight="8"
+              refX="7"
+              refY="4"
+              orient="auto"
+              markerUnits="strokeWidth"
+            >
+              <path d="M0,0 L8,4 L0,8 z" fill={guideColor} />
+            </marker>
           </defs>
           <rect
             x={PADDING.left}
@@ -172,24 +188,26 @@ export default function PredictionGuidePlot({
               y1={yToSvg(bounds.minY)}
               x2={xToSvg(predictionX)}
               y2={yToSvg(predictedY)}
-              stroke="rgba(56, 189, 248, 0.8)"
+              stroke={guideColor}
               strokeWidth={2}
               strokeDasharray="5 5"
+              markerEnd={`url(#${arrowId})`}
             />
             <line
-              x1={xToSvg(bounds.minX)}
+              x1={xToSvg(predictionX)}
               y1={yToSvg(predictedY)}
-              x2={xToSvg(predictionX)}
+              x2={xToSvg(bounds.minX) + 2}
               y2={yToSvg(predictedY)}
-              stroke="rgba(56, 189, 248, 0.8)"
+              stroke={guideColor}
               strokeWidth={2}
               strokeDasharray="5 5"
+              markerEnd={`url(#${arrowId})`}
             />
             <circle
               cx={xToSvg(predictionX)}
               cy={yToSvg(predictedY)}
               r={4.5}
-              fill={lineColor}
+              fill="#ef4444"
             />
 
             {points.map((point, idx) => (
@@ -202,6 +220,24 @@ export default function PredictionGuidePlot({
               />
             ))}
           </g>
+          <text
+            x={xToSvg(predictionX) + 10}
+            y={verticalMidY}
+            fill="rgba(248, 250, 252, 0.9)"
+            fontSize="11"
+          >
+            floor area = {predictionX} m
+            <tspan baselineShift="super" fontSize="8">2</tspan>
+          </text>
+          <text
+            x={horizontalMidX}
+            y={yToSvg(predictedY) - 10}
+            textAnchor="middle"
+            fill="rgba(248, 250, 252, 0.9)"
+            fontSize="11"
+          >
+            predicted house price = {predictedPrice.toLocaleString("en-GB")}
+          </text>
 
           <text
             x={CHART_WIDTH / 2}
@@ -210,7 +246,9 @@ export default function PredictionGuidePlot({
             fill="rgba(226, 232, 240, 0.7)"
             fontSize="12"
           >
-            Floor area (m^2)
+            Floor area (m
+            <tspan baselineShift="super" fontSize="9">2</tspan>
+            )
           </text>
           <text
             x={18}
@@ -235,7 +273,7 @@ export default function PredictionGuidePlot({
           <span>{lineLabel}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 border-t-2 border-dashed border-[#38bdf8]" />
+          <span className="h-0.5 w-5 border-t-2 border-dashed border-white/90" />
           <span>Prediction guides (x to line, then line to y)</span>
         </div>
       </div>

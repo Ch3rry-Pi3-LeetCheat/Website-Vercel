@@ -133,6 +133,7 @@ const candidateASquaredErrorSum = candidateASquaredErrors.reduce((acc, value) =>
 const candidateBSquaredErrorSum = candidateBSquaredErrors.reduce((acc, value) => acc + value, 0);
 const candidateAMse = candidateASquaredErrorSum / HOUSE_DATA.length;
 const candidateBMse = candidateBSquaredErrorSum / HOUSE_DATA.length;
+const mseRatio = candidateAMse / candidateBMse;
 const PREDICTION_FLOOR_AREA = 120;
 const predictionFromCandidateB = CANDIDATE_B_THETA0 + CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA;
 
@@ -148,9 +149,10 @@ export default function WhatIsMlPage() {
     { id: "mse", label: "Mean Squared Error (MSE)", level: 2 },
     { id: "loop", label: "Learning loop", level: 2 },
     { id: "visual-intuition", label: "Visual intuition", level: 2 },
-    { id: "prediction-demo", label: "Prediction", level: 2 },
+    { id: "prediction-demo", label: "Prediction" },
     { id: "example", label: "Python example" },
     { id: "confusions", label: "Common confusions" },
+    { id: "summary", label: "Summary and what's next" },
     { id: "remember", label: "What you should remember" },
     { id: "checkpoint", label: "Mini-checkpoint" },
     { id: "glossary", label: "Glossary" },
@@ -667,8 +669,8 @@ export default function WhatIsMlPage() {
           </p>
           <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
             <p>
-              <span className="text-white font-semibold">n</span> is the number
-              of rows (here, <span className="text-white">8</span>).
+              <MathInline tex={String.raw`n`} className="math-inline text-white" /> is
+              the number of rows (here, <span className="text-white">8</span>).
             </p>
             <p>
               <MathInline tex={String.raw`y_i`} className="math-inline math-y" /> is the
@@ -683,14 +685,14 @@ export default function WhatIsMlPage() {
               the same single-point squared loss we just calculated for floor area{" "}
               <span className="text-white">{EXAMPLE_FLOOR_AREA}</span>, now repeated for each row.
             </p>
-            <p>
-              Here, <span className="text-white">row 1</span> is floor area{" "}
-              <span className="math-x">52</span>, <span className="text-white">row 2</span> is{" "}
-              <span className="math-x">68</span>, ..., and{" "}
-              <span className="text-white">row 8</span> is{" "}
-              <span className="math-x">160</span>.
-            </p>
           </div>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Here, <span className="text-white">row 1</span> is floor area{" "}
+            <span className="math-x">52</span>, <span className="text-white">row 2</span> is{" "}
+            <span className="math-x">68</span>, ..., and{" "}
+            <span className="text-white">row 8</span> is{" "}
+            <span className="math-x">160</span>.
+          </p>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#ef4444]">Candidate A</span> MSE:
@@ -721,23 +723,29 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#38bdf8]">Candidate B</span> has a much
             smaller MSE than <span className="text-[#ef4444]">Candidate A</span>,
-            so across the full dataset Candidate B is a much better fit.
+            and <span className="text-[#ef4444]">Candidate A</span>&apos;s average
+            squared error is about{" "}
+            <span className="text-white">{mseRatio.toLocaleString("en-GB", { maximumFractionDigits: 1 })}x</span>{" "}
+            larger. That indicates <span className="text-[#38bdf8]">Candidate B</span> is a much better fit overall.
           </p>
         </section>
       </section>
 
       <section id="loop" className="scroll-mt-28 grid gap-4">
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Learning loop
-        </h3>
+        </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Models learn by making a guess, checking how wrong it is, and nudging
-          the settings in a better direction. The goal is to reduce this error
-          across repeated learning loops so the{" "}
-          <span className="math-model">model</span> fits the data better over
-          time.
+          So how does a <span className="math-model">model</span> learn which
+          candidate is best?
         </p>
-        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          It starts with an initial guess, checks how wrong that guess is using
+          average error (loss), and then nudges its settings in a better
+          direction. The goal is to reduce that error over time. The process is
+          called a training loop.
+        </p>
+        <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">1.</div>
             <div>
@@ -756,22 +764,23 @@ export default function WhatIsMlPage() {
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">2.</div>
             <div>
-              Use the{" "}
-              <span className="math-model">model</span> to{" "}
+              Use the <span className="math-model">model</span> to{" "}
               <span className="math-yhat font-semibold">predict</span> prices for
               all rows.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">3.</div>
-            <div>Measure how wrong the predictions are (loss).</div>
+            <div>
+              Measure the average error with loss (for example,{" "}
+              <span className="text-white">MSE</span>).
+            </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
             <div className="text-white font-semibold">4.</div>
             <div>
-              Adjust the{" "}
-              <span className="math-theta font-semibold">settings</span> to reduce
-              the loss.
+              Adjust the <span className="math-theta font-semibold">settings</span>{" "}
+              to reduce the loss.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[40px_minmax(0,1fr)]">
@@ -779,6 +788,10 @@ export default function WhatIsMlPage() {
             <div>Repeat until the loss stops improving.</div>
           </div>
         </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Next, we&apos;ll look at a visual training example to see how the
+          parameters improve over successive loops.
+        </p>
         <h3
           id="visual-intuition"
           className="mt-6 text-xl font-semibold text-white font-[var(--font-display)]"
@@ -786,9 +799,10 @@ export default function WhatIsMlPage() {
           Visual intuition
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For the visual, we will use just one feature:{" "}
+          For the visual, we use just one feature:{" "}
           <span className="math-x font-mono">floor_area_m2</span>. This keeps the
-          plot 2D. Real <span className="math-model">models</span> can still use the full table above.
+          plot 2D. Real <span className="math-model">models</span> can still use
+          the full table above.
         </p>
         <LineFitAnimator
           data={HOUSE_DATA}
@@ -797,41 +811,54 @@ export default function WhatIsMlPage() {
           yScale={1000}
           showErrorBars
         />
-        <section id="prediction-demo" className="grid gap-3">
-          <h4 className="text-lg font-semibold text-white">Prediction</h4>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Now let&apos;s use{" "}
-            <span className="text-[#38bdf8]">Candidate B</span> to predict a
-            price for a floor size that is not in the table. We&apos;ll use{" "}
-            <span className="math-x font-mono">floor_area</span>{" "}
-            <span className="text-white">= {PREDICTION_FLOOR_AREA}</span>.
-          </p>
-          <MathBlock
-            tex={`\\begin{aligned}
-              \\hat{y}_B &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${CANDIDATE_B_THETA1.toLocaleString("en-GB")} \\times ${PREDICTION_FLOOR_AREA} \\\\
-              &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${(CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA).toLocaleString("en-GB")} \\\\
-              &= ${predictionFromCandidateB.toLocaleString("en-GB")}
-            \\end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            So for a{" "}
-            <span className="math-x font-mono">floor_area</span>{" "}
-            <span className="text-white">= {PREDICTION_FLOOR_AREA}</span>, this
-            model predicts{" "}
-            <span className="text-white">£{predictionFromCandidateB.toLocaleString("en-GB")}</span>.
-            The dashed guides show how we read that prediction from the axes.
-          </p>
-          <PredictionGuidePlot
-            data={HOUSE_DATA}
-            xKey="floor_area_m2"
-            yKey="price_gbp"
-            yScale={1000}
-            line={CANDIDATE_B_WORKED_LINE}
-            predictionX={PREDICTION_FLOOR_AREA}
-            lineLabel="Candidate B model line"
-          />
-        </section>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          After running the loop, the fitted parameters settle around{" "}
+          <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+          {" "} <span className="text-white">= {CANDIDATE_B_THETA0.toLocaleString("en-GB")}</span>{" "}
+          and{" "}
+          <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+          {" "} <span className="text-white">= {CANDIDATE_B_THETA1.toLocaleString("en-GB")}</span>.
+        </p>
+        <MathBlock
+          tex={`price \\approx ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${CANDIDATE_B_THETA1.toLocaleString("en-GB")} \\times floor\\_area`}
+          className="math-center math-lg text-white/90"
+        />
+      </section>
+
+      <section id="prediction-demo" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Prediction
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now that we have trained parameters for the best-fitting line, we can
+          use that model to predict a price for a floor size that is not in the
+          dataset. Let&apos;s use{" "}
+          <span className="math-x font-mono">floor_area</span>{" "}
+          <span className="text-white">= {PREDICTION_FLOOR_AREA}</span>.
+        </p>
+        <MathBlock
+          tex={`\\begin{aligned}
+            \\hat{y} &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${CANDIDATE_B_THETA1.toLocaleString("en-GB")} \\times ${PREDICTION_FLOOR_AREA} \\\\
+            &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${(CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA).toLocaleString("en-GB")} \\\\
+            &= ${predictionFromCandidateB.toLocaleString("en-GB")}
+          \\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So the predicted house price is{" "}
+          <span className="text-white">£{predictionFromCandidateB.toLocaleString("en-GB")}</span>.
+          The guide lines in the chart show how this value is read from the
+          axes.
+        </p>
+        <PredictionGuidePlot
+          data={HOUSE_DATA}
+          xKey="floor_area_m2"
+          yKey="price_gbp"
+          yScale={1000}
+          line={CANDIDATE_B_WORKED_LINE}
+          predictionX={PREDICTION_FLOOR_AREA}
+          lineLabel="Trained model line"
+        />
       </section>
 
       <section id="example" className="scroll-mt-28 grid gap-4">
@@ -1073,6 +1100,34 @@ export default function WhatIsMlPage() {
         </div>
       </section>
 
+      <section id="summary" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Summary and what&apos;s next
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This page was designed as a hands-on overview: enough intuition to
+          build a mental model, plus a concrete worked example with real numbers
+          and plots.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We focused on one branch of ML (supervised learning) and one problem
+          type (regression). We also did not yet unpack the full
+          under-the-bonnet mechanics of how parameter updates are computed at
+          each step of training.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So it is normal to still have lots of questions. For example: what if
+          the output is categorical (like spam vs not spam)? How does this
+          differ from reinforcement learning, where an agent learns from rewards
+          over time?
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Treat this as a robust teaser. In the next parts of this track,
+          we&apos;ll go deeper into data types, how training works mathematically,
+          train/validation/test splits, and overfitting vs generalisation.
+        </p>
+      </section>
+
       <section id="remember" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What you should remember
@@ -1200,7 +1255,7 @@ export default function WhatIsMlPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Glossary
         </h2>
-        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+        <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="grid gap-2 md:grid-cols-[140px_minmax(0,1fr)]">
             <div className="text-white font-semibold">Feature</div>
             <div>
