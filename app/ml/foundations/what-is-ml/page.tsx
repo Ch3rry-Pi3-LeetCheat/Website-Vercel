@@ -466,7 +466,8 @@ export default function WhatIsMlPage() {
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}and the true price{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {", so:"}
+          {", so:"} This error line represents the gap between the prediction and
+          the true value.
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -476,7 +477,9 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Squared error makes negatives positive and emphasises big misses:
+          The -95,000 means the gap (error bar) is 95,000, and the negative sign
+          tells us the prediction is too low. Squared error makes negatives
+          positive and emphasises big misses:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -486,14 +489,15 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We repeat this for the other{" "}
+          We are squaring this gap, so to speak. We repeat this for the other{" "}
           <span className="text-white">7 rows</span>, one row at a time. Then we
           add all the squared errors together and divide by{" "}
-          <MathInline tex={String.raw`n`} className="math-inline text-white" />
+          <MathInline tex={String.raw`n`} className="math-inline text-white font-semibold" />
           {" "} (the number of rows/houses in the dataset) to get the average error.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Mean squared error (MSE) averages those squared mistakes:
+          <span className="text-white font-semibold">Mean squared error (MSE)</span>{" "}
+          averages those squared mistakes:
         </p>
         <MathBlock
           tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
