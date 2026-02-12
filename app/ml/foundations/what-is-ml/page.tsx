@@ -461,7 +461,8 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The true price{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "}is <span className="math-y">£365,000</span>. The error is the
+          {" "}is <span className="text-white">£</span>
+          <span className="math-y">365,000</span>. The error is the
           difference between the predicted price{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "}and the true price{" "}
@@ -492,7 +493,7 @@ export default function WhatIsMlPage() {
           We are squaring this gap, so to speak. We repeat this for the other{" "}
           <span className="text-white">7 rows</span>, one row at a time. Then we
           add all the squared errors together and divide by{" "}
-          <MathInline tex={String.raw`n`} className="math-inline text-white font-semibold" />
+          <span className="text-white font-semibold">n</span>
           {" "} (the number of rows/houses in the dataset) to get the average error.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
