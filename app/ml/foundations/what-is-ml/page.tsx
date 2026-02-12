@@ -478,7 +478,10 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The -95,000 means the gap (error bar) is 95,000, and the negative sign
+          The <span className="text-white">-95,000</span> means the{" "}
+          <span className="math-yhat">gap</span>{" "}
+          (<span className="text-white">error bar</span>) is{" "}
+          <span className="text-white">£95,000</span>, and the negative sign
           tells us the prediction is too low. Squared error makes negatives
           positive and emphasises big misses:
         </p>
