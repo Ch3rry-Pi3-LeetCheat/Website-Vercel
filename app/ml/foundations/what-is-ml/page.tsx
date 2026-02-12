@@ -426,9 +426,15 @@ export default function WhatIsMlPage() {
               Each line below is a candidate for how floor area might map to
               price. Some candidates clearly look better than others. For
               example, the{" "}
-              <span className="text-[#38bdf8]">blue line (Candidate B)</span>{" "}
+              <span className="text-[#38bdf8]">blue line</span>{" "}
+              <span className="text-white">(</span>
+              <span className="text-[#38bdf8]">Candidate B</span>
+              <span className="text-white">)</span>{" "}
               appears to follow the points more closely than the{" "}
-              <span className="text-[#ef4444]">red line (Candidate A)</span>.
+              <span className="text-[#ef4444]">red line</span>{" "}
+              <span className="text-white">(</span>
+              <span className="text-[#ef4444]">Candidate A</span>
+              <span className="text-white">)</span>.
             </p>
             <LineGuessPlot
               data={HOUSE_DATA}
@@ -449,8 +455,14 @@ export default function WhatIsMlPage() {
           <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We&apos;ll carry both candidates into this plot:{" "}
-            <span className="text-[#ef4444]">Candidate A (red)</span> and{" "}
-            <span className="text-[#38bdf8]">Candidate B (blue)</span>.
+            <span className="text-[#ef4444]">Candidate A</span>{" "}
+            <span className="text-white">(</span>
+            <span className="text-[#ef4444]">red</span>
+            <span className="text-white">)</span> and{" "}
+            <span className="text-[#38bdf8]">Candidate B</span>{" "}
+            <span className="text-white">(</span>
+            <span className="text-[#38bdf8]">blue</span>
+            <span className="text-white">)</span>.
           </p>
           <WorkedExamplePlot
             data={HOUSE_DATA}
@@ -490,7 +502,10 @@ export default function WhatIsMlPage() {
             {" "}controls its steepness.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#ef4444]">Candidate A</span> (red) uses{" "}
+            <span className="text-[#ef4444]">Candidate A</span>{" "}
+            <span className="text-white">(</span>
+            <span className="text-[#ef4444]">red</span>
+            <span className="text-white">)</span>{" "}uses{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "} <span className="text-white">= 50,000</span> and{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
@@ -513,7 +528,10 @@ export default function WhatIsMlPage() {
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#38bdf8]">Candidate B</span> (blue) uses{" "}
+            <span className="text-[#38bdf8]">Candidate B</span>{" "}
+            <span className="text-white">(</span>
+            <span className="text-[#38bdf8]">blue</span>
+            <span className="text-white">)</span>{" "}uses{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "} <span className="text-white">= {candidateBIntercept.toLocaleString("en-GB")}</span>{" "}
             and{" "}
