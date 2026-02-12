@@ -13,6 +13,11 @@ type WorkedExamplePlotProps = {
   yKey: string;
   yScale?: number;
   line: WorkedExampleLine;
+  lineColor?: string;
+  lineLabel?: string;
+  secondaryLine?: WorkedExampleLine;
+  secondaryLineColor?: string;
+  secondaryLineLabel?: string;
   highlightX?: number;
   showErrorBar?: boolean;
 };
@@ -32,6 +37,11 @@ export default function WorkedExamplePlot({
   yKey,
   yScale = 1000,
   line,
+  lineColor = "#ef4444",
+  lineLabel = "Candidate A",
+  secondaryLine,
+  secondaryLineColor = "#38bdf8",
+  secondaryLineLabel = "Candidate B",
   highlightX,
   showErrorBar = false,
 }: WorkedExamplePlotProps) {
@@ -80,6 +90,10 @@ export default function WorkedExamplePlot({
   const lineY = (x: number) => line.intercept + line.slope * x;
   const lineStartY = lineY(bounds.minX);
   const lineEndY = lineY(bounds.maxX);
+  const secondaryLineY = (x: number) =>
+    secondaryLine ? secondaryLine.intercept + secondaryLine.slope * x : undefined;
+  const secondaryLineStartY = secondaryLineY(bounds.minX);
+  const secondaryLineEndY = secondaryLineY(bounds.maxX);
 
   const highlightPoint = highlightX
     ? points.find((point) => point.x === highlightX)
@@ -167,9 +181,20 @@ export default function WorkedExamplePlot({
               y1={yToSvg(lineStartY)}
               x2={xToSvg(bounds.maxX)}
               y2={yToSvg(lineEndY)}
-              stroke="#ef4444"
+              stroke={lineColor}
               strokeWidth={3}
             />
+            {secondaryLineStartY !== undefined &&
+              secondaryLineEndY !== undefined && (
+                <line
+                  x1={xToSvg(bounds.minX)}
+                  y1={yToSvg(secondaryLineStartY)}
+                  x2={xToSvg(bounds.maxX)}
+                  y2={yToSvg(secondaryLineEndY)}
+                  stroke={secondaryLineColor}
+                  strokeWidth={3}
+                />
+              )}
 
             {showErrorBar &&
               highlightX !== undefined &&
@@ -224,9 +249,15 @@ export default function WorkedExamplePlot({
           <span>Data points (houses)</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[#ef4444]" />
-          <span>Worked example line</span>
+          <span className="h-0.5 w-5" style={{ backgroundColor: lineColor }} />
+          <span>{lineLabel}</span>
         </div>
+        {secondaryLine ? (
+          <div className="flex items-center gap-2">
+            <span className="h-0.5 w-5" style={{ backgroundColor: secondaryLineColor }} />
+            <span>{secondaryLineLabel}</span>
+          </div>
+        ) : null}
         {showErrorBar && (
           <div className="flex items-center gap-2">
             <span className="h-4 w-0.5 bg-[#f472b6]" />

@@ -52,8 +52,58 @@ const tinyExampleOutput = `330000.0`;
 const interceptOutput = `124452.03
 [2049.63, 14689.77, -8379.36]`;
 
-const WORKED_EXAMPLE_LINE = { intercept: 50, slope: 2 };
-const WORKED_EXAMPLE_X = 110;
+const CANDIDATE_A_LINE = { intercept: 50, slope: 2 };
+const EXAMPLE_FLOOR_AREA = 110;
+const EXAMPLE_TRUE_PRICE = 365000;
+
+const CANDIDATE_B_LINE = (() => {
+  const xValues = HOUSE_DATA.map((row) => row.floor_area_m2);
+  const yValues = HOUSE_DATA.map((row) => row.price_gbp / 1000);
+  const meanX = xValues.reduce((acc, val) => acc + val, 0) / xValues.length;
+  const meanY = yValues.reduce((acc, val) => acc + val, 0) / yValues.length;
+  const slope =
+    xValues.reduce((acc, x, idx) => acc + (x - meanX) * (yValues[idx] - meanY), 0) /
+    xValues.reduce((acc, x) => acc + (x - meanX) ** 2, 0);
+  const intercept = meanY - slope * meanX;
+  return { intercept, slope };
+})();
+
+const candidateAPrediction = Math.round(
+  (CANDIDATE_A_LINE.intercept + CANDIDATE_A_LINE.slope * EXAMPLE_FLOOR_AREA) * 1000
+);
+const candidateBPrediction = Math.round(
+  (CANDIDATE_B_LINE.intercept + CANDIDATE_B_LINE.slope * EXAMPLE_FLOOR_AREA) * 1000
+);
+const candidateBIntercept = Number((CANDIDATE_B_LINE.intercept * 1000).toFixed(2));
+const candidateBSlope = Number((CANDIDATE_B_LINE.slope * 1000).toFixed(2));
+const candidateBContribution = Number((candidateBSlope * EXAMPLE_FLOOR_AREA).toFixed(2));
+const candidateBApproxPrediction = Math.round(candidateBIntercept + candidateBContribution);
+
+const candidateAError = candidateAPrediction - EXAMPLE_TRUE_PRICE;
+const candidateBError = candidateBPrediction - EXAMPLE_TRUE_PRICE;
+const candidateALoss = candidateAError ** 2;
+const candidateBLoss = candidateBError ** 2;
+
+const candidateASquaredErrors = HOUSE_DATA.map((row) => {
+  const prediction = Math.round(
+    (CANDIDATE_A_LINE.intercept + CANDIDATE_A_LINE.slope * row.floor_area_m2) * 1000
+  );
+  const error = prediction - row.price_gbp;
+  return error ** 2;
+});
+
+const candidateBSquaredErrors = HOUSE_DATA.map((row) => {
+  const prediction = Math.round(
+    (CANDIDATE_B_LINE.intercept + CANDIDATE_B_LINE.slope * row.floor_area_m2) * 1000
+  );
+  const error = prediction - row.price_gbp;
+  return error ** 2;
+});
+
+const candidateASquaredErrorSum = candidateASquaredErrors.reduce((acc, value) => acc + value, 0);
+const candidateBSquaredErrorSum = candidateBSquaredErrors.reduce((acc, value) => acc + value, 0);
+const candidateAMse = candidateASquaredErrorSum / HOUSE_DATA.length;
+const candidateBMse = candidateBSquaredErrorSum / HOUSE_DATA.length;
 
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
@@ -340,33 +390,40 @@ export default function WhatIsMlPage() {
               Possible relationships
             </h4>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Each line below is a different guess at how floor area might map
-              to price. The{" "}
-              <span className="text-[#ef4444]">red line</span> is the worked
-              example we use below.
+              Each line below is a candidate for how floor area might map to
+              price. Some candidates clearly look better than others. For
+              example, the{" "}
+              <span className="text-[#38bdf8]">blue line (Candidate B)</span>{" "}
+              appears to follow the points more closely than the{" "}
+              <span className="text-[#ef4444]">red line (Candidate A)</span>.
             </p>
             <LineGuessPlot data={HOUSE_DATA} xKey="floor_area_m2" yKey="price_gbp" yScale={1000} />
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Some guesses are too steep or too flat. We might get lucky for a
-            simple problem, but in general we need a robust way to discover the
-            best line.
+            Visual comparison is useful, but we still need a mathematical test.
+            In the training and loss section, we use error and loss to measure
+            exactly which candidate fits better.
           </p>
         </div>
 
         <div className="grid gap-3">
           <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We&apos;ll use the{" "}
-            <span className="text-[#ef4444]">red line</span> in the plot below
-            as our worked example.
+            We&apos;ll carry both candidates into this plot:{" "}
+            <span className="text-[#ef4444]">Candidate A (red)</span> and{" "}
+            <span className="text-[#38bdf8]">Candidate B (blue)</span>.
           </p>
           <WorkedExamplePlot
             data={HOUSE_DATA}
             xKey="floor_area_m2"
             yKey="price_gbp"
             yScale={1000}
-            line={WORKED_EXAMPLE_LINE}
+            line={CANDIDATE_A_LINE}
+            lineColor="#ef4444"
+            lineLabel="Candidate A"
+            secondaryLine={CANDIDATE_B_LINE}
+            secondaryLineColor="#38bdf8"
+            secondaryLineLabel="Candidate B"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We will use one feature,{" "}
@@ -394,19 +451,19 @@ export default function WhatIsMlPage() {
             {" "}controls its steepness.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            That red line uses{" "}
+            Candidate A (red) uses{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
             {" "} <span className="text-white">= 50,000</span> and{" "}
             <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
-            {" "} <span className="text-white">= 2,000</span>.
-            We&apos;ll pick a data point at random to demonstrate, for example{" "}
+            {" "} <span className="text-white">= 2,000</span>. We&apos;ll pick a
+            data point at random to demonstrate, for example{" "}
             <span className="math-x font-mono">floor_area</span>
-            {" "} <span className="text-white">= 110</span>.
+            {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Take the row with{" "}
+            For Candidate A at{" "}
             <span className="math-x font-mono">floor_area</span>
-            {" "} <span className="text-white">= 110</span>, then:
+            {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>:
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
@@ -417,13 +474,31 @@ export default function WhatIsMlPage() {
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The true price for that row is{" "}
+            Candidate B (blue) comes from the data-driven line in the chart.
+            Its equation is approximately:
+          </p>
+          <MathBlock
+            tex={`\\begin{aligned}
+              price &\\approx ${candidateBIntercept.toLocaleString("en-GB")} + ${candidateBSlope.toLocaleString("en-GB")} \\times ${EXAMPLE_FLOOR_AREA} \\\\
+              &\\approx ${candidateBIntercept.toLocaleString("en-GB")} + ${candidateBContribution.toLocaleString("en-GB")} \\\\
+              &\\approx ${candidateBApproxPrediction.toLocaleString("en-GB")}
+            \\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For this one house size, Candidate A predicts{" "}
+            <span className="text-white">£{candidateAPrediction.toLocaleString("en-GB")}</span>{" "}
+            and Candidate B predicts{" "}
+            <span className="text-white">£{candidateBPrediction.toLocaleString("en-GB")}</span>{" "}
+            (much higher than Candidate A).
+            The true price is{" "}
             <span className="text-white">£</span>
-            <span className="math-y">365,000</span>, so the{" "}
-            <span className="math-model">model</span> is too low.
-            Training changes{" "}
-            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-            {" "}to bring predictions closer.
+            <span className="math-y">{EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>,
+            so Candidate B is much closer for this specific floor area.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            But one row is not enough. How do we know which candidate is better
+            across all floor sizes? Next, we measure that with error and loss.
           </p>
         </div>
       </section>
@@ -441,76 +516,150 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Let&apos;s pick a data point at random to demonstrate, for example:{" "}
           <span className="math-x font-mono">floor_area</span>
-          {" "} <span className="text-white">= 110</span>,{" "}
+          {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "} <span className="text-white">= 365,000</span>. Using the same rule
-          from above, the{" "}
+          {" "} <span className="text-white">= {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>. Using Candidate A from above, the{" "}
           <span className="math-model">model</span> predicts{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          {" "} <span className="text-white">= 270,000</span>.
+          {" "} <span className="text-white">= {candidateAPrediction.toLocaleString("en-GB")}</span>.
         </p>
         <WorkedExamplePlot
           data={HOUSE_DATA}
           xKey="floor_area_m2"
           yKey="price_gbp"
           yScale={1000}
-          line={WORKED_EXAMPLE_LINE}
-          highlightX={WORKED_EXAMPLE_X}
+          line={CANDIDATE_A_LINE}
+          lineLabel="Candidate A"
+          highlightX={EXAMPLE_FLOOR_AREA}
           showErrorBar
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The true price{" "}
-          <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {" "}is <span className="text-white">£</span>
-          <span className="math-y">365,000</span>. The error is the
-          difference between the predicted price{" "}
-          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          {" "}and the true price{" "}
-          <MathInline tex={String.raw`y`} className="math-inline math-y" />
-          {", so:"} This error line represents the gap between the prediction and
-          the true value.
+          We&apos;ll start by calculating the loss for Candidate A at{" "}
+          <span className="math-x font-mono">floor_area</span>{" "}
+          <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>. The error
+          bar is the gap between prediction and truth for this one point.
         </p>
         <MathBlock
-          tex={String.raw`\begin{aligned}
-            \hat{y} - y &= 270{,}000 - 365{,}000 \\
-            &= -95{,}000
-          \end{aligned}`}
+          tex={`\\begin{aligned}
+            \\hat{y}_A - y &= ${candidateAPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} \\\\
+            &= ${candidateAError.toLocaleString("en-GB")}
+          \\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The <span className="text-white">-95,000</span> means the{" "}
-          <span className="math-yhat">gap</span>{" "}
-          (<span className="text-white">error bar</span>) is{" "}
-          <span className="text-white">£95,000</span>, and the negative sign
-          tells us the prediction is too low. Squared error makes negatives
-          positive and emphasises big misses:
+          For Candidate A, the loss at this point is the squared error:
         </p>
         <MathBlock
-          tex={String.raw`\begin{aligned}
-            (\hat{y} - y)^2 &= (-95{,}000)^2 \\
-            &= 9{,}025{,}000{,}000
-          \end{aligned}`}
+          tex={`\\begin{aligned}
+            (\\hat{y}_A - y)^2 &= (${candidateAError.toLocaleString("en-GB")})^2 \\\\
+            &= ${candidateALoss.toLocaleString("en-GB")}
+          \\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We are squaring this gap, so to speak. We repeat this for the other{" "}
-          <span className="text-white">7 rows</span>, one row at a time. Then we
-          add all the squared errors together and divide by{" "}
-          <span className="text-white font-semibold">n</span>
-          {" "} (the number of rows/houses in the dataset) to get the average error.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          <span className="text-white font-semibold">Mean squared error (MSE)</span>{" "}
-          averages those squared mistakes:
+          Now do the same for Candidate B at the same floor area:
         </p>
         <MathBlock
-          tex={String.raw`MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2`}
+          tex={`\\begin{aligned}
+            \\hat{y}_B - y &= ${candidateBPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} \\\\
+            &= ${candidateBError.toLocaleString("en-GB")} \\\\
+            (\\hat{y}_B - y)^2 &= (${candidateBError.toLocaleString("en-GB")})^2 \\\\
+            &= ${candidateBLoss.toLocaleString("en-GB")}
+          \\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The full <span className="math-model">model</span> could use all three features, but the loss idea is the
-          same.
+          At <span className="math-x font-mono">floor_area</span>{" "}
+          <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>, Candidate B
+          has a much smaller loss than Candidate A, so it fits this particular
+          point better.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Again, that is just one data point. To compare both candidates across
+          all rows, we use{" "}
+          <span className="text-white font-semibold">Mean Squared Error (MSE)</span>.
+        </p>
+
+        <section className="grid gap-4">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Mean Squared Error (MSE)
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A standard way to calculate average loss across all data points is{" "}
+            <span className="text-white font-semibold">mean squared error (MSE)</span>.
+          </p>
+          <MathBlock
+            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2`}
+            className="math-center math-lg text-white/90"
+          />
+          <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+            <p>
+              <span className="text-white font-semibold">n</span> is the number
+              of rows (here, <span className="text-white">8</span>).
+            </p>
+            <p>
+              <MathInline tex={String.raw`y_i`} className="math-inline math-y" /> is the
+              true price for row <span className="text-white">i</span>.
+            </p>
+            <p>
+              <MathInline tex={String.raw`\hat{y}_i`} className="math-inline math-yhat" /> is the
+              predicted price for row <span className="text-white">i</span>.
+            </p>
+            <p>
+              <MathInline tex={String.raw`(y_i - \hat{y}_i)^2`} className="math-inline" /> is
+              the same single-point squared loss we just calculated for floor area{" "}
+              <span className="text-white">{EXAMPLE_FLOOR_AREA}</span>, now repeated for each row.
+            </p>
+            <p>
+              Here, <span className="text-white">row 1</span> is floor area{" "}
+              <span className="math-x">52</span>, <span className="text-white">row 2</span> is{" "}
+              <span className="math-x">68</span>, ..., and{" "}
+              <span className="text-white">row 8</span> is{" "}
+              <span className="math-x">160</span>.
+            </p>
+          </div>
+
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Candidate A MSE:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+              MSE_A &= \frac{(y_1-\hat{y}_{1,A})^2 + (y_2-\hat{y}_{2,A})^2 + \cdots + (y_8-\hat{y}_{8,A})^2}{8}
+            \end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <MathBlock
+            tex={`\\begin{aligned}
+              MSE_A &= \\frac{${candidateASquaredErrors[0].toLocaleString("en-GB")} + ${candidateASquaredErrors[1].toLocaleString("en-GB")} + \\cdots + ${candidateASquaredErrors[7].toLocaleString("en-GB")}}{8} \\\\
+              &= \\frac{${candidateASquaredErrorSum.toLocaleString("en-GB")}}{8} \\\\
+              &= ${candidateAMse.toLocaleString("en-GB")}
+            \\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Candidate B MSE:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+              MSE_B &= \frac{(y_1-\hat{y}_{1,B})^2 + (y_2-\hat{y}_{2,B})^2 + \cdots + (y_8-\hat{y}_{8,B})^2}{8}
+            \end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <MathBlock
+            tex={`\\begin{aligned}
+              MSE_B &= \\frac{${candidateBSquaredErrors[0].toLocaleString("en-GB")} + ${candidateBSquaredErrors[1].toLocaleString("en-GB")} + \\cdots + ${candidateBSquaredErrors[7].toLocaleString("en-GB")}}{8} \\\\
+              &= \\frac{${candidateBSquaredErrorSum.toLocaleString("en-GB")}}{8} \\\\
+              &= ${candidateBMse.toLocaleString("en-GB", { maximumFractionDigits: 2 })}
+            \\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Candidate B has a much smaller MSE than Candidate A, so across the
+            full dataset Candidate B is a much better fit.
+          </p>
+        </section>
       </section>
 
       <section id="loop" className="scroll-mt-28 grid gap-4">

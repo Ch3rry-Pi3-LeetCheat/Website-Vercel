@@ -234,11 +234,11 @@ export default function LineGuessPlot({
         </div>
         <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[#38bdf8]" />
-          <span>Best fit line</span>
+          <span>Candidate B</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[#ef4444]" />
-          <span>Worked example line</span>
+          <span>Candidate A</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="h-0.5 w-5 bg-[rgba(56,189,248,0.3)]" />

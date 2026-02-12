@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
 type DataPoint = Record<string, number>;
 
@@ -25,6 +25,7 @@ export default function LineFitAnimator({
   showErrorBars = true,
   showTrail = false,
 }: LineFitAnimatorProps) {
+  const clipId = useId();
   const xScale = 100;
   const scaledData = useMemo(() => {
     return data.map((point) => ({
@@ -257,6 +258,16 @@ export default function LineFitAnimator({
           role="img"
           aria-label="Scatter plot of floor area versus price with fitted line"
         >
+          <defs>
+            <clipPath id={clipId}>
+              <rect
+                x={PADDING.left}
+                y={PADDING.top}
+                width={plotWidth}
+                height={plotHeight}
+              />
+            </clipPath>
+          </defs>
           <rect
             x={PADDING.left}
             y={PADDING.top}
@@ -311,49 +322,51 @@ export default function LineFitAnimator({
             </g>
           ))}
 
-          {showTrail &&
-            trail.map((entry, idx) => (
-              <line
-                key={`${entry.theta0}-${idx}`}
-                x1={xToSvg(lineStart.x)}
-                y1={yToSvg(lineY(lineStart.x, entry.theta0, entry.theta1))}
-                x2={xToSvg(lineEnd.x)}
-                y2={yToSvg(lineY(lineEnd.x, entry.theta0, entry.theta1))}
-                stroke="rgba(148, 163, 184, 0.2)"
-                strokeWidth={1}
-              />
-            ))}
+          <g clipPath={`url(#${clipId})`}>
+            {showTrail &&
+              trail.map((entry, idx) => (
+                <line
+                  key={`${entry.theta0}-${idx}`}
+                  x1={xToSvg(lineStart.x)}
+                  y1={yToSvg(lineY(lineStart.x, entry.theta0, entry.theta1))}
+                  x2={xToSvg(lineEnd.x)}
+                  y2={yToSvg(lineY(lineEnd.x, entry.theta0, entry.theta1))}
+                  stroke="rgba(148, 163, 184, 0.2)"
+                  strokeWidth={1}
+                />
+              ))}
 
-          <line
-            x1={xToSvg(lineStart.x)}
-            y1={yToSvg(lineStart.y)}
-            x2={xToSvg(lineEnd.x)}
-            y2={yToSvg(lineEnd.y)}
-            stroke="#38bdf8"
-            strokeWidth={2.5}
-          />
+            <line
+              x1={xToSvg(lineStart.x)}
+              y1={yToSvg(lineStart.y)}
+              x2={xToSvg(lineEnd.x)}
+              y2={yToSvg(lineEnd.y)}
+              stroke="#38bdf8"
+              strokeWidth={2.5}
+            />
 
-          {scaledData.map((point) => {
-            const x = xToSvg(point.x);
-            const y = yToSvg(point.y);
-            const yHat = yToSvg(lineY(point.x));
+            {scaledData.map((point) => {
+              const x = xToSvg(point.x);
+              const y = yToSvg(point.y);
+              const yHat = yToSvg(lineY(point.x));
 
-            return (
-              <g key={`${point.rawX}-${point.rawY}`}>
-                {showErrors && (
-                  <line
-                    x1={x}
-                    y1={yHat}
-                    x2={x}
-                    y2={y}
-                    stroke="rgba(244, 114, 182, 0.5)"
-                    strokeWidth={2}
-                  />
-                )}
-                <circle cx={x} cy={y} r={5} fill="#f8fafc" />
-              </g>
-            );
-          })}
+              return (
+                <g key={`${point.rawX}-${point.rawY}`}>
+                  {showErrors && (
+                    <line
+                      x1={x}
+                      y1={yHat}
+                      x2={x}
+                      y2={y}
+                      stroke="rgba(244, 114, 182, 0.5)"
+                      strokeWidth={2}
+                    />
+                  )}
+                  <circle cx={x} cy={y} r={5} fill="#f8fafc" />
+                </g>
+              );
+            })}
+          </g>
 
           <text
             x={CHART_WIDTH / 2}
