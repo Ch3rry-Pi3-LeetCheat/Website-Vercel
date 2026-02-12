@@ -87,6 +87,7 @@ export default function PredictionGuidePlot({
   const verticalMidY = (yToSvg(bounds.minY) + yToSvg(predictedY)) / 2;
   const horizontalMidX = (xToSvg(bounds.minX) + xToSvg(predictionX)) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
+  const crossHalfSize = 4.5;
   const arrowId = `${clipId}-arrow`;
 
   return (
@@ -109,14 +110,14 @@ export default function PredictionGuidePlot({
             </clipPath>
             <marker
               id={arrowId}
-              markerWidth="8"
-              markerHeight="8"
-              refX="7"
-              refY="4"
+              markerWidth="6"
+              markerHeight="6"
+              refX="5.5"
+              refY="3"
               orient="auto"
               markerUnits="strokeWidth"
             >
-              <path d="M0,0 L8,4 L0,8 z" fill={guideColor} />
+              <path d="M0,0 L6,3 L0,6 z" fill={guideColor} />
             </marker>
           </defs>
           <rect
@@ -203,11 +204,23 @@ export default function PredictionGuidePlot({
               strokeDasharray="5 5"
               markerEnd={`url(#${arrowId})`}
             />
-            <circle
-              cx={xToSvg(predictionX)}
-              cy={yToSvg(predictedY)}
-              r={4.5}
-              fill="#ef4444"
+            <line
+              x1={xToSvg(predictionX) - crossHalfSize}
+              y1={yToSvg(predictedY) - crossHalfSize}
+              x2={xToSvg(predictionX) + crossHalfSize}
+              y2={yToSvg(predictedY) + crossHalfSize}
+              stroke="#ef4444"
+              strokeWidth={2.4}
+              strokeLinecap="round"
+            />
+            <line
+              x1={xToSvg(predictionX) - crossHalfSize}
+              y1={yToSvg(predictedY) + crossHalfSize}
+              x2={xToSvg(predictionX) + crossHalfSize}
+              y2={yToSvg(predictedY) - crossHalfSize}
+              stroke="#ef4444"
+              strokeWidth={2.4}
+              strokeLinecap="round"
             />
 
             {points.map((point, idx) => (
@@ -225,6 +238,7 @@ export default function PredictionGuidePlot({
             y={verticalMidY}
             fill="rgba(248, 250, 252, 0.9)"
             fontSize="11"
+            fontWeight="700"
           >
             floor area = {predictionX} m
             <tspan baselineShift="super" fontSize="8">2</tspan>
@@ -235,8 +249,9 @@ export default function PredictionGuidePlot({
             textAnchor="middle"
             fill="rgba(248, 250, 252, 0.9)"
             fontSize="11"
+            fontWeight="700"
           >
-            predicted house price = {predictedPrice.toLocaleString("en-GB")}
+            predicted price = £{predictedPrice.toLocaleString("en-GB")}
           </text>
 
           <text
