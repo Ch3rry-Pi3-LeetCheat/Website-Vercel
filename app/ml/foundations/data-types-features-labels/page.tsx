@@ -45,6 +45,7 @@ export default function DataTypesFeaturesLabelsPage() {
       eyebrow="ML - Foundations"
       title="Data types, features, labels"
       description="What a model sees as input, what it should predict, and how raw columns become usable features."
+      descriptionClassName="italic"
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -55,20 +56,20 @@ export default function DataTypesFeaturesLabelsPage() {
     >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
-          Welcome back. In the previous lesson, we built a practical intuition
-          for machine learning using one house-price example from start to
-          finish.
+          Welcome back. This lesson builds directly on the previous article and
+          shifts from a high-level intuition to cleaner data framing.
         </p>
         <h3 id="recap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
           Quick recap
         </h3>
         <p>
-          High level, we framed a model as a function that maps inputs to a
-          prediction:
-          {" "}
-          <span className="ml-1">
-            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          </span>
+          In the last article, we began our machine-learning journey by
+          introducing core ideas at a fundamental level. We defined a model as
+          something that captures relationships between input attributes and an
+          output we want to predict.
+        </p>
+        <p className="math-center text-2xl">
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           <span className="px-1 text-white">=</span>
           <MathInline tex={String.raw`f`} className="math-inline math-model" />
           <span className="text-white">(</span>
@@ -76,49 +77,136 @@ export default function DataTypesFeaturesLabelsPage() {
           <span className="text-white">;</span>
           <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
           <span className="text-white">)</span>
-          .
         </p>
         <p>
-          We also used concrete values:
+          To build intuition with concrete numbers, we used a house-price
+          dataset:
         </p>
-        <div className="ml-4 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+        <div className="glass-panel rounded-2xl p-4">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <thead>
+                <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                  <th className="py-2">
+                    <span className="math-x">floor_area_m2</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-x">bedrooms</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-x">distance_to_centre_km</span>
+                  </th>
+                  <th className="py-2">
+                    <span className="math-y">price_gbp</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">52</td>
+                  <td className="py-2">1</td>
+                  <td className="py-2">4.5</td>
+                  <td className="py-2">210,000</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">68</td>
+                  <td className="py-2">2</td>
+                  <td className="py-2">3.2</td>
+                  <td className="py-2">265,000</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2 text-white/70">⋯</td>
+                  <td className="py-2 text-white/70">⋯</td>
+                  <td className="py-2 text-white/70">⋯</td>
+                  <td className="py-2 text-white/70">⋯</td>
+                </tr>
+                <tr>
+                  <td className="py-2">160</td>
+                  <td className="py-2">5</td>
+                  <td className="py-2">8.0</td>
+                  <td className="py-2">455,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p>
+          We treated the first three columns as features (
+          <span className="math-x font-mono">floor_area_m2</span>,{" "}
+          <span className="math-x font-mono">bedrooms</span>,{" "}
+          <span className="math-x font-mono">distance_to_centre_km</span>) and
+          the final column as the target (
+          <span className="math-y font-mono">price_gbp</span>).
+        </p>
+        <p>
+          Using those feature values, we trained a model. We started with a
+          simple one-feature example (<span className="math-x">floor_area_m2</span>)
+          and then progressed to Python with all three features. At a high
+          level, we showed how training seeks to reduce aggregate loss across
+          repeated learning loops, and we visualized that process.
+        </p>
+        <p>
+          From the multivariable Python run, we learned the following parameter
+          values:
+        </p>
+        <div className="ml-4 grid gap-1 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
-            One row from the dataset:
-            {" "}
-            <span className="math-x font-mono">floor_area_m2</span>
-            {" = 110, "}
-            <span className="math-x font-mono">bedrooms</span>
-            {" = 3, "}
-            <span className="math-x font-mono">distance_to_centre_km</span>
-            {" = 2.8, "}
-            <span className="math-y font-mono">price_gbp</span>
-            {" = 365000."}
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <span className="text-white"> ≈ </span>
+            <span className="text-white">124,452</span>
           </p>
           <p>
-            A trained linear model from the Python example had
-            {" "}
-            <MathInline tex={String.raw`\theta_0 \approx 124452`} className="math-inline math-theta" />
-            {", "}
-            <MathInline tex={String.raw`\theta_1 \approx 2050`} className="math-inline math-theta" />
-            {", "}
-            <MathInline tex={String.raw`\theta_2 \approx 14690`} className="math-inline math-theta" />
-            {", "}
-            <MathInline tex={String.raw`\theta_3 \approx -8379`} className="math-inline math-theta" />
-            .
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <span className="text-white"> ≈ </span>
+            <span className="text-white">2,050</span>
           </p>
           <p>
-            For a new house
-            {" "}
-            <MathInline tex={String.raw`(100,\ 3,\ 4.0)`} className="math-inline math-x" />
-            {", the prediction was "}
-            <MathInline tex={String.raw`\hat{y} \approx 330000`} className="math-inline math-yhat" />
-            .
+            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <span className="text-white"> ≈ </span>
+            <span className="text-white">14,690</span>
+          </p>
+          <p>
+            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            <span className="text-white"> ≈ </span>
+            <span className="text-white">-8,379</span>
           </p>
         </div>
         <p>
-          Notice those are all numeric values. But real ML data is often mixed:
-          categories, booleans, text, dates, and more. That is exactly what we
-          formalize in this lesson.
+          We then used those values to predict the selling price of a new
+          house with
+          {" "}
+          <MathInline tex={String.raw`100\,m^2`} className="math-inline math-x" />
+          {", "}
+          <MathInline tex={String.raw`3`} className="math-inline math-x" />
+          {" bedrooms, and "}
+          <MathInline tex={String.raw`4\,km`} className="math-inline math-x" />
+          {" from the centre:"}
+        </p>
+        <p className="math-center text-2xl">
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          <span className="text-white"> ≈ </span>
+          <span className="text-white">330,000</span>
+        </p>
+        <p>
+          You may have noticed that all values above are numeric. That was
+          intentional. ML models naturally operate on numbers.
+        </p>
+        <p>
+          But real datasets are often broader. For houses, we might also have
+          a parking field with yes/no values, categorical columns with many
+          possible values, or date fields such as build year.
+        </p>
+        <p>
+          Data type matters because different types usually need different
+          treatment before they can be used safely as model inputs. And this is
+          not only true for features. The target can also vary by type (for
+          example, continuous value vs class label).
+        </p>
+        <p>
+          In this page, we will not go deep into full implementation details.
+          Instead, we will build intuition for key data types, why they matter,
+          and the kinds of conceptual handling choices you will meet next (for
+          example text handling and scale-related issues).
         </p>
         <h3 id="page-roadmap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
           What this page covers
