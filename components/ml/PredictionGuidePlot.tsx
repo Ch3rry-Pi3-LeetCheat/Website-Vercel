@@ -87,7 +87,7 @@ export default function PredictionGuidePlot({
   const verticalMidY = (yToSvg(bounds.minY) + yToSvg(predictedY)) / 2;
   const horizontalMidX = (xToSvg(bounds.minX) + xToSvg(predictionX)) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
-  const crossHalfSize = 4.5;
+  const crossHalfSize = 6.5;
   const arrowId = `${clipId}-arrow`;
 
   return (
@@ -110,14 +110,14 @@ export default function PredictionGuidePlot({
             </clipPath>
             <marker
               id={arrowId}
-              markerWidth="6"
-              markerHeight="6"
-              refX="5.5"
-              refY="3"
+              markerWidth="5"
+              markerHeight="5"
+              refX="4.6"
+              refY="2.5"
               orient="auto"
               markerUnits="strokeWidth"
             >
-              <path d="M0,0 L6,3 L0,6 z" fill={guideColor} />
+              <path d="M0,0 L5,2.5 L0,5 z" fill={guideColor} />
             </marker>
           </defs>
           <rect
@@ -210,7 +210,7 @@ export default function PredictionGuidePlot({
               x2={xToSvg(predictionX) + crossHalfSize}
               y2={yToSvg(predictedY) + crossHalfSize}
               stroke="#ef4444"
-              strokeWidth={2.4}
+              strokeWidth={2.8}
               strokeLinecap="round"
             />
             <line
@@ -219,7 +219,7 @@ export default function PredictionGuidePlot({
               x2={xToSvg(predictionX) + crossHalfSize}
               y2={yToSvg(predictedY) - crossHalfSize}
               stroke="#ef4444"
-              strokeWidth={2.4}
+              strokeWidth={2.8}
               strokeLinecap="round"
             />
 
@@ -236,7 +236,7 @@ export default function PredictionGuidePlot({
           <text
             x={xToSvg(predictionX) + 10}
             y={verticalMidY}
-            fill="rgba(248, 250, 252, 0.9)"
+            fill="rgba(56, 189, 248, 0.95)"
             fontSize="11"
             fontWeight="700"
           >
@@ -247,11 +247,11 @@ export default function PredictionGuidePlot({
             x={horizontalMidX}
             y={yToSvg(predictedY) - 10}
             textAnchor="middle"
-            fill="rgba(248, 250, 252, 0.9)"
+            fill="rgba(244, 114, 182, 0.95)"
             fontSize="11"
             fontWeight="700"
           >
-            predicted price = £{predictedPrice.toLocaleString("en-GB")}
+            predicted price = {"\u00A3"}{predictedPrice.toLocaleString("en-GB")}
           </text>
 
           <text

@@ -139,6 +139,7 @@ const predictionFromCandidateB = CANDIDATE_B_THETA0 + CANDIDATE_B_THETA1 * PREDI
 
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
+    { id: "intro", label: "Introduction" },
     { id: "mental-model", label: "A concrete mental model" },
     { id: "examples", label: "Real-world examples", level: 2 },
     { id: "dataset", label: "Example dataset", level: 2 },
@@ -152,8 +153,9 @@ export default function WhatIsMlPage() {
     { id: "prediction-demo", label: "Prediction" },
     { id: "example", label: "Python example" },
     { id: "confusions", label: "Common confusions" },
-    { id: "summary", label: "Summary and what's next" },
-    { id: "key-takeaways", label: "Key takeaways" },
+    { id: "summary", label: "Summary" },
+    { id: "key-takeaways", label: "Key takeaways", level: 2 },
+    { id: "whats-next", label: "What's next", level: 2 },
     { id: "checkpoint", label: "Mini-checkpoint" },
     { id: "glossary", label: "Glossary" },
   ];
@@ -162,7 +164,7 @@ export default function WhatIsMlPage() {
     <ArticleLayout
       eyebrow="ML - Foundations"
       title="What is Machine Learning?"
-      description="An intuitive, hands-on teaser: we build core ideas with concrete examples and visuals, while setting up the deeper topics ahead. You should still have questions by the end - that is expected, and we will drill into them in the next lessons."
+      description="An intuitive, hands-on teaser that builds core ideas with concrete examples and visuals, while setting up the deeper topics ahead. You should still have questions by the end - that is expected, and we will drill into them in the next lessons."
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -171,6 +173,49 @@ export default function WhatIsMlPage() {
         />
       }
     >
+      <section id="intro" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Introduction
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Think of this notebook as an{" "}
+          <span className="text-white font-semibold">intuitive, hands-on teaser</span>.
+          We&apos;ll keep ideas concrete, build visual intuition, and connect each
+          concept to real numbers so the theory feels practical.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          You&apos;ll move through a compact sequence:
+        </p>
+        <div className="ml-4 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <p>
+            <span className="text-white font-semibold">Mental model</span>: what
+            ML is really doing at a high level.
+          </p>
+          <p>
+            <span className="text-white font-semibold">Example dataset</span>:
+            one consistent house-price table to ground intuition.
+          </p>
+          <p>
+            <span className="text-white font-semibold">Model + parameters</span>:
+            how a line turns inputs into predictions.
+          </p>
+          <p>
+            <span className="text-white font-semibold">Training + loss</span>:
+            how we compare candidates and improve fit.
+          </p>
+          <p>
+            <span className="text-white font-semibold">Visual loop + prediction</span>:
+            watch parameters evolve, then use the trained model for a new house.
+          </p>
+        </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          By the end, you should have a clearer foundation and probably a lot of
+          new questions. That&apos;s a good sign. If you finish this notebook
+          curious, slightly buzzing, and ready to learn more, this intro has
+          done its job.
+        </p>
+      </section>
+
       <InfoPanel id="mental-model" title="A concrete mental model" variant="intro">
         <p>
           Machine learning (ML) is a way of teaching a computer by showing it
@@ -850,7 +895,7 @@ export default function WhatIsMlPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          So the predicted house price is{" "}
+          So the <span className="math-yhat">predicted house price</span> is{" "}
           <span className="text-white">£{predictionFromCandidateB.toLocaleString("en-GB")}</span>.
           The guide lines in the chart show how this value is read from the
           axes.
@@ -1107,7 +1152,7 @@ export default function WhatIsMlPage() {
 
       <section id="summary" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Summary and what&apos;s next
+          Summary
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This page was designed as a hands-on overview: enough{" "}
@@ -1116,86 +1161,119 @@ export default function WhatIsMlPage() {
           <span className="text-white font-semibold">concrete worked example</span>{" "}
           with real numbers and plots.
         </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We focused on one branch of ML (
-          <span className="text-white font-semibold">supervised learning</span>)
-          and one problem type (
-          <span className="text-white font-semibold">regression</span>). We also
-          did not yet unpack the full{" "}
-          <span className="text-white italic">under-the-bonnet</span> mechanics
-          of how parameter updates are computed at each step of training.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          So it is normal to still have lots of questions. For example: what if
-          the output is{" "}
-          <span className="text-white font-semibold">categorical</span> (like
-          spam vs not spam)? How does this differ from{" "}
-          <span className="text-white font-semibold">reinforcement learning</span>,
-          where an agent learns from rewards over time? And how well does our
-          model perform on <span className="text-white font-semibold">unseen data</span>?
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Treat this as a robust teaser. In the next parts of this track,
-          we&apos;ll go deeper into{" "}
-          <span className="text-white font-semibold">data types</span>, how{" "}
-          <span className="text-white font-semibold">training works mathematically</span>,
-          {" "}train/validation/test splits,{" "}
-          <span className="text-white font-semibold">evaluation</span>, and{" "}
-          <span className="text-white font-semibold">overfitting vs generalisation</span>.
-        </p>
-      </section>
+        <section id="key-takeaways" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            So, what DID we cover?
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    One branch of ML: <span className="text-white font-semibold">supervised learning</span>.
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    One problem type: <span className="text-white font-semibold">regression</span>.
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    A concrete dataset with <span className="math-x">features</span> and{" "}
+                    <span className="math-yhat">labels</span>.
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    How a simple linear <span className="math-model">model</span> maps inputs to predictions.
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    How to compare candidates using <span className="text-white font-semibold">loss</span> and{" "}
+                    <span className="text-white font-semibold">MSE</span>.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">
+                    A visual training loop and a worked prediction for a new input.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            From the list above, we did cover a lot of ground - so genuinely,
+            well done. But there are also key pieces we deliberately didn&apos;t
+            cover yet, for example:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">
+                    Categorical labels (for example, <span className="text-white">spam</span> vs{" "}
+                    <span className="text-white">not spam</span>).
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">
+                    How parameter updates are actually computed each step (the training math).
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">
+                    How we evaluate model quality on <span className="text-white">unseen data</span>.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">
+                    Robust setup topics like train/validation/test splits and overfitting vs generalisation.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-      <section id="key-takeaways" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Key Takeaways
-        </h2>
-        <div className="ml-4 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>ML learns patterns from examples, not hard-coded rules.</div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>
-              <span className="math-x">Features</span> are inputs;{" "}
-              <span className="math-yhat">labels</span> are outputs.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>
-              A <span className="math-model">model</span> is just a rule that makes
-              predictions.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>
-              <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-              {" "}is the prediction,{" "}
-              <MathInline tex={String.raw`y`} className="math-inline math-y" />
-              {" "}is the true answer.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>
-              <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-              {" "}are the adjustable settings the{" "}
-              <span className="math-model">model</span> learns.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>Learning is guess &gt; measure error &gt; adjust &gt; repeat.</div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[32px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">&bull;</div>
-            <div>
-              Loss measures how wrong the <span className="math-model">model</span> is.
-            </div>
-          </div>
-        </div>
+        <section id="whats-next" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            What&apos;s next
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We focused on one branch of ML (
+            <span className="text-white font-semibold">supervised learning</span>)
+            and one problem type (
+            <span className="text-white font-semibold">regression</span>). We
+            have not yet unpacked the full{" "}
+            <span className="text-white italic">under-the-bonnet</span>{" "}
+            mechanics of how parameters are updated at each training step.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Next we&apos;ll drill into{" "}
+            <span className="text-white font-semibold">data types</span>,{" "}
+            <span className="text-white font-semibold">training math</span>,{" "}
+            <span className="text-white font-semibold">train/validation/test splits</span>,
+            {" "}<span className="text-white font-semibold">evaluation on unseen data</span>,
+            and{" "}
+            <span className="text-white font-semibold">overfitting vs generalisation</span>.
+            We&apos;ll also branch into cases like{" "}
+            <span className="text-white font-semibold">categorical prediction</span>{" "}
+            (spam vs not spam) and{" "}
+            <span className="text-white font-semibold">reinforcement learning</span>.
+          </p>
+        </section>
       </section>
 
       <section id="checkpoint" className="scroll-mt-28 grid gap-4">
