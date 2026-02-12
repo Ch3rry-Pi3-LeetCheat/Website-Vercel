@@ -163,7 +163,7 @@ export default function WhatIsMlPage() {
     <ArticleLayout
       eyebrow="ML - Foundations"
       title="What is Machine Learning?"
-      description="An intuitive, hands-on teaser that builds core ideas with concrete examples and visuals, while setting up the deeper topics ahead. You should still have questions by the end - that is expected, and we will drill into them in the next lessons."
+      description="An intuitive introduction to machine learning with concrete examples."
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -177,35 +177,35 @@ export default function WhatIsMlPage() {
           Introduction
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Think of this notebook as an{" "}
-          <span className="text-white font-semibold">intuitive, hands-on teaser</span>.
-          We&apos;ll keep ideas concrete, build visual intuition, and connect each
-          concept to real numbers so the theory feels practical.
+          We&apos;ll move through a compact sequence below. Each part is there for
+          a reason, so you build intuition and also see how the maths connects
+          to concrete numbers.
         </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          You&apos;ll move through a compact sequence:
-        </p>
-        <div className="ml-4 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <p>
-            <span className="text-white font-semibold">Mental model</span>: what
-            ML is really doing at a high level.
-          </p>
-          <p>
-            <span className="text-white font-semibold">Example dataset</span>:
-            one consistent house-price table to ground intuition.
-          </p>
-          <p>
-            <span className="text-white font-semibold">Model + parameters</span>:
-            how a line turns inputs into predictions.
-          </p>
-          <p>
-            <span className="text-white font-semibold">Training + loss</span>:
-            how we compare candidates and improve fit.
-          </p>
-          <p>
-            <span className="text-white font-semibold">Visual loop + prediction</span>:
-            watch parameters evolve, then use the trained model for a new house.
-          </p>
+        <div className="ml-4 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Mental model</td>
+                <td className="py-2">What machine learning is doing at a high level.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Example dataset</td>
+                <td className="py-2">One consistent house-price table to keep ideas concrete.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Model + parameters</td>
+                <td className="py-2">How a line turns inputs into predictions.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Training + loss</td>
+                <td className="py-2">How we compare candidate lines and improve fit.</td>
+              </tr>
+              <tr>
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Visual loop + prediction</td>
+                <td className="py-2">Watch parameters evolve, then use the trained model for a new house.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           By the end, you should have a clearer foundation and probably a lot of
