@@ -26,7 +26,7 @@ export default function ArticleLayout({
 }: ArticleLayoutProps) {
   const hasRightRail = Boolean(rightRail);
   const gridClass = hasRightRail
-    ? "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-12 xl:grid-cols-[280px_minmax(0,1fr)_260px]"
+    ? "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-12 2xl:grid-cols-[280px_minmax(0,1fr)_260px]"
     : "lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-12";
   const maxWidthClass = hasRightRail
     ? "max-w-[1440px] 2xl:max-w-[1560px]"
@@ -56,7 +56,7 @@ export default function ArticleLayout({
         </div>
 
         {rightRail ? (
-          <aside className="hidden xl:sticky xl:top-28 xl:block xl:h-fit xl:self-start">
+          <aside className="hidden 2xl:sticky 2xl:top-28 2xl:block 2xl:h-fit 2xl:self-start">
             {rightRail}
           </aside>
         ) : null}
