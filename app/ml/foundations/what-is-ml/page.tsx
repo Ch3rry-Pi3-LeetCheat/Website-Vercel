@@ -152,7 +152,6 @@ export default function WhatIsMlPage() {
     { id: "visual-intuition", label: "Visual intuition", level: 2 },
     { id: "prediction-demo", label: "Prediction" },
     { id: "example", label: "Python example" },
-    { id: "confusions", label: "Common confusions" },
     { id: "summary", label: "Summary" },
     { id: "key-takeaways", label: "Key takeaways", level: 2 },
     { id: "whats-next", label: "What's next", level: 2 },
@@ -1099,54 +1098,6 @@ export default function WhatIsMlPage() {
           price is{" "}
           £<span className="math-yhat">330,000</span>.
         </p>
-        </div>
-      </section>
-
-      <section id="confusions" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Common confusions
-        </h2>
-        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
-              Is the <span className="math-model">model</span> memorising the data?
-            </div>
-            <div>
-              It can, but the goal is to learn a pattern that works on new examples,
-              not just the training rows.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">How is this different from normal programming?</div>
-            <div>
-              In normal programming you write the rules. In ML, the{" "}
-              <span className="math-model">model</span> learns the rules from examples.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">What does generalise mean?</div>
-            <div>
-              It means the <span className="math-model">model</span> works well on new,
-              unseen data.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">
-              Why can <span className="math-model">models</span> be wrong after training?
-            </div>
-            <div>
-              Real data is messy, and the <span className="math-model">model</span> may
-              be too simple or trained on limited examples.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[260px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Training vs test data?</div>
-            <div>
-              Training data teaches the <span className="math-model">model</span>. Test
-              data checks how well the <span className="math-model">model</span> performs
-              on new examples.
-            </div>
-          </div>
         </div>
       </section>
 
