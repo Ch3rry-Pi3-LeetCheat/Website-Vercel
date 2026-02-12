@@ -84,8 +84,14 @@ export default function PredictionGuidePlot({
   const lineEndY = lineY(bounds.maxX);
   const predictedY = lineY(predictionX);
   const predictedPrice = Math.round(predictedY * yScale);
-  const verticalMidY = (yToSvg(bounds.minY) + yToSvg(predictedY)) / 2;
-  const horizontalMidX = (xToSvg(bounds.minX) + xToSvg(predictionX)) / 2;
+  const predictionXSvg = xToSvg(predictionX);
+  const predictedYSvg = yToSvg(predictedY);
+  const baseYSvg = yToSvg(bounds.minY);
+  const horizontalGuideY = predictedYSvg + 6;
+  const verticalGuideStartY = baseYSvg - 8;
+  const verticalGuideEndY = horizontalGuideY;
+  const verticalMidY = (verticalGuideStartY + verticalGuideEndY) / 2;
+  const horizontalMidX = (xToSvg(bounds.minX) + predictionXSvg) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
   const crossHalfSize = 6.5;
   const arrowId = `${clipId}-arrow`;
@@ -185,39 +191,39 @@ export default function PredictionGuidePlot({
             />
 
             <line
-              x1={xToSvg(predictionX)}
-              y1={yToSvg(bounds.minY)}
-              x2={xToSvg(predictionX)}
-              y2={yToSvg(predictedY)}
+              x1={predictionXSvg}
+              y1={verticalGuideStartY}
+              x2={predictionXSvg}
+              y2={verticalGuideEndY}
               stroke={guideColor}
               strokeWidth={2}
               strokeDasharray="5 5"
               markerEnd={`url(#${arrowId})`}
             />
             <line
-              x1={xToSvg(predictionX)}
-              y1={yToSvg(predictedY)}
+              x1={predictionXSvg}
+              y1={horizontalGuideY}
               x2={xToSvg(bounds.minX) + 2}
-              y2={yToSvg(predictedY)}
+              y2={horizontalGuideY}
               stroke={guideColor}
               strokeWidth={2}
               strokeDasharray="5 5"
               markerEnd={`url(#${arrowId})`}
             />
             <line
-              x1={xToSvg(predictionX) - crossHalfSize}
-              y1={yToSvg(predictedY) - crossHalfSize}
-              x2={xToSvg(predictionX) + crossHalfSize}
-              y2={yToSvg(predictedY) + crossHalfSize}
+              x1={predictionXSvg - crossHalfSize}
+              y1={predictedYSvg - crossHalfSize}
+              x2={predictionXSvg + crossHalfSize}
+              y2={predictedYSvg + crossHalfSize}
               stroke="#ef4444"
               strokeWidth={2.8}
               strokeLinecap="round"
             />
             <line
-              x1={xToSvg(predictionX) - crossHalfSize}
-              y1={yToSvg(predictedY) + crossHalfSize}
-              x2={xToSvg(predictionX) + crossHalfSize}
-              y2={yToSvg(predictedY) - crossHalfSize}
+              x1={predictionXSvg - crossHalfSize}
+              y1={predictedYSvg + crossHalfSize}
+              x2={predictionXSvg + crossHalfSize}
+              y2={predictedYSvg - crossHalfSize}
               stroke="#ef4444"
               strokeWidth={2.8}
               strokeLinecap="round"
@@ -234,24 +240,26 @@ export default function PredictionGuidePlot({
             ))}
           </g>
           <text
-            x={xToSvg(predictionX) + 10}
+            x={predictionXSvg + 10}
             y={verticalMidY}
-            fill="rgba(56, 189, 248, 0.95)"
-            fontSize="11"
+            fill="rgba(248, 250, 252, 0.92)"
+            fontSize="12"
             fontWeight="700"
           >
-            floor area = {predictionX} m
-            <tspan baselineShift="super" fontSize="8">2</tspan>
+            <tspan fill="rgba(56, 189, 248, 0.95)">floor area</tspan>
+            <tspan> = {predictionX} m</tspan>
+            <tspan baselineShift="super" fontSize="9">2</tspan>
           </text>
           <text
             x={horizontalMidX}
-            y={yToSvg(predictedY) - 10}
+            y={horizontalGuideY - 10}
             textAnchor="middle"
-            fill="rgba(244, 114, 182, 0.95)"
-            fontSize="11"
+            fill="rgba(248, 250, 252, 0.92)"
+            fontSize="12"
             fontWeight="700"
           >
-            predicted price = {"\u00A3"}{predictedPrice.toLocaleString("en-GB")}
+            <tspan fill="rgba(244, 114, 182, 0.95)">predicted price</tspan>
+            <tspan> = {"\u00A3"}{predictedPrice.toLocaleString("en-GB")}</tspan>
           </text>
 
           <text
