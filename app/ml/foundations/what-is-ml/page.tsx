@@ -1114,37 +1114,42 @@ export default function WhatIsMlPage() {
         </p>
         <section id="key-takeaways" className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            So, what DID we cover?
+            Key takeaways
           </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So, what{" "}
+            <span className="text-emerald-400">DID</span>{" "}
+            we cover?
+          </p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
               <tbody>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">
                     One branch of ML: <span className="text-white font-semibold">supervised learning</span>.
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">
                     One problem type: <span className="text-white font-semibold">regression</span>.
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">
                     A concrete dataset with <span className="math-x">features</span> and{" "}
                     <span className="math-yhat">labels</span>.
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">
                     How a simple linear <span className="math-model">model</span> maps inputs to predictions.
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">
                     How to compare candidates using <span className="text-white font-semibold">loss</span> and{" "}
@@ -1162,26 +1167,27 @@ export default function WhatIsMlPage() {
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             From the list above, we did cover a lot of ground - so genuinely,
-            well done. But there are also key pieces we deliberately didn&apos;t
+            well done. But there are also key pieces we deliberately{" "}
+            <span className="text-rose-400 font-semibold">DID NOT</span>{" "}
             cover yet, for example:
           </p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
               <tbody>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">❌</td>
                   <td className="py-2">
                     Categorical labels (for example, <span className="text-white">spam</span> vs{" "}
                     <span className="text-white">not spam</span>).
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">❌</td>
                   <td className="py-2">
                     How parameter updates are actually computed each step (the training math).
                   </td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="w-12 py-2 text-center text-lg">❌</td>
                   <td className="py-2">
                     How we evaluate model quality on <span className="text-white">unseen data</span>.
