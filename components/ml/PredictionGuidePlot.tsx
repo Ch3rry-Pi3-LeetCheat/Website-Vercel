@@ -89,7 +89,7 @@ export default function PredictionGuidePlot({
   const baseYSvg = yToSvg(bounds.minY);
   const horizontalGuideY = predictedYSvg;
   const verticalGuideStartY = baseYSvg - 8;
-  const verticalGuideEndY = predictedYSvg + 8;
+  const verticalGuideEndY = predictedYSvg + 6;
   const verticalMidY = (verticalGuideStartY + verticalGuideEndY) / 2;
   const horizontalMidX = (xToSvg(bounds.minX) + predictionXSvg) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
