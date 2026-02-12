@@ -87,9 +87,9 @@ export default function PredictionGuidePlot({
   const predictionXSvg = xToSvg(predictionX);
   const predictedYSvg = yToSvg(predictedY);
   const baseYSvg = yToSvg(bounds.minY);
-  const horizontalGuideY = predictedYSvg + 6;
+  const horizontalGuideY = predictedYSvg;
   const verticalGuideStartY = baseYSvg - 8;
-  const verticalGuideEndY = horizontalGuideY;
+  const verticalGuideEndY = predictedYSvg + 8;
   const verticalMidY = (verticalGuideStartY + verticalGuideEndY) / 2;
   const horizontalMidX = (xToSvg(bounds.minX) + predictionXSvg) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
@@ -201,7 +201,7 @@ export default function PredictionGuidePlot({
               markerEnd={`url(#${arrowId})`}
             />
             <line
-              x1={predictionXSvg}
+              x1={predictionXSvg - 8}
               y1={horizontalGuideY}
               x2={xToSvg(bounds.minX) + 2}
               y2={horizontalGuideY}
