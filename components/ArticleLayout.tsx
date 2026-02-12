@@ -11,6 +11,7 @@ type ArticleLayoutProps = {
   eyebrow: string;
   title: string;
   description: string;
+  descriptionClassName?: string;
   tocItems: TocItem[];
   rightRail?: ReactNode;
   children: ReactNode;
@@ -20,6 +21,7 @@ export default function ArticleLayout({
   eyebrow,
   title,
   description,
+  descriptionClassName,
   tocItems,
   rightRail,
   children,
@@ -47,7 +49,9 @@ export default function ArticleLayout({
             <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
               {title}
             </h1>
-            <p className="max-w-3xl text-base leading-7 text-[color:var(--color-muted)]">
+            <p
+              className={`max-w-3xl text-base leading-7 text-[color:var(--color-muted)] ${descriptionClassName ?? ""}`}
+            >
               {description}
             </p>
           </header>

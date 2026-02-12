@@ -1,5 +1,6 @@
 ﻿import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
+import Link from "next/link";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
@@ -136,6 +137,9 @@ const candidateBMse = candidateBSquaredErrorSum / HOUSE_DATA.length;
 const mseRatio = candidateAMse / candidateBMse;
 const PREDICTION_FLOOR_AREA = 120;
 const predictionFromCandidateB = CANDIDATE_B_THETA0 + CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA;
+const currentLessonHref = "/ml/foundations/what-is-ml";
+const currentLessonIndex = mlFoundationsLessons.findIndex((lesson) => lesson.href === currentLessonHref);
+const nextLesson = currentLessonIndex >= 0 ? mlFoundationsLessons[currentLessonIndex + 1] : undefined;
 
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
@@ -163,7 +167,8 @@ export default function WhatIsMlPage() {
     <ArticleLayout
       eyebrow="ML - Foundations"
       title="What is Machine Learning?"
-      description="An intuitive introduction to machine learning with concrete examples."
+      description="An intuitive, concrete teaser before we dive into the deeper mechanics."
+      descriptionClassName="italic"
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -177,9 +182,12 @@ export default function WhatIsMlPage() {
           Introduction
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We&apos;ll move through a compact sequence below. Each part is there for
-          a reason, so you build intuition and also see how the maths connects
-          to concrete numbers.
+          Welcome - this lesson is built as an intuitive, hands-on hook. We use
+          one concrete example throughout, so the ideas feel tangible while you
+          build a practical mental model of what ML is doing.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Here&apos;s the roadmap for this article and why each part matters:
         </p>
         <div className="ml-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
@@ -1344,6 +1352,18 @@ export default function WhatIsMlPage() {
           </div>
         </div>
       </section>
+
+      {nextLesson ? (
+        <section className="flex justify-end pt-2">
+          <Link
+            href={nextLesson.href}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10"
+          >
+            Next Article
+            <span aria-hidden>→</span>
+          </Link>
+        </section>
+      ) : null}
 
     </ArticleLayout>
   );
