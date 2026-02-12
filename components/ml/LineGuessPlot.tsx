@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 type DataPoint = Record<string, number>;
 
 type LineGuessPlotProps = {
@@ -17,6 +19,7 @@ export default function LineGuessPlot({
   yKey,
   yScale = 1000,
 }: LineGuessPlotProps) {
+  const clipId = useId();
   const points = data.map((row) => ({
     x: row[xKey],
     y: row[yKey] / yScale,
@@ -97,6 +100,16 @@ export default function LineGuessPlot({
           role="img"
           aria-label="Scatter plot of floor area versus price with multiple candidate lines"
         >
+          <defs>
+            <clipPath id={clipId}>
+              <rect
+                x={PADDING.left}
+                y={PADDING.top}
+                width={plotWidth}
+                height={plotHeight}
+              />
+            </clipPath>
+          </defs>
           <rect
             x={PADDING.left}
             y={PADDING.top}
@@ -151,79 +164,47 @@ export default function LineGuessPlot({
             </g>
           ))}
 
-          {guessLines.map((line, idx) => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, line.intercept, line.slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, line.intercept, line.slope))
-            );
-            return (
+          <g clipPath={`url(#${clipId})`}>
+            {guessLines.map((line, idx) => (
               <line
                 key={`guess-${idx}`}
                 x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
+                y1={yToSvg(lineY(bounds.minX, line.intercept, line.slope))}
                 x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
+                y2={yToSvg(lineY(bounds.maxX, line.intercept, line.slope))}
                 stroke="rgba(56, 189, 248, 0.22)"
                 strokeWidth={2}
               />
-            );
-          })}
+            ))}
 
-          {(() => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, intercept, slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, intercept, slope))
-            );
-            return (
-              <line
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
-                stroke="#38bdf8"
-                strokeWidth={3}
-              />
-            );
-          })()}
-
-          {(() => {
-            const startY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.minX, workedExampleLine.intercept, workedExampleLine.slope))
-            );
-            const endY = Math.min(
-              bounds.maxY,
-              Math.max(bounds.minY, lineY(bounds.maxX, workedExampleLine.intercept, workedExampleLine.slope))
-            );
-            return (
-              <line
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(startY)}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(endY)}
-                stroke="#ef4444"
-                strokeWidth={3}
-              />
-            );
-          })()}
-
-          {points.map((point, idx) => (
-            <circle
-              key={`pt-${idx}`}
-              cx={xToSvg(point.x)}
-              cy={yToSvg(point.y)}
-              r={5}
-              fill="#f8fafc"
+            <line
+              x1={xToSvg(bounds.minX)}
+              y1={yToSvg(lineY(bounds.minX, intercept, slope))}
+              x2={xToSvg(bounds.maxX)}
+              y2={yToSvg(lineY(bounds.maxX, intercept, slope))}
+              stroke="#38bdf8"
+              strokeWidth={3}
             />
-          ))}
+
+            <line
+              x1={xToSvg(bounds.minX)}
+              y1={yToSvg(lineY(bounds.minX, workedExampleLine.intercept, workedExampleLine.slope))}
+              x2={xToSvg(bounds.maxX)}
+              y2={yToSvg(lineY(bounds.maxX, workedExampleLine.intercept, workedExampleLine.slope))}
+              stroke="#ef4444"
+              strokeWidth={3}
+            />
+
+            {points.map((point, idx) => (
+              <circle
+                key={`pt-${idx}`}
+                cx={xToSvg(point.x)}
+                cy={yToSvg(point.y)}
+                r={5}
+                fill="#f8fafc"
+              />
+            ))}
+          </g>
 
           <text
             x={CHART_WIDTH / 2}
