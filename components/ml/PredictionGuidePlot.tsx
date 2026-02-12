@@ -93,7 +93,7 @@ export default function PredictionGuidePlot({
   const verticalMidY = (verticalGuideStartY + verticalGuideEndY) / 2;
   const horizontalMidX = (xToSvg(bounds.minX) + predictionXSvg) / 2;
   const guideColor = "rgba(248, 250, 252, 0.9)";
-  const crossHalfSize = 6.5;
+  const crossHalfSize = 7.5;
   const arrowId = `${clipId}-arrow`;
 
   return (
@@ -203,7 +203,7 @@ export default function PredictionGuidePlot({
             <line
               x1={predictionXSvg - 8}
               y1={horizontalGuideY}
-              x2={xToSvg(bounds.minX) + 2}
+              x2={xToSvg(bounds.minX) + 10}
               y2={horizontalGuideY}
               stroke={guideColor}
               strokeWidth={2}
