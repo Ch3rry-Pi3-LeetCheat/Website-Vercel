@@ -2,53 +2,61 @@ import { useId } from "react";
 
 type DataPoint = Record<string, number>;
 
-type LineGuessPlotProps = {
+type PredictionLine = {
+  intercept: number;
+  slope: number;
+};
+
+type PredictionGuidePlotProps = {
   data: DataPoint[];
   xKey: string;
   yKey: string;
   yScale?: number;
-  candidateBLine?: {
-    intercept: number;
-    slope: number;
-  };
+  line: PredictionLine;
+  predictionX: number;
+  lineColor?: string;
+  lineLabel?: string;
 };
 
 const CHART_WIDTH = 640;
 const CHART_HEIGHT = 360;
 const PADDING = { top: 24, right: 24, bottom: 48, left: 64 };
 
-export default function LineGuessPlot({
+const X_TICK_START = 50;
+const X_TICK_STEP = 25;
+const Y_TICK_START = 200;
+const Y_TICK_STEP = 50;
+
+export default function PredictionGuidePlot({
   data,
   xKey,
   yKey,
   yScale = 1000,
-  candidateBLine,
-}: LineGuessPlotProps) {
+  line,
+  predictionX,
+  lineColor = "#38bdf8",
+  lineLabel = "Candidate B model line",
+}: PredictionGuidePlotProps) {
   const clipId = useId();
   const points = data.map((row) => ({
     x: row[xKey],
     y: row[yKey] / yScale,
   }));
 
-  const xs = points.map((p) => p.x);
-  const ys = points.map((p) => p.y);
-  const maxX = Math.max(...xs);
+  const xs = points.map((point) => point.x);
+  const ys = points.map((point) => point.y);
+  const maxX = Math.max(...xs, predictionX);
   const maxY = Math.max(...ys);
 
-  const xTickStart = 50;
-  const xTickStep = 25;
-  const yTickStart = 200;
-  const yTickStep = 50;
-
   const xTickEnd =
-    xTickStart + Math.ceil((maxX - xTickStart) / xTickStep) * xTickStep;
+    X_TICK_START + Math.ceil((maxX - X_TICK_START) / X_TICK_STEP) * X_TICK_STEP;
   const yTickEnd =
-    yTickStart + Math.ceil((maxY - yTickStart) / yTickStep) * yTickStep;
+    Y_TICK_START + Math.ceil((maxY - Y_TICK_START) / Y_TICK_STEP) * Y_TICK_STEP;
 
   const bounds = {
-    minX: xTickStart,
+    minX: X_TICK_START,
     maxX: xTickEnd,
-    minY: yTickStart,
+    minY: Y_TICK_START,
     maxY: yTickEnd,
   };
 
@@ -60,43 +68,21 @@ export default function LineGuessPlot({
   const yToSvg = (y: number) =>
     PADDING.top + plotHeight - ((y - bounds.minY) / (bounds.maxY - bounds.minY)) * plotHeight;
 
-  const meanX = xs.reduce((acc, val) => acc + val, 0) / xs.length;
-  const meanY = ys.reduce((acc, val) => acc + val, 0) / ys.length;
-  const fittedSlope =
-    xs.reduce((acc, x, idx) => acc + (x - meanX) * (ys[idx] - meanY), 0) /
-    xs.reduce((acc, x) => acc + (x - meanX) ** 2, 0);
-  const fittedIntercept = meanY - fittedSlope * meanX;
-  const slope = candidateBLine?.slope ?? fittedSlope;
-  const intercept = candidateBLine?.intercept ?? fittedIntercept;
-
-  const nearlyFlatSlope = 0.1;
-  const negativeSlope = -0.7;
-  const guessLines = [
-    { intercept: intercept + 35, slope: slope - 0.9 },
-    { intercept: intercept - 30, slope: slope + 0.8 },
-    { intercept: intercept + 18, slope: slope + 0.2 },
-    { intercept: intercept - 18, slope: slope - 0.2 },
-    { intercept: bounds.minY + 20, slope: nearlyFlatSlope },
-    { intercept: bounds.maxY - 10, slope: negativeSlope },
-  ];
-  const workedExampleLine = {
-    intercept: 50,
-    slope: 2,
-  };
-
-  const xTickCount = Math.floor((xTickEnd - xTickStart) / xTickStep) + 1;
+  const xTickCount = Math.floor((xTickEnd - X_TICK_START) / X_TICK_STEP) + 1;
+  const yTickCount = Math.floor((yTickEnd - Y_TICK_START) / Y_TICK_STEP) + 1;
   const xTicks = Array.from({ length: xTickCount }, (_, i) => {
-    const raw = xTickStart + i * xTickStep;
+    const raw = X_TICK_START + i * X_TICK_STEP;
     return { raw, x: xToSvg(raw) };
   });
-
-  const yTickCount = Math.floor((yTickEnd - yTickStart) / yTickStep) + 1;
   const yTicks = Array.from({ length: yTickCount }, (_, i) => {
-    const raw = yTickStart + i * yTickStep;
+    const raw = Y_TICK_START + i * Y_TICK_STEP;
     return { raw, y: yToSvg(raw) };
   });
 
-  const lineY = (x: number, b0: number, b1: number) => b0 + b1 * x;
+  const lineY = (x: number) => line.intercept + line.slope * x;
+  const lineStartY = lineY(bounds.minX);
+  const lineEndY = lineY(bounds.maxX);
+  const predictedY = lineY(predictionX);
 
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
@@ -105,7 +91,7 @@ export default function LineGuessPlot({
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           className="h-auto w-full"
           role="img"
-          aria-label="Scatter plot of floor area versus price with multiple candidate lines"
+          aria-label="Prediction guide plot with dashed helper lines"
         >
           <defs>
             <clipPath id={clipId}>
@@ -172,34 +158,38 @@ export default function LineGuessPlot({
           ))}
 
           <g clipPath={`url(#${clipId})`}>
-            {guessLines.map((line, idx) => (
-              <line
-                key={`guess-${idx}`}
-                x1={xToSvg(bounds.minX)}
-                y1={yToSvg(lineY(bounds.minX, line.intercept, line.slope))}
-                x2={xToSvg(bounds.maxX)}
-                y2={yToSvg(lineY(bounds.maxX, line.intercept, line.slope))}
-                stroke="rgba(56, 189, 248, 0.22)"
-                strokeWidth={2}
-              />
-            ))}
-
             <line
               x1={xToSvg(bounds.minX)}
-              y1={yToSvg(lineY(bounds.minX, intercept, slope))}
+              y1={yToSvg(lineStartY)}
               x2={xToSvg(bounds.maxX)}
-              y2={yToSvg(lineY(bounds.maxX, intercept, slope))}
-              stroke="#38bdf8"
+              y2={yToSvg(lineEndY)}
+              stroke={lineColor}
               strokeWidth={3}
             />
 
             <line
+              x1={xToSvg(predictionX)}
+              y1={yToSvg(bounds.minY)}
+              x2={xToSvg(predictionX)}
+              y2={yToSvg(predictedY)}
+              stroke="rgba(56, 189, 248, 0.8)"
+              strokeWidth={2}
+              strokeDasharray="5 5"
+            />
+            <line
               x1={xToSvg(bounds.minX)}
-              y1={yToSvg(lineY(bounds.minX, workedExampleLine.intercept, workedExampleLine.slope))}
-              x2={xToSvg(bounds.maxX)}
-              y2={yToSvg(lineY(bounds.maxX, workedExampleLine.intercept, workedExampleLine.slope))}
-              stroke="#ef4444"
-              strokeWidth={3}
+              y1={yToSvg(predictedY)}
+              x2={xToSvg(predictionX)}
+              y2={yToSvg(predictedY)}
+              stroke="rgba(56, 189, 248, 0.8)"
+              strokeWidth={2}
+              strokeDasharray="5 5"
+            />
+            <circle
+              cx={xToSvg(predictionX)}
+              cy={yToSvg(predictedY)}
+              r={4.5}
+              fill={lineColor}
             />
 
             {points.map((point, idx) => (
@@ -207,7 +197,7 @@ export default function LineGuessPlot({
                 key={`pt-${idx}`}
                 cx={xToSvg(point.x)}
                 cy={yToSvg(point.y)}
-                r={5}
+                r={4.5}
                 fill="#f8fafc"
               />
             ))}
@@ -220,7 +210,7 @@ export default function LineGuessPlot({
             fill="rgba(226, 232, 240, 0.7)"
             fontSize="12"
           >
-            Floor area (m²)
+            Floor area (m^2)
           </text>
           <text
             x={18}
@@ -230,26 +220,23 @@ export default function LineGuessPlot({
             fontSize="12"
             transform={`rotate(-90 18 ${CHART_HEIGHT / 2})`}
           >
-            Price (£000s)
+            Price (GBP 000s)
           </text>
         </svg>
       </div>
+
       <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-[color:var(--color-muted)]">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-white" />
           <span>Data points (houses)</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[#38bdf8]" />
-          <span>Candidate B</span>
+          <span className="h-0.5 w-5" style={{ backgroundColor: lineColor }} />
+          <span>{lineLabel}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[#ef4444]" />
-          <span>Candidate A</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="h-0.5 w-5 bg-[rgba(56,189,248,0.3)]" />
-          <span>Other guesses</span>
+          <span className="h-0.5 w-5 border-t-2 border-dashed border-[#38bdf8]" />
+          <span>Prediction guides (x to line, then line to y)</span>
         </div>
       </div>
     </div>
