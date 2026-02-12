@@ -25,7 +25,8 @@ const nextLesson = currentLessonIndex >= 0 ? mlFoundationsLessons[currentLessonI
 export default function DataTypesFeaturesLabelsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
-    { id: "recap", label: "Quick recap" },
+    { id: "recap", label: "Quick recap", level: 2 },
+    { id: "page-roadmap", label: "What this page covers", level: 2 },
     { id: "dataset", label: "Example dataset" },
     { id: "roles", label: "Features vs label" },
     { id: "label-type", label: "Label decides problem type" },
@@ -54,47 +55,105 @@ export default function DataTypesFeaturesLabelsPage() {
     >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
-          This lesson is one of the highest-leverage pieces of ML: defining{" "}
-          <span className="math-x">features</span> and the{" "}
-          <span className="math-y">label</span> correctly.
+          Welcome back. In the previous lesson, we built a practical intuition
+          for machine learning using one house-price example from start to
+          finish.
         </p>
-        <p>
-          If this split is unclear, training can look good while real-world
-          performance is poor. If this split is clean, everything that follows
-          gets easier.
-        </p>
-        <p>
-          We will stay concrete: one running dataset, practical examples, and
-          quick checks you can apply to your own projects.
-        </p>
-      </InfoPanel>
-
-      <section id="recap" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+        <h3 id="recap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
           Quick recap
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          From the previous lesson:
+        </h3>
+        <p>
+          High level, we framed a model as a function that maps inputs to a
+          prediction:
           {" "}
-          <MathInline tex={String.raw`\hat{y} = f(x;\theta)`} className="math-inline" />.
-        </p>
-        <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <p>
-            <span className="math-x">x</span> is the input vector (your features).
-          </p>
-          <p>
-            <span className="math-y">y</span> is the true output (your label).
-          </p>
-          <p>
+          <span className="ml-1">
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-            {" "}is the model&apos;s predicted output.
+          </span>
+          <span className="px-1 text-white">=</span>
+          <MathInline tex={String.raw`f`} className="math-inline math-model" />
+          <span className="text-white">(</span>
+          <MathInline tex={String.raw`x`} className="math-inline math-x" />
+          <span className="text-white">;</span>
+          <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+          <span className="text-white">)</span>
+          .
+        </p>
+        <p>
+          We also used concrete values:
+        </p>
+        <div className="ml-4 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
+          <p>
+            One row from the dataset:
+            {" "}
+            <span className="math-x font-mono">floor_area_m2</span>
+            {" = 110, "}
+            <span className="math-x font-mono">bedrooms</span>
+            {" = 3, "}
+            <span className="math-x font-mono">distance_to_centre_km</span>
+            {" = 2.8, "}
+            <span className="math-y font-mono">price_gbp</span>
+            {" = 365000."}
           </p>
           <p>
-            <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
-            {" "}are learned settings that connect features to predictions.
+            A trained linear model from the Python example had
+            {" "}
+            <MathInline tex={String.raw`\theta_0 \approx 124452`} className="math-inline math-theta" />
+            {", "}
+            <MathInline tex={String.raw`\theta_1 \approx 2050`} className="math-inline math-theta" />
+            {", "}
+            <MathInline tex={String.raw`\theta_2 \approx 14690`} className="math-inline math-theta" />
+            {", "}
+            <MathInline tex={String.raw`\theta_3 \approx -8379`} className="math-inline math-theta" />
+            .
+          </p>
+          <p>
+            For a new house
+            {" "}
+            <MathInline tex={String.raw`(100,\ 3,\ 4.0)`} className="math-inline math-x" />
+            {", the prediction was "}
+            <MathInline tex={String.raw`\hat{y} \approx 330000`} className="math-inline math-yhat" />
+            .
           </p>
         </div>
-      </section>
+        <p>
+          Notice those are all numeric values. But real ML data is often mixed:
+          categories, booleans, text, dates, and more. That is exactly what we
+          formalize in this lesson.
+        </p>
+        <h3 id="page-roadmap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
+          What this page covers
+        </h3>
+        <p>
+          We will move through a practical sequence that mirrors how real ML
+          pipelines are built:
+        </p>
+        <div className="ml-4 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Dataset framing</td>
+                <td className="py-2">Reuse one house dataset so each new concept stacks cleanly.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Features vs label</td>
+                <td className="py-2">Separate model inputs from the target we want to predict.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Data types</td>
+                <td className="py-2">Handle numeric, categorical, text, boolean, and datetime fields correctly.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Model-ready data</td>
+                <td className="py-2">See how raw columns become usable feature vectors.</td>
+              </tr>
+              <tr>
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Pitfalls + checks</td>
+                <td className="py-2">Practice leakage detection and role assignment with interactive checks.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </InfoPanel>
 
       <section id="dataset" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -208,6 +267,14 @@ export default function DataTypesFeaturesLabelsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Common data types
         </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          In the recap, all example values were numeric. That is common in
+          tutorials, but production datasets are usually mixed-type.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The model still needs numeric tensors eventually, so the practical
+          skill is knowing how each raw type should be represented.
+        </p>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
             <thead>
