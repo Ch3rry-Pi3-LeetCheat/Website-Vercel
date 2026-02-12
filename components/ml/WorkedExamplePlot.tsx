@@ -91,16 +91,6 @@ export default function WorkedExamplePlot({
   const predictedAtHighlight =
     highlightX !== undefined ? lineY(highlightX) : undefined;
   const actualAtHighlight = highlightPoint?.y;
-  const gapValue =
-    predictedAtHighlight !== undefined && actualAtHighlight !== undefined
-      ? Math.abs(predictedAtHighlight - actualAtHighlight) * yScale
-      : undefined;
-
-  const formatGap = (value: number) =>
-    value.toLocaleString("en-GB", {
-      maximumFractionDigits: 0,
-    });
-
   return (
     <div className="glass-panel rounded-2xl p-4 md:p-6">
       <div className="w-full overflow-hidden">
@@ -176,75 +166,16 @@ export default function WorkedExamplePlot({
           {showErrorBar &&
             highlightX !== undefined &&
             actualAtHighlight !== undefined &&
-            predictedAtHighlight !== undefined &&
-            (() => {
-              const x = xToSvg(highlightX);
-              const yActual = yToSvg(actualAtHighlight);
-              const yPredicted = yToSvg(predictedAtHighlight);
-              const topY = Math.min(yActual, yPredicted);
-              const bottomY = Math.max(yActual, yPredicted);
-              const midY = (topY + bottomY) / 2;
-              const capSize = 7;
-              const braceX = x + 18;
-              const braceWidth = 8;
-              const braceBend = Math.max(8, (bottomY - topY) * 0.22);
-              const bracePath = [
-                `M ${braceX} ${topY}`,
-                `C ${braceX + braceWidth} ${topY}, ${braceX + braceWidth} ${midY - braceBend}, ${braceX} ${midY}`,
-                `C ${braceX - braceWidth} ${midY + braceBend}, ${braceX - braceWidth} ${bottomY}, ${braceX} ${bottomY}`,
-              ].join(" ");
-
-              return (
-                <g>
-                  <line
-                    x1={x}
-                    y1={yPredicted}
-                    x2={x}
-                    y2={yActual}
-                    stroke="rgba(244, 114, 182, 0.65)"
-                    strokeWidth={2}
-                  />
-                  <line
-                    x1={x - capSize}
-                    y1={yPredicted}
-                    x2={x + capSize}
-                    y2={yPredicted}
-                    stroke="rgba(244, 114, 182, 0.65)"
-                    strokeWidth={2}
-                  />
-                  <line
-                    x1={x - capSize}
-                    y1={yActual}
-                    x2={x + capSize}
-                    y2={yActual}
-                    stroke="rgba(244, 114, 182, 0.65)"
-                    strokeWidth={2}
-                  />
-                  <path
-                    d={bracePath}
-                    fill="none"
-                    stroke="rgba(244, 114, 182, 0.9)"
-                    strokeWidth={1.8}
-                    strokeLinecap="round"
-                  />
-                  {gapValue !== undefined && (
-                    <text
-                      x={braceX + 14}
-                      y={midY}
-                      textAnchor="start"
-                      dominantBaseline="middle"
-                      fill="rgba(226, 232, 240, 0.95)"
-                      fontSize="12"
-                      paintOrder="stroke"
-                      stroke="rgba(10, 14, 22, 0.85)"
-                      strokeWidth={3}
-                    >
-                      £{formatGap(gapValue)} gap
-                    </text>
-                  )}
-                </g>
-              );
-            })()}
+            predictedAtHighlight !== undefined && (
+              <line
+                x1={xToSvg(highlightX)}
+                y1={yToSvg(predictedAtHighlight)}
+                x2={xToSvg(highlightX)}
+                y2={yToSvg(actualAtHighlight)}
+                stroke="rgba(244, 114, 182, 0.65)"
+                strokeWidth={2}
+              />
+            )}
 
           {points.map((point, idx) => (
             <circle
