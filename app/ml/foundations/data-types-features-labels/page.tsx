@@ -22,15 +22,24 @@ const currentLessonHref = "/ml/foundations/data-types-features-labels";
 const currentLessonIndex = mlFoundationsLessons.findIndex((lesson) => lesson.href === currentLessonHref);
 const nextLesson = currentLessonIndex >= 0 ? mlFoundationsLessons[currentLessonIndex + 1] : undefined;
 
+function ThetaWithIndex({ index }: { index: 0 | 1 | 2 | 3 }) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{index}</sub>
+    </span>
+  );
+}
+
 export default function DataTypesFeaturesLabelsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
     { id: "recap", label: "Quick recap", level: 2 },
     { id: "page-roadmap", label: "What this page covers", level: 2 },
+    { id: "types", label: "Common data types" },
     { id: "dataset", label: "Example dataset" },
     { id: "roles", label: "Features vs label" },
     { id: "label-type", label: "Label decides problem type" },
-    { id: "types", label: "Common data types" },
     { id: "prep", label: "From raw to model-ready" },
     { id: "quality", label: "Feature quality" },
     { id: "notation", label: "Notation (X and y)" },
@@ -57,24 +66,25 @@ export default function DataTypesFeaturesLabelsPage() {
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
           Welcome back. This lesson builds directly on the previous article and
-          shifts from a high-level intuition to cleaner data framing.
+          shifts from a high-level intuition to <span className="font-semibold text-white">cleaner data framing</span>.
         </p>
         <h3 id="recap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
           Quick recap
         </h3>
         <p>
           In the last article, we began our machine-learning journey by
-          introducing core ideas at a fundamental level. We defined a model as
-          something that captures relationships between input attributes and an
-          output we want to predict.
+          introducing core ideas at a fundamental level. We defined a{" "}
+          <span className="math-model">model</span> as something that captures relationships between{" "}
+          <span className="math-x">input</span> attributes and an{" "}
+          <span className="math-yhat">output</span> we want to predict.
         </p>
         <p className="math-center text-2xl">
-          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          <span className="px-1 text-white">=</span>
-          <MathInline tex={String.raw`f`} className="math-inline math-model" />
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
+          <span className="text-white">=</span>{" "}
+          <MathInline tex={String.raw`f`} className="math-inline math-model" />{" "}
           <span className="text-white">(</span>
           <MathInline tex={String.raw`x`} className="math-inline math-x" />
-          <span className="text-white">;</span>
+          <span className="text-white">; </span>
           <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
           <span className="text-white">)</span>
         </p>
@@ -115,10 +125,10 @@ export default function DataTypesFeaturesLabelsPage() {
                   <td className="py-2">265,000</td>
                 </tr>
                 <tr className="border-b border-white/10">
-                  <td className="py-2 text-white/70">⋯</td>
-                  <td className="py-2 text-white/70">⋯</td>
-                  <td className="py-2 text-white/70">⋯</td>
-                  <td className="py-2 text-white/70">⋯</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
                 </tr>
                 <tr>
                   <td className="py-2">160</td>
@@ -139,62 +149,88 @@ export default function DataTypesFeaturesLabelsPage() {
           <span className="math-y font-mono">price_gbp</span>).
         </p>
         <p>
-          Using those feature values, we trained a model. We started with a
+          Using those feature values, we trained a <span className="math-model">model</span>. We started with a
           simple one-feature example (<span className="math-x">floor_area_m2</span>)
           and then progressed to Python with all three features. At a high
           level, we showed how training seeks to reduce aggregate loss across
           repeated learning loops, and we visualized that process.
         </p>
         <p>
+          In that multivariable setup, the prediction equation is:
+        </p>
+        <p className="math-center text-xl leading-9">
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />{" "}
+          <span className="text-white">=</span>{" "}
+          <ThetaWithIndex index={0} /> <span className="text-white">+</span>{" "}
+          <ThetaWithIndex index={1} /> <span className="text-white">&times;</span>{" "}
+          <span className="math-x font-mono">floor_area_m2</span>{" "}
+          <span className="text-white">+</span>{" "}
+          <ThetaWithIndex index={2} /> <span className="text-white">&times;</span>{" "}
+          <span className="math-x font-mono">bedrooms</span>{" "}
+          <span className="text-white">+</span>{" "}
+          <ThetaWithIndex index={3} /> <span className="text-white">&times;</span>{" "}
+          <span className="math-x font-mono">distance_to_centre_km</span>
+        </p>
+        <p>
           From the multivariable Python run, we learned the following parameter
           values:
         </p>
-        <div className="ml-4 grid gap-1 text-base leading-7 text-[color:var(--color-muted)]">
-          <p>
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
-            <span className="text-white"> ≈ </span>
-            <span className="text-white">124,452</span>
-          </p>
-          <p>
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
-            <span className="text-white"> ≈ </span>
-            <span className="text-white">2,050</span>
-          </p>
-          <p>
-            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
-            <span className="text-white"> ≈ </span>
-            <span className="text-white">14,690</span>
-          </p>
-          <p>
-            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
-            <span className="text-white"> ≈ </span>
-            <span className="text-white">-8,379</span>
-          </p>
+        <div className="ml-4 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <thead>
+              <tr className="border-b border-white/10 text-white">
+                <th className="py-2 pr-4">Term</th>
+                <th className="py-2 pr-4">Parameter</th>
+                <th className="py-2">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4">Intercept</td>
+                <td className="py-2 pr-4"><ThetaWithIndex index={0} /></td>
+                <td className="py-2 text-white">&asymp; 124,452</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">floor_area_m2</span></td>
+                <td className="py-2 pr-4"><ThetaWithIndex index={1} /></td>
+                <td className="py-2 text-white">&asymp; 2,050</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">bedrooms</span></td>
+                <td className="py-2 pr-4"><ThetaWithIndex index={2} /></td>
+                <td className="py-2 text-white">&asymp; 14,690</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4"><span className="math-x font-mono">distance_to_centre_km</span></td>
+                <td className="py-2 pr-4"><ThetaWithIndex index={3} /></td>
+                <td className="py-2 text-white">&asymp; -8,379</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <p>
           We then used those values to predict the selling price of a new
-          house with
-          {" "}
-          <MathInline tex={String.raw`100\,m^2`} className="math-inline math-x" />
-          {", "}
-          <MathInline tex={String.raw`3`} className="math-inline math-x" />
-          {" bedrooms, and "}
-          <MathInline tex={String.raw`4\,km`} className="math-inline math-x" />
-          {" from the centre:"}
+          house with <span className="math-x">100</span><span className="text-white"> m^2</span>, <span className="math-x">3</span><span className="text-white"> bedrooms</span>, and <span className="math-x">4</span><span className="text-white"> km</span> from the centre:
         </p>
         <p className="math-center text-2xl">
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-          <span className="text-white"> ≈ </span>
+          <span className="text-white"> &asymp; </span>
           <span className="text-white">330,000</span>
         </p>
         <p>
-          You may have noticed that all values above are numeric. That was
-          intentional. ML models naturally operate on numbers.
+          You may have noticed that all values above are <em>numeric</em>. That
+          was intentional.{" "}
+          <span className="font-semibold text-white">
+            ML models naturally operate on numbers.
+          </span>
         </p>
         <p>
-          But real datasets are often broader. For houses, we might also have
-          a parking field with yes/no values, categorical columns with many
-          possible values, or date fields such as build year.
+          But real datasets are often broader. For houses, we might also have a{" "}
+          <span className="math-x">parking field</span> with{" "}
+          <span className="text-emerald-400">yes</span>/<span className="text-rose-400">no</span>{" "}
+          values, <span className="math-x">categorical columns</span> with many
+          possible values, or <span className="math-x">date fields</span> such
+          as listing date.
         </p>
         <p>
           Data type matters because different types usually need different
@@ -204,9 +240,12 @@ export default function DataTypesFeaturesLabelsPage() {
         </p>
         <p>
           In this page, we will not go deep into full implementation details.
-          Instead, we will build intuition for key data types, why they matter,
+          Instead, we will build intuition for{" "}
+          <span className="font-semibold text-white">key data types</span>,{" "}
+          <span className="font-semibold text-white">why they matter</span>,
           and the kinds of conceptual handling choices you will meet next (for
-          example text handling and scale-related issues).
+          example handling <em>text</em> fields and <em>scale-related</em>{" "}
+          issues).
         </p>
         <h3 id="page-roadmap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
           What this page covers
@@ -242,6 +281,128 @@ export default function DataTypesFeaturesLabelsPage() {
           </table>
         </div>
       </InfoPanel>
+
+      <section id="types" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Common data types
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Before we return to house prices, here is a small mixed-type dataset
+          for a loan-default task. It shows why data type awareness matters in
+          practice.
+        </p>
+        <div className="glass-panel rounded-2xl p-4">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <thead>
+                <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                  <th className="py-2"><span className="math-x">age</span></th>
+                  <th className="py-2"><span className="math-x">inc_k</span></th>
+                  <th className="py-2"><span className="math-x">util_rt</span></th>
+                  <th className="py-2"><span className="math-x">emp_tp</span></th>
+                  <th className="py-2"><span className="math-x">has_late</span></th>
+                  <th className="py-2"><span className="math-x">app_dt</span></th>
+                  <th className="py-2"><span className="math-y">default</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">29</td>
+                  <td className="py-2">52.4</td>
+                  <td className="py-2">0.37</td>
+                  <td className="py-2">salaried</td>
+                  <td className="py-2 text-emerald-400">no</td>
+                  <td className="py-2">2025-01-14</td>
+                  <td className="py-2 text-emerald-400">no</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">45</td>
+                  <td className="py-2">88.9</td>
+                  <td className="py-2">0.21</td>
+                  <td className="py-2">self_emp</td>
+                  <td className="py-2 text-rose-400">yes</td>
+                  <td className="py-2">2025-01-20</td>
+                  <td className="py-2 text-rose-400">yes</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">34</td>
+                  <td className="py-2">41.2</td>
+                  <td className="py-2">0.48</td>
+                  <td className="py-2">contract</td>
+                  <td className="py-2 text-rose-400">yes</td>
+                  <td className="py-2">2025-02-02</td>
+                  <td className="py-2 text-rose-400">yes</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">51</td>
+                  <td className="py-2">73.0</td>
+                  <td className="py-2">0.19</td>
+                  <td className="py-2">salaried</td>
+                  <td className="py-2 text-emerald-400">no</td>
+                  <td className="py-2">2025-02-11</td>
+                  <td className="py-2 text-emerald-400">no</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                  <td className="py-2 text-white/70">&hellip;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <thead>
+              <tr className="border-b border-white/10 text-white">
+                <th className="py-2 pr-4">Column</th>
+                <th className="py-2 pr-4">Type</th>
+                <th className="py-2">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">age</span></td>
+                <td className="py-2 pr-4">Integer</td>
+                <td className="py-2">29, 45</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">inc_k</span>, <span className="math-x font-mono">util_rt</span></td>
+                <td className="py-2 pr-4">Float / decimal</td>
+                <td className="py-2">52.4, 0.37</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">has_late</span></td>
+                <td className="py-2 pr-4">Boolean</td>
+                <td className="py-2"><span className="text-rose-400">yes</span> / <span className="text-emerald-400">no</span></td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">emp_tp</span></td>
+                <td className="py-2 pr-4">Categorical string</td>
+                <td className="py-2">salaried, self_emp, contract</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-2 pr-4"><span className="math-x font-mono">app_dt</span></td>
+                <td className="py-2 pr-4">Date</td>
+                <td className="py-2">2025-02-11</td>
+              </tr>
+              <tr>
+                <td className="py-2 pr-4"><span className="math-y font-mono">default</span></td>
+                <td className="py-2 pr-4">Target label (boolean)</td>
+                <td className="py-2"><span className="text-rose-400">yes</span> / <span className="text-emerald-400">no</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We will now return to the house-price dataset and keep building from
+          there.
+        </p>
+      </section>
 
       <section id="dataset" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -345,58 +506,6 @@ export default function DataTypesFeaturesLabelsPage() {
                 <td className="py-2 pr-4">Many classes</td>
                 <td className="py-2 pr-4">topic = sports/news/politics</td>
                 <td className="py-2">Multiclass classification</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="types" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Common data types
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In the recap, all example values were numeric. That is common in
-          tutorials, but production datasets are usually mixed-type.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The model still needs numeric tensors eventually, so the practical
-          skill is knowing how each raw type should be represented.
-        </p>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-            <thead>
-              <tr className="border-b border-white/10 text-white">
-                <th className="py-2 pr-4">Type</th>
-                <th className="py-2 pr-4">Looks like</th>
-                <th className="py-2">Typical ML handling</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Numeric</td>
-                <td className="py-2 pr-4">52, 130, 390000</td>
-                <td className="py-2">Often usable directly, sometimes scaled.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Categorical</td>
-                <td className="py-2 pr-4">flat, semi, detached</td>
-                <td className="py-2">Encode categories to numeric columns.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Boolean</td>
-                <td className="py-2 pr-4">true / false</td>
-                <td className="py-2">Map to 0 / 1.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">Text</td>
-                <td className="py-2 pr-4">&quot;great location&quot;</td>
-                <td className="py-2">Convert to numeric vectors first.</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-4">Datetime</td>
-                <td className="py-2 pr-4">2026-02-12</td>
-                <td className="py-2">Extract useful parts (month, age, weekday).</td>
               </tr>
             </tbody>
           </table>
