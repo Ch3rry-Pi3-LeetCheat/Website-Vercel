@@ -150,6 +150,62 @@ function ThetaWithIndex({ index }: { index: 0 | 1 | 2 | 3 }) {
   );
 }
 
+function YHatWithLabel({ label }: { label: "A" | "B" }) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{label}</sub>
+    </span>
+  );
+}
+
+function YWithIndex({ index }: { index: number }) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`y`} className="math-inline math-y" />
+      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{index}</sub>
+    </span>
+  );
+}
+
+function YHatWithIndexCandidate({
+  index,
+  candidate,
+  candidateClassName,
+}: {
+  index: number;
+  candidate: "A" | "B";
+  candidateClassName: string;
+}) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+      <sub className="ml-[1px] text-[0.72em] leading-none">
+        <span className="text-white">{index}</span>
+        <span className="text-white">,</span>
+        <span className={candidateClassName}>{candidate}</span>
+      </sub>
+    </span>
+  );
+}
+
+function MseWithCandidate({
+  candidate,
+  candidateClassName,
+}: {
+  candidate: "A" | "B";
+  candidateClassName: string;
+}) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`MSE`} className="math-inline math-neutral" />
+      <sub className={`ml-[1px] text-[0.72em] leading-none ${candidateClassName}`}>
+        {candidate}
+      </sub>
+    </span>
+  );
+}
+
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
@@ -596,21 +652,21 @@ export default function WhatIsMlPage() {
             <div>
               <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
               <span className="text-white"> = </span>
-              <span className="text-[#ef4444]">50,000</span>
+              <span className="text-white">50,000</span>
               <span className="text-white"> + </span>
-              <span className="text-[#ef4444]">2,000</span>
+              <span className="text-white">2,000</span>
               <span className="text-white"> × </span>
-              <span className="text-[#ef4444]">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
+              <span className="text-white">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
             </div>
             <div>
               <span className="text-white">= </span>
-              <span className="text-[#ef4444]">50,000</span>
+              <span className="text-white">50,000</span>
               <span className="text-white"> + </span>
-              <span className="text-[#ef4444]">220,000</span>
+              <span className="text-white">220,000</span>
             </div>
             <div>
               <span className="text-white">= </span>
-              <span className="text-[#ef4444]">270,000</span>
+              <span className="text-white">270,000</span>
             </div>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -629,21 +685,21 @@ export default function WhatIsMlPage() {
             <div>
               <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
               <span className="text-white"> = </span>
-              <span className="text-[#38bdf8]">{candidateBIntercept.toLocaleString("en-GB")}</span>
+              <span className="text-white">{candidateBIntercept.toLocaleString("en-GB")}</span>
               <span className="text-white"> + </span>
-              <span className="text-[#38bdf8]">{candidateBSlope.toLocaleString("en-GB")}</span>
+              <span className="text-white">{candidateBSlope.toLocaleString("en-GB")}</span>
               <span className="text-white"> × </span>
-              <span className="text-[#38bdf8]">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
+              <span className="text-white">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
             </div>
             <div>
               <span className="text-white">= </span>
-              <span className="text-[#38bdf8]">{candidateBIntercept.toLocaleString("en-GB")}</span>
+              <span className="text-white">{candidateBIntercept.toLocaleString("en-GB")}</span>
               <span className="text-white"> + </span>
-              <span className="text-[#38bdf8]">{candidateBContribution.toLocaleString("en-GB")}</span>
+              <span className="text-white">{candidateBContribution.toLocaleString("en-GB")}</span>
             </div>
             <div>
               <span className="text-white">= </span>
-              <span className="text-[#38bdf8]">{candidateBApproxPrediction.toLocaleString("en-GB")}</span>
+              <span className="text-white">{candidateBApproxPrediction.toLocaleString("en-GB")}</span>
             </div>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -704,38 +760,65 @@ export default function WhatIsMlPage() {
           <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>. The error
           bar is the gap between prediction and truth for this one point.
         </p>
-        <MathBlock
-          tex={`\\begin{aligned}
-            \\hat{y}_A - y &= ${candidateAPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} \\\\
-            &= ${candidateAError.toLocaleString("en-GB")}
-          \\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90 grid gap-1">
+          <div>
+            <YHatWithLabel label="A" />
+            <span className="text-white"> - </span>
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            <span className="text-white"> = {candidateAPrediction.toLocaleString("en-GB")} - {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>
+          </div>
+          <div>
+            <span className="text-white">= {candidateAError.toLocaleString("en-GB")}</span>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For <span className="text-[#ef4444]">Candidate A</span>, the loss at
           this point is the squared error:
         </p>
-        <MathBlock
-          tex={`\\begin{aligned}
-            (\\hat{y}_A - y)^2 &= (${candidateAError.toLocaleString("en-GB")})^2 \\\\
-            &= ${candidateALoss.toLocaleString("en-GB")}
-          \\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90 grid gap-1">
+          <div>
+            <span className="text-white">(</span>
+            <YHatWithLabel label="A" />
+            <span className="text-white"> - </span>
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            <span className="text-white">)</span>
+            <sup className="text-white">2</sup>
+            <span className="text-white"> = ({candidateAError.toLocaleString("en-GB")})</span>
+            <sup className="text-white">2</sup>
+          </div>
+          <div>
+            <span className="text-white">= {candidateALoss.toLocaleString("en-GB")}</span>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Now do the same for{" "}
           <span className="text-[#38bdf8]">Candidate B</span> at the same floor
           area:
         </p>
-        <MathBlock
-          tex={`\\begin{aligned}
-            \\hat{y}_B - y &= ${candidateBPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} \\\\
-            &= ${candidateBError.toLocaleString("en-GB")} \\\\
-            (\\hat{y}_B - y)^2 &= (${candidateBError.toLocaleString("en-GB")})^2 \\\\
-            &= ${candidateBLoss.toLocaleString("en-GB")}
-          \\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90 grid gap-1">
+          <div>
+            <YHatWithLabel label="B" />
+            <span className="text-white"> - </span>
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            <span className="text-white"> = {candidateBPrediction.toLocaleString("en-GB")} - {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>
+          </div>
+          <div>
+            <span className="text-white">= {candidateBError.toLocaleString("en-GB")}</span>
+          </div>
+          <div className="pt-1">
+            <span className="text-white">(</span>
+            <YHatWithLabel label="B" />
+            <span className="text-white"> - </span>
+            <MathInline tex={String.raw`y`} className="math-inline math-y" />
+            <span className="text-white">)</span>
+            <sup className="text-white">2</sup>
+            <span className="text-white"> = ({candidateBError.toLocaleString("en-GB")})</span>
+            <sup className="text-white">2</sup>
+          </div>
+          <div>
+            <span className="text-white">= {candidateBLoss.toLocaleString("en-GB")}</span>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           At <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>,{" "}
@@ -794,28 +877,112 @@ export default function WhatIsMlPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#ef4444]">Candidate A</span> MSE:
           </p>
-          <MathBlock
-            tex={`\\begin{aligned}
-              MSE_A &= \\frac{(y_1-\\hat{y}_{1,A})^2 + (y_2-\\hat{y}_{2,A})^2 + \\cdots + (y_8-\\hat{y}_{8,A})^2}{8} \\\\
-              &= \\frac{${candidateASquaredErrors[0].toLocaleString("en-GB")} + ${candidateASquaredErrors[1].toLocaleString("en-GB")} + \\cdots + ${candidateASquaredErrors[7].toLocaleString("en-GB")}}{8} \\\\
-              &= \\frac{${candidateASquaredErrorSum.toLocaleString("en-GB")}}{8} \\\\
-              &= ${candidateAMse.toLocaleString("en-GB")}
-            \\end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90 grid gap-1">
+            <div>
+              <MseWithCandidate candidate="A" candidateClassName="text-[#ef4444]" />
+              <span className="text-white"> = (</span>
+              <YWithIndex index={1} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={1}
+                candidate="A"
+                candidateClassName="text-[#ef4444]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white"> + (</span>
+              <YWithIndex index={2} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={2}
+                candidate="A"
+                candidateClassName="text-[#ef4444]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white"> + ... + (</span>
+              <YWithIndex index={8} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={8}
+                candidate="A"
+                candidateClassName="text-[#ef4444]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white">) / 8</span>
+            </div>
+            <div>
+              <span className="text-white">
+                = ({candidateASquaredErrors[0].toLocaleString("en-GB")} +{" "}
+                {candidateASquaredErrors[1].toLocaleString("en-GB")} + ... +{" "}
+                {candidateASquaredErrors[7].toLocaleString("en-GB")}) / 8
+              </span>
+            </div>
+            <div>
+              <span className="text-white">
+                = {candidateASquaredErrorSum.toLocaleString("en-GB")} / 8
+              </span>
+            </div>
+            <div>
+              <span className="text-white">= {candidateAMse.toLocaleString("en-GB")}</span>
+            </div>
+          </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#38bdf8]">Candidate B</span> MSE:
           </p>
-          <MathBlock
-            tex={`\\begin{aligned}
-              MSE_B &= \\frac{(y_1-\\hat{y}_{1,B})^2 + (y_2-\\hat{y}_{2,B})^2 + \\cdots + (y_8-\\hat{y}_{8,B})^2}{8} \\\\
-              &= \\frac{${candidateBSquaredErrors[0].toLocaleString("en-GB")} + ${candidateBSquaredErrors[1].toLocaleString("en-GB")} + \\cdots + ${candidateBSquaredErrors[7].toLocaleString("en-GB")}}{8} \\\\
-              &= \\frac{${candidateBSquaredErrorSum.toLocaleString("en-GB")}}{8} \\\\
-              &= ${candidateBMse.toLocaleString("en-GB")}
-            \\end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90 grid gap-1">
+            <div>
+              <MseWithCandidate candidate="B" candidateClassName="text-[#38bdf8]" />
+              <span className="text-white"> = (</span>
+              <YWithIndex index={1} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={1}
+                candidate="B"
+                candidateClassName="text-[#38bdf8]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white"> + (</span>
+              <YWithIndex index={2} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={2}
+                candidate="B"
+                candidateClassName="text-[#38bdf8]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white"> + ... + (</span>
+              <YWithIndex index={8} />
+              <span className="text-white"> - </span>
+              <YHatWithIndexCandidate
+                index={8}
+                candidate="B"
+                candidateClassName="text-[#38bdf8]"
+              />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+              <span className="text-white">) / 8</span>
+            </div>
+            <div>
+              <span className="text-white">
+                = ({candidateBSquaredErrors[0].toLocaleString("en-GB")} +{" "}
+                {candidateBSquaredErrors[1].toLocaleString("en-GB")} + ... +{" "}
+                {candidateBSquaredErrors[7].toLocaleString("en-GB")}) / 8
+              </span>
+            </div>
+            <div>
+              <span className="text-white">
+                = {candidateBSquaredErrorSum.toLocaleString("en-GB")} / 8
+              </span>
+            </div>
+            <div>
+              <span className="text-white">= {candidateBMse.toLocaleString("en-GB")}</span>
+            </div>
+          </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#38bdf8]">Candidate B</span> has a much
@@ -848,11 +1015,11 @@ export default function WhatIsMlPage() {
             <div>
               Start with a guess for the{" "}
               <span className="math-model">model</span>&apos;s settings (
-              <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+              <ThetaWithIndex index={0} />
               <span className="text-[color:var(--color-muted)]">, </span>
-              <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+              <ThetaWithIndex index={1} />
               <span className="text-[color:var(--color-muted)]">, </span>
-              <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+              <ThetaWithIndex index={2} />
               <span className="text-[color:var(--color-muted)]">, </span>
               <MathInline tex={String.raw`\dots`} className="math-inline math-theta" />
               ).
@@ -910,16 +1077,16 @@ export default function WhatIsMlPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           After running the loop, the fitted parameters settle around{" "}
-          <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+          <ThetaWithIndex index={0} />
           {" "} <span className="text-white">= {CANDIDATE_B_THETA0.toLocaleString("en-GB")}</span>{" "}
-          and{" "}
-          <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+          and <ThetaWithIndex index={1} />
           {" "} <span className="text-white">= {CANDIDATE_B_THETA1.toLocaleString("en-GB")}</span>.
         </p>
-        <MathBlock
-          tex={`price \\approx ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${CANDIDATE_B_THETA1.toLocaleString("en-GB")} \\times floor\\_area`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90">
+          <span className="math-yhat">price</span>
+          <span className="text-white"> ≈ {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {CANDIDATE_B_THETA1.toLocaleString("en-GB")} × </span>
+          <span className="math-x font-mono">floor_area</span>
+        </div>
       </section>
 
       <section id="prediction-demo" className="scroll-mt-28 grid gap-4">
@@ -933,14 +1100,19 @@ export default function WhatIsMlPage() {
           <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">= {PREDICTION_FLOOR_AREA}</span>.
         </p>
-        <MathBlock
-          tex={`\\begin{aligned}
-            \\hat{y} &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${CANDIDATE_B_THETA1.toLocaleString("en-GB")} \\times ${PREDICTION_FLOOR_AREA} \\\\
-            &= ${CANDIDATE_B_THETA0.toLocaleString("en-GB")} + ${(CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA).toLocaleString("en-GB")} \\\\
-            &= ${predictionFromCandidateB.toLocaleString("en-GB")}
-          \\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90 grid gap-1">
+          <div>
+            <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+            <span className="text-white"> = {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {CANDIDATE_B_THETA1.toLocaleString("en-GB")} × </span>
+            <span className="math-x">{PREDICTION_FLOOR_AREA.toLocaleString("en-GB")}</span>
+          </div>
+          <div>
+            <span className="text-white">= {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {(CANDIDATE_B_THETA1 * PREDICTION_FLOOR_AREA).toLocaleString("en-GB")}</span>
+          </div>
+          <div>
+            <span className="text-white">= {predictionFromCandidateB.toLocaleString("en-GB")}</span>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So the <span className="math-yhat">predicted house price</span> is{" "}
           <span className="text-white">£{predictionFromCandidateB.toLocaleString("en-GB")}</span>.
