@@ -1,4 +1,5 @@
 import { useId } from "react";
+import type { ReactNode } from "react";
 
 type DataPoint = Record<string, number>;
 
@@ -14,10 +15,10 @@ type WorkedExamplePlotProps = {
   yScale?: number;
   line: WorkedExampleLine;
   lineColor?: string;
-  lineLabel?: string;
+  lineLabel?: ReactNode;
   secondaryLine?: WorkedExampleLine;
   secondaryLineColor?: string;
-  secondaryLineLabel?: string;
+  secondaryLineLabel?: ReactNode;
   highlightX?: number;
   showErrorBar?: boolean;
 };

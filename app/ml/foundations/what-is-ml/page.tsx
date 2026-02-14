@@ -150,6 +150,15 @@ function ThetaWithIndex({ index }: { index: 0 | 1 | 2 | 3 }) {
   );
 }
 
+function CandidateName({ candidate }: { candidate: "A" | "B" }) {
+  return (
+    <span className="font-semibold whitespace-nowrap">
+      <span className="text-white">Candidate </span>
+      <span className={candidate === "A" ? "text-[#ef4444]" : "text-[#38bdf8]"}>{candidate}</span>
+    </span>
+  );
+}
+
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
@@ -496,12 +505,12 @@ export default function WhatIsMlPage() {
               example, the{" "}
               <span className="text-[#38bdf8]">blue line</span>{" "}
               <span className="text-white">(</span>
-              <span className="text-[#38bdf8]">Candidate B</span>
+              <CandidateName candidate="B" />
               <span className="text-white">)</span>{" "}
               appears to follow the points more closely than the{" "}
               <span className="text-[#ef4444]">red line</span>{" "}
               <span className="text-white">(</span>
-              <span className="text-[#ef4444]">Candidate A</span>
+              <CandidateName candidate="A" />
               <span className="text-white">)</span>.
             </p>
             <LineGuessPlot
@@ -523,11 +532,11 @@ export default function WhatIsMlPage() {
           <h3 className="text-lg font-semibold text-white">Concrete numbers</h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We&apos;ll carry both candidates into this plot:{" "}
-            <span className="text-[#ef4444]">Candidate A</span>{" "}
+            <CandidateName candidate="A" />{" "}
             <span className="text-white">(</span>
             <span className="text-[#ef4444]">red</span>
             <span className="text-white">)</span> and{" "}
-            <span className="text-[#38bdf8]">Candidate B</span>{" "}
+            <CandidateName candidate="B" />{" "}
             <span className="text-white">(</span>
             <span className="text-[#38bdf8]">blue</span>
             <span className="text-white">)</span>.
@@ -539,10 +548,10 @@ export default function WhatIsMlPage() {
             yScale={1000}
             line={CANDIDATE_A_LINE}
             lineColor="#ef4444"
-            lineLabel="Candidate A"
+            lineLabel={<CandidateName candidate="A" />}
             secondaryLine={CANDIDATE_B_WORKED_LINE}
             secondaryLineColor="#38bdf8"
-            secondaryLineLabel="Candidate B"
+            secondaryLineLabel={<CandidateName candidate="B" />}
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We will use one feature,{" "}
@@ -550,7 +559,7 @@ export default function WhatIsMlPage() {
             example simple. A simple rule is:
           </p>
           <div className="math-center math-lg text-white/90">
-            <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+            <MathInline tex={String.raw`price`} className="math-inline math-yhat font-mono" />
             <span className="text-white"> = </span>
             <ThetaWithIndex index={0} />
             <span className="text-white"> + </span>
@@ -575,7 +584,7 @@ export default function WhatIsMlPage() {
             {" "}controls its steepness.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#ef4444]">Candidate A</span>{" "}
+            <CandidateName candidate="A" />{" "}
             <span className="text-white">(</span>
             <span className="text-[#ef4444]">red</span>
             <span className="text-white">)</span>{" "}uses{" "}
@@ -588,7 +597,7 @@ export default function WhatIsMlPage() {
             {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            For <span className="text-[#ef4444]">Candidate A</span> at{" "}
+            For <CandidateName candidate="A" /> at{" "}
             <span className="math-x font-mono">floor_area</span>
             {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>:
           </p>
@@ -611,7 +620,7 @@ export default function WhatIsMlPage() {
             </div>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#38bdf8]">Candidate B</span>{" "}
+            <CandidateName candidate="B" />{" "}
             <span className="text-white">(</span>
             <span className="text-[#38bdf8]">blue</span>
             <span className="text-white">)</span>{" "}uses{" "}
@@ -646,15 +655,15 @@ export default function WhatIsMlPage() {
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             For this one house size,{" "}
-            <span className="text-[#ef4444]">Candidate A</span> predicts{" "}
+            <CandidateName candidate="A" /> predicts{" "}
             <span className="text-white">£{candidateAPrediction.toLocaleString("en-GB")}</span>{" "}
-            and <span className="text-[#38bdf8]">Candidate B</span> predicts{" "}
+            and <CandidateName candidate="B" /> predicts{" "}
             <span className="text-white">£{candidateBPrediction.toLocaleString("en-GB")}</span>{" "}
-            (much higher than <span className="text-[#ef4444]">Candidate A</span>).
+            (much higher than <CandidateName candidate="A" />).
             The true price is{" "}
             <span className="text-white">£</span>
             <span className="math-y">{EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>,
-            so <span className="text-[#38bdf8]">Candidate B</span> is much closer
+            so <CandidateName candidate="B" /> is much closer
             for this specific floor area.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -680,7 +689,7 @@ export default function WhatIsMlPage() {
           {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>,{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />
           {" "} <span className="text-white">= {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>. Using{" "}
-          <span className="text-[#ef4444]">Candidate A</span> from above, the{" "}
+          <CandidateName candidate="A" /> from above, the{" "}
           <span className="math-model">model</span> predicts{" "}
           <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
           {" "} <span className="text-white">= {candidateAPrediction.toLocaleString("en-GB")}</span>.
@@ -691,13 +700,13 @@ export default function WhatIsMlPage() {
           yKey="price_gbp"
           yScale={1000}
           line={CANDIDATE_A_LINE}
-          lineLabel="Candidate A"
+          lineLabel={<CandidateName candidate="A" />}
           highlightX={EXAMPLE_FLOOR_AREA}
           showErrorBar
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We&apos;ll start by calculating the loss for{" "}
-          <span className="text-[#ef4444]">Candidate A</span> at{" "}
+          <CandidateName candidate="A" /> at{" "}
           <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>. The error
           bar is the gap between truth and prediction for this one point.
@@ -713,7 +722,7 @@ export default function WhatIsMlPage() {
           />
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For <span className="text-[#ef4444]">Candidate A</span>, the loss at
+          For <CandidateName candidate="A" />, the loss at
           this point is the squared error:
         </p>
         <div className="math-center math-lg text-white/90">
@@ -728,7 +737,7 @@ export default function WhatIsMlPage() {
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Now do the same for{" "}
-          <span className="text-[#38bdf8]">Candidate B</span> at the same floor
+          <CandidateName candidate="B" /> at the same floor
           area:
         </p>
         <div className="math-center math-lg text-white/90">
@@ -736,12 +745,7 @@ export default function WhatIsMlPage() {
             tex={String.raw`\begin{aligned}
 {\color{white}{\color{orange}y} - {\color{magenta}\hat{y}}_{\color{cyan}B}}
 &= {\color{white}${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} - ${candidateBPrediction.toLocaleString("en-GB")}} \\
-&= {\color{white}${candidateBError.toLocaleString("en-GB")}}
-\end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
-          <MathBlock
-            tex={String.raw`\begin{aligned}
+&= {\color{white}${candidateBError.toLocaleString("en-GB")}} \\
 {\color{white}\left({\color{orange}y} - {\color{magenta}\hat{y}}_{\color{cyan}B}\right)^2}
 &= {\color{white}\left(${candidateBError.toLocaleString("en-GB")}\right)^2} \\
 &= {\color{white}${candidateBLoss.toLocaleString("en-GB")}}
@@ -752,8 +756,8 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           At <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>,{" "}
-          <span className="text-[#38bdf8]">Candidate B</span> has a much smaller
-          loss than <span className="text-[#ef4444]">Candidate A</span>, so it
+          <CandidateName candidate="B" /> has a much smaller
+          loss than <CandidateName candidate="A" />, so it
           fits this particular point better.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -817,7 +821,7 @@ export default function WhatIsMlPage() {
           </p>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#ef4444]">Candidate A</span> MSE:
+            <CandidateName candidate="A" /> MSE:
           </p>
           <div className="math-center math-lg text-white/90">
             <MathBlock
@@ -843,7 +847,7 @@ ${candidateASquaredErrors[0].toLocaleString("en-GB")}
           </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#38bdf8]">Candidate B</span> MSE:
+            <CandidateName candidate="B" /> MSE:
           </p>
           <div className="math-center math-lg text-white/90">
             <MathBlock
@@ -869,12 +873,12 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
           </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-[#38bdf8]">Candidate B</span> has a much
-            smaller MSE than <span className="text-[#ef4444]">Candidate A</span>,
-            and <span className="text-[#ef4444]">Candidate A</span>&apos;s average
+            <CandidateName candidate="B" /> has a much
+            smaller MSE than <CandidateName candidate="A" />,
+            and <CandidateName candidate="A" />&apos;s average
             squared error is about{" "}
             <span className="text-white">{mseRatio.toLocaleString("en-GB", { maximumFractionDigits: 1 })}x</span>{" "}
-            larger. That indicates <span className="text-[#38bdf8]">Candidate B</span> is a much better fit overall.
+            larger. That indicates <CandidateName candidate="B" /> is a much better fit overall.
           </p>
         </section>
       </section>
@@ -967,7 +971,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
           {" "} <span className="text-white">= {CANDIDATE_B_THETA1.toLocaleString("en-GB")}</span>.
         </p>
         <div className="math-center math-lg text-white/90">
-          <span className="math-yhat">price</span>
+          <span className="math-yhat font-mono">price</span>
           <span className="text-white"> ≈ {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {CANDIDATE_B_THETA1.toLocaleString("en-GB")} × </span>
           <span className="math-x font-mono">floor_area</span>
         </div>
