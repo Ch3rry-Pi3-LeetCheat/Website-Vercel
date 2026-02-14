@@ -313,10 +313,59 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Think of variables like{" "}
-              <span className="math-x font-mono">bedroom_count</span>,{" "}
-              <span className="math-x font-mono">num_floors</span>, or{" "}
-              <span className="math-x font-mono">age_years</span>.
+              <span className="math-x font-mono">bedrooms</span>{" "}
+              <span className="text-white">(number of bedrooms)</span>,{" "}
+              <span className="math-x font-mono">num_floors</span>{" "}
+              <span className="text-white">(number of floors)</span>, or{" "}
+              <span className="math-x font-mono">age_years</span>{" "}
+              <span className="text-white">(property age in years)</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">bedrooms</span></th>
+                      <th className="py-2"><span className="math-x">num_floors</span></th>
+                      <th className="py-2"><span className="math-x">age_years</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">1</td>
+                      <td className="py-2">1</td>
+                      <td className="py-2">12</td>
+                      <td className="py-2">210,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2</td>
+                      <td className="py-2">2</td>
+                      <td className="py-2">8</td>
+                      <td className="py-2">265,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2</td>
+                      <td className="py-2">1</td>
+                      <td className="py-2">20</td>
+                      <td className="py-2">255,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">3</td>
+                      <td className="py-2">2</td>
+                      <td className="py-2">5</td>
+                      <td className="py-2">310,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
 
           <section id="type-float" className="grid gap-2">
@@ -332,27 +381,104 @@ export default function DataTypesFeaturesLabelsPage() {
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Example variables:{" "}
               <span className="math-x font-mono">distance_to_centre_km</span>{" "}
-              = <span className="text-white">4.5</span>,{" "}
+              <span className="text-white">(distance from city centre in km)</span> ={" "}
+              <span className="text-white">4.5</span>,{" "}
               <span className="math-x font-mono">interest_rate</span>{" "}
-              = <span className="text-white">3.75</span>.
+              <span className="text-white">(borrowing rate in percent)</span> ={" "}
+              <span className="text-white">3.75</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">distance_to_centre_km</span></th>
+                      <th className="py-2"><span className="math-x">interest_rate</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">4.5</td>
+                      <td className="py-2">3.90</td>
+                      <td className="py-2">210,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">3.2</td>
+                      <td className="py-2">3.70</td>
+                      <td className="py-2">265,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">6.0</td>
+                      <td className="py-2">4.20</td>
+                      <td className="py-2">255,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2.8</td>
+                      <td className="py-2">3.55</td>
+                      <td className="py-2">365,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
 
           <section id="type-boolean" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Boolean</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Booleans are two-state values: true/false, yes/no, on/off.
+              Booleans are two-state values: true / false, yes / no, on / off.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               They are great for quick condition checks and often represent a
               clear property of something.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example: <span className="math-x font-mono">has_garden</span> ={" "}
+              Example: <span className="math-x font-mono">has_garden</span>{" "}
+              <span className="text-white">(whether a property has a garden)</span> ={" "}
               <span className="text-emerald-400">yes</span> or{" "}
               <span className="math-x font-mono">has_garden</span> ={" "}
               <span className="text-rose-400">no</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">has_garden</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2 text-emerald-400">yes</td>
+                      <td className="py-2">310,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2 text-rose-400">no</td>
+                      <td className="py-2">265,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2 text-emerald-400">yes</td>
+                      <td className="py-2">390,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2 text-rose-400">no</td>
+                      <td className="py-2">255,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
 
           <section id="type-categorical" className="grid gap-2">
@@ -367,8 +493,43 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Example: <span className="math-x font-mono">property_type</span> ={" "}
+              <span className="text-white">(home style category)</span>{" "}
               <span className="text-white">flat / semi / detached</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">property_type</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">flat</td>
+                      <td className="py-2">210,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">terrace</td>
+                      <td className="py-2">255,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">semi</td>
+                      <td className="py-2">365,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">detached</td>
+                      <td className="py-2">460,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
 
           <section id="type-datetime" className="grid gap-2">
@@ -382,8 +543,43 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Example: <span className="math-x font-mono">listing_date</span> ={" "}
+              <span className="text-white">(the day the home went live)</span>{" "}
               <span className="text-white">2025-02-11</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">listing_date</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2025-01-14</td>
+                      <td className="py-2">210,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2025-01-20</td>
+                      <td className="py-2">265,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2025-02-02</td>
+                      <td className="py-2">255,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">2025-02-11</td>
+                      <td className="py-2">310,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
 
           <section id="type-text" className="grid gap-2">
@@ -398,8 +594,50 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Example variables: <span className="math-x font-mono">listing_description</span>{" "}
-              or <span className="math-x font-mono">agent_notes</span>.
+              <span className="text-white">(public advert text)</span> or{" "}
+              <span className="math-x font-mono">agent_notes</span>{" "}
+              <span className="text-white">(internal free-form comments)</span>.
             </p>
+            <div className="glass-panel rounded-2xl p-4">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
+                      <th className="py-2"><span className="math-x">listing_description</span></th>
+                      <th className="py-2"><span className="math-x">agent_notes</span></th>
+                      <th className="py-2"><span className="math-x">price_gbp</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">Compact city flat near station</td>
+                      <td className="py-2">Needs repaint in hallway</td>
+                      <td className="py-2">210,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">Bright two-bed with balcony</td>
+                      <td className="py-2">Strong weekend viewing interest</td>
+                      <td className="py-2">265,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">Terrace close to local schools</td>
+                      <td className="py-2">Kitchen recently refurbished</td>
+                      <td className="py-2">310,000</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td className="py-2">Detached home with large garden</td>
+                      <td className="py-2">Seller open to quick completion</td>
+                      <td className="py-2">460,000</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                      <td className="py-2 text-white/70">&hellip;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </section>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
