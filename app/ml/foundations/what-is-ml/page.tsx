@@ -141,6 +141,15 @@ const currentLessonHref = "/ml/foundations/what-is-ml";
 const currentLessonIndex = mlFoundationsLessons.findIndex((lesson) => lesson.href === currentLessonHref);
 const nextLesson = currentLessonIndex >= 0 ? mlFoundationsLessons[currentLessonIndex + 1] : undefined;
 
+function ThetaWithIndex({ index }: { index: 0 | 1 | 2 | 3 }) {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{index}</sub>
+    </span>
+  );
+}
+
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
@@ -1101,17 +1110,17 @@ export default function WhatIsMlPage() {
           <div className="math-center math-lg text-white/90">
             <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
             <span className="text-white"> = </span>
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             <span className="text-white"> + </span>
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             <span className="text-white"> · </span>
             <span className="math-x font-mono">floor_area_m2</span>
             <span className="text-white"> + </span>
-            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <ThetaWithIndex index={2} />
             <span className="text-white"> · </span>
             <span className="math-x font-mono">bedrooms</span>
             <span className="text-white"> + </span>
-            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            <ThetaWithIndex index={3} />
             <span className="text-white"> · </span>
             <span className="math-x font-mono">distance_to_centre_km</span>
           </div>
@@ -1128,7 +1137,7 @@ export default function WhatIsMlPage() {
                 <tr className="border-b border-white/10">
                   <td className="py-2">Intercept</td>
                   <td className="py-2">
-                    <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+                    <ThetaWithIndex index={0} />
                   </td>
                   <td className="py-2 text-white">≈ 124,452</td>
                 </tr>
@@ -1137,7 +1146,7 @@ export default function WhatIsMlPage() {
                     <span className="math-x font-mono">floor_area_m2</span>
                   </td>
                   <td className="py-2">
-                    <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+                    <ThetaWithIndex index={1} />
                   </td>
                   <td className="py-2 text-white">≈ 2,050</td>
                 </tr>
@@ -1146,7 +1155,7 @@ export default function WhatIsMlPage() {
                     <span className="math-x font-mono">bedrooms</span>
                   </td>
                   <td className="py-2">
-                    <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+                    <ThetaWithIndex index={2} />
                   </td>
                   <td className="py-2 text-white">≈ 14,690</td>
                 </tr>
@@ -1155,7 +1164,7 @@ export default function WhatIsMlPage() {
                     <span className="math-x font-mono">distance_to_centre_km</span>
                   </td>
                   <td className="py-2">
-                    <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+                    <ThetaWithIndex index={3} />
                   </td>
                   <td className="py-2 text-white">≈ -8,379</td>
                 </tr>
@@ -1164,16 +1173,16 @@ export default function WhatIsMlPage() {
           </div>
           <p>
             In other words:{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "}is the baseline price{" "}
             <span className="text-white">(£124,452.03)</span>,{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             {" "}is the floor area effect{" "}
             <span className="text-white">(£2,049.63 per m²)</span>,{" "}
-            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <ThetaWithIndex index={2} />
             {" "}is the bedrooms effect{" "}
             <span className="text-white">(£14,689.77 per bedroom)</span>, and{" "}
-            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            <ThetaWithIndex index={3} />
             {" "}is the distance effect{" "}
             <span className="text-white">(-£8,379.36 per km)</span>.
           </p>
