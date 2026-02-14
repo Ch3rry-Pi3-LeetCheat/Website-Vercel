@@ -11,7 +11,6 @@ import LineGuessPlot from "@/components/ml/LineGuessPlot";
 import PredictionGuidePlot from "@/components/ml/PredictionGuidePlot";
 import WorkedExamplePlot from "@/components/ml/WorkedExamplePlot";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
-import type { ReactNode } from "react";
 
 const HOUSE_DATA = [
   { floor_area_m2: 52, bedrooms: 1, distance_to_centre_km: 4.5, price_gbp: 210000 },
@@ -156,69 +155,6 @@ function YHatWithLabel({ label }: { label: "A" | "B" }) {
     <span className="inline-flex items-baseline align-middle">
       <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
       <sub className="ml-[1px] text-[0.72em] leading-none text-white">{label}</sub>
-    </span>
-  );
-}
-
-function YWithIndex({ index }: { index: number }) {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`y`} className="math-inline math-y" />
-      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{index}</sub>
-    </span>
-  );
-}
-
-function YHatWithIndexCandidate({
-  index,
-  candidate,
-  candidateClassName,
-}: {
-  index: number;
-  candidate: "A" | "B";
-  candidateClassName: string;
-}) {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-      <sub className="ml-[1px] text-[0.72em] leading-none">
-        <span className="text-white">{index}</span>
-        <span className="text-white">,</span>
-        <span className={candidateClassName}>{candidate}</span>
-      </sub>
-    </span>
-  );
-}
-
-function MseWithCandidate({
-  candidate,
-  candidateClassName,
-}: {
-  candidate: "A" | "B";
-  candidateClassName: string;
-}) {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`MSE`} className="math-inline math-neutral" />
-      <sub className={`ml-[1px] text-[0.72em] leading-none ${candidateClassName}`}>
-        {candidate}
-      </sub>
-    </span>
-  );
-}
-
-function InlineFraction({
-  numerator,
-  denominator,
-}: {
-  numerator: ReactNode;
-  denominator: ReactNode;
-}) {
-  return (
-    <span className="inline-flex flex-col items-center align-middle leading-none">
-      <span className="px-1 pb-1">{numerator}</span>
-      <span className="w-full border-t border-white/90" />
-      <span className="pt-1">{denominator}</span>
     </span>
   );
 }
@@ -923,162 +859,52 @@ export default function WhatIsMlPage() {
             <span className="text-[#ef4444]">Candidate A</span> MSE:
           </p>
           <div className="math-center math-lg text-white/90">
-            <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-2 text-left">
-              <div className="justify-self-end self-center">
-                <MseWithCandidate candidate="A" candidateClassName="text-[#ef4444]" />
-              </div>
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <>
-                      <span className="text-white">(</span>
-                      <YWithIndex index={1} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={1}
-                        candidate="A"
-                        candidateClassName="text-[#ef4444]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                      <span className="text-white"> + (</span>
-                      <YWithIndex index={2} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={2}
-                        candidate="A"
-                        candidateClassName="text-[#ef4444]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                      <span className="text-white"> + ... + (</span>
-                      <YWithIndex index={8} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={8}
-                        candidate="A"
-                        candidateClassName="text-[#ef4444]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                    </>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <span className="text-white">
-                      {candidateASquaredErrors[0].toLocaleString("en-GB")} +{" "}
-                      {candidateASquaredErrors[1].toLocaleString("en-GB")} + ... +{" "}
-                      {candidateASquaredErrors[7].toLocaleString("en-GB")}
-                    </span>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <span className="text-white">
-                      {candidateASquaredErrorSum.toLocaleString("en-GB")}
-                    </span>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= {candidateAMse.toLocaleString("en-GB")}</span>
-              </div>
-            </div>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+{\color{white}\mathrm{MSE}}_{\color{red}A}
+&= {\color{white}\frac{
+\left({\color{orange}y}_{\color{white}1} - {\color{red}\hat{y}}_{\color{white}1,{\color{red}A}}\right)^2
+ + \left({\color{orange}y}_{\color{white}2} - {\color{red}\hat{y}}_{\color{white}2,{\color{red}A}}\right)^2
+ + \ldots
+ + \left({\color{orange}y}_{\color{white}8} - {\color{red}\hat{y}}_{\color{white}8,{\color{red}A}}\right)^2
+}{8}} \\
+&= {\color{white}\frac{
+${candidateASquaredErrors[0].toLocaleString("en-GB")}
+ + ${candidateASquaredErrors[1].toLocaleString("en-GB")}
+ + \ldots
+ + ${candidateASquaredErrors[7].toLocaleString("en-GB")}
+}{8}} \\
+&= {\color{white}\frac{${candidateASquaredErrorSum.toLocaleString("en-GB")}}{8}} \\
+&= {\color{white}${candidateAMse.toLocaleString("en-GB")}}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
           </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#38bdf8]">Candidate B</span> MSE:
           </p>
           <div className="math-center math-lg text-white/90">
-            <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-2 text-left">
-              <div className="justify-self-end self-center">
-                <MseWithCandidate candidate="B" candidateClassName="text-[#38bdf8]" />
-              </div>
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <>
-                      <span className="text-white">(</span>
-                      <YWithIndex index={1} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={1}
-                        candidate="B"
-                        candidateClassName="text-[#38bdf8]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                      <span className="text-white"> + (</span>
-                      <YWithIndex index={2} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={2}
-                        candidate="B"
-                        candidateClassName="text-[#38bdf8]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                      <span className="text-white"> + ... + (</span>
-                      <YWithIndex index={8} />
-                      <span className="text-white"> - </span>
-                      <YHatWithIndexCandidate
-                        index={8}
-                        candidate="B"
-                        candidateClassName="text-[#38bdf8]"
-                      />
-                      <span className="text-white">)</span>
-                      <sup className="text-white">2</sup>
-                    </>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <span className="text-white">
-                      {candidateBSquaredErrors[0].toLocaleString("en-GB")} +{" "}
-                      {candidateBSquaredErrors[1].toLocaleString("en-GB")} + ... +{" "}
-                      {candidateBSquaredErrors[7].toLocaleString("en-GB")}
-                    </span>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= </span>
-                <InlineFraction
-                  numerator={
-                    <span className="text-white">
-                      {candidateBSquaredErrorSum.toLocaleString("en-GB")}
-                    </span>
-                  }
-                  denominator={<span className="text-white">8</span>}
-                />
-              </div>
-              <div />
-              <div className="justify-self-start">
-                <span className="text-white">= {candidateBMse.toLocaleString("en-GB")}</span>
-              </div>
-            </div>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+{\color{white}\mathrm{MSE}}_{\color{cyan}B}
+&= {\color{white}\frac{
+\left({\color{orange}y}_{\color{white}1} - {\color{cyan}\hat{y}}_{\color{white}1,{\color{cyan}B}}\right)^2
+ + \left({\color{orange}y}_{\color{white}2} - {\color{cyan}\hat{y}}_{\color{white}2,{\color{cyan}B}}\right)^2
+ + \ldots
+ + \left({\color{orange}y}_{\color{white}8} - {\color{cyan}\hat{y}}_{\color{white}8,{\color{cyan}B}}\right)^2
+}{8}} \\
+&= {\color{white}\frac{
+${candidateBSquaredErrors[0].toLocaleString("en-GB")}
+ + ${candidateBSquaredErrors[1].toLocaleString("en-GB")}
+ + \ldots
+ + ${candidateBSquaredErrors[7].toLocaleString("en-GB")}
+}{8}} \\
+&= {\color{white}\frac{${candidateBSquaredErrorSum.toLocaleString("en-GB")}}{8}} \\
+&= {\color{white}${candidateBMse.toLocaleString("en-GB")}}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
           </div>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
