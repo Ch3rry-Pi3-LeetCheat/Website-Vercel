@@ -1115,6 +1115,53 @@ export default function WhatIsMlPage() {
             <span className="text-white"> · </span>
             <span className="math-x font-mono">distance_to_centre_km</span>
           </div>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <thead>
+                <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em] text-white/90">
+                  <th className="py-2">Term</th>
+                  <th className="py-2">Parameter</th>
+                  <th className="py-2">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">Intercept</td>
+                  <td className="py-2">
+                    <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+                  </td>
+                  <td className="py-2 text-white">≈ 124,452</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">
+                    <span className="math-x font-mono">floor_area_m2</span>
+                  </td>
+                  <td className="py-2">
+                    <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+                  </td>
+                  <td className="py-2 text-white">≈ 2,050</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2">
+                    <span className="math-x font-mono">bedrooms</span>
+                  </td>
+                  <td className="py-2">
+                    <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+                  </td>
+                  <td className="py-2 text-white">≈ 14,690</td>
+                </tr>
+                <tr>
+                  <td className="py-2">
+                    <span className="math-x font-mono">distance_to_centre_km</span>
+                  </td>
+                  <td className="py-2">
+                    <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+                  </td>
+                  <td className="py-2 text-white">≈ -8,379</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p>
             In other words:{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
