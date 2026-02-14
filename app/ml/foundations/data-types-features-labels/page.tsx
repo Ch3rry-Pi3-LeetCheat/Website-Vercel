@@ -294,72 +294,111 @@ export default function DataTypesFeaturesLabelsPage() {
           Common data types
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Before we return to house prices, let&apos;s define the most common
-          data types in plain language. Think of this as a quick mental map for
-          reading real datasets.
+          Before we return to house prices, let&apos;s slow down and build a
+          practical feel for common data types. If you can quickly recognise a
+          column&apos;s type, you can usually predict how it should be handled
+          before training.
         </p>
         <div className="grid gap-3">
-          <section id="type-integer" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-integer" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Integer</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Whole numbers you can count with: no decimal point.
+              Integers are whole numbers. No decimal point, no fractions, just
+              countable amounts.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: <span className="text-white">how many bedrooms</span>,{" "}
-              <span className="text-white">number of floors</span>, or{" "}
-              <span className="text-white">age in years</span>.
+              A good mental model is: if you can ask{" "}
+              <span className="text-white">&quot;How many?&quot;</span>, you often
+              have an integer column.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think of variables like{" "}
+              <span className="math-x font-mono">bedroom_count</span>,{" "}
+              <span className="math-x font-mono">num_floors</span>, or{" "}
+              <span className="math-x font-mono">age_years</span>.
             </p>
           </section>
 
-          <section id="type-float" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-float" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Float / Decimal</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Numeric values that can include fractions.
+              Floats are numeric values that can include fractions. They are
+              useful whenever precision matters.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: <span className="text-white">distance_to_centre_km = 4.5</span> or{" "}
-              <span className="text-white">interest_rate = 3.75</span>.
+              In plain terms: these are measurements, rates, and continuous
+              quantities rather than simple counts.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Example variables:{" "}
+              <span className="math-x font-mono">distance_to_centre_km</span>{" "}
+              = <span className="text-white">4.5</span>,{" "}
+              <span className="math-x font-mono">interest_rate</span>{" "}
+              = <span className="text-white">3.75</span>.
             </p>
           </section>
 
-          <section id="type-boolean" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-boolean" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Boolean</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              A simple true/false style value.
+              Booleans are two-state values: true/false, yes/no, on/off.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: <span className="text-emerald-400">has_garden = yes</span> or{" "}
-              <span className="text-rose-400">has_garden = no</span>.
+              They are great for quick condition checks and often represent a
+              clear property of something.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Example: <span className="math-x font-mono">has_garden</span> ={" "}
+              <span className="text-emerald-400">yes</span> or{" "}
+              <span className="math-x font-mono">has_garden</span> ={" "}
+              <span className="text-rose-400">no</span>.
             </p>
           </section>
 
-          <section id="type-categorical" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-categorical" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Categorical</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              A value chosen from a fixed set of named options.
+              Categorical values come from a known set of named options.
+              They are labels, not magnitudes.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: <span className="text-white">property_type = flat / semi / detached</span>.
+              Important intuition: categories are different kinds, not bigger
+              or smaller versions of each other.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Example: <span className="math-x font-mono">property_type</span> ={" "}
+              <span className="text-white">flat / semi / detached</span>.
             </p>
           </section>
 
-          <section id="type-datetime" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-datetime" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Date / Time</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Values that describe when something happened.
+              Date/time columns tell you when something happened.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: <span className="text-white">listing_date = 2025-02-11</span>.
+              They often unlock useful patterns like seasonality, day-of-week
+              effects, or how recent an event is.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Example: <span className="math-x font-mono">listing_date</span> ={" "}
+              <span className="text-white">2025-02-11</span>.
             </p>
           </section>
 
-          <section id="type-text" className="glass-panel rounded-2xl p-4 grid gap-2">
+          <section id="type-text" className="grid gap-2">
             <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Text</h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Free-form words or sentences written by people.
+              Text is free-form language written by people, such as notes,
+              descriptions, or messages.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think: property descriptions, agent notes, or customer messages.
+              It carries rich meaning, but it usually needs extra processing
+              before a model can use it effectively.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Example variables: <span className="math-x font-mono">listing_description</span>{" "}
+              or <span className="math-x font-mono">agent_notes</span>.
             </p>
           </section>
         </div>
