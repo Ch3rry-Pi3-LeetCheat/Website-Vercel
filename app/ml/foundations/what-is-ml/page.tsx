@@ -266,9 +266,10 @@ export default function WhatIsMlPage() {
           </p>
         </InfoPanel>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We&apos;ll use this example house-price dataset throughout the article.
-          The goal is to keep things concrete, so each new concept is grounded
-          in a consistent example rather than abstract definitions.
+          In this section, we introduce the dataset we&apos;ll use throughout
+          the article. We use a house-price example because house attributes
+          tend to feel familiar, which helps keep each new concept grounded in
+          something concrete rather than abstract definitions.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Each row is one house. The first three columns are the inputs (
@@ -390,10 +391,16 @@ export default function WhatIsMlPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           When we put it all together, we often write:
         </p>
-        <MathBlock
-          tex={String.raw`\hat{y} = f(x; \theta)`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="math-center math-lg text-white/90">
+          <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+          <span className="text-white"> = </span>
+          <MathInline tex={String.raw`f`} className="math-inline math-model" />
+          <span className="text-white">(</span>
+          <MathInline tex={String.raw`x`} className="math-inline math-x" />
+          <span className="text-white">; </span>
+          <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
+          <span className="text-white">)</span>
+        </div>
       </section>
 
       <section id="function-intro" className="scroll-mt-28 grid gap-6">
