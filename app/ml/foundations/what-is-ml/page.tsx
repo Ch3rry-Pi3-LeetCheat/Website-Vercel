@@ -111,8 +111,8 @@ const candidateBSlope = CANDIDATE_B_THETA1;
 const candidateBContribution = candidateBSlope * EXAMPLE_FLOOR_AREA;
 const candidateBApproxPrediction = candidateBIntercept + candidateBContribution;
 
-const candidateAError = candidateAPrediction - EXAMPLE_TRUE_PRICE;
-const candidateBError = candidateBPrediction - EXAMPLE_TRUE_PRICE;
+const candidateAError = EXAMPLE_TRUE_PRICE - candidateAPrediction;
+const candidateBError = EXAMPLE_TRUE_PRICE - candidateBPrediction;
 const candidateALoss = candidateAError ** 2;
 const candidateBLoss = candidateBError ** 2;
 
@@ -700,13 +700,13 @@ export default function WhatIsMlPage() {
           <span className="text-[#ef4444]">Candidate A</span> at{" "}
           <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>. The error
-          bar is the gap between prediction and truth for this one point.
+          bar is the gap between truth and prediction for this one point.
         </p>
         <div className="math-center math-lg text-white/90">
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{white}{\color{magenta}\hat{y}}_{\color{red}A} - {\color{orange}y}}
-&= {\color{white}${candidateAPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}} \\
+{\color{white}{\color{orange}y} - {\color{magenta}\hat{y}}_{\color{red}A}}
+&= {\color{white}${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} - ${candidateAPrediction.toLocaleString("en-GB")}} \\
 &= {\color{white}${candidateAError.toLocaleString("en-GB")}}
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -719,7 +719,7 @@ export default function WhatIsMlPage() {
         <div className="math-center math-lg text-white/90">
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{white}\left({\color{magenta}\hat{y}}_{\color{red}A} - {\color{orange}y}\right)^2}
+{\color{white}\left({\color{orange}y} - {\color{magenta}\hat{y}}_{\color{red}A}\right)^2}
 &= {\color{white}\left(${candidateAError.toLocaleString("en-GB")}\right)^2} \\
 &= {\color{white}${candidateALoss.toLocaleString("en-GB")}}
 \end{aligned}`}
@@ -734,15 +734,15 @@ export default function WhatIsMlPage() {
         <div className="math-center math-lg text-white/90">
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{white}{\color{magenta}\hat{y}}_{\color{cyan}B} - {\color{orange}y}}
-&= {\color{white}${candidateBPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}} \\
+{\color{white}{\color{orange}y} - {\color{magenta}\hat{y}}_{\color{cyan}B}}
+&= {\color{white}${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")} - ${candidateBPrediction.toLocaleString("en-GB")}} \\
 &= {\color{white}${candidateBError.toLocaleString("en-GB")}}
 \end{aligned}`}
             className="math-center math-lg text-white/90"
           />
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{white}\left({\color{magenta}\hat{y}}_{\color{cyan}B} - {\color{orange}y}\right)^2}
+{\color{white}\left({\color{orange}y} - {\color{magenta}\hat{y}}_{\color{cyan}B}\right)^2}
 &= {\color{white}\left(${candidateBError.toLocaleString("en-GB")}\right)^2} \\
 &= {\color{white}${candidateBLoss.toLocaleString("en-GB")}}
 \end{aligned}`}
