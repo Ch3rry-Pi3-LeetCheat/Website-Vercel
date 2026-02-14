@@ -50,19 +50,20 @@ export default function DataTypesFeaturesLabelsPage() {
   ];
 
   return (
-    <ArticleLayout
-      eyebrow="ML - Foundations"
-      title="Data types, features, labels"
-      description="What a model sees as input, what it should predict, and how raw columns become usable features."
-      descriptionClassName="italic"
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[{ title: "Within Foundations", links: mlFoundationsLessons }]}
-          activeHref="/ml/foundations/data-types-features-labels"
-        />
-      }
-    >
+    <div className="overflow-x-clip">
+      <ArticleLayout
+        eyebrow="ML - Foundations"
+        title="Data types, features, labels"
+        description="What a model sees as input, what it should predict, and how raw columns become usable features."
+        descriptionClassName="italic"
+        tocItems={tocItems}
+        rightRail={
+          <RightRail
+            sections={[{ title: "Within Foundations", links: mlFoundationsLessons }]}
+            activeHref="/ml/foundations/data-types-features-labels"
+          />
+        }
+      >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
           Welcome back. This lesson builds directly on the previous article and
@@ -460,10 +461,12 @@ export default function DataTypesFeaturesLabelsPage() {
           {" "}
           <span className="math-y">price_gbp</span> is the label.
         </p>
-        <MathBlock
-          tex={String.raw`\underbrace{(floor\_area\_m2,\ bedrooms,\ distance\_to\_centre\_km,\ property\_type)}_{\text{features }x} \longrightarrow \underbrace{price\_gbp}_{\text{label }y}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="overflow-x-auto">
+          <MathBlock
+            tex={String.raw`\underbrace{(floor\_area\_m2,\ bedrooms,\ distance\_to\_centre\_km,\ property\_type)}_{\text{features }x} \longrightarrow \underbrace{price\_gbp}_{\text{label }y}`}
+            className="math-center math-lg text-white/90"
+          />
+        </div>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
             Practical test: <span className="text-white">can this value be known when I make a new prediction?</span>
@@ -540,10 +543,12 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
           </div>
         </div>
-        <MathBlock
-          tex={String.raw`property\_type = detached \;\Rightarrow\; [is\_flat,\ is\_semi,\ is\_detached] = [0,\ 0,\ 1]`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="overflow-x-auto">
+          <MathBlock
+            tex={String.raw`property\_type = detached \;\Rightarrow\; [is\_flat,\ is\_semi,\ is\_detached] = [0,\ 0,\ 1]`}
+            className="math-center math-lg text-white/90"
+          />
+        </div>
       </section>
 
       <section id="quality" className="scroll-mt-28 grid gap-4">
@@ -599,10 +604,12 @@ export default function DataTypesFeaturesLabelsPage() {
           {" "}and the label vector as{" "}
           <MathInline tex={String.raw`y`} className="math-inline math-y" />.
         </p>
-        <MathBlock
-          tex={String.raw`X \in \mathbb{R}^{n \times d},\qquad y \in \mathbb{R}^{n}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="overflow-x-auto">
+          <MathBlock
+            tex={String.raw`X \in \mathbb{R}^{n \times d},\qquad y \in \mathbb{R}^{n}`}
+            className="math-center math-lg text-white/90"
+          />
+        </div>
         <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
             In this dataset: <span className="text-white">n = 8</span> rows.
@@ -733,6 +740,7 @@ export default function DataTypesFeaturesLabelsPage() {
           </Link>
         </section>
       ) : null}
-    </ArticleLayout>
+      </ArticleLayout>
+    </div>
   );
 }

@@ -16,6 +16,7 @@ type LineFitAnimatorProps = {
 const CHART_WIDTH = 640;
 const CHART_HEIGHT = 360;
 const PADDING = { top: 24, right: 24, bottom: 48, left: 64 };
+const MAX_ITERATIONS = 250;
 
 export default function LineFitAnimator({
   data,
@@ -127,7 +128,7 @@ export default function LineFitAnimator({
 
   useEffect(() => {
     if (!isPlaying) return;
-    if (iteration >= 250) {
+    if (iteration >= MAX_ITERATIONS) {
       setIsPlaying(false);
       return;
     }

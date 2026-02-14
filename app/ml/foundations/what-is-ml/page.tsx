@@ -604,7 +604,7 @@ export default function WhatIsMlPage() {
           <div className="math-center math-lg text-white/90">
             <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
               <div className="justify-self-end">
-                <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+                <span className="math-yhat font-mono">price</span>
               </div>
               <div className="justify-self-start">
                 <span className="text-white">= 50,000 + 2,000 × {EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
@@ -634,7 +634,7 @@ export default function WhatIsMlPage() {
           <div className="math-center math-lg text-white/90">
             <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
               <div className="justify-self-end">
-                <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+                <span className="math-yhat font-mono">price</span>
               </div>
               <div className="justify-self-start">
                 <span className="text-white">
