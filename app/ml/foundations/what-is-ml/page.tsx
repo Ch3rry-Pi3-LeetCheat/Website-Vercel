@@ -1098,10 +1098,23 @@ export default function WhatIsMlPage() {
           <p>
             These numbers can now be plugged into the price equation:
           </p>
-          <MathBlock
-            tex={String.raw`price = \theta_0 + \theta_1 \cdot floor\_area\_m2 + \theta_2 \cdot bedrooms + \theta_3 \cdot distance\_to\_centre\_km`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90">
+            <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+            <span className="text-white"> = </span>
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <span className="text-white"> + </span>
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <span className="text-white"> · </span>
+            <span className="math-x font-mono">floor_area_m2</span>
+            <span className="text-white"> + </span>
+            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <span className="text-white"> · </span>
+            <span className="math-x font-mono">bedrooms</span>
+            <span className="text-white"> + </span>
+            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            <span className="text-white"> · </span>
+            <span className="math-x font-mono">distance_to_centre_km</span>
+          </div>
           <p>
             In other words:{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
