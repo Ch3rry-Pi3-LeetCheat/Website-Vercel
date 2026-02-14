@@ -13,14 +13,14 @@ import WorkedExamplePlot from "@/components/ml/WorkedExamplePlot";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
-  { floor_area_m2: 52, bedrooms: 1, distance_to_centre_km: 4.5, price_gbp: 210000 },
-  { floor_area_m2: 68, bedrooms: 2, distance_to_centre_km: 3.2, price_gbp: 265000 },
-  { floor_area_m2: 75, bedrooms: 2, distance_to_centre_km: 6.0, price_gbp: 255000 },
-  { floor_area_m2: 90, bedrooms: 3, distance_to_centre_km: 5.5, price_gbp: 310000 },
-  { floor_area_m2: 110, bedrooms: 3, distance_to_centre_km: 2.8, price_gbp: 365000 },
-  { floor_area_m2: 130, bedrooms: 4, distance_to_centre_km: 7.5, price_gbp: 390000 },
-  { floor_area_m2: 145, bedrooms: 4, distance_to_centre_km: 3.0, price_gbp: 460000 },
-  { floor_area_m2: 160, bedrooms: 5, distance_to_centre_km: 8.0, price_gbp: 455000 },
+  { floor_area_m2: 52, bedrooms: 1, distance_to_centre: 4.5, price_gbp: 210000 },
+  { floor_area_m2: 68, bedrooms: 2, distance_to_centre: 3.2, price_gbp: 265000 },
+  { floor_area_m2: 75, bedrooms: 2, distance_to_centre: 6.0, price_gbp: 255000 },
+  { floor_area_m2: 90, bedrooms: 3, distance_to_centre: 5.5, price_gbp: 310000 },
+  { floor_area_m2: 110, bedrooms: 3, distance_to_centre: 2.8, price_gbp: 365000 },
+  { floor_area_m2: 130, bedrooms: 4, distance_to_centre: 7.5, price_gbp: 390000 },
+  { floor_area_m2: 145, bedrooms: 4, distance_to_centre: 3.0, price_gbp: 460000 },
+  { floor_area_m2: 160, bedrooms: 5, distance_to_centre: 8.0, price_gbp: 455000 },
 ];
 
 const tinyExampleCode = `# Install dependencies (once)
@@ -34,12 +34,12 @@ from sklearn.linear_model import LinearRegression
 data = pd.DataFrame({
     "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],
     "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],
-    "distance_to_centre_km": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],
+    "distance_to_centre": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],
     "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],
 })
 
 # Split into inputs (features) and the target (label)
-X = data[["floor_area_m2", "bedrooms", "distance_to_centre_km"]]
+X = data[["floor_area_m2", "bedrooms", "distance_to_centre"]]
 y = data["price_gbp"]
 
 # Create and train the model
@@ -299,39 +299,55 @@ export default function WhatIsMlPage() {
           <span className="math-x font-mono">floor_area_m2</span> is the size of
           the house, <span className="math-x font-mono">bedrooms</span> is the
           number of bedrooms,{" "}
-          <span className="math-x font-mono">distance_to_centre_km</span> is how
+          <span className="math-x font-mono">distance_to_centre</span> is how
           far the house is from the centre, and{" "}
           <span className="math-y font-mono">price_gbp</span> is the price we
           want to predict.
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
               <thead>
                 <tr className="text-xs uppercase tracking-[0.2em]">
-                  <th className="py-2">
+                  <th className="w-1/4 py-2">
                     <span className="math-x">floor_area_m2</span>
                   </th>
-                  <th className="py-2">
+                  <th className="w-1/4 py-2">
                     <span className="math-x">bedrooms</span>
                   </th>
-                  <th className="py-2">
-                    <span className="math-x">distance_to_centre_km</span>
+                  <th className="w-1/4 py-2">
+                    <span className="math-x">distance_to_centre</span>
                   </th>
-                  <th className="py-2">
+                  <th className="w-1/4 py-2">
                     <span className="math-y">price_gbp</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="text-sm">
-                {HOUSE_DATA.map((row) => (
-                  <tr key={`${row.floor_area_m2}-${row.distance_to_centre_km}`}>
-                    <td className="py-2">{row.floor_area_m2}</td>
-                    <td className="py-2">{row.bedrooms}</td>
-                    <td className="py-2">{row.distance_to_centre_km}</td>
-                    <td className="py-2">{row.price_gbp}</td>
-                  </tr>
-                ))}
+                <tr>
+                  <td className="py-2">52</td>
+                  <td className="py-2">1</td>
+                  <td className="py-2">4.5</td>
+                  <td className="py-2">210,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2">68</td>
+                  <td className="py-2">2</td>
+                  <td className="py-2">3.2</td>
+                  <td className="py-2">265,000</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-white/70">&#8943;</td>
+                  <td className="py-2 text-white/70">&#8943;</td>
+                  <td className="py-2 text-white/70">&#8943;</td>
+                  <td className="py-2 text-white/70">&#8943;</td>
+                </tr>
+                <tr>
+                  <td className="py-2">160</td>
+                  <td className="py-2">5</td>
+                  <td className="py-2">8.0</td>
+                  <td className="py-2">455,000</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -374,7 +390,7 @@ export default function WhatIsMlPage() {
             </div>
             <div>
               The input features. Example:{" "}
-              <span className="math-x font-mono">[floor_area_m2, bedrooms, distance_to_centre_km]</span>.
+              <span className="math-x font-mono">[floor_area_m2, bedrooms, distance_to_centre]</span>.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
@@ -972,7 +988,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
         </p>
         <div className="math-center math-lg text-white/90">
           <span className="math-yhat font-mono">price</span>
-          <span className="text-white"> ≈ {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {CANDIDATE_B_THETA1.toLocaleString("en-GB")} × </span>
+          <span className="text-white"> &asymp; {CANDIDATE_B_THETA0.toLocaleString("en-GB")} + {CANDIDATE_B_THETA1.toLocaleString("en-GB")} × </span>
           <span className="math-x font-mono">floor_area</span>
         </div>
       </section>
@@ -1107,7 +1123,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             so each row is a house and each column is a feature or label:
           </p>
           <CodeBlock
-            code={`data = pd.DataFrame({\n    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],\n    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],\n    "distance_to_centre_km": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],\n    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],\n})`}
+            code={`data = pd.DataFrame({\n    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],\n    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],\n    "distance_to_centre": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],\n    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],\n})`}
             title="Python"
           />
 
@@ -1118,7 +1134,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             <span className="font-mono inline-code">y</span>:
           </p>
           <CodeBlock
-            code={`X = data[["floor_area_m2", "bedrooms", "distance_to_centre_km"]]\ny = data["price_gbp"]`}
+            code={`X = data[["floor_area_m2", "bedrooms", "distance_to_centre"]]\ny = data["price_gbp"]`}
             title="Python"
           />
 
@@ -1188,51 +1204,51 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             <span className="text-white"> + </span>
             <ThetaWithIndex index={3} />
             <span className="text-white"> · </span>
-            <span className="math-x font-mono">distance_to_centre_km</span>
+            <span className="math-x font-mono">distance_to_centre</span>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
               <thead>
                 <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em] text-white/90">
                   <th className="py-2">Term</th>
-                  <th className="py-2">Parameter</th>
-                  <th className="py-2">Value</th>
+                  <th className="py-2 text-center">Parameter</th>
+                  <th className="py-2 text-center">Value</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-white/10">
                   <td className="py-2">Intercept</td>
-                  <td className="py-2">
+                  <td className="py-2 text-center">
                     <ThetaWithIndex index={0} />
                   </td>
-                  <td className="py-2 text-white">≈ 124,452</td>
+                  <td className="py-2 text-center text-white">&asymp; 124,452</td>
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="py-2">
                     <span className="math-x font-mono">floor_area_m2</span>
                   </td>
-                  <td className="py-2">
+                  <td className="py-2 text-center">
                     <ThetaWithIndex index={1} />
                   </td>
-                  <td className="py-2 text-white">≈ 2,050</td>
+                  <td className="py-2 text-center text-white">&asymp; 2,050</td>
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="py-2">
                     <span className="math-x font-mono">bedrooms</span>
                   </td>
-                  <td className="py-2">
+                  <td className="py-2 text-center">
                     <ThetaWithIndex index={2} />
                   </td>
-                  <td className="py-2 text-white">≈ 14,690</td>
+                  <td className="py-2 text-center text-white">&asymp; 14,690</td>
                 </tr>
                 <tr>
                   <td className="py-2">
-                    <span className="math-x font-mono">distance_to_centre_km</span>
+                    <span className="math-x font-mono">distance_to_centre</span>
                   </td>
-                  <td className="py-2">
+                  <td className="py-2 text-center">
                     <ThetaWithIndex index={3} />
                   </td>
-                  <td className="py-2 text-white">≈ -8,379</td>
+                  <td className="py-2 text-center text-white">&asymp; -8,379</td>
                 </tr>
               </tbody>
             </table>
@@ -1534,7 +1550,3 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
     </ArticleLayout>
   );
 }
-
-
-
-

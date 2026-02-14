@@ -101,7 +101,7 @@ export default function DataTypesFeaturesLabelsPage() {
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
               <thead>
                 <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                   <th className="py-2">
@@ -187,30 +187,30 @@ export default function DataTypesFeaturesLabelsPage() {
             <thead>
               <tr className="border-b border-white/10 text-white">
                 <th className="py-2 pr-4">Term</th>
-                <th className="py-2 pr-4">Parameter</th>
-                <th className="py-2">Value</th>
+                <th className="py-2 pr-4 text-center">Parameter</th>
+                <th className="py-2 text-center">Value</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Intercept</td>
-                <td className="py-2 pr-4"><ThetaWithIndex index={0} /></td>
-                <td className="py-2 text-white">&asymp; 124,452</td>
+                <td className="py-2 pr-4 text-center"><ThetaWithIndex index={0} /></td>
+                <td className="py-2 text-center text-white">&asymp; 124,452</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4"><span className="math-x font-mono">floor_area_m2</span></td>
-                <td className="py-2 pr-4"><ThetaWithIndex index={1} /></td>
-                <td className="py-2 text-white">&asymp; 2,050</td>
+                <td className="py-2 pr-4 text-center"><ThetaWithIndex index={1} /></td>
+                <td className="py-2 text-center text-white">&asymp; 2,050</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4"><span className="math-x font-mono">bedrooms</span></td>
-                <td className="py-2 pr-4"><ThetaWithIndex index={2} /></td>
-                <td className="py-2 text-white">&asymp; 14,690</td>
+                <td className="py-2 pr-4 text-center"><ThetaWithIndex index={2} /></td>
+                <td className="py-2 text-center text-white">&asymp; 14,690</td>
               </tr>
               <tr>
                 <td className="py-2 pr-4"><span className="math-x font-mono">distance_to_centre</span></td>
-                <td className="py-2 pr-4"><ThetaWithIndex index={3} /></td>
-                <td className="py-2 text-white">&asymp; -8,379</td>
+                <td className="py-2 pr-4 text-center"><ThetaWithIndex index={3} /></td>
+                <td className="py-2 text-center text-white">&asymp; -8,379</td>
               </tr>
             </tbody>
           </table>
@@ -327,7 +327,7 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/6 py-2 text-white/70">&#8943;</th>
@@ -406,7 +406,7 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/5 py-2 text-white/70">&#8943;</th>
@@ -476,11 +476,11 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/4 py-2 text-white/70">&#8943;</th>
-                      <th className="w-1/4 py-2"><span className="math-x">has_garden</span></th>
+                      <th className="w-1/4 py-2 text-left"><span className="math-x">has_garden</span></th>
                       <th className="w-1/4 py-2 text-white/70">&#8943;</th>
                       <th className="w-1/4 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
@@ -488,25 +488,25 @@ export default function DataTypesFeaturesLabelsPage() {
                   <tbody>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2 text-emerald-400">yes</td>
+                      <td className="py-2 text-left text-emerald-400">yes</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">310,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2 text-rose-400">no</td>
+                      <td className="py-2 text-left text-rose-400">no</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2 text-emerald-400">yes</td>
+                      <td className="py-2 text-left text-emerald-400">yes</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">390,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2 text-rose-400">no</td>
+                      <td className="py-2 text-left text-rose-400">no</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">255,000</td>
                     </tr>
@@ -539,11 +539,11 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/4 py-2 text-white/70">&#8943;</th>
-                      <th className="w-1/4 py-2"><span className="math-x">property_type</span></th>
+                      <th className="w-1/4 py-2 text-left"><span className="math-x">property_type</span></th>
                       <th className="w-1/4 py-2 text-white/70">&#8943;</th>
                       <th className="w-1/4 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
@@ -551,25 +551,25 @@ export default function DataTypesFeaturesLabelsPage() {
                   <tbody>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">flat</td>
+                      <td className="py-2 text-left">flat</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">terrace</td>
+                      <td className="py-2 text-left">terrace</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">255,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">semi</td>
+                      <td className="py-2 text-left">semi</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">365,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">detached</td>
+                      <td className="py-2 text-left">detached</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">460,000</td>
                     </tr>
@@ -601,7 +601,7 @@ export default function DataTypesFeaturesLabelsPage() {
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/4 py-2 text-white/70">&#8943;</th>
@@ -658,19 +658,19 @@ export default function DataTypesFeaturesLabelsPage() {
               before a model can use it effectively.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example variables: <span className="math-x font-mono">listing_description</span>{" "}
+              Example variables: <span className="math-x font-mono">description</span>{" "}
               <span className="text-white">(public advert text)</span> or{" "}
               <span className="math-x font-mono">agent_notes</span>{" "}
               <span className="text-white">(internal free-form comments)</span>.
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+                <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                       <th className="w-1/5 py-2 text-white/70">&#8943;</th>
-                      <th className="w-1/5 py-2"><span className="math-x">listing_description</span></th>
-                      <th className="w-1/5 py-2"><span className="math-x">agent_notes</span></th>
+                      <th className="w-1/5 py-2 text-left"><span className="math-x">description</span></th>
+                      <th className="w-1/5 py-2 text-left"><span className="math-x">agent_notes</span></th>
                       <th className="w-1/5 py-2 text-white/70">&#8943;</th>
                       <th className="w-1/5 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
@@ -678,29 +678,29 @@ export default function DataTypesFeaturesLabelsPage() {
                   <tbody>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">Compact city flat near station</td>
-                      <td className="py-2">Needs repaint in hallway</td>
+                      <td className="py-2 text-left">Compact city flat near station</td>
+                      <td className="py-2 text-left">Needs repaint in hallway</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">Bright two-bed with balcony</td>
-                      <td className="py-2">Strong weekend viewing interest</td>
+                      <td className="py-2 text-left">Bright two-bed with balcony</td>
+                      <td className="py-2 text-left">Strong weekend viewing interest</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">Terrace close to local schools</td>
-                      <td className="py-2">Kitchen recently refurbished</td>
+                      <td className="py-2 text-left">Terrace close to local schools</td>
+                      <td className="py-2 text-left">Kitchen recently refurbished</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">310,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">Detached home with large garden</td>
-                      <td className="py-2">Seller open to quick completion</td>
+                      <td className="py-2 text-left">Detached home with large garden</td>
+                      <td className="py-2 text-left">Seller open to quick completion</td>
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">460,000</td>
                     </tr>
@@ -733,7 +733,7 @@ export default function DataTypesFeaturesLabelsPage() {
         </p>
         <div className="glass-panel rounded-2xl p-4">
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
               <thead>
                 <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                   <th className="py-2">
@@ -745,7 +745,7 @@ export default function DataTypesFeaturesLabelsPage() {
                   <th className="py-2">
                     <span className="math-x">distance_to_centre</span>
                   </th>
-                  <th className="py-2">
+                  <th className="py-2 text-left">
                     <span className="math-x">property_type</span>
                   </th>
                   <th className="py-2">
@@ -759,7 +759,7 @@ export default function DataTypesFeaturesLabelsPage() {
                     <td className="py-2">{row.floor_area_m2}</td>
                     <td className="py-2">{row.bedrooms}</td>
                     <td className="py-2">{row.distance_to_centre}</td>
-                    <td className="py-2">{row.property_type}</td>
+                    <td className="py-2 text-left">{row.property_type}</td>
                     <td className="py-2">{row.price_gbp}</td>
                   </tr>
                 ))}
