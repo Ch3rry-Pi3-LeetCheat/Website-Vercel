@@ -330,12 +330,12 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">bedrooms</span></th>
-                      <th className="py-2"><span className="math-x">num_floors</span></th>
-                      <th className="py-2"><span className="math-x">age_years</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/6 py-2 text-white/70">...</th>
+                      <th className="w-1/6 py-2"><span className="math-x">bedrooms</span></th>
+                      <th className="w-1/6 py-2"><span className="math-x">num_floors</span></th>
+                      <th className="w-1/6 py-2"><span className="math-x">age_years</span></th>
+                      <th className="w-1/6 py-2 text-white/70">...</th>
+                      <th className="w-1/6 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -409,11 +409,11 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">distance_to_centre_km</span></th>
-                      <th className="py-2"><span className="math-x">interest_rate</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/5 py-2 text-white/70">...</th>
+                      <th className="w-1/5 py-2"><span className="math-x">distance_to_centre_km</span></th>
+                      <th className="w-1/5 py-2"><span className="math-x">interest_rate</span></th>
+                      <th className="w-1/5 py-2 text-white/70">...</th>
+                      <th className="w-1/5 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -479,10 +479,10 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">has_garden</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-x">has_garden</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -542,10 +542,10 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">property_type</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-x">property_type</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -604,10 +604,10 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">listing_date</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-x">listing_date</span></th>
+                      <th className="w-1/4 py-2 text-white/70">...</th>
+                      <th className="w-1/4 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -668,11 +668,11 @@ export default function DataTypesFeaturesLabelsPage() {
                 <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-x">listing_description</span></th>
-                      <th className="py-2"><span className="math-x">agent_notes</span></th>
-                      <th className="py-2 text-white/70">...</th>
-                      <th className="py-2"><span className="math-y font-mono">price_gbp</span></th>
+                      <th className="w-1/5 py-2 text-white/70">...</th>
+                      <th className="w-1/5 py-2"><span className="math-x">listing_description</span></th>
+                      <th className="w-1/5 py-2"><span className="math-x">agent_notes</span></th>
+                      <th className="w-1/5 py-2 text-white/70">...</th>
+                      <th className="w-1/5 py-2"><span className="math-y font-mono">price_gbp</span></th>
                     </tr>
                   </thead>
                   <tbody>
