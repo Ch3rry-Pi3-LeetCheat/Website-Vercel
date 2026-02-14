@@ -169,6 +169,34 @@ function YWithIndex({ index }: { index: number }) {
   );
 }
 
+function YWithSubscriptI() {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`y`} className="math-inline math-y" />
+      <sub
+        className="ml-[1px] text-[0.72em] leading-none"
+        style={{ color: "rgb(255, 255, 255)" }}
+      >
+        i
+      </sub>
+    </span>
+  );
+}
+
+function YHatWithSubscriptI() {
+  return (
+    <span className="inline-flex items-baseline align-middle">
+      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+      <sub
+        className="ml-[1px] text-[0.72em] leading-none"
+        style={{ color: "rgb(255, 255, 255)" }}
+      >
+        i
+      </sub>
+    </span>
+  );
+}
+
 function YHatWithIndexCandidate({
   index,
   candidate,
@@ -820,7 +848,7 @@ export default function WhatIsMlPage() {
           <span className="text-[#38bdf8]">Candidate B</span> at the same floor
           area:
         </p>
-        <div className="math-center math-lg text-white/90 grid gap-2">
+        <div className="math-center math-lg text-white/90">
           <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
             <div className="justify-self-end">
               <YHatWithLabel label="B" />
@@ -834,9 +862,7 @@ export default function WhatIsMlPage() {
             <div className="justify-self-start">
               <span className="text-white">= {candidateBError.toLocaleString("en-GB")}</span>
             </div>
-          </div>
-          <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
-            <div className="justify-self-end">
+            <div className="justify-self-end pt-1">
               <span className="text-white">(</span>
               <YHatWithLabel label="B" />
               <span className="text-white"> - </span>
@@ -844,7 +870,7 @@ export default function WhatIsMlPage() {
               <span className="text-white">)</span>
               <sup className="text-white">2</sup>
             </div>
-            <div className="justify-self-start">
+            <div className="justify-self-start pt-1">
               <span className="text-white">= ({candidateBError.toLocaleString("en-GB")})</span>
               <sup className="text-white">2</sup>
             </div>
@@ -875,28 +901,57 @@ export default function WhatIsMlPage() {
             A standard way to calculate average loss across all data points is{" "}
             <span className="text-white font-semibold">mean squared error (MSE)</span>.
           </p>
-          <MathBlock
-            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90">
+            <span className="inline-flex items-center gap-2">
+              <MathInline tex={String.raw`MSE`} className="math-inline math-neutral" />
+              <span className="text-white">=</span>
+              <InlineFraction
+                numerator={<span className="text-white">1</span>}
+                denominator={<span className="text-white">n</span>}
+              />
+              <span className="inline-flex items-start text-white">
+                <span className="relative inline-flex items-center">
+                  <MathInline tex={String.raw`\sum`} className="math-inline text-white" />
+                  <sub className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
+                    i=1
+                  </sub>
+                  <sup className="absolute -top-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
+                    n
+                  </sup>
+                </span>
+              </span>
+              <span className="text-white">(</span>
+              <YWithSubscriptI />
+              <span className="text-white"> - </span>
+              <YHatWithSubscriptI />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
+            </span>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             where:
           </p>
           <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
             <p>
-              <MathInline tex={String.raw`n`} className="math-inline text-white" /> is
+              <span className="text-white">n</span> is
               the number of rows (here, <span className="text-white">8</span>).
             </p>
             <p>
-              <MathInline tex={String.raw`y_i`} className="math-inline math-y" /> is the
-              true price for row <MathInline tex={String.raw`i`} className="math-inline text-white" />.
+              <YWithSubscriptI /> is the
+              true price for row <span className="text-white italic">i</span>.
             </p>
             <p>
-              <MathInline tex={String.raw`\hat{y}_i`} className="math-inline math-yhat" /> is the
-              predicted price for row <MathInline tex={String.raw`i`} className="math-inline text-white" />.
+              <YHatWithSubscriptI /> is the
+              predicted price for row <span className="text-white italic">i</span>.
             </p>
             <p>
-              <MathInline tex={String.raw`(y_i - \hat{y}_i)^2`} className="math-inline" /> is
+              <span className="text-white">(</span>
+              <YWithSubscriptI />
+              <span className="text-white"> - </span>
+              <YHatWithSubscriptI />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>{" "}
+              is
               the same single-point squared loss we just calculated for floor area{" "}
               <span className="text-white">{EXAMPLE_FLOOR_AREA}</span>, now repeated for each row.
             </p>
@@ -914,7 +969,7 @@ export default function WhatIsMlPage() {
           </p>
           <div className="math-center math-lg text-white/90">
             <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-2 text-left">
-              <div className="justify-self-end">
+              <div className="justify-self-end self-center">
                 <MseWithCandidate candidate="A" candidateClassName="text-[#ef4444]" />
               </div>
               <div className="justify-self-start">
@@ -995,7 +1050,7 @@ export default function WhatIsMlPage() {
           </p>
           <div className="math-center math-lg text-white/90">
             <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-2 text-left">
-              <div className="justify-self-end">
+              <div className="justify-self-end self-center">
                 <MseWithCandidate candidate="B" candidateClassName="text-[#38bdf8]" />
               </div>
               <div className="justify-self-start">
