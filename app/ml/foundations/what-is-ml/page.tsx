@@ -559,7 +559,7 @@ export default function WhatIsMlPage() {
             example simple. A simple rule is:
           </p>
           <div className="math-center math-lg text-white/90">
-            <MathInline tex={String.raw`price`} className="math-inline math-yhat font-mono" />
+            <span className="math-yhat font-mono">price</span>
             <span className="text-white"> = </span>
             <ThetaWithIndex index={0} />
             <span className="text-white"> + </span>
