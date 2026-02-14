@@ -874,7 +874,7 @@ export default function WhatIsMlPage() {
             <span className="text-white font-semibold">mean squared error (MSE)</span>.
           </p>
           <MathBlock
-            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}\left(\,{ \color{orange} y }_{i} - { \color{magenta} \hat{y} }_{i}\,\right)^{2}`}
+            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}\left( {\color{orange}{y}}_{i} - {\color{magenta}{\hat{y}}}_{i} \right)^{2}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -882,12 +882,12 @@ export default function WhatIsMlPage() {
           </p>
           <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
             <p>
-              <MathInline tex={String.raw`n`} className="math-inline text-white" /> is
+              <span className="italic text-white">n</span> is
               the number of rows (here, <span className="text-white">8</span>).
             </p>
             <p>
               <MathInline
-                tex={String.raw`{ \color{orange} y }_{i}`}
+                tex={String.raw`{\color{orange}{y}}_{i}`}
                 className="math-inline text-white"
               />{" "}
               is the
@@ -895,7 +895,7 @@ export default function WhatIsMlPage() {
             </p>
             <p>
               <MathInline
-                tex={String.raw`{ \color{magenta} \hat{y} }_{i}`}
+                tex={String.raw`{\color{magenta}{\hat{y}}}_{i}`}
                 className="math-inline text-white"
               />{" "}
               is the
@@ -903,7 +903,7 @@ export default function WhatIsMlPage() {
             </p>
             <p>
               <MathInline
-                tex={String.raw`\left(\,{ \color{orange} y }_{i} - { \color{magenta} \hat{y} }_{i}\,\right)^{2}`}
+                tex={String.raw`\left( {\color{orange}{y}}_{i} - {\color{magenta}{\hat{y}}}_{i} \right)^{2}`}
                 className="math-inline text-white"
               />{" "}
               is
