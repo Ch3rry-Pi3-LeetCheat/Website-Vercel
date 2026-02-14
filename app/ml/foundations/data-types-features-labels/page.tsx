@@ -8,14 +8,14 @@ import LeakageCheckQuiz from "@/components/ml/LeakageCheckQuiz";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
-  { floor_area_m2: 52, bedrooms: 1, distance_to_centre: 4.5, property_type: "flat", price_gbp: 210000 },
-  { floor_area_m2: 68, bedrooms: 2, distance_to_centre: 3.2, property_type: "flat", price_gbp: 265000 },
-  { floor_area_m2: 75, bedrooms: 2, distance_to_centre: 6.0, property_type: "terrace", price_gbp: 255000 },
-  { floor_area_m2: 90, bedrooms: 3, distance_to_centre: 5.5, property_type: "terrace", price_gbp: 310000 },
-  { floor_area_m2: 110, bedrooms: 3, distance_to_centre: 2.8, property_type: "semi", price_gbp: 365000 },
-  { floor_area_m2: 130, bedrooms: 4, distance_to_centre: 7.5, property_type: "semi", price_gbp: 390000 },
-  { floor_area_m2: 145, bedrooms: 4, distance_to_centre: 3.0, property_type: "detached", price_gbp: 460000 },
-  { floor_area_m2: 160, bedrooms: 5, distance_to_centre: 8.0, property_type: "detached", price_gbp: 455000 },
+  { floor_area: 52, bedrooms: 1, distance_to_centre: 4.5, property_type: "flat", price_gbp: 210000 },
+  { floor_area: 68, bedrooms: 2, distance_to_centre: 3.2, property_type: "flat", price_gbp: 265000 },
+  { floor_area: 75, bedrooms: 2, distance_to_centre: 6.0, property_type: "terrace", price_gbp: 255000 },
+  { floor_area: 90, bedrooms: 3, distance_to_centre: 5.5, property_type: "terrace", price_gbp: 310000 },
+  { floor_area: 110, bedrooms: 3, distance_to_centre: 2.8, property_type: "semi", price_gbp: 365000 },
+  { floor_area: 130, bedrooms: 4, distance_to_centre: 7.5, property_type: "semi", price_gbp: 390000 },
+  { floor_area: 145, bedrooms: 4, distance_to_centre: 3.0, property_type: "detached", price_gbp: 460000 },
+  { floor_area: 160, bedrooms: 5, distance_to_centre: 8.0, property_type: "detached", price_gbp: 455000 },
 ];
 
 const currentLessonHref = "/ml/foundations/data-types-features-labels";
@@ -105,7 +105,7 @@ export default function DataTypesFeaturesLabelsPage() {
               <thead>
                 <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                   <th className="py-2">
-                    <span className="math-x">floor_area_m2</span>
+                    <span className="math-x">floor_area</span>
                   </th>
                   <th className="py-2">
                     <span className="math-x">bedrooms</span>
@@ -149,7 +149,7 @@ export default function DataTypesFeaturesLabelsPage() {
         </div>
         <p>
           We treated the first three columns as features (
-          <span className="math-x font-mono">floor_area_m2</span>,{" "}
+          <span className="math-x font-mono">floor_area</span>,{" "}
           <span className="math-x font-mono">bedrooms</span>,{" "}
           <span className="math-x font-mono">distance_to_centre</span>) and
           the final column as the target (
@@ -157,7 +157,7 @@ export default function DataTypesFeaturesLabelsPage() {
         </p>
         <p>
           Using those feature values, we trained a <span className="math-model">model</span>. We started with a
-          simple one-feature example (<span className="math-x">floor_area_m2</span>)
+          simple one-feature example (<span className="math-x">floor_area</span>)
           and then progressed to Python with all three features. At a high
           level, we showed how training seeks to reduce aggregate loss across
           repeated learning loops, and we visualized that process.
@@ -170,7 +170,7 @@ export default function DataTypesFeaturesLabelsPage() {
           <span className="text-white">=</span>{" "}
           <ThetaWithIndex index={0} /> <span className="text-white">+</span>{" "}
           <ThetaWithIndex index={1} /> <span className="text-white">&times;</span>{" "}
-          <span className="math-x font-mono">floor_area_m2</span>{" "}
+          <span className="math-x font-mono">floor_area</span>{" "}
           <span className="text-white">+</span>{" "}
           <ThetaWithIndex index={2} /> <span className="text-white">&times;</span>{" "}
           <span className="math-x font-mono">bedrooms</span>{" "}
@@ -198,7 +198,7 @@ export default function DataTypesFeaturesLabelsPage() {
                 <td className="py-2 text-center text-white">&asymp; 124,452</td>
               </tr>
               <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">floor_area_m2</span></td>
+                <td className="py-2 pr-4"><span className="math-x font-mono">floor_area</span></td>
                 <td className="py-2 pr-4 text-center"><ThetaWithIndex index={1} /></td>
                 <td className="py-2 text-center text-white">&asymp; 2,050</td>
               </tr>
@@ -693,7 +693,7 @@ export default function DataTypesFeaturesLabelsPage() {
               <thead>
                 <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
                   <th className="py-2">
-                    <span className="math-x">floor_area_m2</span>
+                    <span className="math-x">floor_area</span>
                   </th>
                   <th className="py-2">
                     <span className="math-x">bedrooms</span>
@@ -711,8 +711,8 @@ export default function DataTypesFeaturesLabelsPage() {
               </thead>
               <tbody>
                 {HOUSE_DATA.map((row) => (
-                  <tr key={`${row.floor_area_m2}-${row.distance_to_centre}`} className="border-b border-white/10">
-                    <td className="py-2">{row.floor_area_m2}</td>
+                  <tr key={`${row.floor_area}-${row.distance_to_centre}`} className="border-b border-white/10">
+                    <td className="py-2">{row.floor_area}</td>
                     <td className="py-2">{row.bedrooms}</td>
                     <td className="py-2">{row.distance_to_centre}</td>
                     <td className="py-2 text-left">{row.property_type}</td>
@@ -844,7 +844,7 @@ export default function DataTypesFeaturesLabelsPage() {
             </thead>
             <tbody>
               <tr className="border-b border-white/10">
-                <td className="py-2 pr-4">floor_area_m2</td>
+                <td className="py-2 pr-4">floor_area</td>
                 <td className="py-2 pr-4 text-emerald-400">Strong</td>
                 <td className="py-2">Direct relation to price in many markets.</td>
               </tr>
@@ -947,7 +947,7 @@ export default function DataTypesFeaturesLabelsPage() {
           <LeakageCheckQuiz
             items={[
               {
-                column: "floor_area_m2",
+                column: "floor_area",
                 canUseAtPrediction: true,
                 reason: "Known before price prediction.",
               },
@@ -980,7 +980,7 @@ export default function DataTypesFeaturesLabelsPage() {
         </p>
         <ColumnRolePicker
           columns={[
-            { name: "floor_area_m2", answer: "feature", hint: "Known before prediction." },
+            { name: "floor_area", answer: "feature", hint: "Known before prediction." },
             { name: "bedrooms", answer: "feature", hint: "Input clue about utility/size." },
             { name: "distance_to_centre", answer: "feature", hint: "Location clue." },
             { name: "price_gbp", answer: "label", hint: "Target to predict." },
