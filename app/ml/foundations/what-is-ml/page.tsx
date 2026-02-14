@@ -874,7 +874,7 @@ export default function WhatIsMlPage() {
             <span className="text-white font-semibold">mean squared error (MSE)</span>.
           </p>
           <MathBlock
-            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}\left( {\color{orange}{y}}_{i} - {\color{magenta}{\hat{y}}}_{i} \right)^{2}`}
+            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}\left( {\color{orange} y_i} - {\color{magenta} \hat{y}_i} \right)^{2}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -887,7 +887,7 @@ export default function WhatIsMlPage() {
             </p>
             <p>
               <MathInline
-                tex={String.raw`{\color{orange}{y}}_{i}`}
+                tex={String.raw`{\color{orange} y_i}`}
                 className="math-inline text-white"
               />{" "}
               is the
@@ -895,7 +895,7 @@ export default function WhatIsMlPage() {
             </p>
             <p>
               <MathInline
-                tex={String.raw`{\color{magenta}{\hat{y}}}_{i}`}
+                tex={String.raw`{\color{magenta} \hat{y}_i}`}
                 className="math-inline text-white"
               />{" "}
               is the
@@ -903,7 +903,7 @@ export default function WhatIsMlPage() {
             </p>
             <p>
               <MathInline
-                tex={String.raw`\left( {\color{orange}{y}}_{i} - {\color{magenta}{\hat{y}}}_{i} \right)^{2}`}
+                tex={String.raw`\left( {\color{orange} y_i} - {\color{magenta} \hat{y}_i} \right)^{2}`}
                 className="math-inline text-white"
               />{" "}
               is

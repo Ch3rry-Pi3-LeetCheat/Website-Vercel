@@ -14,6 +14,9 @@ declare global {
 
 const mathJaxConfig = `
   window.MathJax = {
+    loader: {
+      load: ["[tex]/color"]
+    },
     tex: {
       inlineMath: [["\\\\(", "\\\\)"], ["$", "$"]],
       displayMath: [["\\\\[", "\\\\]"], ["$$", "$$"]],
