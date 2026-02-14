@@ -552,26 +552,26 @@ export default function WhatIsMlPage() {
           <div className="math-center math-lg text-white/90">
             <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
             <span className="text-white"> = </span>
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             <span className="text-white"> + </span>
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             <span className="text-white"> × </span>
             <span className="math-x font-mono">floor_area</span>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "}is the baseline price — the{" "}
             <span className="math-model">model</span>&apos;s starting point when
             floor area is zero (not a real house, but a useful reference).{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             {" "}is how much price rises per extra square metre.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             In other words,{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "}anchors the line, and{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             {" "}controls its steepness.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -579,9 +579,9 @@ export default function WhatIsMlPage() {
             <span className="text-white">(</span>
             <span className="text-[#ef4444]">red</span>
             <span className="text-white">)</span>{" "}uses{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "} <span className="text-white">= 50,000</span> and{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             {" "} <span className="text-white">= 2,000</span>. We&apos;ll pick a
             data point at random to demonstrate, for example{" "}
             <span className="math-x font-mono">floor_area</span>
@@ -618,10 +618,10 @@ export default function WhatIsMlPage() {
             <span className="text-white">(</span>
             <span className="text-[#38bdf8]">blue</span>
             <span className="text-white">)</span>{" "}uses{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "} <span className="text-white">= {candidateBIntercept.toLocaleString("en-GB")}</span>{" "}
             and{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             {" "} <span className="text-white">= {candidateBSlope.toLocaleString("en-GB")}</span>
             {" "}from the data-driven line in the chart:
           </p>
