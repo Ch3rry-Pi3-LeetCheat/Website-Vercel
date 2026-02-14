@@ -863,10 +863,10 @@ export default function WhatIsMlPage() {
               tex={String.raw`\begin{aligned}
 {\color{white}\mathrm{MSE}}_{\color{red}A}
 &= {\color{white}\frac{
-\left({\color{orange}y}_{\color{white}1} - {\color{red}\hat{y}}_{\color{white}1,{\color{red}A}}\right)^2
- + \left({\color{orange}y}_{\color{white}2} - {\color{red}\hat{y}}_{\color{white}2,{\color{red}A}}\right)^2
+ \left({\color{orange}y}_{\color{white}1} - {\color{magenta}\hat{y}}_{\color{white}1,{\color{red}A}}\right)^2
+  + \left({\color{orange}y}_{\color{white}2} - {\color{magenta}\hat{y}}_{\color{white}2,{\color{red}A}}\right)^2
  + \ldots
- + \left({\color{orange}y}_{\color{white}8} - {\color{red}\hat{y}}_{\color{white}8,{\color{red}A}}\right)^2
+  + \left({\color{orange}y}_{\color{white}8} - {\color{magenta}\hat{y}}_{\color{white}8,{\color{red}A}}\right)^2
 }{8}} \\
 &= {\color{white}\frac{
 ${candidateASquaredErrors[0].toLocaleString("en-GB")}
@@ -889,10 +889,10 @@ ${candidateASquaredErrors[0].toLocaleString("en-GB")}
               tex={String.raw`\begin{aligned}
 {\color{white}\mathrm{MSE}}_{\color{cyan}B}
 &= {\color{white}\frac{
-\left({\color{orange}y}_{\color{white}1} - {\color{cyan}\hat{y}}_{\color{white}1,{\color{cyan}B}}\right)^2
- + \left({\color{orange}y}_{\color{white}2} - {\color{cyan}\hat{y}}_{\color{white}2,{\color{cyan}B}}\right)^2
+ \left({\color{orange}y}_{\color{white}1} - {\color{magenta}\hat{y}}_{\color{white}1,{\color{cyan}B}}\right)^2
+  + \left({\color{orange}y}_{\color{white}2} - {\color{magenta}\hat{y}}_{\color{white}2,{\color{cyan}B}}\right)^2
  + \ldots
- + \left({\color{orange}y}_{\color{white}8} - {\color{cyan}\hat{y}}_{\color{white}8,{\color{cyan}B}}\right)^2
+  + \left({\color{orange}y}_{\color{white}8} - {\color{magenta}\hat{y}}_{\color{white}8,{\color{cyan}B}}\right)^2
 }{8}} \\
 &= {\color{white}\frac{
 ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
