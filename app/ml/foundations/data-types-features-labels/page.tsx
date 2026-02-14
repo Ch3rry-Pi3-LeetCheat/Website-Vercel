@@ -37,6 +37,12 @@ export default function DataTypesFeaturesLabelsPage() {
     { id: "recap", label: "Quick recap", level: 2 },
     { id: "page-roadmap", label: "What this page covers", level: 2 },
     { id: "types", label: "Common data types" },
+    { id: "type-integer", label: "Integer", level: 2 },
+    { id: "type-float", label: "Float / decimal", level: 2 },
+    { id: "type-boolean", label: "Boolean", level: 2 },
+    { id: "type-categorical", label: "Categorical", level: 2 },
+    { id: "type-datetime", label: "Date / time", level: 2 },
+    { id: "type-text", label: "Text", level: 2 },
     { id: "dataset", label: "Example dataset" },
     { id: "roles", label: "Features vs label" },
     { id: "label-type", label: "Label decides problem type" },
@@ -228,7 +234,7 @@ export default function DataTypesFeaturesLabelsPage() {
         <p>
           But real datasets are often broader. For houses, we might also have a{" "}
           <span className="math-x">parking field</span> with{" "}
-          <span className="text-emerald-400">yes</span>/<span className="text-rose-400">no</span>{" "}
+          <span className="text-emerald-400">yes</span> / <span className="text-rose-400">no</span>{" "}
           values, <span className="math-x">categorical columns</span> with many
           possible values, or <span className="math-x">date fields</span> such
           as listing date.
@@ -288,116 +294,74 @@ export default function DataTypesFeaturesLabelsPage() {
           Common data types
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Before we return to house prices, here is a small mixed-type dataset
-          for a loan-default task. It shows why data type awareness matters in
-          practice.
+          Before we return to house prices, let&apos;s define the most common
+          data types in plain language. Think of this as a quick mental map for
+          reading real datasets.
         </p>
-        <div className="glass-panel rounded-2xl p-4">
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-              <thead>
-                <tr className="border-b border-white/10 text-xs uppercase tracking-[0.2em]">
-                  <th className="py-2"><span className="math-x">age</span></th>
-                  <th className="py-2"><span className="math-x">inc_k</span></th>
-                  <th className="py-2"><span className="math-x">util_rt</span></th>
-                  <th className="py-2"><span className="math-x">emp_tp</span></th>
-                  <th className="py-2"><span className="math-x">has_late</span></th>
-                  <th className="py-2"><span className="math-x">app_dt</span></th>
-                  <th className="py-2"><span className="math-y">default</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-white/10">
-                  <td className="py-2">29</td>
-                  <td className="py-2">52.4</td>
-                  <td className="py-2">0.37</td>
-                  <td className="py-2">salaried</td>
-                  <td className="py-2 text-emerald-400">no</td>
-                  <td className="py-2">2025-01-14</td>
-                  <td className="py-2 text-emerald-400">no</td>
-                </tr>
-                <tr className="border-b border-white/10">
-                  <td className="py-2">45</td>
-                  <td className="py-2">88.9</td>
-                  <td className="py-2">0.21</td>
-                  <td className="py-2">self_emp</td>
-                  <td className="py-2 text-rose-400">yes</td>
-                  <td className="py-2">2025-01-20</td>
-                  <td className="py-2 text-rose-400">yes</td>
-                </tr>
-                <tr className="border-b border-white/10">
-                  <td className="py-2">34</td>
-                  <td className="py-2">41.2</td>
-                  <td className="py-2">0.48</td>
-                  <td className="py-2">contract</td>
-                  <td className="py-2 text-rose-400">yes</td>
-                  <td className="py-2">2025-02-02</td>
-                  <td className="py-2 text-rose-400">yes</td>
-                </tr>
-                <tr className="border-b border-white/10">
-                  <td className="py-2">51</td>
-                  <td className="py-2">73.0</td>
-                  <td className="py-2">0.19</td>
-                  <td className="py-2">salaried</td>
-                  <td className="py-2 text-emerald-400">no</td>
-                  <td className="py-2">2025-02-11</td>
-                  <td className="py-2 text-emerald-400">no</td>
-                </tr>
-                <tr>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                  <td className="py-2 text-white/70">&hellip;</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-            <thead>
-              <tr className="border-b border-white/10 text-white">
-                <th className="py-2 pr-4">Column</th>
-                <th className="py-2 pr-4">Type</th>
-                <th className="py-2">Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">age</span></td>
-                <td className="py-2 pr-4">Integer</td>
-                <td className="py-2">29, 45</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">inc_k</span>, <span className="math-x font-mono">util_rt</span></td>
-                <td className="py-2 pr-4">Float / decimal</td>
-                <td className="py-2">52.4, 0.37</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">has_late</span></td>
-                <td className="py-2 pr-4">Boolean</td>
-                <td className="py-2"><span className="text-rose-400">yes</span> / <span className="text-emerald-400">no</span></td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">emp_tp</span></td>
-                <td className="py-2 pr-4">Categorical string</td>
-                <td className="py-2">salaried, self_emp, contract</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 pr-4"><span className="math-x font-mono">app_dt</span></td>
-                <td className="py-2 pr-4">Date</td>
-                <td className="py-2">2025-02-11</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-4"><span className="math-y font-mono">default</span></td>
-                <td className="py-2 pr-4">Target label (boolean)</td>
-                <td className="py-2"><span className="text-rose-400">yes</span> / <span className="text-emerald-400">no</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="grid gap-3">
+          <section id="type-integer" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Integer</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Whole numbers you can count with: no decimal point.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: <span className="text-white">how many bedrooms</span>,{" "}
+              <span className="text-white">number of floors</span>, or{" "}
+              <span className="text-white">age in years</span>.
+            </p>
+          </section>
+
+          <section id="type-float" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Float / Decimal</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Numeric values that can include fractions.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: <span className="text-white">distance_to_centre_km = 4.5</span> or{" "}
+              <span className="text-white">interest_rate = 3.75</span>.
+            </p>
+          </section>
+
+          <section id="type-boolean" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Boolean</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              A simple true/false style value.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: <span className="text-emerald-400">has_garden = yes</span> or{" "}
+              <span className="text-rose-400">has_garden = no</span>.
+            </p>
+          </section>
+
+          <section id="type-categorical" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Categorical</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              A value chosen from a fixed set of named options.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: <span className="text-white">property_type = flat / semi / detached</span>.
+            </p>
+          </section>
+
+          <section id="type-datetime" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Date / Time</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Values that describe when something happened.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: <span className="text-white">listing_date = 2025-02-11</span>.
+            </p>
+          </section>
+
+          <section id="type-text" className="glass-panel rounded-2xl p-4 grid gap-2">
+            <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">Text</h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Free-form words or sentences written by people.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Think: property descriptions, agent notes, or customer messages.
+            </p>
+          </section>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We will now return to the house-price dataset and keep building from
@@ -502,7 +466,7 @@ export default function DataTypesFeaturesLabelsPage() {
               </tr>
               <tr className="border-b border-white/10">
                 <td className="py-2 pr-4">Two classes</td>
-                <td className="py-2 pr-4">spam = yes/no</td>
+                <td className="py-2 pr-4">spam = yes / no</td>
                 <td className="py-2">Binary classification</td>
               </tr>
               <tr>
