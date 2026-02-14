@@ -297,11 +297,13 @@ export default function WhatIsMlPage() {
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           <span className="math-x font-mono">floor_area_m2</span> is the size of
-          the house, <span className="math-x font-mono">bedrooms</span> is the
-          number of bedrooms,{" "}
-          <span className="math-x font-mono">distance_to_centre</span> is how
-          far the house is from the centre, and{" "}
-          <span className="math-y font-mono">price_gbp</span> is the price we
+          the house in <span className="text-white">m^2</span>,{" "}
+          <span className="math-x font-mono">bedrooms</span> is the number of
+          bedrooms, <span className="math-x font-mono">distance_to_centre</span>{" "}
+          is how far the house is from the centre in{" "}
+          <span className="text-white">km</span>, and{" "}
+          <span className="math-y font-mono">price_gbp</span> is the house
+          price in <span className="text-white">pound sterling</span> that we
           want to predict.
         </p>
         <div className="glass-panel rounded-2xl p-4">
