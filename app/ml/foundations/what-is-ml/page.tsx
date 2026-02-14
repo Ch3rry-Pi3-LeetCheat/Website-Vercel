@@ -540,10 +540,15 @@ export default function WhatIsMlPage() {
             <span className="math-x">floor area</span>, so we can keep the
             example simple. A simple rule is:
           </p>
-          <MathBlock
-            tex={String.raw`price = \theta_0 + \theta_1 \times floor\_area`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90">
+            <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+            <span className="text-white"> = </span>
+            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <span className="text-white"> + </span>
+            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <span className="text-white"> × </span>
+            <span className="math-x font-mono">floor_area</span>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here{" "}
             <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
@@ -578,14 +583,27 @@ export default function WhatIsMlPage() {
             <span className="math-x font-mono">floor_area</span>
             {" "} <span className="text-white">= {EXAMPLE_FLOOR_AREA}</span>:
           </p>
-          <MathBlock
-            tex={String.raw`\begin{aligned}
-              price &= 50{,}000 + 2{,}000 \times 110 \\
-              &= 50{,}000 + 220{,}000 \\
-              &= 270{,}000
-            \end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90 grid gap-1">
+            <div>
+              <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+              <span className="text-white"> = </span>
+              <span className="text-[#ef4444]">50,000</span>
+              <span className="text-white"> + </span>
+              <span className="text-[#ef4444]">2,000</span>
+              <span className="text-white"> × </span>
+              <span className="text-[#ef4444]">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
+            </div>
+            <div>
+              <span className="text-white">= </span>
+              <span className="text-[#ef4444]">50,000</span>
+              <span className="text-white"> + </span>
+              <span className="text-[#ef4444]">220,000</span>
+            </div>
+            <div>
+              <span className="text-white">= </span>
+              <span className="text-[#ef4444]">270,000</span>
+            </div>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             <span className="text-[#38bdf8]">Candidate B</span>{" "}
             <span className="text-white">(</span>
@@ -598,14 +616,27 @@ export default function WhatIsMlPage() {
             {" "} <span className="text-white">= {candidateBSlope.toLocaleString("en-GB")}</span>
             {" "}from the data-driven line in the chart:
           </p>
-          <MathBlock
-            tex={`\\begin{aligned}
-              price &= ${candidateBIntercept.toLocaleString("en-GB")} + ${candidateBSlope.toLocaleString("en-GB")} \\times ${EXAMPLE_FLOOR_AREA} \\\\
-              &= ${candidateBIntercept.toLocaleString("en-GB")} + ${candidateBContribution.toLocaleString("en-GB")} \\\\
-              &= ${candidateBApproxPrediction.toLocaleString("en-GB")}
-            \\end{aligned}`}
-            className="math-center math-lg text-white/90"
-          />
+          <div className="math-center math-lg text-white/90 grid gap-1">
+            <div>
+              <MathInline tex={String.raw`price`} className="math-inline math-neutral" />
+              <span className="text-white"> = </span>
+              <span className="text-[#38bdf8]">{candidateBIntercept.toLocaleString("en-GB")}</span>
+              <span className="text-white"> + </span>
+              <span className="text-[#38bdf8]">{candidateBSlope.toLocaleString("en-GB")}</span>
+              <span className="text-white"> × </span>
+              <span className="text-[#38bdf8]">{EXAMPLE_FLOOR_AREA.toLocaleString("en-GB")}</span>
+            </div>
+            <div>
+              <span className="text-white">= </span>
+              <span className="text-[#38bdf8]">{candidateBIntercept.toLocaleString("en-GB")}</span>
+              <span className="text-white"> + </span>
+              <span className="text-[#38bdf8]">{candidateBContribution.toLocaleString("en-GB")}</span>
+            </div>
+            <div>
+              <span className="text-white">= </span>
+              <span className="text-[#38bdf8]">{candidateBApproxPrediction.toLocaleString("en-GB")}</span>
+            </div>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             For this one house size,{" "}
             <span className="text-[#ef4444]">Candidate A</span> predicts{" "}
