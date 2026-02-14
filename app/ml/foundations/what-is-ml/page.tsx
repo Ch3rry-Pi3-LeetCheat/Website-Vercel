@@ -13,14 +13,14 @@ import WorkedExamplePlot from "@/components/ml/WorkedExamplePlot";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 
 const HOUSE_DATA = [
-  { floor_area_m2: 52, bedrooms: 1, distance_to_centre: 4.5, price_gbp: 210000 },
-  { floor_area_m2: 68, bedrooms: 2, distance_to_centre: 3.2, price_gbp: 265000 },
-  { floor_area_m2: 75, bedrooms: 2, distance_to_centre: 6.0, price_gbp: 255000 },
-  { floor_area_m2: 90, bedrooms: 3, distance_to_centre: 5.5, price_gbp: 310000 },
-  { floor_area_m2: 110, bedrooms: 3, distance_to_centre: 2.8, price_gbp: 365000 },
-  { floor_area_m2: 130, bedrooms: 4, distance_to_centre: 7.5, price_gbp: 390000 },
-  { floor_area_m2: 145, bedrooms: 4, distance_to_centre: 3.0, price_gbp: 460000 },
-  { floor_area_m2: 160, bedrooms: 5, distance_to_centre: 8.0, price_gbp: 455000 },
+  { floor_area: 52, bedrooms: 1, distance_to_centre: 4.5, price_gbp: 210000 },
+  { floor_area: 68, bedrooms: 2, distance_to_centre: 3.2, price_gbp: 265000 },
+  { floor_area: 75, bedrooms: 2, distance_to_centre: 6.0, price_gbp: 255000 },
+  { floor_area: 90, bedrooms: 3, distance_to_centre: 5.5, price_gbp: 310000 },
+  { floor_area: 110, bedrooms: 3, distance_to_centre: 2.8, price_gbp: 365000 },
+  { floor_area: 130, bedrooms: 4, distance_to_centre: 7.5, price_gbp: 390000 },
+  { floor_area: 145, bedrooms: 4, distance_to_centre: 3.0, price_gbp: 460000 },
+  { floor_area: 160, bedrooms: 5, distance_to_centre: 8.0, price_gbp: 455000 },
 ];
 
 const tinyExampleCode = `# Install dependencies (once)
@@ -32,14 +32,14 @@ from sklearn.linear_model import LinearRegression
 
 # Build a tiny dataset (each row is one house)
 data = pd.DataFrame({
-    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],
+    "floor_area": [52, 68, 75, 90, 110, 130, 145, 160],
     "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],
     "distance_to_centre": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],
     "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],
 })
 
 # Split into inputs (features) and the target (label)
-X = data[["floor_area_m2", "bedrooms", "distance_to_centre"]]
+X = data[["floor_area", "bedrooms", "distance_to_centre"]]
 y = data["price_gbp"]
 
 # Create and train the model
@@ -62,7 +62,7 @@ const CANDIDATE_B_LINE = (() => {
   const xScale = 100;
   const yScale = 1000;
   const scaled = HOUSE_DATA.map((row) => ({
-    x: row.floor_area_m2 / xScale,
+    x: row.floor_area / xScale,
     y: row.price_gbp / yScale,
   }));
 
@@ -118,14 +118,14 @@ const candidateBLoss = candidateBError ** 2;
 
 const candidateASquaredErrors = HOUSE_DATA.map((row) => {
   const prediction = Math.round(
-    (CANDIDATE_A_LINE.intercept + CANDIDATE_A_LINE.slope * row.floor_area_m2) * 1000
+    (CANDIDATE_A_LINE.intercept + CANDIDATE_A_LINE.slope * row.floor_area) * 1000
   );
   const error = prediction - row.price_gbp;
   return error ** 2;
 });
 
 const candidateBSquaredErrors = HOUSE_DATA.map((row) => {
-  const prediction = CANDIDATE_B_THETA0 + CANDIDATE_B_THETA1 * row.floor_area_m2;
+  const prediction = CANDIDATE_B_THETA0 + CANDIDATE_B_THETA1 * row.floor_area;
   const error = prediction - row.price_gbp;
   return error ** 2;
 });
@@ -296,8 +296,8 @@ export default function WhatIsMlPage() {
           <span className="math-yhat">predict</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          <span className="math-x font-mono">floor_area_m2</span> is the size of
-          the house in <span className="text-white">m^2</span>,{" "}
+          <span className="math-x font-mono">floor_area</span> is the size of
+          the house in <span className="text-white">m²</span>,{" "}
           <span className="math-x font-mono">bedrooms</span> is the number of
           bedrooms, <span className="math-x font-mono">distance_to_centre</span>{" "}
           is how far the house is from the centre in{" "}
@@ -312,7 +312,7 @@ export default function WhatIsMlPage() {
               <thead>
                 <tr className="text-xs uppercase tracking-[0.2em]">
                   <th className="w-1/4 py-2">
-                    <span className="math-x">floor_area_m2</span>
+                    <span className="math-x">floor_area</span>
                   </th>
                   <th className="w-1/4 py-2">
                     <span className="math-x">bedrooms</span>
@@ -326,30 +326,14 @@ export default function WhatIsMlPage() {
                 </tr>
               </thead>
               <tbody className="text-sm">
-                <tr>
-                  <td className="py-2">52</td>
-                  <td className="py-2">1</td>
-                  <td className="py-2">4.5</td>
-                  <td className="py-2">210,000</td>
-                </tr>
-                <tr>
-                  <td className="py-2">68</td>
-                  <td className="py-2">2</td>
-                  <td className="py-2">3.2</td>
-                  <td className="py-2">265,000</td>
-                </tr>
-                <tr>
-                  <td className="py-2 text-white/70">&#8942;</td>
-                  <td className="py-2 text-white/70">&#8942;</td>
-                  <td className="py-2 text-white/70">&#8942;</td>
-                  <td className="py-2 text-white/70">&#8942;</td>
-                </tr>
-                <tr>
-                  <td className="py-2">160</td>
-                  <td className="py-2">5</td>
-                  <td className="py-2">8.0</td>
-                  <td className="py-2">455,000</td>
-                </tr>
+                {HOUSE_DATA.map((row) => (
+                  <tr key={`${row.floor_area}-${row.distance_to_centre}`} className="border-b border-white/10">
+                    <td className="py-2">{row.floor_area}</td>
+                    <td className="py-2">{row.bedrooms}</td>
+                    <td className="py-2">{row.distance_to_centre}</td>
+                    <td className="py-2">{row.price_gbp.toLocaleString("en-GB")}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -392,7 +376,7 @@ export default function WhatIsMlPage() {
             </div>
             <div>
               The input features. Example:{" "}
-              <span className="math-x font-mono">[floor_area_m2, bedrooms, distance_to_centre]</span>.
+              <span className="math-x font-mono">[floor_area, bedrooms, distance_to_centre]</span>.
             </div>
           </div>
           <div className="grid gap-2 md:grid-cols-[120px_minmax(0,1fr)]">
@@ -533,7 +517,7 @@ export default function WhatIsMlPage() {
             </p>
             <LineGuessPlot
               data={HOUSE_DATA}
-              xKey="floor_area_m2"
+              xKey="floor_area"
               yKey="price_gbp"
               yScale={1000}
               candidateBLine={CANDIDATE_B_WORKED_LINE}
@@ -561,7 +545,7 @@ export default function WhatIsMlPage() {
           </p>
           <WorkedExamplePlot
             data={HOUSE_DATA}
-            xKey="floor_area_m2"
+            xKey="floor_area"
             yKey="price_gbp"
             yScale={1000}
             line={CANDIDATE_A_LINE}
@@ -714,7 +698,7 @@ export default function WhatIsMlPage() {
         </p>
         <WorkedExamplePlot
           data={HOUSE_DATA}
-          xKey="floor_area_m2"
+          xKey="floor_area"
           yKey="price_gbp"
           yScale={1000}
           line={CANDIDATE_A_LINE}
@@ -970,13 +954,13 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For the visual, we use just one feature:{" "}
-          <span className="math-x font-mono">floor_area_m2</span>. This keeps the
+          <span className="math-x font-mono">floor_area</span>. This keeps the
           plot 2D. Real <span className="math-model">models</span> can still use
           the full table above.
         </p>
         <LineFitAnimator
           data={HOUSE_DATA}
-          xKey="floor_area_m2"
+          xKey="floor_area"
           yKey="price_gbp"
           yScale={1000}
           showErrorBars
@@ -1033,7 +1017,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
         </p>
         <PredictionGuidePlot
           data={HOUSE_DATA}
-          xKey="floor_area_m2"
+          xKey="floor_area"
           yKey="price_gbp"
           yScale={1000}
           line={CANDIDATE_B_WORKED_LINE}
@@ -1125,7 +1109,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             so each row is a house and each column is a feature or label:
           </p>
           <CodeBlock
-            code={`data = pd.DataFrame({\n    "floor_area_m2": [52, 68, 75, 90, 110, 130, 145, 160],\n    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],\n    "distance_to_centre": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],\n    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],\n})`}
+            code={`data = pd.DataFrame({\n    "floor_area": [52, 68, 75, 90, 110, 130, 145, 160],\n    "bedrooms": [1, 2, 2, 3, 3, 4, 4, 5],\n    "distance_to_centre": [4.5, 3.2, 6.0, 5.5, 2.8, 7.5, 3.0, 8.0],\n    "price_gbp": [210000, 265000, 255000, 310000, 365000, 390000, 460000, 455000],\n})`}
             title="Python"
           />
 
@@ -1136,7 +1120,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             <span className="font-mono inline-code">y</span>:
           </p>
           <CodeBlock
-            code={`X = data[["floor_area_m2", "bedrooms", "distance_to_centre"]]\ny = data["price_gbp"]`}
+            code={`X = data[["floor_area", "bedrooms", "distance_to_centre"]]\ny = data["price_gbp"]`}
             title="Python"
           />
 
@@ -1198,7 +1182,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
             <span className="text-white"> + </span>
             <ThetaWithIndex index={1} />
             <span className="text-white"> · </span>
-            <span className="math-x font-mono">floor_area_m2</span>
+            <span className="math-x font-mono">floor_area</span>
             <span className="text-white"> + </span>
             <ThetaWithIndex index={2} />
             <span className="text-white"> · </span>
@@ -1227,7 +1211,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="py-2">
-                    <span className="math-x font-mono">floor_area_m2</span>
+                    <span className="math-x font-mono">floor_area</span>
                   </td>
                   <td className="py-2 text-center">
                     <ThetaWithIndex index={1} />
@@ -1284,7 +1268,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The output is the predicted price for a{" "}
           <span className="math-x">100</span>{" "}
-          <MathInline tex={String.raw`m^2`} className="math-inline math-neutral" />
+          <span className="text-white">m²</span>
           {", "}<span className="math-x">3</span>-bedroom house{" "}
           <span className="math-x">4</span> km from the centre. That predicted
           price is{" "}
@@ -1440,7 +1424,7 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
               answer: (
                 <>
                   An input variable the <span className="math-model">model</span> uses,
-                  like floor_area_m2 or bedrooms.
+                  like floor_area or bedrooms.
                 </>
               ),
             },

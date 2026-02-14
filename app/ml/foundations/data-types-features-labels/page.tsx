@@ -316,11 +316,12 @@ export default function DataTypesFeaturesLabelsPage() {
               <span className="text-white">&quot;How many?&quot;</span>, you often
               have an integer column.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Fields shown:</span>{" "}
-              <span className="math-x font-mono">bedrooms</span> (number of bedrooms),{" "}
-              <span className="math-x font-mono">num_floors</span> (number of floors),{" "}
-              <span className="math-x font-mono">age_years</span> (property age in years).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              In this housing example, we&apos;ll focus on{" "}
+              <span className="math-x font-mono">bedrooms</span> (how many bedrooms),{" "}
+              <span className="math-x font-mono">num_floors</span> (how many
+              storeys), and <span className="math-x font-mono">age_years</span>{" "}
+              (property age in years).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -362,11 +363,11 @@ export default function DataTypesFeaturesLabelsPage() {
                     </tr>
                     <tr>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">3</td>
+                      <td className="py-2">5</td>
                       <td className="py-2">2</td>
                       <td className="py-2">5</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">310,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -384,10 +385,13 @@ export default function DataTypesFeaturesLabelsPage() {
               In plain terms: these are measurements, rates, and continuous
               quantities rather than simple counts.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Fields shown:</span>{" "}
-              <span className="math-x font-mono">distance_to_centre</span> (distance from city centre in km),{" "}
-              <span className="math-x font-mono">interest_rate</span> (borrowing rate in percent).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              For this slice, we&apos;ll use{" "}
+              <span className="math-x font-mono">distance_to_centre</span>{" "}
+              (distance from the city centre, in km) and{" "}
+              <span className="math-x font-mono">interest_rate</span>{" "}
+              (borrowing rate, in percent), because both can take fractional
+              values.
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -428,7 +432,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2">2.8</td>
                       <td className="py-2">3.55</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">365,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -445,9 +449,10 @@ export default function DataTypesFeaturesLabelsPage() {
               They are great for quick condition checks and often represent a
               clear property of something.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Field shown:</span>{" "}
-              <span className="math-x font-mono">has_garden</span> (whether a property has a garden).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              In this housing dataset,{" "}
+              <span className="math-x font-mono">has_garden</span> simply
+              records whether the property has a garden (yes or no).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -465,7 +470,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-emerald-400">yes</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">310,000</td>
+                      <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
@@ -483,7 +488,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-rose-400">no</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">255,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -501,9 +506,10 @@ export default function DataTypesFeaturesLabelsPage() {
               Important intuition: categories are different kinds, not bigger
               or smaller versions of each other.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Field shown:</span>{" "}
-              <span className="math-x font-mono">property_type</span> (home style category).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Here we&apos;ll use <span className="math-x font-mono">property_type</span>{" "}
+              to label the style of home (for example flat, terrace, or
+              detached).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -527,7 +533,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">terrace</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">255,000</td>
+                      <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-2 text-white/70">&#8943;</td>
@@ -539,7 +545,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">detached</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">460,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -556,9 +562,10 @@ export default function DataTypesFeaturesLabelsPage() {
               They often unlock useful patterns like seasonality, day-of-week
               effects, or how recent an event is.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Field shown:</span>{" "}
-              <span className="math-x font-mono">listing_date</span> (the day the home went live).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              For this housing dataset, we&apos;ll use{" "}
+              <span className="math-x font-mono">listing_date</span> to mean the
+              date the property was listed for sale.
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -594,7 +601,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2025-02-11</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">310,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -612,10 +619,12 @@ export default function DataTypesFeaturesLabelsPage() {
               It carries rich meaning, but it usually needs extra processing
               before a model can use it effectively.
             </p>
-            <p className="text-sm leading-6 text-white/80">
-              <span className="font-semibold text-white">Fields shown:</span>{" "}
-              <span className="math-x font-mono">description</span> (public advert text),{" "}
-              <span className="math-x font-mono">agent_notes</span> (internal free-form comments).
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              For text data here,{" "}
+              <span className="math-x font-mono">description</span> is the
+              public advert copy, while{" "}
+              <span className="math-x font-mono">agent_notes</span> captures the
+              agent&apos;s internal free-form comments.
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -656,7 +665,7 @@ export default function DataTypesFeaturesLabelsPage() {
                       <td className="py-2 text-left">Detached home with large garden</td>
                       <td className="py-2 text-left">Seller open to quick completion</td>
                       <td className="py-2 text-white/70">&#8943;</td>
-                      <td className="py-2">460,000</td>
+                      <td className="py-2">455,000</td>
                     </tr>
                   </tbody>
                 </table>
