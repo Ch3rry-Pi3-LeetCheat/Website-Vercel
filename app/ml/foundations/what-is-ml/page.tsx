@@ -339,10 +339,10 @@ export default function WhatIsMlPage() {
                   <td className="py-2">265,000</td>
                 </tr>
                 <tr>
-                  <td className="py-2 text-white/70">&#8943;</td>
-                  <td className="py-2 text-white/70">&#8943;</td>
-                  <td className="py-2 text-white/70">&#8943;</td>
-                  <td className="py-2 text-white/70">&#8943;</td>
+                  <td className="py-2 math-x">&#8942;</td>
+                  <td className="py-2 math-x">&#8942;</td>
+                  <td className="py-2 math-x">&#8942;</td>
+                  <td className="py-2 math-x">&#8942;</td>
                 </tr>
                 <tr>
                   <td className="py-2">160</td>
