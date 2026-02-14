@@ -144,9 +144,8 @@ const nextLesson = currentLessonIndex >= 0 ? mlFoundationsLessons[currentLessonI
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
-    { id: "mental-model", label: "A concrete mental model" },
-    { id: "examples", label: "Real-world examples", level: 2 },
-    { id: "dataset", label: "Example dataset", level: 2 },
+    { id: "dataset", label: "Example dataset" },
+    { id: "examples", label: "Real-world use cases", level: 2 },
     { id: "model-plain", label: "What is a model?" },
     { id: "notation", label: "Introducing some notation" },
     { id: "function-intro", label: "Understanding ŷ = f(x; θ)", level: 2 },
@@ -177,16 +176,13 @@ export default function WhatIsMlPage() {
         />
       }
     >
-      <section id="intro" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Introduction
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Welcome - this lesson is built as an intuitive, hands-on hook. We use
-          one concrete example throughout, so the ideas feel tangible while you
-          build a practical mental model of what ML is doing.
+      <InfoPanel id="intro" title="Introduction" variant="intro">
+        <p>
+          Welcome. This lesson is built as an intuitive, hands-on hook. We use
+          one concrete example throughout, so the ideas stay tangible while you
+          build a practical mental model of what machine learning is doing.
         </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+        <p>
           Here&apos;s the roadmap for this article and why each part matters:
         </p>
         <div className="ml-4 overflow-x-auto">
@@ -215,63 +211,60 @@ export default function WhatIsMlPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          By the end, you should have a clearer foundation and probably a lot of
-          new questions. That&apos;s a good sign. If you finish this notebook
-          curious, slightly buzzing, and ready to learn more, this intro has
-          done its job.
-        </p>
-      </section>
-
-      <InfoPanel id="mental-model" title="A concrete mental model" variant="intro">
         <p>
-          Machine learning (ML) is a way of teaching a computer by showing it
-          examples. Instead of writing every rule yourself, you show inputs and
-          the correct outputs, then let the computer discover the pattern.
+          By the end of this lesson, you should be starting to recognise the
+          core pattern: show examples, let the <span className="math-model">model</span>{" "}
+          find a rule, and check how close its predictions are to reality.
         </p>
         <p>
-          Think of it like tutoring. A student does not memorise every question.
-          They learn a rule that helps with new questions.
+          If you finish this article with a clearer foundation, better intuition
+          for how learning works, and new questions you want to test next, this
+          introduction has done its job.
         </p>
-      </InfoPanel>
-
-      <InfoPanel id="examples" title="Real-world examples" variant="intuition">
-        <p>
-          Let&apos;s make learning patterns from data feel concrete. In each
-          example, the inputs are the clues and the output is the answer the{" "}
-          <span className="math-model">model</span> should predict.
-        </p>
-        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">House prices</div>
-            <div>
-              Inputs are floor area, bedrooms, and distance to the centre. Output
-              is price. A good prediction is close enough to guide buyers and
-              sellers.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Spam detection</div>
-            <div>
-              Inputs are words, links, and sender info. Output is spam or not
-              spam. A good prediction catches spam without blocking real emails.
-            </div>
-          </div>
-          <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
-            <div className="text-white font-semibold">Fraud detection</div>
-            <div>
-              Inputs are amount, time, location, and device. Output is fraud or
-              not fraud. A good prediction flags risky transactions quickly
-              without too many false alarms.
-            </div>
-          </div>
-        </div>
       </InfoPanel>
 
       <section id="dataset" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Example dataset
         </h2>
+        <InfoPanel id="examples" title="Real-world use cases" variant="intuition" headingLevel={3}>
+          <p>
+            There are many real-world use cases for machine learning. In each
+            case, the inputs are clues and the output is the answer the{" "}
+            <span className="math-model">model</span> is trying to predict.
+          </p>
+          <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+            <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+              <div className="text-white font-semibold">House prices</div>
+              <div>
+                Inputs are floor area, bedrooms, and distance to the centre.
+                Output is price. A good prediction is close enough to guide
+                buyers and sellers.
+              </div>
+            </div>
+            <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+              <div className="text-white font-semibold">Spam detection</div>
+              <div>
+                Inputs are words, links, and sender info. Output is spam or not
+                spam. A good prediction catches spam without blocking real
+                emails.
+              </div>
+            </div>
+            <div className="grid gap-2 md:grid-cols-[180px_minmax(0,1fr)]">
+              <div className="text-white font-semibold">Fraud detection</div>
+              <div>
+                Inputs are amount, time, location, and device. Output is fraud
+                or not fraud. A good prediction flags risky transactions quickly
+                without too many false alarms.
+              </div>
+            </div>
+          </div>
+          <p>
+            In this learning journey, we&apos;ll keep using mock versions of
+            real-world datasets. That keeps each concept grounded and helps you
+            build intuition step by step, instead of memorising abstract rules.
+          </p>
+        </InfoPanel>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We&apos;ll use this example house-price dataset throughout the article.
           The goal is to keep things concrete, so each new concept is grounded
