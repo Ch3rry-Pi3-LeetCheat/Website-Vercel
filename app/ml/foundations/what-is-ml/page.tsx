@@ -169,34 +169,6 @@ function YWithIndex({ index }: { index: number }) {
   );
 }
 
-function YWithSubscriptI() {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`y`} className="math-inline math-y" />
-      <sub
-        className="ml-[1px] text-[0.72em] leading-none"
-        style={{ color: "rgb(255, 255, 255)" }}
-      >
-        i
-      </sub>
-    </span>
-  );
-}
-
-function YHatWithSubscriptI() {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-      <sub
-        className="ml-[1px] text-[0.72em] leading-none"
-        style={{ color: "rgb(255, 255, 255)" }}
-      >
-        i
-      </sub>
-    </span>
-  );
-}
-
 function YHatWithIndexCandidate({
   index,
   candidate,
@@ -901,56 +873,39 @@ export default function WhatIsMlPage() {
             A standard way to calculate average loss across all data points is{" "}
             <span className="text-white font-semibold">mean squared error (MSE)</span>.
           </p>
-          <div className="math-center math-lg text-white/90">
-            <span className="inline-flex items-center gap-2">
-              <MathInline tex={String.raw`MSE`} className="math-inline math-neutral" />
-              <span className="text-white">=</span>
-              <InlineFraction
-                numerator={<span className="text-white">1</span>}
-                denominator={<span className="italic text-white">n</span>}
-              />
-              <span className="inline-flex items-start text-white">
-                <span className="relative inline-flex items-center justify-center">
-                  <span className="text-white leading-none">∑</span>
-                  <sub className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
-                    <span className="italic">i</span>=1
-                  </sub>
-                  <sup className="absolute -top-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
-                    <span className="italic">n</span>
-                  </sup>
-                </span>
-              </span>
-              <span className="text-white"> ( </span>
-              <YWithSubscriptI />
-              <span className="text-white"> - </span>
-              <YHatWithSubscriptI />
-              <span className="text-white"> )</span>
-              <sup className="text-white align-super text-[0.65em] ml-[1px]">2</sup>
-            </span>
-          </div>
+          <MathBlock
+            tex={String.raw`MSE = \frac{1}{n}\sum_{i=1}^{n}\left(\,{ \color{orange} y }_{i} - { \color{magenta} \hat{y} }_{i}\,\right)^{2}`}
+            className="math-center math-lg text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             where:
           </p>
           <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
             <p>
-              <span className="italic text-white">n</span> is
+              <MathInline tex={String.raw`n`} className="math-inline text-white" /> is
               the number of rows (here, <span className="text-white">8</span>).
             </p>
             <p>
-              <YWithSubscriptI /> is the
+              <MathInline
+                tex={String.raw`{ \color{orange} y }_{i}`}
+                className="math-inline text-white"
+              />{" "}
+              is the
               true price for row <span className="text-white italic">i</span>.
             </p>
             <p>
-              <YHatWithSubscriptI /> is the
+              <MathInline
+                tex={String.raw`{ \color{magenta} \hat{y} }_{i}`}
+                className="math-inline text-white"
+              />{" "}
+              is the
               predicted price for row <span className="text-white italic">i</span>.
             </p>
             <p>
-              <span className="text-white"> ( </span>
-              <YWithSubscriptI />
-              <span className="text-white"> - </span>
-              <YHatWithSubscriptI />
-              <span className="text-white"> )</span>
-              <sup className="text-white align-super text-[0.65em] ml-[1px]">2</sup>{" "}
+              <MathInline
+                tex={String.raw`\left(\,{ \color{orange} y }_{i} - { \color{magenta} \hat{y} }_{i}\,\right)^{2}`}
+                className="math-inline text-white"
+              />{" "}
               is
               the same single-point squared loss we just calculated for floor area{" "}
               <span className="text-white">{EXAMPLE_FLOOR_AREA}</span>, now repeated for each row.
@@ -1395,13 +1350,13 @@ export default function WhatIsMlPage() {
             the parameters{" "}
             <MathInline tex={String.raw`\theta`} className="math-inline math-theta" />
             , including the intercept{" "}
-            <MathInline tex={String.raw`\theta_0`} className="math-inline math-theta" />
+            <ThetaWithIndex index={0} />
             {" "}and the feature slopes{" "}
-            <MathInline tex={String.raw`\theta_1`} className="math-inline math-theta" />
+            <ThetaWithIndex index={1} />
             <span className="text-[color:var(--color-muted)]">, </span>
-            <MathInline tex={String.raw`\theta_2`} className="math-inline math-theta" />
+            <ThetaWithIndex index={2} />
             <span className="text-[color:var(--color-muted)]">, </span>
-            <MathInline tex={String.raw`\theta_3`} className="math-inline math-theta" />
+            <ThetaWithIndex index={3} />
             , so the predictions{" "}
             <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
             {" "}get closer to the true values{" "}
