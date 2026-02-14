@@ -907,25 +907,25 @@ export default function WhatIsMlPage() {
               <span className="text-white">=</span>
               <InlineFraction
                 numerator={<span className="text-white">1</span>}
-                denominator={<span className="text-white">n</span>}
+                denominator={<span className="italic text-white">n</span>}
               />
               <span className="inline-flex items-start text-white">
-                <span className="relative inline-flex items-center">
-                  <MathInline tex={String.raw`\sum`} className="math-inline text-white" />
+                <span className="relative inline-flex items-center justify-center">
+                  <span className="text-white leading-none">∑</span>
                   <sub className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
-                    i=1
+                    <span className="italic">i</span>=1
                   </sub>
                   <sup className="absolute -top-4 left-1/2 -translate-x-1/2 text-[0.55em] leading-none text-white">
-                    n
+                    <span className="italic">n</span>
                   </sup>
                 </span>
               </span>
-              <span className="text-white">(</span>
+              <span className="text-white"> ( </span>
               <YWithSubscriptI />
               <span className="text-white"> - </span>
               <YHatWithSubscriptI />
-              <span className="text-white">)</span>
-              <sup className="text-white">2</sup>
+              <span className="text-white"> )</span>
+              <sup className="text-white align-super text-[0.65em] ml-[1px]">2</sup>
             </span>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -933,7 +933,7 @@ export default function WhatIsMlPage() {
           </p>
           <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
             <p>
-              <span className="text-white">n</span> is
+              <span className="italic text-white">n</span> is
               the number of rows (here, <span className="text-white">8</span>).
             </p>
             <p>
@@ -945,12 +945,12 @@ export default function WhatIsMlPage() {
               predicted price for row <span className="text-white italic">i</span>.
             </p>
             <p>
-              <span className="text-white">(</span>
+              <span className="text-white"> ( </span>
               <YWithSubscriptI />
               <span className="text-white"> - </span>
               <YHatWithSubscriptI />
-              <span className="text-white">)</span>
-              <sup className="text-white">2</sup>{" "}
+              <span className="text-white"> )</span>
+              <sup className="text-white align-super text-[0.65em] ml-[1px]">2</sup>{" "}
               is
               the same single-point squared loss we just calculated for floor area{" "}
               <span className="text-white">{EXAMPLE_FLOOR_AREA}</span>, now repeated for each row.
