@@ -150,15 +150,6 @@ function ThetaWithIndex({ index }: { index: 0 | 1 | 2 | 3 }) {
   );
 }
 
-function YHatWithLabel({ label }: { label: "A" | "B" }) {
-  return (
-    <span className="inline-flex items-baseline align-middle">
-      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
-      <sub className="ml-[1px] text-[0.72em] leading-none text-white">{label}</sub>
-    </span>
-  );
-}
-
 export default function WhatIsMlPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
@@ -712,44 +703,28 @@ export default function WhatIsMlPage() {
           bar is the gap between prediction and truth for this one point.
         </p>
         <div className="math-center math-lg text-white/90">
-          <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
-            <div className="justify-self-end">
-              <YHatWithLabel label="A" />
-              <span className="text-white"> - </span>
-              <MathInline tex={String.raw`y`} className="math-inline math-y" />
-            </div>
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateAPrediction.toLocaleString("en-GB")} - {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>
-            </div>
-            <div />
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateAError.toLocaleString("en-GB")}</span>
-            </div>
-          </div>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+{\color{white}{\color{magenta}\hat{y}}_{\color{red}A} - {\color{orange}y}}
+&= {\color{white}${candidateAPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}} \\
+&= {\color{white}${candidateAError.toLocaleString("en-GB")}}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For <span className="text-[#ef4444]">Candidate A</span>, the loss at
           this point is the squared error:
         </p>
         <div className="math-center math-lg text-white/90">
-          <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
-            <div className="justify-self-end">
-              <span className="text-white">(</span>
-              <YHatWithLabel label="A" />
-              <span className="text-white"> - </span>
-              <MathInline tex={String.raw`y`} className="math-inline math-y" />
-              <span className="text-white">)</span>
-              <sup className="text-white">2</sup>
-            </div>
-            <div className="justify-self-start">
-              <span className="text-white">= ({candidateAError.toLocaleString("en-GB")})</span>
-              <sup className="text-white">2</sup>
-            </div>
-            <div />
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateALoss.toLocaleString("en-GB")}</span>
-            </div>
-          </div>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+{\color{white}\left({\color{magenta}\hat{y}}_{\color{red}A} - {\color{orange}y}\right)^2}
+&= {\color{white}\left(${candidateAError.toLocaleString("en-GB")}\right)^2} \\
+&= {\color{white}${candidateALoss.toLocaleString("en-GB")}}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Now do the same for{" "}
@@ -757,36 +732,22 @@ export default function WhatIsMlPage() {
           area:
         </p>
         <div className="math-center math-lg text-white/90">
-          <div className="mx-auto inline-grid grid-cols-[auto_auto] gap-x-3 gap-y-1 text-left">
-            <div className="justify-self-end">
-              <YHatWithLabel label="B" />
-              <span className="text-white"> - </span>
-              <MathInline tex={String.raw`y`} className="math-inline math-y" />
-            </div>
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateBPrediction.toLocaleString("en-GB")} - {EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}</span>
-            </div>
-            <div />
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateBError.toLocaleString("en-GB")}</span>
-            </div>
-            <div className="justify-self-end pt-1">
-              <span className="text-white">(</span>
-              <YHatWithLabel label="B" />
-              <span className="text-white"> - </span>
-              <MathInline tex={String.raw`y`} className="math-inline math-y" />
-              <span className="text-white">)</span>
-              <sup className="text-white">2</sup>
-            </div>
-            <div className="justify-self-start pt-1">
-              <span className="text-white">= ({candidateBError.toLocaleString("en-GB")})</span>
-              <sup className="text-white">2</sup>
-            </div>
-            <div />
-            <div className="justify-self-start">
-              <span className="text-white">= {candidateBLoss.toLocaleString("en-GB")}</span>
-            </div>
-          </div>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+{\color{white}{\color{magenta}\hat{y}}_{\color{cyan}B} - {\color{orange}y}}
+&= {\color{white}${candidateBPrediction.toLocaleString("en-GB")} - ${EXAMPLE_TRUE_PRICE.toLocaleString("en-GB")}} \\
+&= {\color{white}${candidateBError.toLocaleString("en-GB")}}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+{\color{white}\left({\color{magenta}\hat{y}}_{\color{cyan}B} - {\color{orange}y}\right)^2}
+&= {\color{white}\left(${candidateBError.toLocaleString("en-GB")}\right)^2} \\
+&= {\color{white}${candidateBLoss.toLocaleString("en-GB")}}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           At <span className="math-x font-mono">floor_area</span>{" "}
