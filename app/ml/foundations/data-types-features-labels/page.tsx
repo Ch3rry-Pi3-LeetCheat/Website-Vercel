@@ -132,10 +132,10 @@ export default function DataTypesFeaturesLabelsPage() {
                   <td className="py-2">265,000</td>
                 </tr>
                 <tr className="border-b border-white/10">
-                  <td className="py-2 math-x">&#8942;</td>
-                  <td className="py-2 math-x">&#8942;</td>
-                  <td className="py-2 math-x">&#8942;</td>
-                  <td className="py-2 math-x">&#8942;</td>
+                  <td className="py-2 text-white/70">&#8942;</td>
+                  <td className="py-2 text-white/70">&#8942;</td>
+                  <td className="py-2 text-white/70">&#8942;</td>
+                  <td className="py-2 text-white/70">&#8942;</td>
                 </tr>
                 <tr>
                   <td className="py-2">160</td>
@@ -316,14 +316,11 @@ export default function DataTypesFeaturesLabelsPage() {
               <span className="text-white">&quot;How many?&quot;</span>, you often
               have an integer column.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Think of variables like{" "}
-              <span className="math-x font-mono">bedrooms</span>{" "}
-              <span className="text-white">(number of bedrooms)</span>,{" "}
-              <span className="math-x font-mono">num_floors</span>{" "}
-              <span className="text-white">(number of floors)</span>, or{" "}
-              <span className="math-x font-mono">age_years</span>{" "}
-              <span className="text-white">(property age in years)</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Fields shown:</span>{" "}
+              <span className="math-x font-mono">bedrooms</span> (number of bedrooms),{" "}
+              <span className="math-x font-mono">num_floors</span> (number of floors),{" "}
+              <span className="math-x font-mono">age_years</span> (property age in years).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -340,35 +337,35 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">1</td>
                       <td className="py-2">1</td>
                       <td className="py-2">12</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2</td>
                       <td className="py-2">2</td>
                       <td className="py-2">8</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">3</td>
                       <td className="py-2">2</td>
                       <td className="py-2">5</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">310,000</td>
                     </tr>
                   </tbody>
@@ -387,14 +384,10 @@ export default function DataTypesFeaturesLabelsPage() {
               In plain terms: these are measurements, rates, and continuous
               quantities rather than simple counts.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example variables:{" "}
-              <span className="math-x font-mono">distance_to_centre</span>{" "}
-              <span className="text-white">(distance from city centre in km)</span> ={" "}
-              <span className="text-white">4.5</span>,{" "}
-              <span className="math-x font-mono">interest_rate</span>{" "}
-              <span className="text-white">(borrowing rate in percent)</span> ={" "}
-              <span className="text-white">3.75</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Fields shown:</span>{" "}
+              <span className="math-x font-mono">distance_to_centre</span> (distance from city centre in km),{" "}
+              <span className="math-x font-mono">interest_rate</span> (borrowing rate in percent).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -410,31 +403,31 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">4.5</td>
                       <td className="py-2">3.90</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">3.2</td>
                       <td className="py-2">3.70</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2.8</td>
                       <td className="py-2">3.55</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">365,000</td>
                     </tr>
                   </tbody>
@@ -452,12 +445,9 @@ export default function DataTypesFeaturesLabelsPage() {
               They are great for quick condition checks and often represent a
               clear property of something.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example: <span className="math-x font-mono">has_garden</span>{" "}
-              <span className="text-white">(whether a property has a garden)</span> ={" "}
-              <span className="text-emerald-400">yes</span> or{" "}
-              <span className="math-x font-mono">has_garden</span> ={" "}
-              <span className="text-rose-400">no</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Field shown:</span>{" "}
+              <span className="math-x font-mono">has_garden</span> (whether a property has a garden).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -472,27 +462,27 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-emerald-400">yes</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">310,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-rose-400">no</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-rose-400">no</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">255,000</td>
                     </tr>
                   </tbody>
@@ -511,10 +501,9 @@ export default function DataTypesFeaturesLabelsPage() {
               Important intuition: categories are different kinds, not bigger
               or smaller versions of each other.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example: <span className="math-x font-mono">property_type</span> ={" "}
-              <span className="text-white">(home style category)</span>{" "}
-              <span className="text-white">flat / semi / detached</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Field shown:</span>{" "}
+              <span className="math-x font-mono">property_type</span> (home style category).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -529,27 +518,27 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">flat</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">terrace</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">255,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">detached</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">460,000</td>
                     </tr>
                   </tbody>
@@ -567,10 +556,9 @@ export default function DataTypesFeaturesLabelsPage() {
               They often unlock useful patterns like seasonality, day-of-week
               effects, or how recent an event is.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example: <span className="math-x font-mono">listing_date</span> ={" "}
-              <span className="text-white">(the day the home went live)</span>{" "}
-              <span className="text-white">2025-02-11</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Field shown:</span>{" "}
+              <span className="math-x font-mono">listing_date</span> (the day the home went live).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -585,27 +573,27 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2025-01-14</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2025-01-20</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">2025-02-11</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">310,000</td>
                     </tr>
                   </tbody>
@@ -624,11 +612,10 @@ export default function DataTypesFeaturesLabelsPage() {
               It carries rich meaning, but it usually needs extra processing
               before a model can use it effectively.
             </p>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Example variables: <span className="math-x font-mono">description</span>{" "}
-              <span className="text-white">(public advert text)</span> or{" "}
-              <span className="math-x font-mono">agent_notes</span>{" "}
-              <span className="text-white">(internal free-form comments)</span>.
+            <p className="text-sm leading-6 text-white/80">
+              <span className="font-semibold text-white">Fields shown:</span>{" "}
+              <span className="math-x font-mono">description</span> (public advert text),{" "}
+              <span className="math-x font-mono">agent_notes</span> (internal free-form comments).
             </p>
             <div className="glass-panel rounded-2xl p-4">
               <div className="overflow-x-auto">
@@ -644,31 +631,31 @@ export default function DataTypesFeaturesLabelsPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-left">Compact city flat near station</td>
                       <td className="py-2 text-left">Needs repaint in hallway</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">210,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-left">Bright two-bed with balcony</td>
                       <td className="py-2 text-left">Strong weekend viewing interest</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">265,000</td>
                     </tr>
                     <tr className="border-b border-white/10">
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8942;</td>
-                      <td className="py-2 math-x">&#8943;</td>
-                      <td className="py-2 math-x">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8942;</td>
                     </tr>
                     <tr>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2 text-left">Detached home with large garden</td>
                       <td className="py-2 text-left">Seller open to quick completion</td>
-                      <td className="py-2 math-x">&#8943;</td>
+                      <td className="py-2 text-white/70">&#8943;</td>
                       <td className="py-2">460,000</td>
                     </tr>
                   </tbody>
