@@ -5,13 +5,13 @@ export const mlFoundationsLessons = [
     href: "/ml/foundations/what-is-ml",
   },
   {
-    label: "Data types, features, labels",
-    description: "What counts as an input feature and what we are trying to predict.",
+    label: "Data types",
+    description: "How to recognise common column types and handle them appropriately.",
     href: "/ml/foundations/data-types-features-labels",
   },
   {
-    label: "Train, validation, test splits",
-    description: "How we measure real performance without fooling ourselves.",
+    label: "Train/test splits",
+    description: "How we evaluate on unseen data without fooling ourselves.",
     href: "/ml/foundations/train-val-test-splits",
   },
   {

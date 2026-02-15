@@ -1360,6 +1360,12 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
                 <tr>
                   <td className="w-12 py-2 text-center text-lg">❌</td>
                   <td className="py-2">
+                    Robust setup topics like train/test splits and overfitting vs generalisation.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">
                     How parameter updates are actually computed each step (the training math).
                   </td>
                 </tr>
@@ -1367,12 +1373,6 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
                   <td className="w-12 py-2 text-center text-lg">❌</td>
                   <td className="py-2">
                     How we evaluate model quality on <span className="text-white">unseen data</span>.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="w-12 py-2 text-center text-lg">❌</td>
-                  <td className="py-2">
-                    Robust setup topics like train/validation/test splits and overfitting vs generalisation.
                   </td>
                 </tr>
               </tbody>
@@ -1396,8 +1396,8 @@ ${candidateBSquaredErrors[0].toLocaleString("en-GB")}
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Next we&apos;ll drill into{" "}
             <span className="text-white font-semibold">data types</span>,{" "}
-            <span className="text-white font-semibold">training math</span>,{" "}
-            <span className="text-white font-semibold">train/validation/test splits</span>,
+            <span className="text-white font-semibold">train/test splits</span>,
+            {" "}<span className="text-white font-semibold">training math</span>,
             {" "}<span className="text-white font-semibold">evaluation on unseen data</span>,
             and{" "}
             <span className="text-white font-semibold">overfitting vs generalisation</span>.
