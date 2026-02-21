@@ -136,7 +136,7 @@ export default function DataTypesFeaturesLabelsPage() {
             what type each column is, and what that implies before model
             training.
           </p>
-          <h3 id="recap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
+          <h3 id="recap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white font-[var(--font-display)]">
             Quick recap
           </h3>
           <p>
@@ -183,7 +183,7 @@ export default function DataTypesFeaturesLabelsPage() {
               </table>
             </div>
           </div>
-          <h3 id="page-roadmap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white">
+          <h3 id="page-roadmap" className="scroll-mt-28 pt-1 text-xl font-semibold text-white font-[var(--font-display)]">
             What this page covers
           </h3>
           <div className="ml-4 overflow-x-auto">
@@ -347,19 +347,19 @@ export default function DataTypesFeaturesLabelsPage() {
           <CodeBlock code={datasetCode} title="Python" />
           <OutputBlock output={datasetHeadOutput} />
 
-          <h3 id="pandas-info" className="scroll-mt-28 text-xl font-semibold text-white">
+          <h3 id="pandas-info" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
             Check dtypes with <span className="font-mono inline-code">.info()</span>
           </h3>
           <CodeBlock code={infoCode} title="Python" />
           <OutputBlock output={infoOutput} />
 
-          <h3 id="pandas-describe" className="scroll-mt-28 text-xl font-semibold text-white">
+          <h3 id="pandas-describe" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
             Summarise numerics with <span className="font-mono inline-code">.describe()</span>
           </h3>
           <CodeBlock code={describeCode} title="Python" />
           <OutputBlock output={describeOutput} />
 
-          <h3 id="dtype-notes" className="scroll-mt-28 text-xl font-semibold text-white">
+          <h3 id="dtype-notes" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
             Why do some columns show as <span className="font-mono inline-code">object</span>?
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -377,7 +377,7 @@ export default function DataTypesFeaturesLabelsPage() {
           </p>
           <CodeBlock code={castCategoryCode} title="Python" />
 
-          <h3 id="scale-notes" className="scroll-mt-28 text-xl font-semibold text-white">
+          <h3 id="scale-notes" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
             Quick scale check
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
