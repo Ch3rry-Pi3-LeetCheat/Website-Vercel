@@ -111,7 +111,7 @@ function SymbolWithSub({
 function EquationRow({ number, children }: { number: number; children: ReactNode }) {
   return (
     <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-      <div className="overflow-x-auto">{children}</div>
+      <div className="min-w-0">{children}</div>
       <div className="shrink-0 text-sm text-white/65">({number})</div>
     </div>
   );
@@ -259,7 +259,7 @@ export default function TrainingMathGradientDescentPage() {
 
           <EquationRow number={2}>
             <div className="math-center math-lg text-white/90">
-              <SymbolWithSub tex={String.raw`e`} colorClass="text-white" sub="i" />
+              <SymbolWithSub tex={String.raw`e`} colorClass="math-white" sub="i" />
               <span className="text-white"> = </span>
               <SymbolWithSub tex={String.raw`\hat{y}`} colorClass="math-yhat" sub="i" />
               <span className="text-white"> - </span>
@@ -270,13 +270,15 @@ export default function TrainingMathGradientDescentPage() {
           <EquationRow number={3}>
             <div className="math-center math-lg text-white/90">
               <MathInline
-                tex={String.raw`J(\theta_0,\theta_1)=\frac{1}{n}\sum_{i=1}^{n}\left(`}
-                className="math-inline text-white"
+                tex={String.raw`J(\theta_0,\theta_1)=\frac{1}{n}\sum_{i=1}^{n}`}
+                className="math-inline math-white"
               />
+              <span className="text-white">(</span>
               <SymbolWithSub tex={String.raw`\hat{y}`} colorClass="math-yhat" sub="i" />
               <span className="text-white"> - </span>
               <SymbolWithSub tex={String.raw`y`} colorClass="math-y" sub="i" />
-              <MathInline tex={String.raw`\right)^2`} className="math-inline text-white" />
+              <span className="text-white">)</span>
+              <sup className="text-white">2</sup>
             </div>
           </EquationRow>
 
@@ -285,30 +287,41 @@ export default function TrainingMathGradientDescentPage() {
               <tbody>
                 <tr className="border-b border-white/10">
                   <td className="w-44 py-2 pr-4 text-white font-semibold">
-                    <span className="math-x">x</span>
+                    <span className="inline-flex items-baseline align-middle">
+                      <MathInline tex={String.raw`x`} className="math-inline math-x" />
+                      <sub className="ml-[1px] text-[0.72em] leading-none text-white">i</sub>
+                    </span>
                   </td>
                   <td className="py-2">Input feature (here: floor area).</td>
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="w-44 py-2 pr-4 text-white font-semibold">
-                    <span className="math-y">y</span>
+                    <span className="inline-flex items-baseline align-middle">
+                      <MathInline tex={String.raw`y`} className="math-inline math-y" />
+                      <sub className="ml-[1px] text-[0.72em] leading-none text-white">i</sub>
+                    </span>
                   </td>
                   <td className="py-2">True price from the dataset.</td>
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="w-44 py-2 pr-4 text-white font-semibold">
-                    <span className="math-yhat">y-hat</span>
+                    <span className="inline-flex items-baseline align-middle">
+                      <MathInline tex={String.raw`\hat{y}`} className="math-inline math-yhat" />
+                      <sub className="ml-[1px] text-[0.72em] leading-none text-white">i</sub>
+                    </span>
                   </td>
                   <td className="py-2">Model prediction.</td>
                 </tr>
                 <tr className="border-b border-white/10">
                   <td className="w-44 py-2 pr-4 text-white font-semibold">
-                    <span className="math-theta">theta</span>
+                    <MathInline tex={String.raw`\theta_0,\theta_1`} className="math-inline math-theta" />
                   </td>
                   <td className="py-2">Trainable parameters (intercept and slope).</td>
                 </tr>
                 <tr>
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">J</td>
+                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                    <MathInline tex={String.raw`J(\theta_0,\theta_1)`} className="math-inline math-white" />
+                  </td>
                   <td className="py-2">Objective function (mean squared error).</td>
                 </tr>
               </tbody>
@@ -328,26 +341,28 @@ export default function TrainingMathGradientDescentPage() {
           <EquationRow number={4}>
             <div className="math-center math-lg text-white/90">
               <MathInline
-                tex={String.raw`\frac{\partial J}{\partial \theta_0} = \frac{2}{n}\sum_{i=1}^{n}\left(`}
-                className="math-inline text-white"
+                tex={String.raw`\frac{\partial J}{\partial \theta_0} = \frac{2}{n}\sum_{i=1}^{n}`}
+                className="math-inline math-white"
               />
+              <span className="text-white">(</span>
               <SymbolWithSub tex={String.raw`\hat{y}`} colorClass="math-yhat" sub="i" />
               <span className="text-white"> - </span>
               <SymbolWithSub tex={String.raw`y`} colorClass="math-y" sub="i" />
-              <MathInline tex={String.raw`\right)`} className="math-inline text-white" />
+              <span className="text-white">)</span>
             </div>
           </EquationRow>
 
           <EquationRow number={5}>
             <div className="math-center math-lg text-white/90">
               <MathInline
-                tex={String.raw`\frac{\partial J}{\partial \theta_1} = \frac{2}{n}\sum_{i=1}^{n}\left(`}
-                className="math-inline text-white"
+                tex={String.raw`\frac{\partial J}{\partial \theta_1} = \frac{2}{n}\sum_{i=1}^{n}`}
+                className="math-inline math-white"
               />
+              <span className="text-white">(</span>
               <SymbolWithSub tex={String.raw`\hat{y}`} colorClass="math-yhat" sub="i" />
               <span className="text-white"> - </span>
               <SymbolWithSub tex={String.raw`y`} colorClass="math-y" sub="i" />
-              <MathInline tex={String.raw`\right)`} className="math-inline text-white" />
+              <span className="text-white">)</span>
               <SymbolWithSub tex={String.raw`x`} colorClass="math-x" sub="i" />
             </div>
           </EquationRow>
@@ -372,8 +387,20 @@ export default function TrainingMathGradientDescentPage() {
           <EquationRow number={6}>
             <div className="math-center math-lg text-white/90">
               <MathInline
-                tex={String.raw`\theta_0^{(t+1)} = \theta_0^{(t)} - \alpha \frac{\partial J}{\partial \theta_0}`}
-                className="math-inline text-white"
+                tex={String.raw`\theta_0^{(t+1)}`}
+                className="math-inline math-theta"
+              />
+              <span className="text-white"> = </span>
+              <MathInline
+                tex={String.raw`\theta_0^{(t)}`}
+                className="math-inline math-theta"
+              />
+              <span className="text-white"> - </span>
+              <MathInline tex={String.raw`\alpha`} className="math-inline math-white" />
+              <span className="text-white"> </span>
+              <MathInline
+                tex={String.raw`\frac{\partial J}{\partial \theta_0}`}
+                className="math-inline math-white"
               />
             </div>
           </EquationRow>
@@ -381,19 +408,31 @@ export default function TrainingMathGradientDescentPage() {
           <EquationRow number={7}>
             <div className="math-center math-lg text-white/90">
               <MathInline
-                tex={String.raw`\theta_1^{(t+1)} = \theta_1^{(t)} - \alpha \frac{\partial J}{\partial \theta_1}`}
-                className="math-inline text-white"
+                tex={String.raw`\theta_1^{(t+1)}`}
+                className="math-inline math-theta"
+              />
+              <span className="text-white"> = </span>
+              <MathInline
+                tex={String.raw`\theta_1^{(t)}`}
+                className="math-inline math-theta"
+              />
+              <span className="text-white"> - </span>
+              <MathInline tex={String.raw`\alpha`} className="math-inline math-white" />
+              <span className="text-white"> </span>
+              <MathInline
+                tex={String.raw`\frac{\partial J}{\partial \theta_1}`}
+                className="math-inline math-white"
               />
             </div>
           </EquationRow>
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Here <MathInline tex={String.raw`\alpha`} className="math-inline text-white" />{" "}
+            Here <MathInline tex={String.raw`\alpha`} className="math-inline math-white" />{" "}
             is the learning rate. Too large can overshoot. Too small can make
             training very slow.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The index <MathInline tex={String.raw`t`} className="math-inline text-white" />{" "}
+            The index <MathInline tex={String.raw`t`} className="math-inline math-white" />{" "}
             means loop number. So one pass of equations (6) and (7) is one
             training loop update.
           </p>
@@ -565,4 +604,3 @@ export default function TrainingMathGradientDescentPage() {
     </div>
   );
 }
-

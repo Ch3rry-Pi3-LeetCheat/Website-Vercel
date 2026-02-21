@@ -290,6 +290,10 @@ details.flashcard[open] .flashcard-inner {
   color: #86efac;
 }
 
+.math-white {
+  color: #ffffff;
+}
+
 .math-neutral {
   color: var(--color-text);
 }
