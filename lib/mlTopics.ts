@@ -15,6 +15,11 @@ export const mlFoundationsLessons = [
     href: "/ml/foundations/train-val-test-splits",
   },
   {
+    label: "Training math (gradient descent)",
+    description: "How the model updates its parameters loop by loop to reduce loss.",
+    href: "/ml/foundations/training-math-gradient-descent",
+  },
+  {
     label: "Overfitting vs generalization",
     description: "Why perfect training accuracy can still mean a bad model.",
     href: "/ml/foundations/overfitting-vs-generalization",

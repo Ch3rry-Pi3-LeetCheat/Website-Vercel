@@ -467,7 +467,7 @@ export default function TrainValTestPage() {
               What&apos;s next
             </h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Next lesson: <span className="text-white font-semibold">overfitting vs generalization</span>.
+              Next lesson: <span className="text-white font-semibold">training math (gradient descent)</span>.
             </p>
           </section>
         </section>
@@ -487,4 +487,3 @@ export default function TrainValTestPage() {
     </div>
   );
 }
-
