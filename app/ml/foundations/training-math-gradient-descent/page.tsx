@@ -305,7 +305,7 @@ export default function TrainingMathGradientDescentPage() {
               Start from the composed function:
             </p>
             <MathBlock
-              tex={String.raw`{\color{white}y} = \left({\color{white}0.5}{\color{cyan}x} + {\color{white}1}\right)^2`}
+              tex={String.raw`{\color{magenta}y} = \left({\color{white}0.5}{\color{cyan}x} + {\color{white}1}\right)^2`}
               className="math-center math-lg text-white/90"
             />
             <p>
@@ -313,14 +313,14 @@ export default function TrainingMathGradientDescentPage() {
               let the inside expression be
             </p>
             <MathBlock
-              tex={String.raw`{\color{white}u} = {\color{white}0.5}{\color{cyan}x} + {\color{white}1}`}
+              tex={String.raw`{\color{violet}u} = {\color{white}0.5}{\color{cyan}x} + {\color{white}1}`}
               className="math-center math-lg text-white/90"
             />
             <p>
               so the outer function becomes
             </p>
             <MathBlock
-              tex={String.raw`{\color{white}y} = {\color{white}u}^2`}
+              tex={String.raw`{\color{magenta}y} = {\color{violet}u}^{\color{white}2}`}
               className="math-center math-lg text-white/90"
             />
             <p>
@@ -328,8 +328,8 @@ export default function TrainingMathGradientDescentPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-\frac{d{\color{white}y}}{d{\color{white}u}} &= {\color{white}2u} \\
-\frac{d{\color{white}u}}{d{\color{cyan}x}} &= {\color{white}0.5}
+\frac{d{\color{magenta}y}}{d{\color{violet}u}} &= {\color{white}2}{\color{violet}u} \\
+\frac{d{\color{violet}u}}{d{\color{cyan}x}} &= {\color{white}0.5}
 \end{aligned}`}
               className="math-center math-lg text-white/90"
             />
@@ -338,17 +338,17 @@ export default function TrainingMathGradientDescentPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-\frac{d{\color{white}y}}{d{\color{cyan}x}} &= \frac{d{\color{white}y}}{d{\color{white}u}} \cdot \frac{d{\color{white}u}}{d{\color{cyan}x}} \\
-&= {\color{white}2u} \cdot {\color{white}0.5} \\
-&= {\color{white}u} \\
+\frac{d{\color{magenta}y}}{d{\color{cyan}x}} &= \frac{d{\color{magenta}y}}{d{\color{violet}u}} \cdot \frac{d{\color{violet}u}}{d{\color{cyan}x}} \\
+&= {\color{white}2}{\color{violet}u} \cdot {\color{white}0.5} \\
+&= {\color{violet}u} \\
 &= {\color{white}0.5}{\color{cyan}x} + {\color{white}1}
 \end{aligned}`}
               className="math-center math-lg text-white/90"
             />
             <p>
               The stacked plots below show that flow directly: first{" "}
-              <span className="text-white font-semibold">x -&gt; u</span>, then{" "}
-              <span className="text-white font-semibold">u -&gt; y</span>.
+              <span className="text-white font-semibold">x -&gt; <span className="math-theta">u</span></span>, then{" "}
+              <span className="text-white font-semibold"><span className="math-theta">u</span> -&gt; <span className="math-yhat">y</span></span>.
               Move <span className="text-white font-semibold">x0</span> and both plots update together.
             </p>
             <ChainRuleLinkedPlots />

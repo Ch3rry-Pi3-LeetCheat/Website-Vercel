@@ -95,7 +95,7 @@ function PlotTop({
         </g>
       ))}
 
-      <path d={path} fill="none" stroke="#22d3ee" strokeWidth={3.2} />
+      <path d={path} fill="none" stroke="#a78bfa" strokeWidth={3.2} />
       <line
         x1={xToSvg(tangentStartX)}
         y1={uToSvg(tangentStartU)}
@@ -125,15 +125,16 @@ function PlotTop({
         strokeDasharray="5 5"
       />
 
-      <circle cx={xToSvg(x0)} cy={uToSvg(u0)} r={7} fill="#f472b6" />
+      <circle cx={xToSvg(x0)} cy={uToSvg(u0)} r={7} fill="#a78bfa" />
 
       <text x={xToSvg(x0) + 10} y={uToSvg(u0) - 10} fill="rgba(255,255,255,0.92)" fontSize="12">
-        (x0, u0)
+        x0, 
+        <tspan fill="#a78bfa">u0</tspan>
       </text>
       <text x={WIDTH / 2} y={HEIGHT - 10} textAnchor="middle" fill="rgba(226,232,240,0.72)" fontSize="12">
         x
       </text>
-      <text x={18} y={HEIGHT / 2} textAnchor="middle" fill="rgba(226,232,240,0.72)" fontSize="12" transform={`rotate(-90 18 ${HEIGHT / 2})`}>
+      <text x={18} y={HEIGHT / 2} textAnchor="middle" fill="#a78bfa" fontSize="12" transform={`rotate(-90 18 ${HEIGHT / 2})`}>
         u
       </text>
     </svg>
@@ -212,7 +213,7 @@ function PlotBottom({
         </g>
       ))}
 
-      <path d={path} fill="none" stroke="#fb923c" strokeWidth={3.2} />
+      <path d={path} fill="none" stroke="#f472b6" strokeWidth={3.2} />
       <line
         x1={uToSvg(tangentStartU)}
         y1={yToSvg(tangentStartY)}
@@ -245,12 +246,13 @@ function PlotBottom({
       <circle cx={uToSvg(u0)} cy={yToSvg(y0)} r={7} fill="#f472b6" />
 
       <text x={uToSvg(u0) + 10} y={yToSvg(y0) - 10} fill="rgba(255,255,255,0.92)" fontSize="12">
-        (u0, y0)
+        <tspan fill="#a78bfa">u0</tspan>, 
+        <tspan fill="#f472b6">y0</tspan>
       </text>
-      <text x={WIDTH / 2} y={HEIGHT - 10} textAnchor="middle" fill="rgba(226,232,240,0.72)" fontSize="12">
+      <text x={WIDTH / 2} y={HEIGHT - 10} textAnchor="middle" fill="#a78bfa" fontSize="12">
         u
       </text>
-      <text x={18} y={HEIGHT / 2} textAnchor="middle" fill="rgba(226,232,240,0.72)" fontSize="12" transform={`rotate(-90 18 ${HEIGHT / 2})`}>
+      <text x={18} y={HEIGHT / 2} textAnchor="middle" fill="#f472b6" fontSize="12" transform={`rotate(-90 18 ${HEIGHT / 2})`}>
         y
       </text>
     </svg>
@@ -278,19 +280,19 @@ export default function ChainRuleLinkedPlots() {
           <div className="mt-1 text-white font-semibold">{values.x0.toFixed(2)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">u0</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]"><span className="text-[#a78bfa]">u</span>0</div>
           <div className="mt-1 text-white font-semibold">{values.u0.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">du/dx</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#a78bfa]">u</span>/dx</div>
           <div className="mt-1 text-white font-semibold">{values.duDx.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">dy/du</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#f472b6]">y</span>/d<span className="text-[#a78bfa]">u</span></div>
           <div className="mt-1 text-white font-semibold">{values.dyDu.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">dy/dx</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#f472b6]">y</span>/dx</div>
           <div className="mt-1 text-white font-semibold">{values.dyDx.toFixed(3)}</div>
         </div>
       </div>
@@ -312,9 +314,9 @@ export default function ChainRuleLinkedPlots() {
       </div>
 
       <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-        Top plot gives <span className="text-white font-semibold">u = 0.5x + 1</span>.
-        That <span className="text-white font-semibold">u</span> value then becomes
-        the input on the horizontal axis of the second plot <span className="text-white font-semibold">y = u^2</span>.
+        Top plot gives <span className="text-white font-semibold"><span className="text-[#a78bfa]">u</span> = 0.5x + 1</span>.
+        That <span className="text-[#a78bfa] font-semibold">u</span> value then becomes
+        the input on the horizontal axis of the second plot <span className="text-white font-semibold"><span className="text-[#f472b6]">y</span> = <span className="text-[#a78bfa]">u</span>^2</span>.
       </p>
 
       <div className="mt-4 grid gap-3">
@@ -327,4 +329,3 @@ export default function ChainRuleLinkedPlots() {
     </div>
   );
 }
-
