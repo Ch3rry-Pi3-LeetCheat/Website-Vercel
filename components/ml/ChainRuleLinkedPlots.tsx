@@ -1,5 +1,6 @@
 "use client";
 
+import { MathInline } from "@/components/Math";
 import { useMemo, useState } from "react";
 
 const WIDTH = 760;
@@ -276,30 +277,51 @@ export default function ChainRuleLinkedPlots() {
     <div className="glass-panel rounded-2xl p-4 md:p-5">
       <div className="grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-5">
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">x0</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">
+            <MathInline tex={String.raw`{\color{cyan}x}_{\color{white}0}`} className="math-inline !text-white" />
+          </div>
           <div className="mt-1 text-white font-semibold">{values.x0.toFixed(2)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]"><span className="text-[#a78bfa]">u</span>0</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">
+            <MathInline tex={String.raw`{\color{violet}u}_{\color{white}0}`} className="math-inline !text-white" />
+          </div>
           <div className="mt-1 text-white font-semibold">{values.u0.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#a78bfa]">u</span>/dx</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">
+            <MathInline
+              tex={String.raw`\frac{d{\color{violet}u}}{d{\color{cyan}x}}`}
+              className="math-inline !text-white"
+            />
+          </div>
           <div className="mt-1 text-white font-semibold">{values.duDx.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#f472b6]">y</span>/d<span className="text-[#a78bfa]">u</span></div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">
+            <MathInline
+              tex={String.raw`\frac{d{\color{magenta}y}}{d{\color{violet}u}}`}
+              className="math-inline !text-white"
+            />
+          </div>
           <div className="mt-1 text-white font-semibold">{values.dyDu.toFixed(3)}</div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-[0.22em]">d<span className="text-[#f472b6]">y</span>/dx</div>
+          <div className="text-[11px] uppercase tracking-[0.22em]">
+            <MathInline
+              tex={String.raw`\frac{d{\color{magenta}y}}{d{\color{cyan}x}}`}
+              className="math-inline !text-white"
+            />
+          </div>
           <div className="mt-1 text-white font-semibold">{values.dyDx.toFixed(3)}</div>
         </div>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[color:var(--color-muted)]">
         <label className="flex w-full items-center gap-2 sm:w-auto">
-          <span className="shrink-0">Pick x0</span>
+          <span className="shrink-0">
+            Pick <MathInline tex={String.raw`{\color{cyan}x}_{\color{white}0}`} className="math-inline !text-white" />
+          </span>
           <input
             type="range"
             min={-3}
@@ -314,15 +336,21 @@ export default function ChainRuleLinkedPlots() {
       </div>
 
       <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-        Top plot gives <span className="text-white font-semibold"><span className="text-[#a78bfa]">u</span> = 0.5x + 1</span>.
-        That <span className="text-[#a78bfa] font-semibold">u</span> value then becomes
-        the input on the horizontal axis of the second plot <span className="text-white font-semibold"><span className="text-[#f472b6]">y</span> = <span className="text-[#a78bfa]">u</span>^2</span>.
+        Top plot gives{" "}
+        <MathInline
+          tex={String.raw`{\color{violet}u}={\color{white}0.5}{\color{cyan}x}+{\color{white}1}`}
+          className="math-inline !text-white"
+        />
+        . That{" "}
+        <MathInline tex={String.raw`{\color{violet}u}`} className="math-inline !text-white" /> value then becomes
+        the input on the horizontal axis of the second plot{" "}
+        <MathInline tex={String.raw`{\color{magenta}y}={\color{violet}u}^{\color{white}2}`} className="math-inline !text-white" />.
       </p>
 
       <div className="mt-4 grid gap-3">
         <PlotTop x0={values.x0} u0={values.u0} />
         <div className="text-center text-xs uppercase tracking-[0.28em] text-white/60">
-          u from top plot feeds into bottom plot
+          <span className="text-[#a78bfa]">u</span> from top plot feeds into bottom plot
         </div>
         <PlotBottom u0={values.u0} y0={values.y0} />
       </div>

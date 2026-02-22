@@ -1,5 +1,6 @@
 "use client";
 
+import { MathInline } from "@/components/Math";
 import { useMemo, useState } from "react";
 
 type DerivativeTangentPlotProps = {
@@ -17,8 +18,8 @@ const SLIDER_STEP = 0.25;
 
 type PlotConfig = {
   title: string;
-  equation: string;
-  derivative: string;
+  equationTex: string;
+  derivativeTex: string;
   yMin: number;
   yMax: number;
   fn: (x: number) => number;
@@ -30,8 +31,8 @@ function getConfig(mode: "square" | "chain"): PlotConfig {
   if (mode === "chain") {
     return {
       title: "Interactive chain-rule example",
-      equation: "y = (0.5x + 1)^2",
-      derivative: "dy/dx = 0.5x + 1",
+      equationTex: String.raw`{\color{magenta}y}=\left({\color{white}0.5}{\color{cyan}x}+{\color{white}1}\right)^2`,
+      derivativeTex: String.raw`\frac{d{\color{magenta}y}}{d{\color{cyan}x}}={\color{white}0.5}{\color{cyan}x}+{\color{white}1}`,
       yMin: -1,
       yMax: 8,
       fn: (x) => (0.5 * x + 1) ** 2,
@@ -42,8 +43,8 @@ function getConfig(mode: "square" | "chain"): PlotConfig {
 
   return {
     title: "Interactive slope on y = x^2",
-    equation: "y = x^2",
-    derivative: "dy/dx = 2x",
+    equationTex: String.raw`{\color{magenta}y}={\color{cyan}x}^{\color{white}2}`,
+    derivativeTex: String.raw`\frac{d{\color{magenta}y}}{d{\color{cyan}x}}={\color{white}2}{\color{cyan}x}`,
     yMin: -1,
     yMax: 10,
     fn: (x) => x * x,
@@ -97,14 +98,20 @@ export default function DerivativeTangentPlot({ mode }: DerivativeTangentPlotPro
       <div className="grid gap-3 text-sm text-[color:var(--color-muted)] sm:grid-cols-3">
         <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
           <div className="text-xs uppercase tracking-[0.24em]">Function</div>
-          <div className="mt-1 text-base font-semibold text-white">{cfg.equation}</div>
+          <div className="mt-1 text-base font-semibold text-white">
+            <MathInline tex={cfg.equationTex} className="math-inline !text-white" />
+          </div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
           <div className="text-xs uppercase tracking-[0.24em]">Derivative</div>
-          <div className="mt-1 text-base font-semibold text-white">{cfg.derivative}</div>
+          <div className="mt-1 text-base font-semibold text-white">
+            <MathInline tex={cfg.derivativeTex} className="math-inline !text-white" />
+          </div>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-          <div className="text-xs uppercase tracking-[0.24em]">Slope at x0</div>
+          <div className="text-xs uppercase tracking-[0.24em]">
+            Slope At <MathInline tex={String.raw`{\color{cyan}x}_{\color{white}0}`} className="math-inline !text-white" />
+          </div>
           <div className="mt-1 text-base font-semibold text-white">{model.slope.toFixed(3)}</div>
         </div>
       </div>
@@ -112,7 +119,9 @@ export default function DerivativeTangentPlot({ mode }: DerivativeTangentPlotPro
       <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[color:var(--color-muted)]">
         <div className="font-semibold text-white">{cfg.title}</div>
         <label className="flex w-full items-center gap-2 sm:w-auto">
-          <span className="shrink-0">x0</span>
+          <span className="shrink-0">
+            <MathInline tex={String.raw`{\color{cyan}x}_{\color{white}0}`} className="math-inline !text-white" />
+          </span>
           <input
             type="range"
             min={SLIDER_MIN}
@@ -243,14 +252,14 @@ export default function DerivativeTangentPlot({ mode }: DerivativeTangentPlotPro
             fill="rgba(255,255,255,0.92)"
             fontSize="12"
           >
-            (x0, y0)
+            <tspan fill="#22d3ee">x0</tspan>, <tspan fill="#f472b6">y0</tspan>
           </text>
 
           <text
             x={SVG_WIDTH / 2}
             y={SVG_HEIGHT - 10}
             textAnchor="middle"
-            fill="rgba(226, 232, 240, 0.72)"
+            fill="#22d3ee"
             fontSize="12"
           >
             x
@@ -259,7 +268,7 @@ export default function DerivativeTangentPlot({ mode }: DerivativeTangentPlotPro
             x={18}
             y={SVG_HEIGHT / 2}
             textAnchor="middle"
-            fill="rgba(226, 232, 240, 0.72)"
+            fill="#f472b6"
             fontSize="12"
             transform={`rotate(-90 18 ${SVG_HEIGHT / 2})`}
           >
@@ -270,4 +279,3 @@ export default function DerivativeTangentPlot({ mode }: DerivativeTangentPlotPro
     </div>
   );
 }
-
