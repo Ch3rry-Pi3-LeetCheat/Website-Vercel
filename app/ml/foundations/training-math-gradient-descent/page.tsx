@@ -1,5 +1,6 @@
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
+import GradientCrossSection from "@/components/ml/GradientCrossSection";
 import GradientDescentContour from "@/components/ml/GradientDescentContour";
 import InfoPanel from "@/components/InfoPanel";
 import Link from "next/link";
@@ -96,6 +97,9 @@ export default function TrainingMathGradientDescentPage() {
     { id: "intro", label: "Introduction" },
     { id: "recap", label: "Quick recap", level: 2 },
     { id: "intuition", label: "Gradient descent intuition" },
+    { id: "gradient-primer", label: "Gradients: what they tell us" },
+    { id: "derivative-primer", label: "Mini derivative primer", level: 2 },
+    { id: "cross-section", label: "Cost cross-section visual", level: 2 },
     { id: "setup", label: "Set up the math" },
     { id: "gradients", label: "Compute gradients" },
     { id: "updates", label: "Update rules" },
@@ -211,6 +215,52 @@ export default function TrainingMathGradientDescentPage() {
           </p>
         </section>
 
+        <section id="gradient-primer" className="scroll-mt-28 grid gap-4">
+          <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+            Gradients: what they tell us
+          </h2>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The gradient is a local slope: it tells us how fast the cost would
+            change if we nudge a parameter by a tiny amount. In practice, that
+            gives us both direction and urgency:
+            big slope means move confidently, tiny slope means we are close to a flat minimum.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For one parameter <MathInline tex={String.raw`{\color{violet}\theta}`} className="math-inline !text-white" />,
+            if <MathInline tex={String.raw`{\color{white}\frac{dJ}{d\theta}>0}`} className="math-inline !text-white" /> we step left
+            (decrease <MathInline tex={String.raw`{\color{violet}\theta}`} className="math-inline !text-white" />);
+            if <MathInline tex={String.raw`{\color{white}\frac{dJ}{d\theta}<0}`} className="math-inline !text-white" /> we step right.
+          </p>
+
+          <InfoPanel id="derivative-primer" title="Mini derivative primer" variant="intuition" headingLevel={3}>
+            <p>
+              If this feels new, think of derivative as the slope of a curve at one point.
+              You can read it like a road gradient sign:
+              positive means uphill to the right, negative means downhill to the right.
+            </p>
+            <p>
+              Tiny examples:
+              <MathInline tex={String.raw`{\color{white}\frac{d}{d\theta}\left(\theta^{2}\right)=2\theta}` } className="math-inline !text-white" />,
+              and
+              <MathInline tex={String.raw`{\color{white}\frac{d}{d\theta}\left((\theta-4)^{2}\right)=2(\theta-4)}` } className="math-inline !text-white" />.
+              At <MathInline tex={String.raw`{\color{white}\theta=4}`} className="math-inline !text-white" />, slope is zero,
+              which is why that point is the bottom of the bowl.
+            </p>
+          </InfoPanel>
+
+          <section id="cross-section" className="grid gap-3">
+            <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+              Cost cross-section visual
+            </h3>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Use the slider to pick a current weight. The dashed line is the
+              tangent at that point, and the one-step arrow shows the gradient
+              descent update.
+            </p>
+            <GradientCrossSection />
+          </section>
+        </section>
+
         <section id="setup" className="scroll-mt-28 grid gap-4">
           <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
             Set up the math
@@ -275,52 +325,52 @@ export default function TrainingMathGradientDescentPage() {
           </EquationRow>
 
           <div className="ml-4 overflow-x-auto">
-            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <table className="w-full border-separate [border-spacing:0_8px] text-left text-base leading-7 text-[color:var(--color-muted)]">
               <tbody>
-                <tr className="border-b border-white/10">
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                <tr>
+                  <td className="w-44 py-1 pr-4 text-center text-white font-semibold">
                     <MathInline
                       tex={String.raw`{\color{cyan}x}_{\color{white}i}`}
                       className="math-inline !text-white"
                     />
                   </td>
-                  <td className="py-2">Input feature (here: floor area).</td>
+                  <td className="py-1">Input feature (here: floor area).</td>
                 </tr>
-                <tr className="border-b border-white/10">
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                <tr>
+                  <td className="w-44 py-1 pr-4 text-center text-white font-semibold">
                     <MathInline
                       tex={String.raw`{\color{orange}y}_{\color{white}i}`}
                       className="math-inline !text-white"
                     />
                   </td>
-                  <td className="py-2">True price from the dataset.</td>
+                  <td className="py-1">True target value from the dataset.</td>
                 </tr>
-                <tr className="border-b border-white/10">
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                <tr>
+                  <td className="w-44 py-1 pr-4 text-center text-white font-semibold">
                     <MathInline
                       tex={String.raw`{\color{magenta}\hat{y}}_{\color{white}i}`}
                       className="math-inline !text-white"
                     />
                   </td>
-                  <td className="py-2">Model prediction.</td>
+                  <td className="py-1">Model prediction for row i.</td>
                 </tr>
-                <tr className="border-b border-white/10">
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                <tr>
+                  <td className="w-44 py-1 pr-4 text-center text-white font-semibold">
                     <MathInline
                       tex={String.raw`{\color{violet}\theta}_{\color{white}0},{\color{violet}\theta}_{\color{white}1}`}
                       className="math-inline !text-white"
                     />
                   </td>
-                  <td className="py-2">Trainable parameters (intercept and slope).</td>
+                  <td className="py-1">Trainable parameters (intercept and slope).</td>
                 </tr>
                 <tr>
-                  <td className="w-44 py-2 pr-4 text-white font-semibold">
+                  <td className="w-44 py-1 pr-4 text-center text-white font-semibold">
                     <MathInline
                       tex={String.raw`{\color{white}J\left({\color{violet}\theta}_{\color{white}0},{\color{violet}\theta}_{\color{white}1}\right)}`}
                       className="math-inline !text-white"
                     />
                   </td>
-                  <td className="py-2">Objective function (mean squared error).</td>
+                  <td className="py-1">Objective function we minimize (mean squared error).</td>
                 </tr>
               </tbody>
             </table>
