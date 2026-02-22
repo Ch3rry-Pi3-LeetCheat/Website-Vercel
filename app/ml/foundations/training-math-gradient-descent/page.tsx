@@ -378,59 +378,31 @@ export default function TrainingMathGradientDescentPage() {
             loss in three steps:
           </p>
 
-          <EquationRow number={1}>
-            <div className="mx-auto grid w-full max-w-[640px] grid-cols-[180px_auto_1fr] items-center gap-x-3 text-left math-lg text-white/90">
-              <div className="justify-self-end">
-                <MathInline
-                  tex={String.raw`{\color{magenta}\hat{y}}_{\color{white}i}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-              <div className="text-white">=</div>
-              <div className="justify-self-start">
-                <MathInline
-                  tex={String.raw`{\color{violet}\theta}_{\color{white}0} + {\color{violet}\theta}_{\color{white}1}{\color{cyan}x}_{\color{white}i}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-            </div>
-          </EquationRow>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Step 1: write the model prediction for row{" "}
+            <MathInline tex={String.raw`{\color{white}i}`} className="math-inline !text-white" />.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{magenta}\hat{y}}_{\color{white}i} = {\color{violet}\theta}_{\color{white}0} + {\color{violet}\theta}_{\color{white}1}{\color{cyan}x}_{\color{white}i}`}
+            className="math-center math-lg text-white/90"
+          />
 
-          <EquationRow number={2}>
-            <div className="mx-auto grid w-full max-w-[640px] grid-cols-[180px_auto_1fr] items-center gap-x-3 text-left math-lg text-white/90">
-              <div className="justify-self-end">
-                <MathInline
-                  tex={String.raw`{\color{white}e}_{\color{white}i}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-              <div className="text-white">=</div>
-              <div className="justify-self-start">
-                <MathInline
-                  tex={String.raw`{\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-            </div>
-          </EquationRow>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Step 2: define the error as prediction minus truth for the same row.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}e}_{\color{white}i} = {\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}`}
+            className="math-center math-lg text-white/90"
+          />
 
-          <EquationRow number={3}>
-            <div className="mx-auto grid w-full max-w-[640px] grid-cols-[180px_auto_1fr] items-center gap-x-3 text-left math-lg text-white/90">
-              <div className="justify-self-end">
-                <MathInline
-                  tex={String.raw`{\color{white}J\left({\color{violet}\theta}_{\color{white}0},{\color{violet}\theta}_{\color{white}1}\right)}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-              <div className="text-white">=</div>
-              <div className="justify-self-start">
-                <MathInline
-                  tex={String.raw`{\color{white}\frac{1}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right)^2}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-            </div>
-          </EquationRow>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Step 3: square each row-level error, then average across all rows to
+            get one objective value we can minimize.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}J\left({\color{violet}\theta}_{\color{white}0},{\color{violet}\theta}_{\color{white}1}\right)} = {\color{white}\frac{1}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right)^2}`}
+            className="math-center math-lg text-white/90"
+          />
 
           <div className="ml-4 overflow-x-auto">
             <table className="w-full border-separate [border-spacing:0_8px] text-left text-base leading-7 text-[color:var(--color-muted)]">
