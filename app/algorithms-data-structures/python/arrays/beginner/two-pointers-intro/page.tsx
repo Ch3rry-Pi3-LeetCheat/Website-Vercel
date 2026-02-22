@@ -1,8 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import LinearStateStepper from "@/components/ads/LinearStateStepper";
 import { arraysBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const pairCode = `nums = [1, 2, 4, 6, 8, 9]
@@ -12,112 +9,142 @@ left = 0
 right = len(nums) - 1
 
 while left < right:
-    total = nums[left] + nums[right]
-    if total == target:
+    current = nums[left] + nums[right]
+    if current == target:
+        print(left, right)
         break
-    if total < target:
+    if current < target:
         left += 1
     else:
-        right -= 1
+        right -= 1`;
 
-print(nums[left], nums[right])`;
+const pairOutput = `0 5`;
 
-const pairOutput = `1 9`;
-
-const reverseCode = `nums = [1, 2, 3, 4]
+const palindromeCode = `s = "racecar"
 
 left = 0
-right = len(nums) - 1
+right = len(s) - 1
+is_palindrome = True
 
 while left < right:
-    nums[left], nums[right] = nums[right], nums[left]
+    if s[left] != s[right]:
+        is_palindrome = False
+        break
     left += 1
     right -= 1
 
-print(nums)`;
+print(is_palindrome)`;
 
-const reverseOutput = `[4, 3, 2, 1]`;
+const palindromeOutput = `True`;
 
 export default function TwoPointersIntroPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "pair-sum", label: "Example: pair sum" },
-    { id: "reverse", label: "Example: reverse in place" },
-    { id: "checklist", label: "Two-pointer checklist" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Arrays"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Arrays"
       title="Two Pointers Intro"
-      description="A first interview pattern: move inward from both ends to avoid extra memory."
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Arrays (Beginner)", links: arraysBeginnerLessons },
+      description="Learn the two-pointer pattern as a clean alternative to many O(n^2) brute-force loops."
+      intro={[
+        "Two pointers means tracking two indices at the same time and moving them based on a rule.",
+        "This often avoids nested loops and gives O(n) scans on sorted arrays or mirrored strings.",
+      ]}
+      intuition={[
+        "Picture two people walking toward each other from opposite ends of a hallway.",
+        "Each move uses local information (sum too small? move left pointer right) to make global progress.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Budget pair checks",
+          mapping:
+            "Given sorted prices, find two items matching a budget without checking every pair.",
+        },
+        {
+          scenario: "Text symmetry checks",
+          mapping:
+            "Compare left and right characters to test if a word reads the same backward.",
+        },
+      ]}
+      keyIdeaTitle="Pointer movement rule"
+      keyIdeaText={[
+        "The pattern works best when you can decide which pointer to move based on a comparison.",
+        "For sorted sums: current sum too small -> move left forward; too large -> move right backward.",
+        "For palindrome checks: mismatch means fail early; match means move both pointers inward.",
+      ]}
+      interactiveDescription="Step through the sorted two-sum logic visually."
+      interactive={
+        <LinearStateStepper
+          title="Two-sum pointer walk"
+          subtitle="Target = 10 on sorted array [1, 2, 4, 6, 8, 9]."
+          steps={[
+            {
+              title: "Initialize pointers",
+              explanation: "left starts at index 0, right at index 5.",
+              values: [1, 2, 4, 6, 8, 9],
+              highlightIndices: [0, 5],
+              pointers: [
+                { index: 0, label: "left" },
+                { index: 5, label: "right" },
+              ],
+            },
+            {
+              title: "Check sum",
+              explanation: "1 + 9 = 10, target reached immediately.",
+              values: [1, 2, 4, 6, 8, 9],
+              highlightIndices: [0, 5],
+              pointers: [
+                { index: 0, label: "left" },
+                { index: 5, label: "right" },
+              ],
+            },
+            {
+              title: "Alternative branch (if sum were low)",
+              explanation: "You would move left rightward to increase the sum.",
+              values: [1, 2, 4, 6, 8, 9],
+              highlightIndices: [1, 5],
+              pointers: [
+                { index: 1, label: "left" },
+                { index: 5, label: "right" },
+              ],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/arrays/beginner/two-pointers-intro"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          Two pointers is a simple but powerful pattern. You keep two
-          indices and move them based on what you see, which avoids a
-          nested loop and saves time.
-        </p>
-        <p>
-          It works best on sorted data or when the problem naturally has
-          a left and right boundary.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          Imagine two people walking toward each other from opposite ends
-          of a hallway. Each step shrinks the search space until they
-          meet.
-        </p>
-      </InfoPanel>
-
-      <section id="pair-sum" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Example: pair sum
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          On a sorted list, if the sum is too small, move the left pointer
-          right to increase it. If the sum is too large, move the right
-          pointer left to decrease it.
-        </p>
-        <CodeBlock code={pairCode} title="Python" />
-        <OutputBlock output={pairOutput} />
-      </section>
-
-      <section id="reverse" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Example: reverse in place
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The same left/right movement can reverse an array without
-          creating a new list. Each step swaps the elements at the
-          pointers.
-        </p>
-        <CodeBlock code={reverseCode} title="Python" />
-        <OutputBlock output={reverseOutput} />
-      </section>
-
-      <section id="checklist" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Two-pointer checklist
-        </h2>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>Know the invariant: what remains true every step?</li>
-          <li>Decide which pointer moves for each comparison.</li>
-          <li>Stop when the pointers cross or the condition is met.</li>
-        </ul>
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-two-sum",
+          title: "Example 1: Pair sum in sorted array",
+          explanation:
+            "Two pointers find a valid pair in linear time once the array is sorted.",
+          code: pairCode,
+          output: pairOutput,
+        },
+        {
+          id: "ex-palindrome",
+          title: "Example 2: Palindrome check",
+          explanation:
+            "The same left/right movement idea works naturally on strings.",
+          code: palindromeCode,
+          output: palindromeOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "Two-pointer scan", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+        { operation: "Brute-force pair check", averageTime: String.raw`O(n^2)`, extraSpace: String.raw`O(1)` },
+      ]}
+      pitfalls={[
+        "Applying two pointers to unsorted data without sorting first (for sum problems).",
+        "Moving both pointers when only one should move.",
+        "Forgetting the loop condition left < right, which can cause duplicate checks.",
+      ]}
+      summary={[
+        "Two pointers is a reusable pattern, not a one-off trick.",
+        "Movement rules come from comparisons, which keeps logic deterministic.",
+        "On the right problems, two pointers converts quadratic work into linear work.",
+      ]}
+      nextStep="After arrays, compare this pointer mindset with linked lists, where movement is by next pointers rather than numeric indices."
+      railTitle="Within Arrays (Beginner)"
+      railLinks={arraysBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/arrays/beginner/two-pointers-intro"
+    />
   );
 }
+

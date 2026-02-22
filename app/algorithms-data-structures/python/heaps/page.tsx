@@ -1,4 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
+﻿import ArticleLayout from "@/components/ArticleLayout";
+import ComplexityTable from "@/components/ads/ComplexityTable";
 import CodeBlock from "@/components/CodeBlock";
 import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
@@ -35,9 +36,12 @@ export default function HeapsPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "real-world", label: "Real-world mapping" },
+    { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Heap order" },
     { id: "example-1", label: "Example 1: Top 3 scores" },
     { id: "example-2", label: "Example 2: Next task" },
+    { id: "summary", label: "Summary" },
   ];
 
   return (
@@ -49,7 +53,7 @@ export default function HeapsPage() {
       rightRail={
         <RightRail
           sections={[
-            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+            { title: "Within CS (Python)", links: adsPythonTopics },
           ]}
           activeHref="/algorithms-data-structures/python/heaps"
         />
@@ -58,28 +62,56 @@ export default function HeapsPage() {
       <InfoPanel id="introduction" title="Introduction" variant="intro">
         <p>
           A heap is a tree-based structure that always keeps the smallest item
-          at the top. Python&apos;s{" "}
-          <span className="font-mono inline-code">heapq</span> gives you a min-heap
-          out of the box.
+          at the top. Python&apos;s <span className="font-mono inline-code">heapq</span>{" "}
+          gives you a min-heap out of the box.
         </p>
         <p>
-          Heaps are ideal when you only care about the “next” best item rather
-          than a fully sorted list. That&apos;s why they appear in top-k and
-          scheduling problems.
+          Heaps are ideal when you only care about the next best item rather
+          than a fully sorted list.
         </p>
       </InfoPanel>
 
       <InfoPanel id="intuition" title="Intuition" variant="intuition">
         <p>
-          Think of a heap as a scoreboard where the best score floats to the
-          top automatically. You don&apos;t sort everything; you just keep the best
-          items within reach.
+          Think of a heap as a scoreboard where the best candidate floats near
+          the top automatically. You do not sort everything; you keep fast
+          access to the most urgent item.
         </p>
         <p>
-          Every push or pop rearranges just enough nodes to keep the top valid,
-          which is far cheaper than re-sorting the whole list.
+          Every push or pop rearranges just enough nodes to preserve the heap
+          property, which is cheaper than re-sorting the full list.
         </p>
       </InfoPanel>
+
+      <section id="real-world" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Real-world mapping
+        </h2>
+        <div className="grid gap-3">
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">CPU scheduler queues:</span>{" "}
+            next runnable task is chosen by priority.
+          </div>
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">Top-k recommendation feeds:</span>{" "}
+            maintain only the strongest candidates while streaming updates.
+          </div>
+        </div>
+      </section>
+
+      <section id="complexity" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Complexity quick sheet
+        </h2>
+        <ComplexityTable
+          rows={[
+            { operation: "Peek min", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+            { operation: "Push / Pop", averageTime: String.raw`O(\log n)`, extraSpace: String.raw`O(1)` },
+            { operation: "Build heap", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+            { operation: "Top-k stream maintenance", averageTime: String.raw`O(n\log k)`, extraSpace: String.raw`O(k)` },
+          ]}
+        />
+      </section>
 
       <div id="diagram" className="scroll-mt-28">
         <SketchDiagram
@@ -97,7 +129,6 @@ export default function HeapsPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Step by step: push every score into a min-heap. When the heap grows
           beyond three items, pop the smallest so only the top scores remain.
-          Sorting the heap at the end gives you a readable list.
         </p>
         <CodeBlock code={topKCode} title="Python" />
         <OutputBlock output={topKOutput} />
@@ -108,13 +139,24 @@ export default function HeapsPage() {
         title="Example 2: Next task by earliest time"
       >
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Step by step: store each task as a (time, label) pair so the time
-          drives priority. Heapify arranges the smallest time at the top.
-          Popping once returns the task you should handle next.
+          Step by step: store each task as a (time, label) pair so time drives
+          priority. Heapify arranges the smallest time at the top. Popping once
+          returns the task you should run next.
         </p>
         <CodeBlock code={scheduleCode} title="Python" />
         <OutputBlock output={scheduleOutput} />
       </CollapsibleExample>
+
+      <section id="summary" className="scroll-mt-28 grid gap-3">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Summary
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Heaps are the right choice when &quot;next by priority&quot; is more important
+          than full sorted order.
+        </p>
+      </section>
     </ArticleLayout>
   );
 }
+

@@ -1,8 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import LinearStateStepper from "@/components/ads/LinearStateStepper";
 import { stacksQueuesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const parenCode = `def is_valid(s):
@@ -10,93 +7,133 @@ const parenCode = `def is_valid(s):
     pairs = {")": "(", "]": "[", "}": "{"}
 
     for ch in s:
-        if ch in pairs.values():
+        if ch in "([{":
             stack.append(ch)
-        elif ch in pairs:
-            if not stack or stack.pop() != pairs[ch]:
+        else:
+            if not stack or stack[-1] != pairs[ch]:
                 return False
+            stack.pop()
 
-    return not stack
+    return len(stack) == 0
 
-print(is_valid("([])"))
-print(is_valid("(]"))`;
+print(is_valid("([]{})"))`;
 
-const parenOutput = `True
-False`;
+const parenOutput = `True`;
 
-const queueCode = `from collections import deque
+const tasksCode = `from collections import deque
 
-tasks = deque(["build", "test", "deploy"])
-order = []
+tasks = deque(["task1", "task2", "task3"])
+done = []
 
 while tasks:
-    order.append(tasks.popleft())
+    current = tasks.popleft()
+    done.append(current)
 
-print(order)`;
+print(done)`;
 
-const queueOutput = `['build', 'test', 'deploy']`;
+const tasksOutput = `['task1', 'task2', 'task3']`;
 
 export default function PatternsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "stack-pattern", label: "Stack pattern" },
-    { id: "queue-pattern", label: "Queue pattern" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Stacks and Queues"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Stacks and Queues"
       title="Everyday Patterns"
-      description="Use a stack to match brackets and a queue to process tasks in order." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Stacks and Queues (Beginner)", links: stacksQueuesBeginnerLessons },
+      description="Recognize the common trigger words for stack and queue patterns in interview questions."
+      intro={[
+        "After basics, the key skill is pattern recognition: know when the problem is asking for LIFO or FIFO behavior.",
+        "This lesson covers two reliable beginner patterns: bracket validation (stack) and ordered processing (queue).",
+      ]}
+      intuition={[
+        "Stack pattern clues: nested structure, undo, backtracking, matching open/close tokens.",
+        "Queue pattern clues: first come first served, wave/layer processing, shortest path in unweighted graphs.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Code editor bracket checks",
+          mapping:
+            "Opening brackets are pushed; each closing bracket must match top of stack.",
+        },
+        {
+          scenario: "Job worker pipeline",
+          mapping:
+            "Tasks are consumed from the front in submission order.",
+        },
+      ]}
+      keyIdeaTitle="Pattern triggers to memorize"
+      keyIdeaText={[
+        "If you need to match most recent unresolved item, think stack.",
+        "If you need to preserve arrival order, think queue.",
+        "When in doubt, ask: should newest or oldest leave first?",
+      ]}
+      interactiveDescription="Compare a stack-driven matcher and queue-driven task pipeline."
+      interactive={
+        <LinearStateStepper
+          title="Bracket validation stack"
+          subtitle='Expression: "([]{})".'
+          steps={[
+            {
+              title: "Read (",
+              explanation: "Opening bracket, push onto stack.",
+              values: ["("],
+              highlightIndices: [0],
+            },
+            {
+              title: "Read [",
+              explanation: "Push next opener.",
+              values: ["(", "["],
+              highlightIndices: [1],
+            },
+            {
+              title: "Read ]",
+              explanation: "Top is [, so pop it.",
+              values: ["("],
+              highlightIndices: [0],
+            },
+            {
+              title: "Finish with empty stack",
+              explanation: "All closers matched correctly.",
+              values: ["(empty)"],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/stacks-queues/beginner/patterns"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          Stacks and queues appear in real problems because they encode
-          simple ordering rules. Once you know those rules, you can spot
-          the right tool quickly.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          A stack is best when you need to undo or match pairs. A queue
-          is best when you need to process items in arrival order.
-        </p>
-      </InfoPanel>
-
-      <section id="stack-pattern" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Stack pattern: validate parentheses
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Push opening brackets, and when you see a closing bracket, pop
-          and compare. If anything mismatches, the string is invalid.
-        </p>
-        <CodeBlock code={parenCode} title="Python" />
-        <OutputBlock output={parenOutput} />
-      </section>
-
-      <section id="queue-pattern" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Queue pattern: process tasks
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The queue ensures tasks are handled in the order they were
-          added.
-        </p>
-        <CodeBlock code={queueCode} title="Python" />
-        <OutputBlock output={queueOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-brackets",
+          title: "Example 1: Valid parentheses",
+          explanation:
+            "Classic stack pattern. Top element must match each closing token.",
+          code: parenCode,
+          output: parenOutput,
+        },
+        {
+          id: "ex-tasks",
+          title: "Example 2: FIFO task runner",
+          explanation:
+            "Queue processing preserves order naturally.",
+          code: tasksCode,
+          output: tasksOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "Bracket scan (n chars)", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(n)` },
+        { operation: "Queue processing (n tasks)", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(n)` },
+      ]}
+      pitfalls={[
+        "Trying to solve bracket matching without a stack for unresolved openers.",
+        "Using a stack when order must be preserved (should be queue).",
+        "Not checking empty stack before reading top during closer handling.",
+      ]}
+      summary={[
+        "Pattern recognition is the bridge from syntax to problem-solving.",
+        "Bracket matching is a canonical stack problem.",
+        "Arrival-order processing is a canonical queue problem.",
+      ]}
+      nextStep="Next, we move to hash tables, where constant-time key lookups unlock counting and complement patterns."
+      railTitle="Within Stacks and Queues (Beginner)"
+      railLinks={stacksQueuesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/stacks-queues/beginner/patterns"
+    />
   );
 }
+

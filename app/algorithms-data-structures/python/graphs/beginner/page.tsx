@@ -1,40 +1,27 @@
-import Link from "next/link";
+﻿import BeginnerTrackPage from "@/components/ads/BeginnerTrackPage";
 import { graphsBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 export default function GraphsBeginnerPage() {
   return (
-    <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Algorithms - Python - Graphs
-          </p>
-          <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
-            Graphs beginner ladder
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
-            Learn how to represent graphs, traverse them, and compute
-            shortest paths in unweighted networks.
-          </p>
-        </header>
-
-        <div className="mt-10 grid gap-4">
-          {graphsBeginnerLessons.map((lesson) => (
-            <Link
-              key={lesson.href}
-              href={lesson.href}
-              className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
-            >
-              <h2 className="text-xl font-semibold text-white">
-                {lesson.label}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
-                {lesson.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
+    <BeginnerTrackPage
+      eyebrow="CS - Python - Graphs"
+      title="Graphs beginner ladder"
+      description="Learn how to represent graphs, traverse them, and compute shortest paths in unweighted networks."
+      intuition="Graphs represent relationships where a node can connect to many peers. Traversal strategy (BFS vs DFS) decides what you discover first."
+      realWorldExamples={[
+        {
+          scenario: "Transit map",
+          mapping: "Stations are nodes and routes are edges between stations.",
+        },
+        {
+          scenario: "Social network",
+          mapping: "Accounts are nodes and follow/friend relations are edges.",
+        },
+      ]}
+      lessons={graphsBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/graphs/beginner"
+      structureLabel="Graphs"
+    />
   );
 }
+

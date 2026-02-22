@@ -1,95 +1,127 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import MapStateStepper from "@/components/ads/MapStateStepper";
 import { hashTablesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const lookupCode = `scores = {"amy": 3, "ben": 5}
 
-scores["cody"] = 7
+print(scores["amy"])
+scores["amy"] = 4
+print(scores["amy"])`;
 
-print(scores["ben"])
-print("dana" in scores)
-print(scores.get("dana", 0))`;
+const lookupOutput = `3
+4`;
 
-const lookupOutput = `5
-False
+const safeCode = `scores = {"amy": 3}
+
+print(scores.get("amy", 0))
+print(scores.get("zoe", 0))`;
+
+const safeOutput = `3
 0`;
 
-const updateCode = `scores = {"amy": 3, "ben": 5, "cody": 7}
-
-scores["amy"] = 4
-del scores["ben"]
-
-print(scores)`;
-
-const updateOutput = `{'amy': 4, 'cody': 7}`;
-
 export default function DictBasicsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "lookup", label: "Create and lookup" },
-    { id: "update", label: "Update and delete" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Hash Tables"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Hash Tables"
       title="Dictionary Basics"
-      description="Hash tables map keys to values for fast lookup and updates." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Hash Tables (Beginner)", links: hashTablesBeginnerLessons },
+      description="Learn hash-map intuition through Python dict: key lookup, update, and safe access patterns."
+      intro={[
+        "Dictionaries map keys to values. Instead of searching by position, you look up by meaning (for example, user_id).",
+        "Hash tables are popular because average lookup/update/insert is O(1) for many workloads.",
+      ]}
+      intuition={[
+        "Think of a labeled locker room: key name points to one locker.",
+        "You do not scan every locker to find 'amy'; you jump by label.",
+      ]}
+      realWorld={[
+        {
+          scenario: "User profile cache",
+          mapping:
+            "user_id -> profile object lets backend code fetch user data quickly.",
+        },
+        {
+          scenario: "Feature flags",
+          mapping:
+            "flag name -> enabled state provides instant checks in request paths.",
+        },
+      ]}
+      keyIdeaTitle="Key-based access"
+      keyIdeaText={[
+        "Use dict[key] when key is guaranteed to exist.",
+        "Use dict.get(key, default) when keys may be missing.",
+        "Updates overwrite existing values for that key.",
+      ]}
+      interactiveDescription="Watch a dictionary evolve with inserts and updates."
+      interactive={
+        <MapStateStepper
+          title="Dictionary state transitions"
+          subtitle="Keys map to values directly."
+          steps={[
+            {
+              title: "Insert amy -> 3",
+              explanation: "New key adds new entry.",
+              currentInput: 'scores["amy"] = 3',
+              mapEntries: [{ key: "amy", value: 3, highlighted: true }],
+            },
+            {
+              title: "Insert ben -> 5",
+              explanation: "Second key added independently.",
+              currentInput: 'scores["ben"] = 5',
+              mapEntries: [
+                { key: "amy", value: 3 },
+                { key: "ben", value: 5, highlighted: true },
+              ],
+            },
+            {
+              title: "Update amy -> 4",
+              explanation: "Existing key gets overwritten.",
+              currentInput: 'scores["amy"] = 4',
+              mapEntries: [
+                { key: "amy", value: 4, highlighted: true },
+                { key: "ben", value: 5 },
+              ],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/hash-tables/beginner/dict-basics"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          A hash table stores key-value pairs. In Python, the built-in
-          dictionary gives you average O(1) lookup by key.
-        </p>
-        <p>
-          The key idea is that you find data by name, not by position.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          Imagine labeled mailboxes. You do not search the whole block;
-          you go straight to the box with the right label.
-        </p>
-      </InfoPanel>
-
-      <section id="lookup" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Create and lookup
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Use brackets for direct lookup. Use{" "}
-          <span className="font-mono inline-code">get</span> for a safe
-          default when the key is missing.
-        </p>
-        <CodeBlock code={lookupCode} title="Python" />
-        <OutputBlock output={lookupOutput} />
-      </section>
-
-      <section id="update" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Update and delete
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Assigning to an existing key updates the value. Deleting a key
-          removes the pair entirely.
-        </p>
-        <CodeBlock code={updateCode} title="Python" />
-        <OutputBlock output={updateOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-lookup",
+          title: "Example 1: Direct lookup and update",
+          explanation:
+            "Look up by key, then overwrite a value in constant average time.",
+          code: lookupCode,
+          output: lookupOutput,
+        },
+        {
+          id: "ex-safe",
+          title: "Example 2: Safe reads with get",
+          explanation:
+            "get avoids KeyError and gives explicit defaults.",
+          code: safeCode,
+          output: safeOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "Lookup by key", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "Insert/update key", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "Worst-case lookup", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+      ]}
+      pitfalls={[
+        "Assuming key order semantics for algorithm correctness in interview contexts.",
+        "Using direct index syntax when keys may be missing.",
+        "Forgetting keys must be hashable types (e.g., list is invalid as key).",
+      ]}
+      summary={[
+        "Dictionaries trade positional access for key-based direct access.",
+        "Average-case O(1) operations make dicts foundational in interview patterns.",
+        "Safe access patterns like get() prevent avoidable runtime errors.",
+      ]}
+      nextStep="Next we use dictionaries for frequency counting, one of the highest-leverage interview patterns."
+      railTitle="Within Hash Tables (Beginner)"
+      railLinks={hashTablesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/hash-tables/beginner/dict-basics"
+    />
   );
 }
+

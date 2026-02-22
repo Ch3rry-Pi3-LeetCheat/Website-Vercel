@@ -1,4 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
+﻿import ArticleLayout from "@/components/ArticleLayout";
+import ComplexityTable from "@/components/ads/ComplexityTable";
 import CodeBlock from "@/components/CodeBlock";
 import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
@@ -40,9 +41,12 @@ export default function ArraysPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "real-world", label: "Real-world mapping" },
+    { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Array view" },
     { id: "example-1", label: "Example 1: Indexing and slicing" },
     { id: "example-2", label: "Example 2: Two pointers" },
+    { id: "summary", label: "Summary" },
   ];
 
   return (
@@ -54,7 +58,7 @@ export default function ArraysPage() {
       rightRail={
         <RightRail
           sections={[
-            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+            { title: "Within CS (Python)", links: adsPythonTopics },
           ]}
           activeHref="/algorithms-data-structures/python/arrays"
         />
@@ -85,6 +89,36 @@ export default function ArraysPage() {
           the ends to meet in the middle.
         </p>
       </InfoPanel>
+
+      <section id="real-world" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Real-world mapping
+        </h2>
+        <div className="grid gap-3">
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">Time-series dashboards:</span>{" "}
+            each position stores one time point, so direct indexing supports fast rendering and updates.
+          </div>
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">Media playlists:</span>{" "}
+            order matters, and pointer-based scans support skip/seek patterns cleanly.
+          </div>
+        </div>
+      </section>
+
+      <section id="complexity" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Complexity quick sheet
+        </h2>
+        <ComplexityTable
+          rows={[
+            { operation: "Index access", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+            { operation: "Append (amortized)", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+            { operation: "Insert/delete in middle", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+            { operation: "Linear search", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+          ]}
+        />
+      </section>
 
       <div id="diagram" className="scroll-mt-28">
         <SketchDiagram
@@ -123,6 +157,18 @@ export default function ArraysPage() {
         <CodeBlock code={twoPointerCode} title="Python" />
         <OutputBlock output={twoPointerOutput} />
       </CollapsibleExample>
+
+      <section id="summary" className="scroll-mt-28 grid gap-3">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Summary
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Arrays are usually your default for ordered data. Use them when you
+          want fast index access and simple linear scans, and switch when
+          mid-list insert/delete dominates.
+        </p>
+      </section>
     </ArticleLayout>
   );
 }
+

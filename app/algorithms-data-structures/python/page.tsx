@@ -1,77 +1,112 @@
+﻿import ArticleLayout from "@/components/ArticleLayout";
+import InfoPanel from "@/components/InfoPanel";
 import Link from "next/link";
 
-const structures = [
+const modules = [
+  {
+    title: "Foundations: Big-O",
+    description:
+      "Time/space complexity intuition and growth-rate reasoning before implementation details.",
+    href: "/algorithms-data-structures/python/foundations/big-o",
+  },
   {
     title: "Arrays & Lists",
-    description: "Indexing, slicing, and two-pointer interview patterns.",
+    description: "Indexing, slicing, two pointers, and operation trade-offs.",
     href: "/algorithms-data-structures/python/arrays/beginner",
   },
   {
     title: "Linked Lists",
-    description: "Pointers, traversal, and in-place mutation patterns.",
+    description: "Node chains, pointer rewiring, and safe traversal patterns.",
     href: "/algorithms-data-structures/python/linked-lists/beginner",
   },
   {
     title: "Stacks & Queues",
-    description: "LIFO/FIFO mechanics for parsing and scheduling tasks.",
+    description: "LIFO/FIFO mechanics for parsing, scheduling, and traversal.",
     href: "/algorithms-data-structures/python/stacks-queues/beginner",
   },
   {
     title: "Hash Tables",
-    description: "Fast lookups, counting, and collision intuition.",
+    description: "Fast lookups, counting patterns, and complement matching.",
     href: "/algorithms-data-structures/python/hash-tables/beginner",
   },
   {
     title: "Trees",
-    description: "Traversal, recursion, and BST interview templates.",
+    description: "Recursive structure, traversals, and BST fundamentals.",
     href: "/algorithms-data-structures/python/trees/beginner",
   },
   {
     title: "Heaps",
-    description: "Priority queues, top-k problems, and scheduling.",
+    description: "Priority queues, top-k workflows, and scheduling use cases.",
     href: "/algorithms-data-structures/python/heaps/beginner",
   },
   {
     title: "Graphs",
-    description: "Adjacency lists, BFS/DFS, and shortest paths.",
+    description: "Adjacency lists, BFS/DFS traversal, and shortest paths.",
     href: "/algorithms-data-structures/python/graphs/beginner",
   },
 ];
 
 export default function AlgorithmsPythonPage() {
-  return (
-    <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Algorithms - Python
-          </p>
-          <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
-            Data structures in Python
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
-            Each module builds from first principles, then grows into the
-            interview patterns that appear repeatedly.
-          </p>
-        </header>
+  const tocItems = [
+    { id: "intro", label: "Introduction" },
+    { id: "approach", label: "How To Use This Track" },
+    { id: "modules", label: "Module sequence" },
+  ];
 
-        <section className="mt-10 grid gap-4">
-          {structures.map((structure) => (
+  return (
+    <ArticleLayout
+      eyebrow="CS - Python"
+      title="Data structures and algorithms in Python"
+      description="A structured progression from complexity intuition to reusable interview patterns, with step-by-step examples."
+      tocItems={tocItems}
+    >
+      <InfoPanel id="intro" title="Introduction" variant="intro">
+        <p>
+          This path is intentionally ordered. You first learn cost reasoning
+          (Big-O), then structure mechanics, then recurring patterns.
+        </p>
+        <p>
+          Every module is written for beginners but with textbook-level rigor:
+          intuition, code, edge cases, and complexity all together.
+        </p>
+      </InfoPanel>
+
+      <InfoPanel id="approach" title="How To Use This Track" variant="intuition">
+        <p>
+          Recommended cadence:
+          read one lesson, run examples manually, then explain the solution out
+          loud with complexity before moving on.
+        </p>
+        <p>
+          Focus on transfer: each new problem should map back to a small number
+          of known structure + pattern combinations.
+        </p>
+      </InfoPanel>
+
+      <section id="modules" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Module sequence
+        </h2>
+        <div className="grid gap-4">
+          {modules.map((module, idx) => (
             <Link
-              key={structure.href}
-              href={structure.href}
+              key={module.href}
+              href={module.href}
               className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
             >
-              <h2 className="text-xl font-semibold text-white">
-                {structure.title}
-              </h2>
+              <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
+                Step {idx + 1}
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-white">{module.title}</h3>
               <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
-                {structure.description}
+                {module.description}
               </p>
             </Link>
           ))}
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+    </ArticleLayout>
   );
 }
+
+

@@ -1,4 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
+﻿import ArticleLayout from "@/components/ArticleLayout";
+import ComplexityTable from "@/components/ads/ComplexityTable";
 import CodeBlock from "@/components/CodeBlock";
 import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
@@ -38,21 +39,24 @@ export default function HashTablesPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
+    { id: "real-world", label: "Real-world mapping" },
+    { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Hash buckets" },
     { id: "example-1", label: "Example 1: Count frequencies" },
     { id: "example-2", label: "Example 2: Two-sum lookup" },
+    { id: "summary", label: "Summary" },
   ];
 
   return (
     <ArticleLayout
       eyebrow="Hash Tables"
       title="Hash tables in Python"
-      description="Dictionaries give you fast lookups. They power counting, indexing, and almost every classic interview pattern."
+      description="Dictionaries give you fast lookups. They power counting, indexing, and many classic interview patterns."
       tocItems={tocItems}
       rightRail={
         <RightRail
           sections={[
-            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+            { title: "Within CS (Python)", links: adsPythonTopics },
           ]}
           activeHref="/algorithms-data-structures/python/hash-tables"
         />
@@ -75,16 +79,46 @@ export default function HashTablesPage() {
           straight to the locker without scanning every slot.
         </p>
         <p>
-          In interview terms: if a problem repeats “find,” “count,” or
-          “has seen,” a hash table is often the first answer.
+          In interview terms: if a problem repeats &quot;find&quot;, &quot;count&quot;, or
+          &quot;has seen&quot;, a hash table is often the first answer.
         </p>
       </InfoPanel>
+
+      <section id="real-world" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Real-world mapping
+        </h2>
+        <div className="grid gap-3">
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">Authentication/session stores:</span>{" "}
+            token-to-user lookup must be direct and fast.
+          </div>
+          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">Analytics counters:</span>{" "}
+            event names map to frequencies in one pass.
+          </div>
+        </div>
+      </section>
+
+      <section id="complexity" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Complexity quick sheet
+        </h2>
+        <ComplexityTable
+          rows={[
+            { operation: "Lookup by key", averageTime: String.raw`O(1)\\ \text{(average)}`, extraSpace: String.raw`O(1)` },
+            { operation: "Insert/update by key", averageTime: String.raw`O(1)\\ \text{(average)}`, extraSpace: String.raw`O(1)` },
+            { operation: "Build map from n items", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(n)` },
+            { operation: "Worst-case collision behavior", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+          ]}
+        />
+      </section>
 
       <div id="diagram" className="scroll-mt-28">
         <SketchDiagram
           title="Sketch: hash buckets"
           variant="hash"
-          caption="Keys map to buckets so lookups stay close to O(1)."
+          caption="Keys map to buckets so lookups stay close to O(1) on average."
         />
       </div>
 
@@ -114,6 +148,17 @@ export default function HashTablesPage() {
         <CodeBlock code={twoSumCode} title="Python" />
         <OutputBlock output={twoSumOutput} />
       </CollapsibleExample>
+
+      <section id="summary" className="scroll-mt-28 grid gap-3">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Summary
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Hash tables are often the highest-impact optimization for interview
+          problems involving membership checks, counting, and complement lookups.
+        </p>
+      </section>
     </ArticleLayout>
   );
 }
+

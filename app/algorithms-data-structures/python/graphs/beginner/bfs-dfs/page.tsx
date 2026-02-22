@@ -1,8 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import TraversalExplorer from "@/components/ads/TraversalExplorer";
 import { graphsBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const bfsCode = `from collections import deque
@@ -27,7 +24,6 @@ def bfs(start):
             if nbr not in seen:
                 seen.add(nbr)
                 queue.append(nbr)
-
     return order
 
 print(bfs("A"))`;
@@ -55,58 +51,129 @@ print(order)`;
 
 const dfsOutput = `['A', 'B', 'D', 'C', 'E']`;
 
-export default function BfsDfsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "bfs", label: "BFS" },
-    { id: "dfs", label: "DFS" },
-  ];
+const nodes = [
+  { id: "A", label: "A", x: 80, y: 110 },
+  { id: "B", label: "B", x: 170, y: 60 },
+  { id: "C", label: "C", x: 170, y: 160 },
+  { id: "D", label: "D", x: 270, y: 60 },
+  { id: "E", label: "E", x: 270, y: 160 },
+];
 
+const edges = [
+  { from: "A", to: "B" },
+  { from: "A", to: "C" },
+  { from: "B", to: "D" },
+  { from: "C", to: "E" },
+];
+
+export default function BfsDfsPage() {
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Graphs"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Graphs"
       title="BFS and DFS"
-      description="Two core traversals: BFS explores by layers, DFS explores by depth." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Graphs (Beginner)", links: graphsBeginnerLessons },
+      description="Compare breadth-first and depth-first exploration strategies and know when to use each."
+      intro={[
+        "BFS and DFS visit reachable graph nodes with different exploration order.",
+        "BFS explores by layers using a queue. DFS explores by depth using recursion or stack.",
+      ]}
+      intuition={[
+        "BFS is like a ripple spreading out level by level from a source.",
+        "DFS is like taking one hallway all the way until blocked, then backtracking.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Shortest steps in unweighted graph",
+          mapping:
+            "BFS finds shortest edge count because it explores by distance layers.",
+        },
+        {
+          scenario: "Path existence and component exploration",
+          mapping:
+            "DFS is excellent for deep exploration and recursive structure checks.",
+        },
+      ]}
+      keyIdeaTitle="Traversal policy differences"
+      keyIdeaText={[
+        "BFS frontier structure: queue (FIFO).",
+        "DFS frontier structure: stack/recursion (LIFO behavior).",
+        "Both run in O(V + E) when adjacency lists are used.",
+      ]}
+      interactiveDescription="Step through BFS frontier changes on a small graph."
+      interactive={
+        <TraversalExplorer
+          title="BFS layer-by-layer"
+          subtitle="Start from A; frontier shown as queue content."
+          nodes={nodes}
+          edges={edges}
+          steps={[
+            {
+              title: "Visit A",
+              explanation: "Enqueue neighbors B and C.",
+              current: "A",
+              visited: ["A"],
+              frontier: ["B", "C"],
+            },
+            {
+              title: "Visit B",
+              explanation: "Dequeue B first; enqueue D.",
+              current: "B",
+              visited: ["A", "B"],
+              frontier: ["C", "D"],
+            },
+            {
+              title: "Visit C",
+              explanation: "Then dequeue C; enqueue E.",
+              current: "C",
+              visited: ["A", "B", "C"],
+              frontier: ["D", "E"],
+            },
+            {
+              title: "Finish layer expansion",
+              explanation: "Remaining nodes dequeue in order D then E.",
+              current: "E",
+              visited: ["A", "B", "C", "D", "E"],
+              frontier: [],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/graphs/beginner/bfs-dfs"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          BFS and DFS are the two most common ways to explore a graph.
-          They visit all reachable nodes, just in different orders.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          BFS spreads out level by level, like ripples in water. DFS dives
-          down a path until it cannot go further.
-        </p>
-      </InfoPanel>
-
-      <section id="bfs" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Breadth-first search (BFS)
-        </h2>
-        <CodeBlock code={bfsCode} title="Python" />
-        <OutputBlock output={bfsOutput} />
-      </section>
-
-      <section id="dfs" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Depth-first search (DFS)
-        </h2>
-        <CodeBlock code={dfsCode} title="Python" />
-        <OutputBlock output={dfsOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-bfs",
+          title: "Example 1: BFS with queue",
+          explanation:
+            "Queue order creates level-by-level exploration.",
+          code: bfsCode,
+          output: bfsOutput,
+        },
+        {
+          id: "ex-dfs",
+          title: "Example 2: DFS with recursion",
+          explanation:
+            "Recursive calls create depth-first behavior naturally.",
+          code: dfsCode,
+          output: dfsOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "BFS traversal", averageTime: String.raw`O(V + E)`, extraSpace: String.raw`O(V)` },
+        { operation: "DFS traversal", averageTime: String.raw`O(V + E)`, extraSpace: String.raw`O(V)` },
+      ]}
+      pitfalls={[
+        "Forgetting visited set, which can loop forever on cyclic graphs.",
+        "Using DFS when shortest unweighted path length is required (BFS is better).",
+        "Confusing traversal order with graph correctness requirements.",
+      ]}
+      summary={[
+        "BFS and DFS solve similar reachability tasks with different order guarantees.",
+        "Choose BFS for minimum-edge distance in unweighted graphs.",
+        "Choose DFS for deep structural exploration and recursion-friendly logic.",
+      ]}
+      nextStep="Next we apply BFS directly to shortest-path reconstruction in unweighted graphs."
+      railTitle="Within Graphs (Beginner)"
+      railLinks={graphsBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/graphs/beginner/bfs-dfs"
+    />
   );
 }
+

@@ -1,79 +1,129 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import MapStateStepper from "@/components/ads/MapStateStepper";
 import { hashTablesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const twoSumCode = `nums = [2, 7, 11, 15]
 target = 9
-
 seen = {}
 
-for i, num in enumerate(nums):
-    need = target - num
+for i, value in enumerate(nums):
+    need = target - value
     if need in seen:
-        print([seen[need], i])
+        print(seen[need], i)
         break
-    seen[num] = i`;
+    seen[value] = i`;
 
-const twoSumOutput = `[0, 1]`;
+const twoSumOutput = `0 1`;
+
+const duplicateCode = `nums = [3, 3]
+target = 6
+seen = {}
+
+for i, value in enumerate(nums):
+    need = target - value
+    if need in seen:
+        print(seen[need], i)
+        break
+    seen[value] = i`;
+
+const duplicateOutput = `0 1`;
 
 export default function TwoSumPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "example", label: "One-pass solution" },
-    { id: "complexity", label: "Complexity" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Hash Tables"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Hash Tables"
       title="Two Sum Pattern"
-      description="Store complements so you can find pairs in a single pass." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Hash Tables (Beginner)", links: hashTablesBeginnerLessons },
+      description="Use complements plus a hash map to find pairs in one pass."
+      intro={[
+        "Two Sum is a foundational interview pattern because it combines arithmetic thinking with hash-map lookup.",
+        "Instead of checking all pairs, you store what you have seen and ask if the needed complement already exists.",
+      ]}
+      intuition={[
+        "For each value x, ask: what value y would complete target? That y is target - x.",
+        "If y was seen before, pair found. If not, store x and continue.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Budget matching",
+          mapping:
+            "Find two purchase amounts that sum to an exact reimbursement limit.",
+        },
+        {
+          scenario: "Signal pair detection",
+          mapping:
+            "Find two measurements whose combined value hits a threshold.",
+        },
+      ]}
+      keyIdeaTitle="Complement lookup logic"
+      keyIdeaText={[
+        "Maintain seen[value] = index.",
+        "At index i with value x, compute need = target - x.",
+        "If need in seen, return (seen[need], i).",
+      ]}
+      interactiveDescription="Trace one-pass complement matching on [2, 7, 11, 15], target 9."
+      interactive={
+        <MapStateStepper
+          title="Complement matching"
+          subtitle="Map stores seen value -> index."
+          steps={[
+            {
+              title: "i=0, value=2",
+              explanation: "Need 7. Not seen yet, store 2->0.",
+              currentInput: "need = 7",
+              mapEntries: [{ key: "2", value: 0, highlighted: true }],
+            },
+            {
+              title: "i=1, value=7",
+              explanation: "Need 2. Found in map at index 0, pair complete.",
+              currentInput: "need = 2",
+              mapEntries: [{ key: "2", value: 0, highlighted: true }],
+            },
+            {
+              title: "Stop early",
+              explanation: "Return indices (0, 1).",
+              currentInput: "return (0, 1)",
+              mapEntries: [{ key: "2", value: 0 }],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/hash-tables/beginner/two-sum"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          Two sum is a classic pattern. You track what you have seen so
-          far, then check if the needed complement already exists.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          If you need two numbers to add to a target, each number tells
-          you which partner it needs. The dictionary stores those
-          partners as you go.
-        </p>
-      </InfoPanel>
-
-      <section id="example" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          One-pass solution
-        </h2>
-        <CodeBlock code={twoSumCode} title="Python" />
-        <OutputBlock output={twoSumOutput} />
-      </section>
-
-      <section id="complexity" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Complexity
-        </h2>
-        <ul className="grid list-disc list-inside gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>Time: O(n) because you scan once.</li>
-          <li>Space: O(n) for the dictionary.</li>
-        </ul>
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-two-sum-main",
+          title: "Example 1: Standard one-pass solution",
+          explanation:
+            "The map lets each index answer complement queries in constant average time.",
+          code: twoSumCode,
+          output: twoSumOutput,
+        },
+        {
+          id: "ex-two-sum-dup",
+          title: "Example 2: Duplicate values case",
+          explanation:
+            "Store after checking complement so duplicates can still pair correctly.",
+          code: duplicateCode,
+          output: duplicateOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "One-pass hash-map Two Sum", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(n)` },
+        { operation: "Brute-force nested loops", averageTime: String.raw`O(n^2)`, extraSpace: String.raw`O(1)` },
+      ]}
+      pitfalls={[
+        "Storing current value before complement check can break duplicate handling.",
+        "Returning values instead of indices when the problem asks for indices.",
+        "Using nested loops and missing the map-based linear approach.",
+      ]}
+      summary={[
+        "Two Sum demonstrates complement lookup as a reusable pattern.",
+        "Hash maps convert repeated search into constant-time average lookups.",
+        "Correct operation order (check then store) matters for edge cases.",
+      ]}
+      nextStep="Next we shift to trees, where recursion and traversal order become the core mental models."
+      railTitle="Within Hash Tables (Beginner)"
+      railLinks={hashTablesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/hash-tables/beginner/two-sum"
+    />
   );
 }
+

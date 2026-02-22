@@ -1,40 +1,27 @@
-import Link from "next/link";
+﻿import BeginnerTrackPage from "@/components/ads/BeginnerTrackPage";
 import { stacksQueuesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 export default function StacksQueuesBeginnerPage() {
   return (
-    <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Algorithms - Python - Stacks and Queues
-          </p>
-          <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
-            Stacks and queues beginner ladder
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
-            Two simple structures that show up everywhere: LIFO stacks
-            and FIFO queues.
-          </p>
-        </header>
-
-        <div className="mt-10 grid gap-4">
-          {stacksQueuesBeginnerLessons.map((lesson) => (
-            <Link
-              key={lesson.href}
-              href={lesson.href}
-              className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
-            >
-              <h2 className="text-xl font-semibold text-white">
-                {lesson.label}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
-                {lesson.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
+    <BeginnerTrackPage
+      eyebrow="CS - Python - Stacks and Queues"
+      title="Stacks and queues beginner ladder"
+      description="Two simple structures that show up everywhere: LIFO stacks and FIFO queues."
+      intuition="Order discipline is the whole point: stack for most-recent-first work, queue for arrival-order processing."
+      realWorldExamples={[
+        {
+          scenario: "Undo actions in an editor",
+          mapping: "Last action is popped first, exactly stack behavior.",
+        },
+        {
+          scenario: "Job dispatcher",
+          mapping: "Tasks are processed in arrival order, which is queue behavior.",
+        },
+      ]}
+      lessons={stacksQueuesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/stacks-queues/beginner"
+      structureLabel="Stacks and Queues"
+    />
   );
 }
+

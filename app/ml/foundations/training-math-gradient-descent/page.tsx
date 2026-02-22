@@ -466,41 +466,82 @@ export default function TrainingMathGradientDescentPage() {
             gradients tell us how sensitive loss is to small changes in each
             parameter.
           </p>
-          <EquationRow number={4}>
-            <div className="mx-auto grid w-full max-w-[640px] grid-cols-[180px_auto_1fr] items-center gap-x-3 text-left math-lg text-white/90">
-              <div className="justify-self-end">
-                <MathInline
-                  tex={String.raw`{\color{white}\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}0}}}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-              <div className="text-white">=</div>
-              <div className="justify-self-start">
-                <MathInline
-                  tex={String.raw`{\color{white}\frac{2}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right)}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-            </div>
-          </EquationRow>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We start from:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}J\left({\color{violet}\theta}_{\color{white}0},{\color{violet}\theta}_{\color{white}1}\right)} = {\color{white}\frac{1}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right)^2}`}
+            className="math-center math-lg text-white/90"
+          />
 
-          <EquationRow number={5}>
-            <div className="mx-auto grid w-full max-w-[640px] grid-cols-[180px_auto_1fr] items-center gap-x-3 text-left math-lg text-white/90">
-              <div className="justify-self-end">
-                <MathInline
-                  tex={String.raw`{\color{white}\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}1}}}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-              <div className="text-white">=</div>
-              <div className="justify-self-start">
-                <MathInline
-                  tex={String.raw`{\color{white}\frac{2}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right){\color{cyan}x}_{\color{white}i}}`}
-                  className="math-inline !text-white"
-                />
-              </div>
-            </div>
-          </EquationRow>
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Gradient with respect to <MathInline tex={String.raw`{\color{violet}\theta}_{\color{white}0}`} className="math-inline !text-white" />
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Apply chain rule to each squared error term:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}0}}
+&= {\color{white}\frac{1}{n}\sum_{i=1}^{n}\frac{\partial}{\partial {\color{violet}\theta}_{\color{white}0}}\left({\color{magenta}\hat{y}}_{\color{white}i}-{\color{orange}y}_{\color{white}i}\right)^2} \\
+&= {\color{white}\frac{1}{n}\sum_{i=1}^{n}2\left({\color{magenta}\hat{y}}_{\color{white}i}-{\color{orange}y}_{\color{white}i}\right)\frac{\partial}{\partial {\color{violet}\theta}_{\color{white}0}}\left({\color{magenta}\hat{y}}_{\color{white}i}-{\color{orange}y}_{\color{white}i}\right)}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Since <MathInline tex={String.raw`{\color{orange}y}_{\color{white}i}`} className="math-inline !text-white" /> is fixed data, its derivative is zero.
+            So we only differentiate the prediction:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{\partial {\color{magenta}\hat{y}}_{\color{white}i}}{\partial {\color{violet}\theta}_{\color{white}0}}
+&= \frac{\partial}{\partial {\color{violet}\theta}_{\color{white}0}}
+\left({\color{violet}\theta}_{\color{white}0}+{\color{violet}\theta}_{\color{white}1}{\color{cyan}x}_{\color{white}i}\right) \\
+&= {\color{white}1}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Plug that back in:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}0}} = \frac{2}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right)}`}
+            className="math-center math-lg text-white/90"
+          />
+
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Gradient with respect to <MathInline tex={String.raw`{\color{violet}\theta}_{\color{white}1}`} className="math-inline !text-white" />
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Same chain-rule structure, but now the inner derivative changes:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}1}}
+&= {\color{white}\frac{1}{n}\sum_{i=1}^{n}2\left({\color{magenta}\hat{y}}_{\color{white}i}-{\color{orange}y}_{\color{white}i}\right)\frac{\partial}{\partial {\color{violet}\theta}_{\color{white}1}}\left({\color{magenta}\hat{y}}_{\color{white}i}-{\color{orange}y}_{\color{white}i}\right)}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Differentiate the model prediction with respect to{" "}
+            <MathInline tex={String.raw`{\color{violet}\theta}_{\color{white}1}`} className="math-inline !text-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{\partial {\color{magenta}\hat{y}}_{\color{white}i}}{\partial {\color{violet}\theta}_{\color{white}1}}
+&= \frac{\partial}{\partial {\color{violet}\theta}_{\color{white}1}}
+\left({\color{violet}\theta}_{\color{white}0}+{\color{violet}\theta}_{\color{white}1}{\color{cyan}x}_{\color{white}i}\right) \\
+&= {\color{cyan}x}_{\color{white}i}
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So the final gradient is:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}\frac{\partial J}{\partial {\color{violet}\theta}_{\color{white}1}} = \frac{2}{n}\sum_{i=1}^{n}\left({\color{magenta}\hat{y}}_{\color{white}i} - {\color{orange}y}_{\color{white}i}\right){\color{cyan}x}_{\color{white}i}}`}
+            className="math-center math-lg text-white/90"
+          />
 
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Reading the signs matters:
@@ -588,7 +629,7 @@ export default function TrainingMathGradientDescentPage() {
               className="math-inline !text-white"
             />
             .{" "}
-            Using equations (4) and (5), the first gradients are:
+            Using the two gradient formulas above, the first gradients are:
           </p>
           <div className="ml-4 overflow-x-auto">
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">

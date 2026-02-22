@@ -1,8 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import TraversalExplorer from "@/components/ads/TraversalExplorer";
 import { treesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const inorderCode = `class Node:
@@ -21,18 +18,11 @@ def inorder(node, out):
 root = Node(2, Node(1), Node(3))
 values = []
 inorder(root, values)
-
 print(values)`;
 
 const inorderOutput = `[1, 2, 3]`;
 
-const preorderCode = `class Node:
-    def __init__(self, value, left=None, right=None):
-        self.value = value
-        self.left = left
-        self.right = right
-
-def preorder(node, out):
+const preorderCode = `def preorder(node, out):
     if not node:
         return
     out.append(node.value)
@@ -42,72 +32,129 @@ def preorder(node, out):
 root = Node(2, Node(1), Node(3))
 values = []
 preorder(root, values)
-
 print(values)`;
 
 const preorderOutput = `[2, 1, 3]`;
 
-export default function TraversalsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "inorder", label: "Inorder traversal" },
-    { id: "preorder", label: "Preorder traversal" },
-  ];
+const nodes = [
+  { id: "2", label: "2", x: 180, y: 30 },
+  { id: "1", label: "1", x: 100, y: 95 },
+  { id: "3", label: "3", x: 260, y: 95 },
+];
 
+const edges = [
+  { from: "2", to: "1" },
+  { from: "2", to: "3" },
+];
+
+export default function TraversalsPage() {
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Trees"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Trees"
       title="Traversals"
-      description="Traversal is just visiting every node in a consistent order." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Trees (Beginner)", links: treesBeginnerLessons },
+      description="Learn traversal orders (inorder, preorder) and how ordering changes output meaning."
+      intro={[
+        "Traversal means visiting every node exactly once using a consistent rule.",
+        "The chosen order matters because it changes output sequence and problem behavior.",
+      ]}
+      intuition={[
+        "Think of exploring a museum with a route policy: left wing first, center first, or right wing first.",
+        "Same rooms, different path rules, different visit logs.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Expression trees",
+          mapping:
+            "Different traversals can reconstruct infix/prefix representations.",
+        },
+        {
+          scenario: "Serialization",
+          mapping:
+            "Preorder is often used to capture tree structure for storage/transmission.",
+        },
+      ]}
+      keyIdeaTitle="Order definitions"
+      keyIdeaText={[
+        "Inorder: left -> node -> right.",
+        "Preorder: node -> left -> right.",
+        "Postorder (not fully covered here): left -> right -> node.",
+      ]}
+      interactiveDescription="Step through inorder traversal and inspect visited order growth."
+      interactive={
+        <TraversalExplorer
+          title="Inorder traversal stepper"
+          subtitle="Tree: root 2 with children 1 and 3."
+          nodes={nodes}
+          edges={edges}
+          steps={[
+            {
+              title: "Move left first",
+              explanation: "Inorder starts by descending left.",
+              current: "1",
+              visited: [],
+              frontier: ["2", "3"],
+            },
+            {
+              title: "Visit node 1",
+              explanation: "Left child has no further left branch, so record 1.",
+              current: "1",
+              visited: ["1"],
+              frontier: ["2", "3"],
+            },
+            {
+              title: "Visit root 2",
+              explanation: "Return upward and record root after left subtree.",
+              current: "2",
+              visited: ["1", "2"],
+              frontier: ["3"],
+            },
+            {
+              title: "Visit node 3",
+              explanation: "Finally traverse right subtree.",
+              current: "3",
+              visited: ["1", "2", "3"],
+              frontier: [],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/trees/beginner/traversals"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          Traversal means visiting every node. The order you choose
-          determines the result, which is why traversal order matters in
-          interviews.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          You are walking through a tree like a maze. The rule you follow
-          for left or right decides the path you take.
-        </p>
-      </InfoPanel>
-
-      <section id="inorder" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Inorder traversal
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Inorder visits left, then root, then right. On a binary search
-          tree, it produces sorted values.
-        </p>
-        <CodeBlock code={inorderCode} title="Python" />
-        <OutputBlock output={inorderOutput} />
-      </section>
-
-      <section id="preorder" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Preorder traversal
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Preorder visits root first, then left, then right. It is useful
-          when you want to record the tree structure.
-        </p>
-        <CodeBlock code={preorderCode} title="Python" />
-        <OutputBlock output={preorderOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-inorder",
+          title: "Example 1: Inorder traversal",
+          explanation:
+            "In a BST, inorder yields sorted values.",
+          code: inorderCode,
+          output: inorderOutput,
+        },
+        {
+          id: "ex-preorder",
+          title: "Example 2: Preorder traversal",
+          explanation:
+            "Preorder visits root first, useful when structure order matters.",
+          code: preorderCode,
+          output: preorderOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "Inorder traversal", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(h)` },
+        { operation: "Preorder traversal", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(h)` },
+      ]}
+      pitfalls={[
+        "Mixing traversal order mentally and expecting the wrong output.",
+        "Missing null/base checks, causing attribute errors.",
+        "Ignoring recursion depth concerns in highly skewed trees.",
+      ]}
+      summary={[
+        "Traversal order is a policy choice with meaningful consequences.",
+        "Inorder and preorder are core templates you should memorize.",
+        "Tree problems are often easier once traversal order is chosen first.",
+      ]}
+      nextStep="Next we focus on Binary Search Trees, where value ordering enables faster search and insertion."
+      railTitle="Within Trees (Beginner)"
+      railLinks={treesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/trees/beginner/traversals"
+    />
   );
 }
+

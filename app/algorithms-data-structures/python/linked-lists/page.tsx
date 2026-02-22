@@ -1,4 +1,4 @@
-import ArticleLayout from "@/components/ArticleLayout";
+﻿import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
@@ -137,7 +137,7 @@ export default function LinkedListsPage() {
       rightRail={
         <RightRail
           sections={[
-            { title: "Within Algorithms (Python)", links: adsPythonTopics },
+            { title: "Within CS (Python)", links: adsPythonTopics },
           ]}
           activeHref="/algorithms-data-structures/python/linked-lists"
         />
@@ -418,3 +418,4 @@ export default function LinkedListsPage() {
     </ArticleLayout>
   );
 }
+

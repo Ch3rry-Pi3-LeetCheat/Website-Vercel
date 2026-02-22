@@ -1,95 +1,139 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import LinearStateStepper from "@/components/ads/LinearStateStepper";
 import { stacksQueuesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const queueCode = `from collections import deque
 
-queue = deque()
-queue.append("A")
-queue.append("B")
-queue.append("C")
+q = deque()
+q.append("A")
+q.append("B")
+q.append("C")
 
-print(queue.popleft())
-print(queue.popleft())`;
+print(q.popleft())
+print(q.popleft())`;
 
 const queueOutput = `A
 B`;
 
-const taskCode = `from collections import deque
+const sizeCode = `from collections import deque
 
-tasks = deque(["email", "build", "deploy"])
-done = []
+q = deque([10, 20, 30])
+print(q[0])      # front
+print(len(q))`;
 
-while tasks:
-    done.append(tasks.popleft())
-
-print(done)`;
-
-const taskOutput = `['email', 'build', 'deploy']`;
+const sizeOutput = `10
+3`;
 
 export default function QueueBasicsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "enqueue-dequeue", label: "Enqueue and dequeue" },
-    { id: "task-order", label: "Task order" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Stacks and Queues"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Stacks and Queues"
       title="Queue Basics"
-      description="Queues are FIFO: first in, first out. Use deque for fast operations." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Stacks and Queues (Beginner)", links: stacksQueuesBeginnerLessons },
+      description="Build queue intuition: FIFO ordering, enqueue/dequeue, and why deque is preferred in Python."
+      intro={[
+        "A queue is First-In, First-Out (FIFO): the oldest item leaves first.",
+        "In Python, collections.deque is the right default queue because left pops are efficient.",
+      ]}
+      intuition={[
+        "Think of people lining up at a ticket desk. New arrivals join the back, and service always takes from the front.",
+        "That fairness pattern appears in task schedulers, network buffers, and BFS traversal.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Customer support tickets",
+          mapping:
+            "Oldest unresolved ticket is usually processed first.",
+        },
+        {
+          scenario: "Print jobs",
+          mapping:
+            "Jobs arrive over time and are processed in arrival order.",
+        },
+      ]}
+      keyIdeaTitle="Front/back operations"
+      keyIdeaText={[
+        "enqueue means add at back.",
+        "dequeue means remove from front.",
+        "Use deque.append and deque.popleft for efficient O(1) ends.",
+      ]}
+      interactiveDescription="Step through enqueue/dequeue with explicit front/back pointers."
+      interactive={
+        <LinearStateStepper
+          title="FIFO walkthrough"
+          subtitle="Front is left, back is right."
+          steps={[
+            {
+              title: "Start empty",
+              explanation: "Queue has no items.",
+              values: [".", ".", ".", "."],
+            },
+            {
+              title: "Enqueue A, B, C",
+              explanation: "A is oldest at front, C newest at back.",
+              values: ["A", "B", "C", "."],
+              pointers: [
+                { index: 0, label: "front" },
+                { index: 2, label: "back" },
+              ],
+            },
+            {
+              title: "Dequeue once",
+              explanation: "A leaves first.",
+              values: ["B", "C", ".", "."],
+              pointers: [
+                { index: 0, label: "front" },
+                { index: 1, label: "back" },
+              ],
+              highlightIndices: [0],
+            },
+            {
+              title: "Dequeue again",
+              explanation: "B leaves next.",
+              values: ["C", ".", ".", "."],
+              pointers: [
+                { index: 0, label: "front/back" },
+              ],
+              highlightIndices: [0],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/stacks-queues/beginner/queue-basics"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          A queue removes the oldest item first. This matches how real
-          lines work and is perfect for scheduling and breadth-first
-          traversal.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          Think of a line at a coffee shop. The first person in line is
-          served first. New people join at the back.
-        </p>
-      </InfoPanel>
-
-      <section id="enqueue-dequeue" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Enqueue and dequeue
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Use <span className="font-mono inline-code">deque</span> to keep
-          operations fast on both ends.
-        </p>
-        <CodeBlock code={queueCode} title="Python" />
-        <OutputBlock output={queueOutput} />
-      </section>
-
-      <section id="task-order" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Task order
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A queue naturally preserves the order that tasks were added.
-        </p>
-        <CodeBlock code={taskCode} title="Python" />
-        <OutputBlock output={taskOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-queue",
+          title: "Example 1: Enqueue and dequeue",
+          explanation:
+            "deque preserves FIFO order with append + popleft.",
+          code: queueCode,
+          output: queueOutput,
+        },
+        {
+          id: "ex-front-size",
+          title: "Example 2: Front and size",
+          explanation: "q[0] inspects front, len(q) gives current queue size.",
+          code: sizeCode,
+          output: sizeOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "enqueue (deque.append)", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "dequeue (deque.popleft)", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "peek front", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+      ]}
+      pitfalls={[
+        "Using list.pop(0) for queues, which is O(n) due to shifting.",
+        "Mixing stack and queue semantics in one implementation.",
+        "Forgetting empty checks before dequeue.",
+      ]}
+      summary={[
+        "Queues enforce FIFO ordering and are ideal for arrival-order processing.",
+        "deque gives efficient queue operations in Python.",
+        "Queue thinking is foundational for BFS and scheduling-style problems.",
+      ]}
+      nextStep="Next we combine stacks and queues in practical patterns like parenthesis validation and BFS-style task processing."
+      railTitle="Within Stacks and Queues (Beginner)"
+      railLinks={stacksQueuesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/stacks-queues/beginner/queue-basics"
+    />
   );
 }

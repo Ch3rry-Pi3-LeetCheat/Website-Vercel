@@ -1,40 +1,27 @@
-import Link from "next/link";
+﻿import BeginnerTrackPage from "@/components/ads/BeginnerTrackPage";
 import { treesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 export default function TreesBeginnerPage() {
   return (
-    <div className="px-6 pb-20 pt-12">
-      <div className="mx-auto w-full max-w-5xl">
-        <header className="grid gap-4">
-          <p className="text-xs uppercase tracking-[0.4em] text-[color:var(--color-accent-2)]">
-            Algorithms - Python - Trees
-          </p>
-          <h1 className="text-4xl font-semibold text-white font-[var(--font-display)]">
-            Trees beginner ladder
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-[color:var(--color-muted)]">
-            Learn how to build a tree, traverse it, and understand the
-            binary search tree property.
-          </p>
-        </header>
-
-        <div className="mt-10 grid gap-4">
-          {treesBeginnerLessons.map((lesson) => (
-            <Link
-              key={lesson.href}
-              href={lesson.href}
-              className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
-            >
-              <h2 className="text-xl font-semibold text-white">
-                {lesson.label}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
-                {lesson.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
+    <BeginnerTrackPage
+      eyebrow="CS - Python - Trees"
+      title="Trees beginner ladder"
+      description="Learn how to build a tree, traverse it, and understand the binary search tree property."
+      intuition="Trees model hierarchical structure. Recursion feels natural because every subtree is a smaller version of the full problem."
+      realWorldExamples={[
+        {
+          scenario: "Company org chart",
+          mapping: "Manager to team relationships are naturally tree shaped.",
+        },
+        {
+          scenario: "Folder hierarchy",
+          mapping: "Directories contain child directories/files recursively.",
+        },
+      ]}
+      lessons={treesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/trees/beginner"
+      structureLabel="Trees"
+    />
   );
 }
+

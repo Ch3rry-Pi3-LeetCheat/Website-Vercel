@@ -1,5 +1,9 @@
 export const adsPythonTopics = [
   {
+    label: "Big-O Foundations",
+    href: "/algorithms-data-structures/python/foundations/big-o",
+  },
+  {
     label: "Arrays & Lists",
     href: "/algorithms-data-structures/python/arrays/beginner",
   },

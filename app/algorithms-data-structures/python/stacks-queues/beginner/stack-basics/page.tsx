@@ -1,8 +1,5 @@
-import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import RightRail from "@/components/RightRail";
+import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import LinearStateStepper from "@/components/ads/LinearStateStepper";
 import { stacksQueuesBeginnerLessons } from "@/lib/adsBeginnerTopics";
 
 const pushPopCode = `stack = []
@@ -26,67 +23,108 @@ const peekOutput = `30
 3`;
 
 export default function StackBasicsPage() {
-  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "push-pop", label: "Push and pop" },
-    { id: "peek", label: "Peek and size" },
-  ];
-
   return (
-    <ArticleLayout
-      eyebrow="Algorithms - Python - Stacks and Queues"
+    <BeginnerLessonTemplate
+      eyebrow="CS - Python - Stacks and Queues"
       title="Stack Basics"
-      description="Stacks are LIFO: last in, first out. Python lists make them easy." 
-      tocItems={tocItems}
-      rightRail={
-        <RightRail
-          sections={[
-            { title: "Within Stacks and Queues (Beginner)", links: stacksQueuesBeginnerLessons },
+      description="Learn LIFO behavior with push, pop, and peek, and why stacks power undo/backtracking flows."
+      intro={[
+        "A stack is Last-In, First-Out (LIFO): the most recent item is removed first.",
+        "In Python, list append/pop at the end gives a clean stack implementation.",
+      ]}
+      intuition={[
+        "Think of stacking trays: you only add/remove from the top.",
+        "That top-only rule is exactly why stacks are natural for undo history and recursive backtracking.",
+      ]}
+      realWorld={[
+        {
+          scenario: "Undo feature",
+          mapping:
+            "Newest edit gets undone first, so edits naturally sit in a stack.",
+        },
+        {
+          scenario: "Browser back stack",
+          mapping:
+            "Recent pages are popped first when users go back.",
+        },
+      ]}
+      keyIdeaTitle="Top-of-stack discipline"
+      keyIdeaText={[
+        "push adds one item to top (append).",
+        "pop removes and returns top.",
+        "peek reads top without removing (stack[-1]).",
+      ]}
+      interactiveDescription="Watch LIFO order emerge from a push/pop sequence."
+      interactive={
+        <LinearStateStepper
+          title="LIFO walkthrough"
+          subtitle="Top is always on the right."
+          steps={[
+            {
+              title: "Empty stack",
+              explanation: "No items yet.",
+              values: [".", ".", ".", "."],
+            },
+            {
+              title: "Push A, B, C",
+              explanation: "C becomes top because it was pushed last.",
+              values: ["A", "B", "C", "top"],
+              highlightIndices: [2],
+              pointers: [{ index: 2, label: "top" }],
+            },
+            {
+              title: "Pop once",
+              explanation: "C leaves first.",
+              values: ["A", "B", ".", "top"],
+              highlightIndices: [1],
+              pointers: [{ index: 1, label: "top" }],
+            },
+            {
+              title: "Pop again",
+              explanation: "Then B leaves next.",
+              values: ["A", ".", ".", "top"],
+              highlightIndices: [0],
+              pointers: [{ index: 0, label: "top" }],
+            },
           ]}
-          activeHref="/algorithms-data-structures/python/stacks-queues/beginner/stack-basics"
         />
       }
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          A stack always removes the most recent item first. This simple
-          rule makes stacks ideal for undo, backtracking, and expression
-          parsing.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          Imagine a stack of plates. You only add or remove from the top.
-          The last plate placed is the first one you take.
-        </p>
-      </InfoPanel>
-
-      <section id="push-pop" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Push and pop
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In Python, you push with{" "}
-          <span className="font-mono inline-code">append</span> and pop
-          with <span className="font-mono inline-code">pop</span>.
-        </p>
-        <CodeBlock code={pushPopCode} title="Python" />
-        <OutputBlock output={pushPopOutput} />
-      </section>
-
-      <section id="peek" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Peek and size
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Peek is just reading the last element without removing it. The
-          size is the list length.
-        </p>
-        <CodeBlock code={peekCode} title="Python" />
-        <OutputBlock output={peekOutput} />
-      </section>
-    </ArticleLayout>
+      examples={[
+        {
+          id: "ex-push-pop",
+          title: "Example 1: Push and pop",
+          explanation: "The popped order reveals LIFO behavior directly.",
+          code: pushPopCode,
+          output: pushPopOutput,
+        },
+        {
+          id: "ex-peek",
+          title: "Example 2: Peek and size",
+          explanation:
+            "Peek lets you inspect the next pop target without mutation.",
+          code: peekCode,
+          output: peekOutput,
+        },
+      ]}
+      complexityRows={[
+        { operation: "push (append)", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "pop", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+        { operation: "peek top", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+      ]}
+      pitfalls={[
+        "Using pop(0) for stacks, which is not top-based and is O(n).",
+        "Popping from an empty stack without checks.",
+        "Confusing stack order (LIFO) with queue order (FIFO).",
+      ]}
+      summary={[
+        "Stacks are top-only structures with LIFO removal.",
+        "append/pop on Python lists gives a clean stack implementation.",
+        "Many interview patterns boil down to managing stack state correctly.",
+      ]}
+      nextStep="Next we contrast this with queues, where the oldest item is removed first."
+      railTitle="Within Stacks and Queues (Beginner)"
+      railLinks={stacksQueuesBeginnerLessons}
+      activeHref="/algorithms-data-structures/python/stacks-queues/beginner/stack-basics"
+    />
   );
 }
