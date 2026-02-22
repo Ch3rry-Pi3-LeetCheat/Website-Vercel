@@ -1,11 +1,12 @@
 import ArticleLayout from "@/components/ArticleLayout";
+import BigONotation from "@/components/ads/BigONotation";
+import ComplexityWalkthroughPlot from "@/components/ads/ComplexityWalkthroughPlot";
 import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
 import { adsPythonTopics } from "@/lib/adsTopics";
-import type { ReactNode } from "react";
 
 const linearSearchCode = `nums = [52, 68, 75, 90, 110, 130, 145, 160]
 target = 145
@@ -35,150 +36,12 @@ print(idx)`;
 
 const hashLookupOutput = `6`;
 
-function BigONotation({ children }: { children: ReactNode }) {
-  return (
-    <span className="font-mono whitespace-nowrap">
-      <span className="text-pink-300">O</span>
-      <span className="text-white">(</span>
-      {children}
-      <span className="text-white">)</span>
-    </span>
-  );
-}
-
-function NVar() {
-  return <span className="text-cyan-300">n</span>;
-}
-
-function BigOGrowthChart() {
-  const width = 640;
-  const height = 260;
-  const padLeft = 46;
-  const padRight = 20;
-  const padTop = 18;
-  const padBottom = 36;
-  const plotW = width - padLeft - padRight;
-  const plotH = height - padTop - padBottom;
-  const nValues = Array.from({ length: 11 }, (_, i) => i);
-  const maxY = 100;
-
-  const x = (n: number) => padLeft + (n / 10) * plotW;
-  const y = (v: number) => padTop + plotH - (v / maxY) * plotH;
-
-  const points = (fn: (n: number) => number) =>
-    nValues.map((n) => `${x(n)},${y(fn(n))}`).join(" ");
-
-  const lineConstant = points(() => 8);
-  const lineLogN = points((n) => (n === 0 ? 0 : 14 * Math.log2(n + 1)));
-  const lineN = points((n) => 8 * n);
-  const lineNLogN = points((n) => (n === 0 ? 0 : 3.3 * n * Math.log2(n + 1)));
-  const lineN2 = points((n) => n * n);
-
-  return (
-    <div className="glass-panel rounded-2xl p-4">
-      <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
-        Visual growth
-      </p>
-      <p className="mt-2 text-sm text-[color:var(--color-muted)]">
-        x-axis is input size <NVar />. y-axis is relative operation count.
-      </p>
-      <div className="mt-3 overflow-x-auto">
-        <svg viewBox={`0 0 ${width} ${height}`} className="h-[280px] min-w-[640px] w-full">
-          {[0, 20, 40, 60, 80, 100].map((v) => (
-            <line
-              key={`gy-${v}`}
-              x1={padLeft}
-              y1={y(v)}
-              x2={width - padRight}
-              y2={y(v)}
-              stroke="rgba(148,163,184,0.16)"
-              strokeWidth="1"
-            />
-          ))}
-          {[0, 2, 4, 6, 8, 10].map((n) => (
-            <line
-              key={`gx-${n}`}
-              x1={x(n)}
-              y1={padTop}
-              x2={x(n)}
-              y2={height - padBottom}
-              stroke="rgba(148,163,184,0.16)"
-              strokeWidth="1"
-            />
-          ))}
-
-          <line
-            x1={padLeft}
-            y1={height - padBottom}
-            x2={width - padRight}
-            y2={height - padBottom}
-            stroke="rgba(231,238,248,0.75)"
-            strokeWidth="1.5"
-          />
-          <line
-            x1={padLeft}
-            y1={padTop}
-            x2={padLeft}
-            y2={height - padBottom}
-            stroke="rgba(231,238,248,0.75)"
-            strokeWidth="1.5"
-          />
-
-          <polyline points={lineConstant} fill="none" stroke="#67e8f9" strokeWidth="2.5" />
-          <polyline points={lineLogN} fill="none" stroke="#22c55e" strokeWidth="2.5" />
-          <polyline points={lineN} fill="none" stroke="#f59e0b" strokeWidth="2.5" />
-          <polyline points={lineNLogN} fill="none" stroke="#a78bfa" strokeWidth="2.5" />
-          <polyline points={lineN2} fill="none" stroke="#fb7185" strokeWidth="2.5" />
-
-          {[0, 2, 4, 6, 8, 10].map((n) => (
-            <text
-              key={`label-n-${n}`}
-              x={x(n)}
-              y={height - padBottom + 18}
-              textAnchor="middle"
-              className="fill-white/70 text-[11px]"
-            >
-              {n}
-            </text>
-          ))}
-
-          {[0, 20, 40, 60, 80, 100].map((v) => (
-            <text
-              key={`label-v-${v}`}
-              x={padLeft - 8}
-              y={y(v) + 4}
-              textAnchor="end"
-              className="fill-white/65 text-[11px]"
-            >
-              {v}
-            </text>
-          ))}
-
-          <text x={width - 8} y={height - 8} textAnchor="end" className="fill-cyan-300 text-[12px]">
-            n
-          </text>
-          <text x={14} y={padTop + 2} className="fill-white/80 text-[12px]">
-            operations
-          </text>
-        </svg>
-      </div>
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[color:var(--color-muted)]">
-        <span className="text-cyan-300">O(1)</span>
-        <span className="text-green-400">O(log n)</span>
-        <span className="text-amber-400">O(n)</span>
-        <span className="text-violet-300">O(n log n)</span>
-        <span className="text-rose-400">O(n^2)</span>
-      </div>
-    </div>
-  );
-}
-
 export default function BigOFoundationsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
     { id: "notation", label: "What O(...) means" },
-    { id: "growth-plot", label: "Growth visual" },
+    { id: "math-primer", label: "Mini math primer" },
     { id: "growth-table", label: "Complexity reference table" },
     { id: "o1", label: "O(1) constant" },
     { id: "ologn", label: "O(log n) logarithmic" },
@@ -186,7 +49,7 @@ export default function BigOFoundationsPage() {
     { id: "onlogn", label: "O(n log n) linearithmic" },
     { id: "on2", label: "O(n^2) quadratic" },
     { id: "space", label: "Space complexity" },
-    { id: "worked", label: "Worked examples" },
+    { id: "worked", label: "Worked code examples" },
     { id: "summary", label: "Summary" },
     { id: "next", label: "What's next", level: 2 },
   ];
@@ -195,7 +58,7 @@ export default function BigOFoundationsPage() {
     <ArticleLayout
       eyebrow="CS - Python - Foundations"
       title="Big-O time and space (beginner foundation)"
-      description="How to reason about algorithm cost as input size grows, so your structure and pattern choices are deliberate."
+      description="A thorough beginner guide to growth rates, mathematical intuition, and practical algorithm trade-offs."
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -206,23 +69,24 @@ export default function BigOFoundationsPage() {
     >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
-          Big-O is the language for describing how an algorithm scales as input
-          size grows. We are measuring growth shape, not exact runtime on one
-          computer.
+          Big-O is the notation we use to describe how runtime or memory grows
+          as input size grows. It is about scaling behavior, not stopwatch time
+          on one machine.
         </p>
         <p>
-          In interviews, this helps you justify trade-offs clearly: faster time
-          for more memory, or lower memory with slower scans.
+          In interviews, this helps you compare candidate approaches quickly and
+          justify why one structure or algorithm is more robust at larger input sizes.
         </p>
       </InfoPanel>
 
       <InfoPanel id="intuition" title="Intuition" variant="intuition">
         <p>
-          Imagine checking books on a shelf. If doubling shelf size roughly doubles
-          your checks, that is linear growth. If checks barely increase, growth is slower.
+          Think in terms of operation count. If input size doubles, how does
+          work change? Does it stay similar, double, or explode much faster?
         </p>
         <p>
-          Big-O answers: what happens to work when <NVar /> becomes much larger?
+          That &quot;doubling test&quot; gives strong intuition before you touch formal
+          notation.
         </p>
       </InfoPanel>
 
@@ -231,29 +95,44 @@ export default function BigOFoundationsPage() {
           What O(...) means
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          If runtime grows no faster than a constant multiple of{" "}
+          If an algorithm runtime{" "}
+          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />{" "}
+          grows no faster than a constant multiple of{" "}
           <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />,
           we write:
         </p>
         <MathBlock
-          tex={String.raw`T(n) = O(f(n))`}
+          tex={String.raw`T(n)=O(f(n))`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We drop constants and lower-order terms for large <NVar /> because the
-          highest-growth term dominates:
+          We ignore constant factors and lower-order terms at large{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />:
         </p>
         <MathBlock
-          tex={String.raw`3n + 12 = O(n), \quad 5n^2 + n = O(n^2)`}
+          tex={String.raw`3n+12=O(n), \qquad 5n^2+n=O(n^2)`}
           className="math-center math-lg text-white/90"
         />
       </section>
 
-      <section id="growth-plot" className="scroll-mt-28 grid gap-4">
+      <section id="math-primer" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Growth visual
+          Mini math primer
         </h2>
-        <BigOGrowthChart />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          A helpful method is evaluating a growth function at two sizes, then
+          comparing ratios. For example, if we double input from{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />{" "}
+          to <MathInline tex={String.raw`2n`} className="math-inline !text-white" />:
+        </p>
+        <MathBlock
+          tex={String.raw`\text{Linear: } \frac{T(2n)}{T(n)}=\frac{2n}{n}=2 \qquad \text{Quadratic: } \frac{(2n)^2}{n^2}=4`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So linear doubles, while quadratic quadruples for the same doubling
+          in input size.
+        </p>
       </section>
 
       <section id="growth-table" className="scroll-mt-28 grid gap-4">
@@ -265,112 +144,135 @@ export default function BigOFoundationsPage() {
             <thead>
               <tr className="text-white">
                 <th className="py-2 pr-6 text-base font-semibold">Time complexity</th>
-                <th className="py-2 pr-6 text-base font-semibold">What it means in practice</th>
-                <th className="py-2 text-base font-semibold">Typical example algorithm</th>
+                <th className="py-2 pr-6 text-base font-semibold">Meaning as input grows</th>
+                <th className="py-2 text-base font-semibold">Typical algorithm example</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="py-2 pr-6"><BigONotation>1</BigONotation></td>
-                <td className="py-2 pr-6">Work stays roughly constant regardless of input size.</td>
-                <td className="py-2">Array index access, hash-map lookup (average).</td>
+                <td className="py-2 pr-6"><BigONotation kind="o1" /></td>
+                <td className="py-2 pr-6">Roughly constant operations regardless of input size.</td>
+                <td className="py-2">Array indexing, hash-map lookup (average).</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6">
-                  <BigONotation>
-                    <span className="text-white">log </span><NVar />
-                  </BigONotation>
-                </td>
-                <td className="py-2 pr-6">Search space shrinks each step by a constant factor.</td>
-                <td className="py-2">Binary search on sorted data.</td>
+                <td className="py-2 pr-6"><BigONotation kind="ologn" /></td>
+                <td className="py-2 pr-6">Problem shrinks by a fixed factor each step.</td>
+                <td className="py-2">Binary search.</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6"><BigONotation><NVar /></BigONotation></td>
-                <td className="py-2 pr-6">One full pass over all elements.</td>
-                <td className="py-2">Linear scan for a target value.</td>
+                <td className="py-2 pr-6"><BigONotation kind="on" /></td>
+                <td className="py-2 pr-6">One pass through all items.</td>
+                <td className="py-2">Linear scan, frequency count.</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6">
-                  <BigONotation>
-                    <NVar /> <span className="text-white">log </span><NVar />
-                  </BigONotation>
-                </td>
-                <td className="py-2 pr-6">Repeated divide-and-combine plus linear work per level.</td>
-                <td className="py-2">Merge sort / heap sort.</td>
+                <td className="py-2 pr-6"><BigONotation kind="onlogn" /></td>
+                <td className="py-2 pr-6">Near-linear with logarithmic overhead.</td>
+                <td className="py-2">Merge sort, heap sort.</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6">
-                  <BigONotation>
-                    <NVar />
-                    <sup className="text-cyan-300">2</sup>
-                  </BigONotation>
-                </td>
-                <td className="py-2 pr-6">Pairwise or nested loop comparisons over same data.</td>
-                <td className="py-2">Naive all-pairs duplicate check.</td>
+                <td className="py-2 pr-6"><BigONotation kind="on2" /></td>
+                <td className="py-2 pr-6">Nested comparisons can grow quickly.</td>
+                <td className="py-2">Double loop pair checks.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <section id="o1" className="scroll-mt-28 grid gap-3">
+      <section id="o1" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation>1</BigONotation> constant
+          <BigONotation kind="o1" /> constant
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Constant time means operation count does not depend on <NVar />.
-          Even if the array grows, reading <span className="font-mono inline-code">nums[3]</span> is still one direct access.
+          Constant time means operation count does not grow with{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
+          Reading <span className="font-mono inline-code">nums[3]</span> is one direct address lookup.
         </p>
+        <MathBlock
+          tex={String.raw`T(n)=1,\quad T(10)=1,\quad T(1000)=1`}
+          className="math-center math-lg text-white/90"
+        />
+        <ComplexityWalkthroughPlot
+          kind="o1"
+          notation={<BigONotation kind="o1" />}
+          tTex={String.raw`T(n)=1`}
+        />
       </section>
 
-      <section id="ologn" className="scroll-mt-28 grid gap-3">
+      <section id="ologn" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation>
-            <span className="text-white">log </span><NVar />
-          </BigONotation>{" "}
-          logarithmic
+          <BigONotation kind="ologn" /> logarithmic
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Logarithmic time appears when each step discards a fraction of the remaining problem.
-          Binary search is the classic example: after each comparison, you keep only half.
+          Logarithmic growth appears when each step keeps only a fraction of the
+          problem, like halving a search interval.
         </p>
+        <MathBlock
+          tex={String.raw`T(n)=\log_2 n,\quad T(8)=3,\quad T(1024)=10`}
+          className="math-center math-lg text-white/90"
+        />
+        <ComplexityWalkthroughPlot
+          kind="ologn"
+          notation={<BigONotation kind="ologn" />}
+          tTex={String.raw`T(n)=\log_2 n`}
+        />
       </section>
 
-      <section id="on" className="scroll-mt-28 grid gap-3">
+      <section id="on" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation><NVar /></BigONotation> linear
+          <BigONotation kind="on" /> linear
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Linear time means one pass through data. If <NVar /> doubles, work roughly doubles.
-          This is typical for counting, filtering, and scanning.
+          Linear growth means each extra element adds roughly one extra operation.
+          This is common in scans, filters, and simple counting loops.
         </p>
+        <MathBlock
+          tex={String.raw`T(n)=n,\quad T(100)=100,\quad T(200)=200`}
+          className="math-center math-lg text-white/90"
+        />
+        <ComplexityWalkthroughPlot
+          kind="on"
+          notation={<BigONotation kind="on" />}
+          tTex={String.raw`T(n)=n`}
+        />
       </section>
 
-      <section id="onlogn" className="scroll-mt-28 grid gap-3">
+      <section id="onlogn" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation>
-            <NVar /> <span className="text-white">log </span><NVar />
-          </BigONotation>{" "}
-          linearithmic
+          <BigONotation kind="onlogn" /> linearithmic
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This often appears in efficient comparison-based sorting. You process all elements
-          while also paying logarithmic levels of splitting/merging.
+          Linearithmic growth is common in efficient sorting: you process all items
+          across multiple logarithmic levels.
         </p>
+        <MathBlock
+          tex={String.raw`T(n)=n\log_2 n,\quad T(16)=64,\quad T(32)=160`}
+          className="math-center math-lg text-white/90"
+        />
+        <ComplexityWalkthroughPlot
+          kind="onlogn"
+          notation={<BigONotation kind="onlogn" />}
+          tTex={String.raw`T(n)=n\log_2 n`}
+        />
       </section>
 
-      <section id="on2" className="scroll-mt-28 grid gap-3">
+      <section id="on2" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation>
-            <NVar />
-            <sup className="text-cyan-300">2</sup>
-          </BigONotation>{" "}
-          quadratic
+          <BigONotation kind="on2" /> quadratic
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Quadratic time usually means nested loops over the same dataset.
-          These solutions can become expensive quickly as input grows.
+          Quadratic growth often appears with nested loops over the same dataset.
+          This can become costly quickly as data size grows.
         </p>
+        <MathBlock
+          tex={String.raw`T(n)=n^2,\quad T(50)=2500,\quad T(100)=10000`}
+          className="math-center math-lg text-white/90"
+        />
+        <ComplexityWalkthroughPlot
+          kind="on2"
+          notation={<BigONotation kind="on2" />}
+          tTex={String.raw`T(n)=n^2`}
+        />
       </section>
 
       <section id="space" className="scroll-mt-28 grid gap-4">
@@ -378,18 +280,24 @@ export default function BigOFoundationsPage() {
           Space complexity
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Space complexity measures extra memory beyond input storage. A copied array
-          of size <NVar /> costs <BigONotation><NVar /></BigONotation> extra space,
-          while in-place swaps are often <BigONotation>1</BigONotation>.
+          Space complexity measures additional memory beyond the input.
+          A copied array of size{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />{" "}
+          is usually <BigONotation kind="on" /> space, while in-place swaps are
+          often <BigONotation kind="o1" /> space.
         </p>
+        <MathBlock
+          tex={String.raw`\text{new array of size }n \Rightarrow S(n)=n \Rightarrow O(n)`}
+          className="math-center math-lg text-white/90"
+        />
       </section>
 
       <section id="worked" className="scroll-mt-28 grid gap-6">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Worked examples
+          Worked code examples
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Same task, different structure choice: find one value in house floor-area data.
+          Same task, different structure choice: finding one value in housing data.
         </p>
 
         <section className="grid gap-3">
@@ -397,8 +305,8 @@ export default function BigOFoundationsPage() {
             Example A: linear scan over a list
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We check values one by one until we find the target. Worst case is{" "}
-            <BigONotation><NVar /></BigONotation> time.
+            Worst-case runtime is <BigONotation kind="on" /> because the scan may inspect each
+            element once.
           </p>
           <CodeBlock code={linearSearchCode} title="Python" />
           <div className="mt-2">
@@ -411,9 +319,8 @@ export default function BigOFoundationsPage() {
             Example B: dictionary lookup
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We pre-build a value-to-index map. Lookup is usually{" "}
-            <BigONotation>1</BigONotation>, but map creation is{" "}
-            <BigONotation><NVar /></BigONotation>.
+            Lookup is usually <BigONotation kind="o1" />, while pre-building
+            the map is <BigONotation kind="on" />.
           </p>
           <CodeBlock code={hashLookupCode} title="Python" />
           <div className="mt-2">
@@ -427,20 +334,21 @@ export default function BigOFoundationsPage() {
           Summary
         </h2>
         <ul className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>Big-O is about growth shape, not exact stopwatch time.</li>
-          <li>Time and space should be justified together, not separately.</li>
-          <li>Complexity language helps you compare candidate solutions quickly.</li>
+          <li>Big-O is a scaling language, not just a notation exercise.</li>
+          <li>Always connect notation to concrete growth behavior as n increases.</li>
+          <li>Use time and space together when defending trade-offs.</li>
         </ul>
         <section id="next" className="grid gap-2">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             What&apos;s next
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Next move into arrays, then linked lists, stacks/queues, hash tables,
-            trees, heaps, and graphs.
+            Next move into arrays and start applying this complexity language to
+            concrete operations and patterns.
           </p>
         </section>
       </section>
     </ArticleLayout>
   );
 }
+

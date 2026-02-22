@@ -294,6 +294,14 @@ details.flashcard[open] .flashcard-inner {
   color: #ffffff;
 }
 
+.math-o {
+  color: #f472b6;
+}
+
+.math-nvar {
+  color: #22d3ee;
+}
+
 .math-neutral {
   color: var(--color-text);
 }
