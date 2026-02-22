@@ -1,12 +1,13 @@
 import ArticleLayout from "@/components/ArticleLayout";
 import CodeBlock from "@/components/CodeBlock";
 import GradientCrossSection from "@/components/ml/GradientCrossSection";
+import DerivativeTangentPlot from "@/components/ml/DerivativeTangentPlot";
 import GradientDescentContour from "@/components/ml/GradientDescentContour";
 import InfoPanel from "@/components/InfoPanel";
 import Link from "next/link";
 import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
-import { MathInline } from "@/components/Math";
+import { MathBlock, MathInline } from "@/components/Math";
 import { mlFoundationsLessons } from "@/lib/mlTopics";
 import type { ReactNode } from "react";
 
@@ -99,6 +100,9 @@ export default function TrainingMathGradientDescentPage() {
     { id: "intuition", label: "Gradient descent intuition" },
     { id: "gradient-primer", label: "Gradients: what they tell us" },
     { id: "derivative-primer", label: "Mini derivative primer", level: 2 },
+    { id: "power-rule", label: "Power rule", level: 2 },
+    { id: "example-square", label: "Example: y = x^2", level: 2 },
+    { id: "chain-rule", label: "Chain rule", level: 2 },
     { id: "cross-section", label: "Cost cross-section visual", level: 2 },
     { id: "setup", label: "Set up the math" },
     { id: "gradients", label: "Compute gradients" },
@@ -238,14 +242,79 @@ export default function TrainingMathGradientDescentPage() {
               You can read it like a road gradient sign:
               positive means uphill to the right, negative means downhill to the right.
             </p>
+
+            <h4
+              id="power-rule"
+              className="scroll-mt-28 pt-1 text-lg font-semibold text-white font-[var(--font-display)]"
+            >
+              Power rule
+            </h4>
             <p>
-              Tiny examples:
-              <MathInline tex={String.raw`{\color{white}\frac{d}{d\theta}\left(\theta^{2}\right)=2\theta}` } className="math-inline !text-white" />,
-              and
-              <MathInline tex={String.raw`{\color{white}\frac{d}{d\theta}\left((\theta-4)^{2}\right)=2(\theta-4)}` } className="math-inline !text-white" />.
-              At <MathInline tex={String.raw`{\color{white}\theta=4}`} className="math-inline !text-white" />, slope is zero,
-              which is why that point is the bottom of the bowl.
+              A common pattern is a power function.
+              This is the generic rule we will reuse repeatedly:
             </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+{\color{white}y} &= {\color{cyan}x}^{\color{white}n} \\
+\frac{d{\color{white}y}}{d{\color{cyan}x}} &= {\color{white}n}{\color{cyan}x}^{\color{white}n-1}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+
+            <h4
+              id="example-square"
+              className="scroll-mt-28 pt-1 text-lg font-semibold text-white font-[var(--font-display)]"
+            >
+              Worked example 1: <span className="font-mono">y = x^2</span>
+            </h4>
+            <p>
+              Step by step:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+{\color{white}y} &= {\color{cyan}x}^{\color{white}2} \\
+\frac{d{\color{white}y}}{d{\color{cyan}x}} &= {\color{white}2}{\color{cyan}x}^{\color{white}2-1} \\
+&= {\color{white}2}{\color{cyan}x}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p>
+              This means slope changes by location: at{" "}
+              <MathInline tex={String.raw`{\color{cyan}x=-2}`} className="math-inline !text-white" /> slope is{" "}
+              <MathInline tex={String.raw`{\color{white}-4}`} className="math-inline !text-white" />, at{" "}
+              <MathInline tex={String.raw`{\color{cyan}x=0}`} className="math-inline !text-white" /> slope is{" "}
+              <MathInline tex={String.raw`{\color{white}0}`} className="math-inline !text-white" />, and at{" "}
+              <MathInline tex={String.raw`{\color{cyan}x=2}`} className="math-inline !text-white" /> slope is{" "}
+              <MathInline tex={String.raw`{\color{white}4}`} className="math-inline !text-white" />.
+            </p>
+            <DerivativeTangentPlot mode="square" />
+
+            <h4
+              id="chain-rule"
+              className="scroll-mt-28 pt-1 text-lg font-semibold text-white font-[var(--font-display)]"
+            >
+              Worked example 2: chain rule (composed functions)
+            </h4>
+            <p>
+              The chain rule is used when one function sits inside another.
+              In model training, this is exactly what happens when loss depends on predictions,
+              and predictions depend on parameters.
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+{\color{white}y} &= \left({\color{white}0.5}{\color{cyan}x} + {\color{white}1}\right)^2 \\
+{\color{white}u} &= {\color{white}0.5}{\color{cyan}x} + {\color{white}1} \\
+{\color{white}y} &= {\color{white}u}^2 \\
+\frac{d{\color{white}y}}{d{\color{white}u}} &= {\color{white}2u} \\
+\frac{d{\color{white}u}}{d{\color{cyan}x}} &= {\color{white}0.5} \\
+\frac{d{\color{white}y}}{d{\color{cyan}x}} &= \frac{d{\color{white}y}}{d{\color{white}u}} \cdot \frac{d{\color{white}u}}{d{\color{cyan}x}} \\
+&= {\color{white}2u} \cdot {\color{white}0.5} \\
+&= {\color{white}u} \\
+&= {\color{white}0.5}{\color{cyan}x} + {\color{white}1}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+            <DerivativeTangentPlot mode="chain" />
           </InfoPanel>
 
           <section id="cross-section" className="grid gap-3">
@@ -253,9 +322,11 @@ export default function TrainingMathGradientDescentPage() {
               Cost cross-section visual
             </h3>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Use the slider to pick a current weight. The dashed line is the
-              tangent at that point, and the one-step arrow shows the gradient
-              descent update.
+              Now map that idea from simple{" "}
+              <span className="font-mono text-white">x</span>-curves to model
+              parameters and cost. Use the slider to pick a current weight.
+              The dashed line is the tangent at that point, and the one-step
+              arrow shows the gradient descent update.
             </p>
             <GradientCrossSection />
           </section>
