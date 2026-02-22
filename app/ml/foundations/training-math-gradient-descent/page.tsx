@@ -1,4 +1,5 @@
 import ArticleLayout from "@/components/ArticleLayout";
+import ChainRuleLinkedPlots from "@/components/ml/ChainRuleLinkedPlots";
 import CodeBlock from "@/components/CodeBlock";
 import GradientCrossSection from "@/components/ml/GradientCrossSection";
 import DerivativeTangentPlot from "@/components/ml/DerivativeTangentPlot";
@@ -300,13 +301,43 @@ export default function TrainingMathGradientDescentPage() {
               In model training, this is exactly what happens when loss depends on predictions,
               and predictions depend on parameters.
             </p>
+            <p>
+              Start from the composed function:
+            </p>
+            <MathBlock
+              tex={String.raw`{\color{white}y} = \left({\color{white}0.5}{\color{cyan}x} + {\color{white}1}\right)^2`}
+              className="math-center math-lg text-white/90"
+            />
+            <p>
+              Now do a <span className="text-white font-semibold">substitution</span> (also called a change of variable):
+              let the inside expression be
+            </p>
+            <MathBlock
+              tex={String.raw`{\color{white}u} = {\color{white}0.5}{\color{cyan}x} + {\color{white}1}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p>
+              so the outer function becomes
+            </p>
+            <MathBlock
+              tex={String.raw`{\color{white}y} = {\color{white}u}^2`}
+              className="math-center math-lg text-white/90"
+            />
+            <p>
+              Differentiate each part in its own variable:
+            </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-{\color{white}y} &= \left({\color{white}0.5}{\color{cyan}x} + {\color{white}1}\right)^2 \\
-{\color{white}u} &= {\color{white}0.5}{\color{cyan}x} + {\color{white}1} \\
-{\color{white}y} &= {\color{white}u}^2 \\
 \frac{d{\color{white}y}}{d{\color{white}u}} &= {\color{white}2u} \\
-\frac{d{\color{white}u}}{d{\color{cyan}x}} &= {\color{white}0.5} \\
+\frac{d{\color{white}u}}{d{\color{cyan}x}} &= {\color{white}0.5}
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p>
+              Chain rule says multiply those rates:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
 \frac{d{\color{white}y}}{d{\color{cyan}x}} &= \frac{d{\color{white}y}}{d{\color{white}u}} \cdot \frac{d{\color{white}u}}{d{\color{cyan}x}} \\
 &= {\color{white}2u} \cdot {\color{white}0.5} \\
 &= {\color{white}u} \\
@@ -314,7 +345,13 @@ export default function TrainingMathGradientDescentPage() {
 \end{aligned}`}
               className="math-center math-lg text-white/90"
             />
-            <DerivativeTangentPlot mode="chain" />
+            <p>
+              The stacked plots below show that flow directly: first{" "}
+              <span className="text-white font-semibold">x -&gt; u</span>, then{" "}
+              <span className="text-white font-semibold">u -&gt; y</span>.
+              Move <span className="text-white font-semibold">x0</span> and both plots update together.
+            </p>
+            <ChainRuleLinkedPlots />
           </InfoPanel>
 
           <section id="cross-section" className="grid gap-3">
