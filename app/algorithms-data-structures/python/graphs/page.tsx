@@ -54,7 +54,6 @@ export default function GraphsPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world mapping" },
     { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Graph network" },
     { id: "example-1", label: "Example 1: Shortest path BFS" },
@@ -100,23 +99,20 @@ export default function GraphsPage() {
           BFS explores in waves, while DFS dives deep. Picking the right one is
           usually the key interview decision.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world mapping
-        </h2>
-        <div className="grid gap-3">
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Transit systems:</span>{" "}
             stations are nodes and routes are edges.
-          </div>
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Service dependencies:</span>{" "}
             one service depends on another; traversal detects impact and order.
-          </div>
+          </p>
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="complexity" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">

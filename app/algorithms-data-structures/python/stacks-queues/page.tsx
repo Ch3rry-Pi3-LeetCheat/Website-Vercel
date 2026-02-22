@@ -36,7 +36,6 @@ export default function StacksQueuesPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world mapping" },
     { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Stack vs queue" },
     { id: "example-1", label: "Example 1: Stack push and pop" },
@@ -81,23 +80,20 @@ export default function StacksQueuesPage() {
           The order rule is the whole point. These structures exist to avoid
           re-sorting and manual shifting.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world mapping
-        </h2>
-        <div className="grid gap-3">
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Browser back button:</span>{" "}
             each page visit pushes onto a stack; back pops the latest visit.
-          </div>
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Customer support queue:</span>{" "}
             first submitted ticket is handled first.
-          </div>
+          </p>
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="complexity" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">

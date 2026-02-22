@@ -36,7 +36,6 @@ export default function HeapsPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world mapping" },
     { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Heap order" },
     { id: "example-1", label: "Example 1: Top 3 scores" },
@@ -81,23 +80,20 @@ export default function HeapsPage() {
           Every push or pop rearranges just enough nodes to preserve the heap
           property, which is cheaper than re-sorting the full list.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world mapping
-        </h2>
-        <div className="grid gap-3">
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">CPU scheduler queues:</span>{" "}
             next runnable task is chosen by priority.
-          </div>
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Top-k recommendation feeds:</span>{" "}
             maintain only the strongest candidates while streaming updates.
-          </div>
+          </p>
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="complexity" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">

@@ -1,6 +1,15 @@
-import BeginnerLessonTemplate from "@/components/ads/BeginnerLessonTemplate";
+import ArticleLayout from "@/components/ArticleLayout";
+import ArrayIndexPlayground from "@/components/ads/ArrayIndexPlayground";
+import ComplexityTable from "@/components/ads/ComplexityTable";
 import LinearStateStepper from "@/components/ads/LinearStateStepper";
+import CodeBlock from "@/components/CodeBlock";
+import InfoPanel from "@/components/InfoPanel";
+import OutputBlock from "@/components/OutputBlock";
+import RightRail from "@/components/RightRail";
+import { adsPythonTopics } from "@/lib/adsTopics";
 import { arraysBeginnerLessons } from "@/lib/adsBeginnerTopics";
+
+const BASE_VALUES = [10, 20, 30, 40];
 
 const indexingCode = `nums = [10, 20, 30, 40]
 
@@ -24,110 +33,162 @@ const updateOutput = `[10, 25, 30, 99]
 4`;
 
 export default function ArrayBasicsPage() {
+  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
+    { id: "introduction", label: "Introduction" },
+    { id: "read-index", label: "Read by index" },
+    { id: "read-intuition", label: "Intuition", level: 2 },
+    { id: "read-interactive", label: "Interactive", level: 2 },
+    { id: "read-python", label: "Python example", level: 2 },
+    { id: "write-index", label: "Update by index" },
+    { id: "write-intuition", label: "Intuition", level: 2 },
+    { id: "write-interactive", label: "Interactive", level: 2 },
+    { id: "write-python", label: "Python example", level: 2 },
+    { id: "complexity", label: "Complexity quick sheet" },
+    { id: "summary", label: "Summary" },
+  ];
+
   return (
-    <BeginnerLessonTemplate
+    <ArticleLayout
       eyebrow="CS - Python - Arrays"
       title="Array Basics"
-      description="Build intuition for array indexing: what O(1) access means and why arrays are a default starting point."
-      intro={[
-        "Arrays (Python lists) store values in a fixed order. That order matters because every value gets a position, and that position is what lets us access quickly.",
-        "When people say array access is O(1), they mean you can jump directly to a position instead of scanning from the beginning.",
-      ]}
-      intuition={[
-        "Think of a row of hotel rooms with room numbers. If you know room 302, you walk to 302 directly. You do not ask every room in sequence.",
-        "That is the core array superpower: fast positional lookup. The trade-off is that inserting in the middle often means shifting many values.",
-      ]}
-      realWorld={[
-        {
-          scenario: "Leaderboard display",
-          mapping:
-            "Each rank maps to an index. Showing top 10 is just reading the first 10 positions.",
-        },
-        {
-          scenario: "Sensor snapshots",
-          mapping:
-            "A fixed list can hold latest readings where index 0 means temperature, 1 means humidity, and so on.",
-        },
-      ]}
-      keyIdeaTitle="Indexing mental model"
-      keyIdeaText={[
-        "Array indices are zero-based in Python. So index 0 is the first element, index 1 is the second, and so on.",
-        "Negative indexing reads from the end. Index -1 means last element, -2 means second-to-last.",
-        "Replacing a value at an index does not change length. You mutate one slot in-place.",
-      ]}
-      interactiveDescription="Step through direct access and in-place update behavior."
-      interactive={
-        <LinearStateStepper
-          title="Indexing walkthrough"
-          subtitle="Watch how we jump directly to the requested position."
-          steps={[
-            {
-              title: "Start",
-              explanation: "Initial array with four values.",
-              values: [10, 20, 30, 40],
-            },
-            {
-              title: "Read index 0",
-              explanation: "Direct jump to index 0 returns 10.",
-              values: [10, 20, 30, 40],
-              highlightIndices: [0],
-              pointers: [{ index: 0, label: "read" }],
-            },
-            {
-              title: "Read index 2",
-              explanation: "Direct jump to index 2 returns 30.",
-              values: [10, 20, 30, 40],
-              highlightIndices: [2],
-              pointers: [{ index: 2, label: "read" }],
-            },
-            {
-              title: "Update index 1",
-              explanation: "Replacing index 1 changes only that slot.",
-              values: [10, 25, 30, 40],
-              highlightIndices: [1],
-              pointers: [{ index: 1, label: "write" }],
-            },
+      description="Build intuition for direct index reads and in-place index updates."
+      tocItems={tocItems}
+      rightRail={
+        <RightRail
+          sections={[
+            { title: "Within CS (Python)", links: adsPythonTopics },
+            { title: "Within Arrays (Beginner)", links: arraysBeginnerLessons },
           ]}
+          activeHref="/algorithms-data-structures/python/arrays/beginner/array-basics"
         />
       }
-      examples={[
-        {
-          id: "ex-indexing",
-          title: "Example 1: Read by index",
-          explanation:
-            "This shows zero-based and negative indexing in one short script.",
-          code: indexingCode,
-          output: indexingOutput,
-        },
-        {
-          id: "ex-update",
-          title: "Example 2: Overwrite values",
-          explanation:
-            "You can replace values in place and keep length unchanged.",
-          code: updateCode,
-          output: updateOutput,
-        },
-      ]}
-      complexityRows={[
-        { operation: "Read nums[i]", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
-        { operation: "Write nums[i] = x", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
-        { operation: "Middle insertion", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
-      ]}
-      pitfalls={[
-        "Mixing up zero-based indexing and one-based mental counting.",
-        "Forgetting that negative indices read from the end.",
-        "Assuming insertion in the middle is as cheap as direct index reads.",
-      ]}
-      summary={[
-        "Arrays give direct positional access, which is why indexing is usually O(1).",
-        "In-place updates are cheap because you modify one slot.",
-        "Fast reads come with insertion/deletion trade-offs when order must be preserved.",
-      ]}
-      nextStep="Next, we will look at append, insert, pop, and remove to make those insertion/deletion trade-offs concrete."
-      railTitle="Within Arrays (Beginner)"
-      railLinks={arraysBeginnerLessons}
-      activeHref="/algorithms-data-structures/python/arrays/beginner/array-basics"
-    />
+    >
+      <InfoPanel id="introduction" title="Introduction" variant="intro">
+        <p>
+          Arrays (Python lists) store values in a fixed order. That order gives
+          each value an index, and that index is what makes direct reads fast.
+        </p>
+        <p>
+          In this lesson we focus on two core operations: reading a value by
+          index and updating a value by index.
+        </p>
+      </InfoPanel>
+
+      <section id="read-index" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Read by index
+        </h2>
+
+        <section id="read-intuition" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Intuition
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Think of a row of numbered lockers. If you need locker 2, you go
+            directly to locker 2. You do not check locker 0 then locker 1 first.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            That is the array promise: if index is known, access is direct.
+          </p>
+        </section>
+
+        <section id="read-interactive" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Interactive
+          </h3>
+          <ArrayIndexPlayground values={BASE_VALUES} />
+        </section>
+
+        <section id="read-python" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Python example
+          </h3>
+          <CodeBlock code={indexingCode} title="Python" />
+          <OutputBlock output={indexingOutput} />
+        </section>
+      </section>
+
+      <section id="write-index" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Update by index
+        </h2>
+
+        <section id="write-intuition" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Intuition
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Updating by index means replacing one slot with a new value. No
+            shifting is required because list length does not change.
+          </p>
+        </section>
+
+        <section id="write-interactive" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Interactive
+          </h3>
+          <LinearStateStepper
+            title="In-place update walkthrough"
+            subtitle="Only one slot changes."
+            cellLayout="contiguous"
+            steps={[
+              {
+                title: "Start",
+                explanation: "Original array values.",
+                values: [10, 20, 30, 40],
+              },
+              {
+                title: "Write nums[1] = 25",
+                explanation: "Index 1 is replaced directly.",
+                values: [10, 25, 30, 40],
+                highlightIndices: [1],
+              },
+              {
+                title: "Write nums[3] = 99",
+                explanation: "Another direct replacement at index 3.",
+                values: [10, 25, 30, 99],
+                highlightIndices: [3],
+              },
+            ]}
+          />
+        </section>
+
+        <section id="write-python" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Python example
+          </h3>
+          <CodeBlock code={updateCode} title="Python" />
+          <OutputBlock output={updateOutput} />
+        </section>
+      </section>
+
+      <section id="complexity" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Complexity quick sheet
+        </h2>
+        <ComplexityTable
+          rows={[
+            { operation: "Read nums[i]", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+            { operation: "Write nums[i] = x", averageTime: String.raw`O(1)`, extraSpace: String.raw`O(1)` },
+            { operation: "Middle insert/remove", averageTime: String.raw`O(n)`, extraSpace: String.raw`O(1)` },
+          ]}
+        />
+      </section>
+
+      <section id="summary" className="scroll-mt-28 grid gap-2">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Summary
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Direct index reads and writes are usually O(1). That speed comes from
+          positional addressing, not from searching.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Next we will break down append, pop, insert, and remove and compare
+          how their costs differ.
+        </p>
+      </section>
+    </ArticleLayout>
   );
 }
 

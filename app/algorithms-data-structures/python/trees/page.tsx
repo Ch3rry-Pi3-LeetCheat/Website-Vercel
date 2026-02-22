@@ -50,7 +50,6 @@ export default function TreesPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world mapping" },
     { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Binary tree" },
     { id: "example-1", label: "Example 1: In-order traversal" },
@@ -95,23 +94,20 @@ export default function TreesPage() {
           If you can solve a tree for one node, you can solve it for every node
           by applying the same logic recursively.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world mapping
-        </h2>
-        <div className="grid gap-3">
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">File systems:</span>{" "}
             folders contain subfolders and files recursively.
-          </div>
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Decision trees:</span>{" "}
             each branch asks a question and narrows to a leaf outcome.
-          </div>
+          </p>
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="complexity" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">

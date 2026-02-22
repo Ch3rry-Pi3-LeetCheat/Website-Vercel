@@ -39,7 +39,6 @@ export default function BeginnerTrackPage({
   const tocItems = [
     { id: "intro", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world intuition" },
     { id: "ladder", label: "Learning ladder" },
     { id: "start", label: "Start sequence" },
   ];
@@ -82,23 +81,18 @@ export default function BeginnerTrackPage({
           The ladder below is intentionally ordered: core shape first, common
           operations second, and interview pattern transfer third.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world intuition
-        </h2>
-        <div className="grid gap-3">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
           {realWorldExamples.map((example) => (
-            <div key={example.scenario} className="glass-panel rounded-2xl px-5 py-4">
-              <p className="text-sm text-[color:var(--color-muted)]">
-                <span className="text-white font-semibold">{example.scenario}:</span>{" "}
-                {example.mapping}
-              </p>
-            </div>
+            <p key={example.scenario} className="text-sm text-[color:var(--color-muted)]">
+              <span className="text-white font-semibold">{example.scenario}:</span>{" "}
+              {example.mapping}
+            </p>
           ))}
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="ladder" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -145,4 +139,3 @@ export default function BeginnerTrackPage({
     </ArticleLayout>
   );
 }
-

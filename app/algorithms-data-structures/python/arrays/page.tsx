@@ -41,7 +41,6 @@ export default function ArraysPage() {
   const tocItems = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world mapping" },
     { id: "complexity", label: "Complexity quick sheet" },
     { id: "diagram", label: "Diagram: Array view" },
     { id: "example-1", label: "Example 1: Indexing and slicing" },
@@ -88,23 +87,20 @@ export default function ArraysPage() {
           it as a smaller list. Two pointers are two people walking inward from
           the ends to meet in the middle.
         </p>
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world mapping
-        </h2>
-        <div className="grid gap-3">
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Time-series dashboards:</span>{" "}
             each position stores one time point, so direct indexing supports fast rendering and updates.
-          </div>
-          <div className="glass-panel rounded-2xl px-5 py-4 text-sm text-[color:var(--color-muted)]">
+          </p>
+          <p className="text-sm text-[color:var(--color-muted)]">
             <span className="text-white font-semibold">Media playlists:</span>{" "}
             order matters, and pointer-based scans support skip/seek patterns cleanly.
-          </div>
+          </p>
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="complexity" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">

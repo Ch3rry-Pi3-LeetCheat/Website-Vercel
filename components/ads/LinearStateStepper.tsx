@@ -16,6 +16,7 @@ type LinearStateStepperProps = {
   steps: LinearStep[];
   indexLabels?: Array<string | number>;
   showArrowsBetweenCells?: boolean;
+  cellLayout?: "grid" | "contiguous";
 };
 
 function Cell({
@@ -44,6 +45,7 @@ export default function LinearStateStepper({
   steps,
   indexLabels,
   showArrowsBetweenCells = false,
+  cellLayout = "grid",
 }: LinearStateStepperProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const step = steps[stepIndex];
@@ -95,49 +97,88 @@ export default function LinearStateStepper({
           {step.explanation}
         </p>
 
-        <div className="mt-4 overflow-x-auto">
-          <div
-            className="grid min-w-[480px] items-center gap-2"
-            style={{
-              gridTemplateColumns: showArrowsBetweenCells
-                ? `repeat(${step.values.length * 2 - 1}, minmax(0, 1fr))`
-                : `repeat(${step.values.length}, minmax(0, 1fr))`,
-            }}
-          >
-            {step.values.map((value, i) => {
-              const highlighted = step.highlightIndices?.includes(i) ?? false;
-              return (
-                <div
-                  key={`value-${i}`}
-                  className={showArrowsBetweenCells ? "contents" : ""}
-                >
-                  <Cell value={value} highlighted={highlighted} />
-                  {showArrowsBetweenCells && i < step.values.length - 1 ? (
-                    <div className="text-center text-white/60">-&gt;</div>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="mt-2 overflow-x-auto">
-          <div
-            className="grid min-w-[480px] gap-2"
-            style={{
-              gridTemplateColumns: `repeat(${step.values.length}, minmax(0, 1fr))`,
-            }}
-          >
-            {indices.map((label, i) => (
-              <div
-                key={`index-${i}`}
-                className="text-center text-xs text-white/50"
-              >
-                {label}
+        {cellLayout === "contiguous" && !showArrowsBetweenCells ? (
+          <>
+            <div className="mt-4 overflow-x-auto">
+              <div className="inline-flex rounded-lg border border-white/20 bg-white/[0.02]">
+                {step.values.map((value, i) => {
+                  const highlighted = step.highlightIndices?.includes(i) ?? false;
+                  return (
+                    <div
+                      key={`value-${i}`}
+                      className={`w-14 border-r border-white/20 px-2 py-2 text-center font-mono text-sm last:border-r-0 md:w-16 ${
+                        highlighted
+                          ? "bg-cyan-400/20 text-cyan-100"
+                          : "text-[color:var(--color-muted)]"
+                      }`}
+                    >
+                      {value}
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+
+            <div className="mt-2 overflow-x-auto">
+              <div className="inline-flex">
+                {indices.map((label, i) => (
+                  <div
+                    key={`index-${i}`}
+                    className="w-14 text-center text-xs text-white/50 md:w-16"
+                  >
+                    {label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mt-4 overflow-x-auto">
+              <div
+                className="grid min-w-[380px] items-center gap-2"
+                style={{
+                  gridTemplateColumns: showArrowsBetweenCells
+                    ? `repeat(${step.values.length * 2 - 1}, minmax(0, 1fr))`
+                    : `repeat(${step.values.length}, minmax(0, 1fr))`,
+                }}
+              >
+                {step.values.map((value, i) => {
+                  const highlighted = step.highlightIndices?.includes(i) ?? false;
+                  return (
+                    <div
+                      key={`value-${i}`}
+                      className={showArrowsBetweenCells ? "contents" : ""}
+                    >
+                      <Cell value={value} highlighted={highlighted} />
+                      {showArrowsBetweenCells && i < step.values.length - 1 ? (
+                        <div className="text-center text-white/60">-&gt;</div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-2 overflow-x-auto">
+              <div
+                className="grid min-w-[380px] gap-2"
+                style={{
+                  gridTemplateColumns: `repeat(${step.values.length}, minmax(0, 1fr))`,
+                }}
+              >
+                {indices.map((label, i) => (
+                  <div
+                    key={`index-${i}`}
+                    className="text-center text-xs text-white/50"
+                  >
+                    {label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
 
         {step.pointers?.length ? (
           <div className="mt-3 flex flex-wrap gap-2">

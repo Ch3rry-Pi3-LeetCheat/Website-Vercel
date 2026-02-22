@@ -68,7 +68,6 @@ export default function BeginnerLessonTemplate({
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "introduction", label: "Introduction" },
     { id: "intuition", label: "Intuition" },
-    { id: "real-world", label: "Real-world intuition" },
     { id: "key-idea", label: keyIdeaTitle },
     { id: "interactive", label: interactiveTitle },
     { id: "worked-examples", label: "Worked examples" },
@@ -104,23 +103,18 @@ export default function BeginnerLessonTemplate({
         {intuition.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
-      </InfoPanel>
-
-      <section id="real-world" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Real-world intuition
-        </h2>
-        <div className="grid gap-3">
+        <div className="mt-1 grid gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Real-world intuition
+          </p>
           {realWorld.map((item) => (
-            <div key={item.scenario} className="glass-panel rounded-2xl px-5 py-4">
-              <p className="text-sm leading-6 text-[color:var(--color-muted)]">
-                <span className="text-white font-semibold">{item.scenario}:</span>{" "}
-                {item.mapping}
-              </p>
-            </div>
+            <p key={item.scenario} className="text-sm leading-6 text-[color:var(--color-muted)]">
+              <span className="text-white font-semibold">{item.scenario}:</span>{" "}
+              {item.mapping}
+            </p>
           ))}
         </div>
-      </section>
+      </InfoPanel>
 
       <section id="key-idea" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
@@ -186,7 +180,7 @@ export default function BeginnerLessonTemplate({
             <tbody>
               {pitfalls.map((item) => (
                 <tr key={item}>
-                  <td className="w-12 py-2 text-center text-lg">[!]</td>
+                  <td className="w-12 py-2 text-center text-lg">⚠️</td>
                   <td className="py-2">{item}</td>
                 </tr>
               ))}
@@ -204,7 +198,7 @@ export default function BeginnerLessonTemplate({
             <tbody>
               {summary.map((item) => (
                 <tr key={item}>
-                  <td className="w-12 py-2 text-center text-lg">[ok]</td>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">{item}</td>
                 </tr>
               ))}
