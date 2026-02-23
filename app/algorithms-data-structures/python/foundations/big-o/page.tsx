@@ -178,14 +178,15 @@ export default function BigOFoundationsPage() {
           What Big-O means
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Read the formal definition in three small steps.
+          Read the definition as a translation exercise: symbols first, then
+          plain English.
         </p>
         <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
             <p className="text-white font-semibold">Step 1: choose a reference growth</p>
             <p>
               Pick a function{" "}
-              <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />{" "}
+              <MathInline tex={String.raw`f(n)`} className="math-inline math-white" />{" "}
               that represents the growth family you want to compare against.
             </p>
           </div>
@@ -193,7 +194,7 @@ export default function BigOFoundationsPage() {
             <p className="text-white font-semibold">Step 2: allow a constant multiplier</p>
             <p>
               Big-O allows some constant scale{" "}
-              <MathInline tex={String.raw`c`} className="math-inline !text-white" /> because we care
+              <MathInline tex={String.raw`c`} className="math-inline math-theta" /> because we care
               about shape, not exact machine-level constants.
             </p>
           </div>
@@ -201,21 +202,98 @@ export default function BigOFoundationsPage() {
             <p className="text-white font-semibold">Step 3: focus on sufficiently large input</p>
             <p>
               We only require the bound to hold after a cutoff{" "}
-              <MathInline tex={String.raw`n_0`} className="math-inline !text-white" />.
+              <MathInline tex={String.raw`n_0`} className="math-inline math-theta" />.
             </p>
           </div>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Putting those steps together:
+          Formal statement, split across lines:
         </p>
         <MathBlock
-          tex={String.raw`T(n)=O(f(n)) \iff \exists c>0,\exists n_0,\forall n\ge n_0:\ T(n)\le c\cdot f(n)`}
+          tex={String.raw`\begin{aligned}
+{\color{white}T({\color{#22d3ee}n}) = {\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}
+&\Longleftrightarrow \\[4pt]
+&{\color{white}\exists}\ {\color{#a78bfa}c}>0 \\[2pt]
+&{\color{white}\exists}\ {\color{#a78bfa}n_0} \\[2pt]
+&{\color{white}\forall}\ {\color{#22d3ee}n}\ge{\color{#a78bfa}n_0}:\ {\color{white}T({\color{#22d3ee}n})}\le{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">Total work for input size n (for example, total comparisons).</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">Reference growth function you are comparing against.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`O(f(n))`} className="math-inline math-o" />
+                </td>
+                <td className="py-2">The growth family &quot;no faster than a constant times f(n), eventually.&quot;</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">&quot;There exists&quot;.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">&quot;For every&quot; (all values in the stated range).</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`:`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">&quot;Such that&quot; or &quot;where the following condition must hold.&quot;</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`\Longleftrightarrow`} className="math-inline !text-white" />
+                </td>
+                <td className="py-2">&quot;If and only if&quot; (both directions are true).</td>
+              </tr>
+              <tr>
+                <td className="w-40 py-2 pr-4 text-white font-semibold">
+                  <MathInline tex={String.raw`c,\ n_0`} className="math-inline math-theta" />
+                </td>
+                <td className="py-2">Positive constants: c is scale; n0 is the threshold from which the bound holds.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In plain English: once n is large enough, the growth of{" "}
-          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> is bounded by
-          a scaled copy of <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
+          In plain English: for large enough input sizes, total work{" "}
+          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> never
+          grows faster than some scaled version of{" "}
+          <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Example with numbers: if{" "}
+          <MathInline tex={String.raw`T(n)=3n+5`} className="math-inline !text-white" />, choose{" "}
+          <MathInline tex={String.raw`f(n)=n`} className="math-inline !text-white" />,{" "}
+          <MathInline tex={String.raw`c=4`} className="math-inline math-theta" />, and{" "}
+          <MathInline tex={String.raw`n_0=5`} className="math-inline math-theta" />. Then for all{" "}
+          <MathInline tex={String.raw`n\ge 5`} className="math-inline math-nvar" />:
+        </p>
+        <MathBlock
+          tex={String.raw`3n+5 \le 4n \quad\Rightarrow\quad T(n)\le c\cdot f(n)\quad\Rightarrow\quad T(n)=O(n)`}
+          className="math-center text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So the equation is not abstract decoration. It is a formal way to say
+          &quot;after some point, this algorithm grows at most like n up to a constant factor.&quot;
         </p>
       </section>
 
@@ -223,18 +301,18 @@ export default function BigOFoundationsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What Big-O is not
         </h2>
-        <div className="overflow-x-auto">
+        <div className="ml-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Big-O is not exact runtime in milliseconds.</td>
               </tr>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">It is not a promise that one method wins for every tiny input.</td>
               </tr>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">It is not complete analysis without space complexity and constant-factor realities.</td>
               </tr>
@@ -248,14 +326,14 @@ export default function BigOFoundationsPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So what should you do instead?
         </p>
-        <div className="overflow-x-auto">
+        <div className="ml-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-12 py-2 text-center text-lg">➡️</td>
                 <td className="py-2">Use Big-O to compare scaling trends as n grows.</td>
               </tr>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-12 py-2 text-center text-lg">➡️</td>
                 <td className="py-2">Pair asymptotic analysis with real constraints: constants, memory, and data distribution.</td>
               </tr>
