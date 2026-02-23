@@ -40,7 +40,7 @@ export default function BigOFoundationsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
     { id: "intuition", label: "Core intuition" },
-    { id: "notation", label: "What O(...) means" },
+    { id: "notation", label: "What Big-O means" },
     { id: "what-not", label: "What Big-O is not" },
     { id: "equation-reading", label: "How to read equations" },
     { id: "math-primer", label: "Mini math primer" },
@@ -72,43 +72,148 @@ export default function BigOFoundationsPage() {
     >
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
-          Big-O is a language for growth. It describes how work changes as input size{" "}
-          <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows.
+          Big-O is a language for growth. It tells you how runtime and memory
+          scale as input size{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />{" "}
+          gets larger.
         </p>
         <p>
-          It is not a stopwatch reading on one laptop. It is a zoomed-out model that
-          helps you compare solutions before implementation details.
+          This lesson is designed to be practical and intuitive, not symbolic for
+          the sake of symbols. We keep asking one concrete question: when data grows,
+          how fast does the work grow?
+        </p>
+        <p>
+          Here&apos;s the roadmap for this article and why each part matters:
+        </p>
+        <div className="ml-4 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Mental model</td>
+                <td className="py-2">What Big-O is actually measuring, and what it is not.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Core intuition</td>
+                <td className="py-2">How to reason with the doubling test instead of memorising rules.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Formal meaning</td>
+                <td className="py-2">How to read the definition without it feeling abstract.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Mini math primer</td>
+                <td className="py-2">A line-by-line ratio breakdown for common complexity classes.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Complexity families</td>
+                <td className="py-2">Interactive plots for O(1), O(log n), O(n), O(n log n), O(n^2).</td>
+              </tr>
+              <tr>
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Code trade-offs</td>
+                <td className="py-2">How two valid implementations can scale very differently.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          By the end, you should be able to look at a code pattern, identify
+          its dominant growth behavior, and explain that behavior in plain English.
+        </p>
+        <p>
+          If this page leaves you with clearer instincts and better technical
+          language for runtime trade-offs, this introduction has done its job.
         </p>
       </InfoPanel>
 
       <InfoPanel id="intuition" title="Core intuition" variant="intuition">
         <p>
-          Ask one question first: if input doubles, what happens to work? This
-          &quot;doubling test&quot; creates intuition quickly.
+          Before formulas, think in concrete actions. Algorithms do work by
+          checking, comparing, moving, or storing values. Big-O asks how that
+          work count changes when the amount of data changes.
         </p>
         <p>
-          Roughly: <BigONotation kind="o1" /> stays flat, <BigONotation kind="on" /> doubles,
-          <BigONotation kind="on2" /> trends toward quadrupling, and{" "}
-          <BigONotation kind="ologn" /> adds only a small extra amount.
+          The fastest way to build intuition is the doubling test:
+          if <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> becomes{" "}
+          <MathInline tex={String.raw`2n`} className="math-inline !text-white" />,
+          does work stay similar, double, or jump much faster?
+        </p>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="grid gap-2 md:grid-cols-[220px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Dictionary lookup</div>
+            <div>
+              You jump directly by key. Doubling dataset size often barely changes query work:
+              <BigONotation kind="o1" />.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[220px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Binary search</div>
+            <div>
+              You repeatedly halve what remains. Even large growth in n adds only a small number
+              of extra checks: <BigONotation kind="ologn" />.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[220px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">Linear scan</div>
+            <div>
+              You inspect items one by one. Twice as many items means roughly twice as much work:
+              <BigONotation kind="on" />.
+            </div>
+          </div>
+          <div className="grid gap-2 md:grid-cols-[220px_minmax(0,1fr)]">
+            <div className="text-white font-semibold">All-pairs comparison</div>
+            <div>
+              Each item is compared with many others. Doubling n can push work toward 4x:
+              <BigONotation kind="on2" />.
+            </div>
+          </div>
+        </div>
+        <p>
+          This is the core pattern to keep in mind throughout the page:
+          Big-O is not about exact seconds, it is about growth shape.
         </p>
       </InfoPanel>
 
       <section id="notation" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          What O(...) means
+          What Big-O means
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Formally, saying <MathInline tex={String.raw`T(n)=O(f(n))`} className="math-inline !text-white" /> means
-          there is some constant multiplier after some threshold where{" "}
-          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> stays below that scaled{" "}
-          <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />:
+          Read the formal definition in three small steps.
+        </p>
+        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">Step 1: choose a reference growth</p>
+            <p>
+              Pick a function{" "}
+              <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />{" "}
+              that represents the growth family you want to compare against.
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">Step 2: allow a constant multiplier</p>
+            <p>
+              Big-O allows some constant scale{" "}
+              <MathInline tex={String.raw`c`} className="math-inline !text-white" /> because we care
+              about shape, not exact machine-level constants.
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">Step 3: focus on sufficiently large input</p>
+            <p>
+              We only require the bound to hold after a cutoff{" "}
+              <MathInline tex={String.raw`n_0`} className="math-inline !text-white" />.
+            </p>
+          </div>
+        </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Putting those steps together:
         </p>
         <MathBlock
           tex={String.raw`T(n)=O(f(n)) \iff \exists c>0,\exists n_0,\forall n\ge n_0:\ T(n)\le c\cdot f(n)`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In plain English: after input gets large enough, the growth of{" "}
+          In plain English: once n is large enough, the growth of{" "}
           <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> is bounded by
           a scaled copy of <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
         </p>
@@ -118,12 +223,49 @@ export default function BigOFoundationsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What Big-O is not
         </h2>
-        <ul className="grid gap-2 text-sm leading-6 text-[color:var(--color-muted)]">
-          <li>It is not exact runtime in milliseconds.</li>
-          <li>It is not a guarantee that one method is always faster for tiny inputs.</li>
-          <li>It is not the full story without space complexity and constants.</li>
-          <li>It is usually discussed as an upper bound, often for worst-case behavior unless stated otherwise.</li>
-        </ul>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="py-2">Big-O is not exact runtime in milliseconds.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="py-2">It is not a promise that one method wins for every tiny input.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="py-2">It is not complete analysis without space complexity and constant-factor realities.</td>
+              </tr>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="py-2">It is not always the full behavior story unless you also state best/average/worst case.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So what should you do instead?
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-12 py-2 text-center text-lg">➡️</td>
+                <td className="py-2">Use Big-O to compare scaling trends as n grows.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-12 py-2 text-center text-lg">➡️</td>
+                <td className="py-2">Pair asymptotic analysis with real constraints: constants, memory, and data distribution.</td>
+              </tr>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">➡️</td>
+                <td className="py-2">State assumptions clearly: input model, case type, and operation cost model.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="equation-reading" className="scroll-mt-28 grid gap-4">
@@ -167,22 +309,66 @@ export default function BigOFoundationsPage() {
           Mini math primer
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The ratio <MathInline tex={String.raw`\frac{T(2n)}{T(n)}`} className="math-inline !text-white" /> is a quick lens for growth:
+          Instead of one dense expression, break the doubling ratio down line by line.
+          We use
+          <MathInline tex={String.raw`\frac{T(2n)}{T(n)}`} className="math-inline !text-white" />{" "}
+          to ask: how much more work after doubling input?
         </p>
-        <MathBlock
-          tex={String.raw`\frac{T(2n)}{T(n)}=
-\begin{cases}
-1 & T(n)=1\\
-\dfrac{\log_2(2n)}{\log_2(n)} & T(n)=\log_2 n\\
-2 & T(n)=n\\
-2\cdot\dfrac{\log_2(2n)}{\log_2(n)} & T(n)=n\log_2 n\\
-4 & T(n)=n^2
-\end{cases}`}
-          className="math-center math-lg text-white/90"
-        />
+        <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">
+              <BigONotation kind="o1" />: constant
+            </p>
+            <MathBlock
+              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{1}{1}=1`}
+              className="math-center text-white/90"
+            />
+            <p>Doubling input keeps work essentially unchanged.</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">
+              <BigONotation kind="ologn" />: logarithmic
+            </p>
+            <MathBlock
+              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{\log_2(2n)}{\log_2(n)}=1+\frac{1}{\log_2(n)}`}
+              className="math-center text-white/90"
+            />
+            <p>Doubling input adds only a small extra amount of work.</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">
+              <BigONotation kind="on" />: linear
+            </p>
+            <MathBlock
+              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n}{n}=2`}
+              className="math-center text-white/90"
+            />
+            <p>Doubling input roughly doubles work.</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">
+              <BigONotation kind="onlogn" />: linearithmic
+            </p>
+            <MathBlock
+              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n\log_2(2n)}{n\log_2(n)}=2\left(1+\frac{1}{\log_2(n)}\right)`}
+              className="math-center text-white/90"
+            />
+            <p>Doubling input is slightly worse than 2x.</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+            <p className="text-white font-semibold">
+              <BigONotation kind="on2" />: quadratic
+            </p>
+            <MathBlock
+              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{(2n)^2}{n^2}=4`}
+              className="math-center text-white/90"
+            />
+            <p>Doubling input trends toward 4x work.</p>
+          </div>
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This is why <BigONotation kind="onlogn" /> sits between <BigONotation kind="on" /> and{" "}
-          <BigONotation kind="on2" />: doubling is more than 2x, less than 4x.
+          Put together: <BigONotation kind="onlogn" /> sits between <BigONotation kind="on" /> and{" "}
+          <BigONotation kind="on2" /> because doubling is more than 2x, but less than 4x.
         </p>
       </section>
 
