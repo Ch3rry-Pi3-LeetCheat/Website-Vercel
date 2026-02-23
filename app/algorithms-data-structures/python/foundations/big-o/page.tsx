@@ -41,6 +41,9 @@ export default function BigOFoundationsPage() {
     { id: "intro", label: "Introduction" },
     { id: "intuition", label: "Core intuition" },
     { id: "notation", label: "What Big-O means" },
+    { id: "notation-example", label: "Concrete example", level: 2 },
+    { id: "notation-compare", label: "Compare methods", level: 2 },
+    { id: "notation-formal", label: "Compact formal form", level: 2 },
     { id: "what-not", label: "What Big-O is not" },
     { id: "equation-reading", label: "How to read equations" },
     { id: "math-primer", label: "Mini math primer" },
@@ -187,97 +190,115 @@ export default function BigOFoundationsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What Big-O means
         </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Imagine we have a shopping list, and the task is to find one item,
-          like apples.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          If the list has 10 items, we may need up to 10 checks. If the list has
-          100 items, we may need up to 100 checks. Same task, but much more work
-          as the input grows.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          We usually call input size{" "}
-          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
-          In this shopping-list example, if the list has 10 items then input size
-          is 10; if the list has 100 items then input size is 100.
-          Then we call the total amount of work{" "}
-          <MathInline
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
-            className="math-inline math-white"
-          />.
-          Here, &quot;work&quot; can mean checks, comparisons, or loop iterations.
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{white}T({\color{#22d3ee}n})=\text{total work when input size is }{\color{#22d3ee}n}}`}
-          className="math-center text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For the shopping-list scan, work grows roughly one-for-one with n:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 10,\qquad T({\color{#22d3ee}100})\approx 100}`}
-          className="math-center text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          That is why we summarize this as{" "}
-          <MathInline
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
-            className="math-inline math-white"
-          />.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now imagine a different method for the same kind of task: if data is
-          sorted, we can repeatedly cut the search range in half (binary search).
-          That gives much slower growth in work:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 4,\qquad T({\color{#22d3ee}100})\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
-          className="math-center text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This is the main reason Big-O is discussed: it helps you compare
-          different algorithms for the same goal and choose the one that scales
-          better as data grows.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In general,{" "}
-          <MathInline
-            tex={String.raw`{\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})`}
-            className="math-inline math-white"
-          />{" "}
-          means:
-          after input is big enough, total work grows no faster than a constant
-          multiple of{" "}
-          <MathInline
-            tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
-            className="math-inline math-white"
-          />.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          If you see the compact formal version, it is this same idea written in
-          short math form:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
-          className="math-center text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Reading that line in plain language:{" "}
-          <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />{" "}
-          means
-          &quot;there exists&quot; (at least one value works),{" "}
-          <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />{" "}
-          means
-          &quot;for every&quot; value in a range, and{" "}
-          <MathInline tex={String.raw`:`} className="math-inline !text-white" />{" "}
-          means
-          &quot;such that the next condition must hold.&quot;
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Key takeaway: Big-O is about growth shape and decision-making, so you
-          can choose algorithms that keep working well when your data gets much bigger.
-        </p>
+        <section id="notation-example" className="grid gap-4">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Concrete example
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Imagine we have a shopping list, and the task is to find one item,
+            like apples.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If the list has 10 items, we may need up to 10 checks. If the list has
+            100 items, we may need up to 100 checks. Same task, but much more work
+            as the input grows.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We usually call input size{" "}
+            <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
+            In this shopping-list example, if the list has 10 items then input size
+            is 10; if the list has 100 items then input size is 100.
+            Then we call the total amount of work{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />.
+            In plain language, one unit of &quot;work&quot; here is: look at one item on
+            the list and ask, &quot;Is this apples?&quot;
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})=\text{total work when input size is }{\color{#22d3ee}n}}`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For the shopping-list scan, work grows roughly one-for-one with n:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 10,\qquad T({\color{#22d3ee}100})\approx 100}`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            That is why we summarize this as{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />.
+          </p>
+        </section>
+
+        <section id="notation-compare" className="grid gap-4">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Compare methods
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now imagine a different method for the same kind of task: if data is
+            sorted, we can repeatedly cut the search range in half (binary search).
+            That gives much slower growth in work:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 4,\qquad T({\color{#22d3ee}100})\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is the main reason Big-O is discussed: it helps you compare
+            different algorithms for the same goal and choose the one that scales
+            better as data grows.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            In general,{" "}
+            <MathInline
+              tex={String.raw`{\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})`}
+              className="math-inline math-white"
+            />{" "}
+            means:
+            after input is big enough, total work grows no faster than a constant
+            multiple of{" "}
+            <MathInline
+              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />.
+          </p>
+        </section>
+
+        <section id="notation-formal" className="grid gap-4">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Compact formal form
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If you see the compact formal version, it is this same idea written in
+            short math form:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Reading that line in plain language:{" "}
+            <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />{" "}
+            means
+            &quot;there exists&quot; (at least one value works),{" "}
+            <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />{" "}
+            means
+            &quot;for every&quot; value in a range, and{" "}
+            <MathInline tex={String.raw`:`} className="math-inline !text-white" />{" "}
+            means
+            &quot;such that the next condition must hold.&quot;
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Key takeaway: Big-O is about growth shape and decision-making, so you
+            can choose algorithms that keep working well when your data gets much bigger.
+          </p>
+        </section>
       </section>
 
       <section id="what-not" className="scroll-mt-28 grid gap-4">
