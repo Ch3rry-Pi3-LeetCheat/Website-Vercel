@@ -202,7 +202,7 @@ export default function BigOFoundationsPage() {
           Then we call the total amount of work{" "}
           <MathInline
             tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
-            className="math-inline"
+            className="math-inline math-white"
           />.
           Here, &quot;work&quot; can mean checks, comparisons, or loop iterations.
         </p>
@@ -214,14 +214,14 @@ export default function BigOFoundationsPage() {
           For the shopping-list scan, work grows roughly one-for-one with n:
         </p>
         <MathBlock
-          tex={String.raw`T(10)\approx 10,\qquad T(100)\approx 100`}
+          tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 10,\qquad T({\color{#22d3ee}100})\approx 100}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           That is why we summarize this as{" "}
           <MathInline
             tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
-            className="math-inline"
+            className="math-inline math-white"
           />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -230,7 +230,7 @@ export default function BigOFoundationsPage() {
           That gives much slower growth in work:
         </p>
         <MathBlock
-          tex={String.raw`{\color{white}T(10)\approx 4,\qquad T(100)\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
+          tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 4,\qquad T({\color{#22d3ee}100})\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -242,14 +242,14 @@ export default function BigOFoundationsPage() {
           In general,{" "}
           <MathInline
             tex={String.raw`{\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})`}
-            className="math-inline"
+            className="math-inline math-white"
           />{" "}
           means:
           after input is big enough, total work grows no faster than a constant
           multiple of{" "}
           <MathInline
             tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
-            className="math-inline"
+            className="math-inline math-white"
           />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -257,7 +257,7 @@ export default function BigOFoundationsPage() {
           short math form:
         </p>
         <MathBlock
-          tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_0},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_0}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
+          tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
