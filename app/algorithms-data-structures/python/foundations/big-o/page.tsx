@@ -178,122 +178,111 @@ export default function BigOFoundationsPage() {
           What Big-O means
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Read the definition as a translation exercise: symbols first, then
-          plain English.
+          Here&apos;s the problem we&apos;re solving: for an input of size{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />, how much total
+          work does the algorithm do?
         </p>
-        <div className="grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">Step 1: choose a reference growth</p>
-            <p>
-              Pick a function{" "}
-              <MathInline tex={String.raw`f(n)`} className="math-inline math-white" />{" "}
-              that represents the growth family you want to compare against.
-            </p>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">Step 2: allow a constant multiplier</p>
-            <p>
-              Big-O allows some constant scale{" "}
-              <MathInline tex={String.raw`c`} className="math-inline math-theta" /> because we care
-              about shape, not exact machine-level constants.
-            </p>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">Step 3: focus on sufficiently large input</p>
-            <p>
-              We only require the bound to hold after a cutoff{" "}
-              <MathInline tex={String.raw`n_0`} className="math-inline math-theta" />.
-            </p>
-          </div>
-        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Formal statement, split across lines:
+          Simple everyday example: searching a shopping list for one item.
+          A list with 10 items may need up to 10 checks; a list with 100 items
+          may need up to 100 checks.
+        </p>
+        <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+          <p className="text-white font-semibold">Step 1: define total work</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We denote total work as{" "}
+            <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />.
+            Here, &quot;work&quot; can mean comparisons, checks, or loop iterations.
+          </p>
+          <MathBlock
+            tex={String.raw`T(n)=\text{total work for input size }n`}
+            className="math-center text-white/90"
+          />
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+          <p className="text-white font-semibold">Step 2: describe the growth pattern</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Suppose your algorithm has:
+          </p>
+          <MathBlock
+            tex={String.raw`T(n)=3n+5`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This means work grows linearly with n, plus small fixed overhead.
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+          <p className="text-white font-semibold">Step 3: summarize with Big-O</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Big-O keeps the growth shape and drops constant-detail noise:
+          </p>
+          <MathBlock
+            tex={String.raw`T(n)=O(n)`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            In words,{" "}
+            <MathInline tex={String.raw`O(f(n))`} className="math-inline math-o" /> means:
+            after input is large enough, total work grows no faster than a constant
+            multiple of{" "}
+            <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
+          <p className="text-white font-semibold">Step 4: numeric example for &quot;large enough&quot;</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For{" "}
+            <MathInline tex={String.raw`T(n)=3n+5`} className="math-inline !text-white" />,
+            choose{" "}
+            <MathInline tex={String.raw`c=4`} className="math-inline math-theta" /> and{" "}
+            <MathInline tex={String.raw`n_0=5`} className="math-inline math-theta" />.
+            Then whenever{" "}
+            <MathInline tex={String.raw`n\ge 5`} className="math-inline math-nvar" />:
+          </p>
+          <MathBlock
+            tex={String.raw`3n+5 \le 4n`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So from that point onward, work is bounded by a constant times n,
+            which is exactly why{" "}
+            <MathInline tex={String.raw`T(n)=O(n)`} className="math-inline !text-white" />.
+          </p>
+        </div>
+
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          If you want the compact formal line (same idea, just compressed):
         </p>
         <MathBlock
-          tex={String.raw`\begin{aligned}
-{\color{white}T({\color{#22d3ee}n}) = {\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}
-&\Longleftrightarrow \\[4pt]
-&{\color{white}\exists}\ {\color{#a78bfa}c}>0 \\[2pt]
-&{\color{white}\exists}\ {\color{#a78bfa}n_0} \\[2pt]
-&{\color{white}\forall}\ {\color{#22d3ee}n}\ge{\color{#a78bfa}n_0}:\ {\color{white}T({\color{#22d3ee}n})}\le{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}
-\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-            <tbody>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">Total work for input size n (for example, total comparisons).</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">Reference growth function you are comparing against.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`O(f(n))`} className="math-inline math-o" />
-                </td>
-                <td className="py-2">The growth family &quot;no faster than a constant times f(n), eventually.&quot;</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">&quot;There exists&quot;.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">&quot;For every&quot; (all values in the stated range).</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`:`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">&quot;Such that&quot; or &quot;where the following condition must hold.&quot;</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`\Longleftrightarrow`} className="math-inline !text-white" />
-                </td>
-                <td className="py-2">&quot;If and only if&quot; (both directions are true).</td>
-              </tr>
-              <tr>
-                <td className="w-40 py-2 pr-4 text-white font-semibold">
-                  <MathInline tex={String.raw`c,\ n_0`} className="math-inline math-theta" />
-                </td>
-                <td className="py-2">Positive constants: c is scale; n0 is the threshold from which the bound holds.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In plain English: for large enough input sizes, total work{" "}
-          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> never
-          grows faster than some scaled version of{" "}
-          <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Example with numbers: if{" "}
-          <MathInline tex={String.raw`T(n)=3n+5`} className="math-inline !text-white" />, choose{" "}
-          <MathInline tex={String.raw`f(n)=n`} className="math-inline !text-white" />,{" "}
-          <MathInline tex={String.raw`c=4`} className="math-inline math-theta" />, and{" "}
-          <MathInline tex={String.raw`n_0=5`} className="math-inline math-theta" />. Then for all{" "}
-          <MathInline tex={String.raw`n\ge 5`} className="math-inline math-nvar" />:
-        </p>
-        <MathBlock
-          tex={String.raw`3n+5 \le 4n \quad\Rightarrow\quad T(n)\le c\cdot f(n)\quad\Rightarrow\quad T(n)=O(n)`}
+          tex={String.raw`T(n)=O(f(n)) \iff \exists c>0,\exists n_0,\forall n\ge n_0:\ T(n)\le c\cdot f(n)`}
           className="math-center text-white/90"
         />
+
+        <div className="ml-4 grid gap-1 text-sm leading-6 text-[color:var(--color-muted)]">
+          <p>
+            <MathInline tex={String.raw`\exists`} className="math-inline !text-white" /> means
+            &quot;there exists&quot; (at least one value works).
+          </p>
+          <p>
+            <MathInline tex={String.raw`\forall`} className="math-inline !text-white" /> means
+            &quot;for every&quot; value in that range.
+          </p>
+          <p>
+            <MathInline tex={String.raw`:`} className="math-inline !text-white" /> means
+            &quot;such that / the next condition must hold.&quot;
+          </p>
+          <p>
+            <MathInline tex={String.raw`\iff`} className="math-inline !text-white" /> means
+            &quot;if and only if.&quot;
+          </p>
+        </div>
+
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          So the equation is not abstract decoration. It is a formal way to say
-          &quot;after some point, this algorithm grows at most like n up to a constant factor.&quot;
+          Beginner takeaway: Big-O is a way to describe growth shape, not exact seconds.
         </p>
       </section>
 
