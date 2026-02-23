@@ -200,11 +200,14 @@ export default function BigOFoundationsPage() {
           We usually call input size{" "}
           <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
           Then we call the total amount of work{" "}
-          <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />.
+          <MathInline
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+            className="math-inline"
+          />.
           Here, &quot;work&quot; can mean checks, comparisons, or loop iterations.
         </p>
         <MathBlock
-          tex={String.raw`T(n)=\text{total work when input size is }n`}
+          tex={String.raw`{\color{white}T({\color{#22d3ee}n})=\text{total work when input size is }{\color{#22d3ee}n}}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -216,7 +219,10 @@ export default function BigOFoundationsPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           That is why we summarize this as{" "}
-          <MathInline tex={String.raw`T(n)=O(n)`} className="math-inline !text-white" />.
+          <MathInline
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
+            className="math-inline"
+          />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Now imagine a different method for the same kind of task: if data is
@@ -224,7 +230,7 @@ export default function BigOFoundationsPage() {
           That gives much slower growth in work:
         </p>
         <MathBlock
-          tex={String.raw`T(10)\approx 4,\qquad T(100)\approx 7,\qquad T(n)=O(\log n)`}
+          tex={String.raw`{\color{white}T(10)\approx 4,\qquad T(100)\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -234,26 +240,36 @@ export default function BigOFoundationsPage() {
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In general,{" "}
-          <MathInline tex={String.raw`O(f(n))`} className="math-inline math-o" /> means:
+          <MathInline
+            tex={String.raw`{\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})`}
+            className="math-inline"
+          />{" "}
+          means:
           after input is big enough, total work grows no faster than a constant
           multiple of{" "}
-          <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
+          <MathInline
+            tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+            className="math-inline"
+          />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           If you see the compact formal version, it is this same idea written in
           short math form:
         </p>
         <MathBlock
-          tex={String.raw`T(n)=O(f(n)) \iff \exists c>0,\exists n_0,\forall n\ge n_0:\ T(n)\le c\cdot f(n)`}
+          tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_0},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_0}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
           className="math-center text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Reading that line in plain language:
-          <MathInline tex={String.raw`\exists`} className="math-inline !text-white" /> means
+          Reading that line in plain language:{" "}
+          <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />{" "}
+          means
           &quot;there exists&quot; (at least one value works),{" "}
-          <MathInline tex={String.raw`\forall`} className="math-inline !text-white" /> means
+          <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />{" "}
+          means
           &quot;for every&quot; value in a range, and{" "}
-          <MathInline tex={String.raw`:`} className="math-inline !text-white" /> means
+          <MathInline tex={String.raw`:`} className="math-inline !text-white" />{" "}
+          means
           &quot;such that the next condition must hold.&quot;
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
