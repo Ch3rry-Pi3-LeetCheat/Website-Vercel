@@ -14,7 +14,7 @@ type ComplexityWalkthroughPlotProps = {
 function compute(kind: BigOKind, n: number) {
   switch (kind) {
     case "o1":
-      return 1;
+      return 7;
     case "ologn":
       return Math.log2(n);
     case "on":
@@ -41,9 +41,8 @@ export default function ComplexityWalkthroughPlot({
 }: ComplexityWalkthroughPlotProps) {
   const [n, setN] = useState(16);
   const minN = 1;
-  const maxN = 32;
+  const maxN = 64;
   const plotMaxN = 64;
-  const sampleNs = [4, 8, 16, 32];
 
   const model = useMemo(() => {
     const width = 620;
@@ -72,8 +71,18 @@ export default function ComplexityWalkthroughPlot({
   }, [kind]);
 
   const tN = compute(kind, n);
-  const t2N = compute(kind, Math.min(2 * n, 64));
+  const t2N = compute(kind, 2 * n);
   const ratio = tN === 0 ? 0 : t2N / tN;
+  const growthSummary =
+    kind === "o1"
+      ? "Doubling input usually keeps the work about the same."
+      : kind === "ologn"
+        ? "Doubling input adds about one extra logarithmic step."
+        : kind === "on"
+          ? "Doubling input roughly doubles total work."
+          : kind === "onlogn"
+            ? "Doubling input is a little worse than 2x because the log term also grows."
+            : "Doubling input tends toward about 4x work for large n.";
 
   return (
     <div className="glass-panel rounded-2xl p-4">
@@ -199,27 +208,16 @@ export default function ComplexityWalkthroughPlot({
         </div>
       </div>
 
-      <div className="mt-3 overflow-x-auto">
-        <table className="w-full border-collapse text-left text-xs text-[color:var(--color-muted)]">
-          <thead>
-            <tr className="text-white/80">
-              <th className="py-1 pr-4">
-                <MathInline tex={String.raw`n`} className="math-inline !text-white" />
-              </th>
-              <th className="py-1">
-                <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {sampleNs.map((sn) => (
-              <tr key={sn}>
-                <td className="py-1 pr-4 text-white">{sn}</td>
-                <td className="py-1 text-white">{formatVal(compute(kind, sn))}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 text-sm text-[color:var(--color-muted)]">
+        <p className="leading-6">
+          At{" "}
+          <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> ={" "}
+          <span className="text-white">{n}</span>, doubling to{" "}
+          <MathInline tex={String.raw`2n`} className="math-inline !text-white" /> ={" "}
+          <span className="text-white">{2 * n}</span> multiplies work by{" "}
+          <span className="text-white">{formatVal(ratio)}</span>.
+        </p>
+        <p className="mt-1 leading-6">{growthSummary}</p>
       </div>
     </div>
   );
