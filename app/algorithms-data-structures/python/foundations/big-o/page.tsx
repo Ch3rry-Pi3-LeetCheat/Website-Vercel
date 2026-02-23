@@ -199,6 +199,8 @@ export default function BigOFoundationsPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We usually call input size{" "}
           <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
+          In this shopping-list example, if the list has 10 items then input size
+          is 10; if the list has 100 items then input size is 100.
           Then we call the total amount of work{" "}
           <MathInline
             tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
