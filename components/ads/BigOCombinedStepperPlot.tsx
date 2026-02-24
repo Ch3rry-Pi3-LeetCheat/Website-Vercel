@@ -44,10 +44,11 @@ export default function BigOCombinedStepperPlot() {
     const paths = curves.map((curve) => {
       let d = "";
       let started = false;
+      const stepX = 0.05;
       let prevX = 0;
       let prevY = curve.fn(0);
 
-      for (let x = 0; x <= maxN; x += 1) {
+      for (let x = 0; x <= maxN + 1e-9; x += stepX) {
         const y = curve.fn(x);
 
         if (y <= yMax) {
