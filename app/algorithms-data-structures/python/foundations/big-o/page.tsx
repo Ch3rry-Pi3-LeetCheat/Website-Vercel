@@ -379,13 +379,17 @@ export default function BigOFoundationsPage() {
           Formal definition
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This section answers: &quot;What does{" "}
-          <MathInline tex={String.raw`T(n)=O(f(n))`} className="math-inline !text-white" />{" "}
-          mean exactly, in strict math language?&quot;
+          In this section, we look at what{" "}
+          <MathInline
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}`}
+            className="math-inline math-white"
+          />{" "}
+          means in a more formal, maths-heavy way.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          You do not need this to build intuition. You use this when you want to
-          justify a complexity claim rigorously.
+          If you&apos;re mainly building intuition, you can skim this once and come back
+          later. If you want to justify a complexity claim properly, this is the language
+          you&apos;ll use.
         </p>
 
         <section id="formal-plain" className="grid gap-3">
@@ -397,18 +401,37 @@ export default function BigOFoundationsPage() {
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Translation: we can call{" "}
-            <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" />{" "}
-            &quot;Big-O of{" "}
-            <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />&quot;
-            if there is some constant multiplier{" "}
-            <MathInline tex={String.raw`c`} className="math-inline math-theta" /> and some
-            starting point{" "}
-            <MathInline tex={String.raw`n_0`} className="math-inline math-theta" /> such that,
-            from that point onward,{" "}
-            <MathInline tex={String.raw`T(n)`} className="math-inline !text-white" /> stays at or
-            below{" "}
-            <MathInline tex={String.raw`c\cdot f(n)`} className="math-inline !text-white" />.
+            In plain words: we can say{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            is &quot;Big-O of{" "}
+            <MathInline
+              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />
+            &quot; if there is some constant multiplier{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}`}
+              className="math-inline math-white"
+            />{" "}
+            and some starting point{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
+              className="math-inline math-white"
+            />
+            , so that from that point onward{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            stays at or below{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />
+            .
           </p>
         </section>
 
@@ -420,14 +443,26 @@ export default function BigOFoundationsPage() {
             <p>
               1) We only care about <span className="text-white">large enough n</span>.
               That is why the definition uses{" "}
-              <MathInline tex={String.raw`n\ge n_0`} className="math-inline !text-white" />.
+              <MathInline
+                tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
+                className="math-inline math-white"
+              />
+              .
             </p>
             <p>
               2) We allow a <span className="text-white">constant multiplier</span>. That is why
               the definition uses{" "}
-              <MathInline tex={String.raw`c\cdot f(n)`} className="math-inline !text-white" /> and
+              <MathInline
+                tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+                className="math-inline math-white"
+              />{" "}
+              and
               not just{" "}
-              <MathInline tex={String.raw`f(n)`} className="math-inline !text-white" />.
+              <MathInline
+                tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+                className="math-inline math-white"
+              />
+              .
             </p>
           </div>
         </section>
@@ -437,32 +472,55 @@ export default function BigOFoundationsPage() {
             Worked example
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Let&apos;s show{" "}
-            <MathInline tex={String.raw`3n^2+10n+5=O(n^2)`} className="math-inline !text-white" />.
+            Let&apos;s prove that{" "}
+            <MathInline
+              tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
+              className="math-inline math-white"
+            />
+            .
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             For{" "}
-            <MathInline tex={String.raw`n\ge 1`} className="math-inline !text-white" /> we know:
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}n}\ge 1`}
+              className="math-inline math-white"
+            />{" "}
+            we know:
           </p>
           <MathBlock
-            tex={String.raw`10n\le 10n^2,\qquad 5\le 5n^2`}
+            tex={String.raw`{\color{white}10{\color{#22d3ee}n}\le 10{\color{#22d3ee}n}^2,\qquad 5\le 5{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             So:
           </p>
           <MathBlock
-            tex={String.raw`3n^2+10n+5\le 3n^2+10n^2+5n^2=18n^2`}
+            tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5\le 3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}^2+5{\color{#22d3ee}n}^2=18{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Choose{" "}
-            <MathInline tex={String.raw`c=18`} className="math-inline math-theta" /> and{" "}
-            <MathInline tex={String.raw`n_0=1`} className="math-inline math-theta" />.
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}=18`}
+              className="math-inline math-white"
+            />{" "}
+            and{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}=1`}
+              className="math-inline math-white"
+            />
+            .
             Then for every{" "}
-            <MathInline tex={String.raw`n\ge 1`} className="math-inline !text-white" />,
-            the required inequality holds, so
-            <MathInline tex={String.raw`3n^2+10n+5=O(n^2)`} className="math-inline !text-white" />.
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}n}\ge 1`}
+              className="math-inline math-white"
+            />
+            , the required inequality holds, so{" "}
+            <MathInline
+              tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
+              className="math-inline math-white"
+            />
+            .
           </p>
         </section>
       </section>
