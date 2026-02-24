@@ -19,10 +19,10 @@ const curves: Curve[] = [
 ];
 
 const minN = 1;
-const maxN = 100;
+const maxN = 10;
 
 export default function BigOCombinedStepperPlot() {
-  const [n, setN] = useState(10);
+  const [n, setN] = useState(5);
 
   const model = useMemo(() => {
     const width = 760;
@@ -33,7 +33,7 @@ export default function BigOCombinedStepperPlot() {
     const bottom = 38;
     const plotW = width - left - right;
     const plotH = height - top - bottom;
-    const yMax = 220;
+    const yMax = 20;
 
     const xToSvg = (x: number) => left + (x / maxN) * plotW;
     const yToSvg = (y: number) => {
@@ -73,7 +73,7 @@ export default function BigOCombinedStepperPlot() {
       return { key: curve.key, d, color: curve.color };
     });
 
-    const yTicks = Array.from({ length: Math.floor(yMax / 20) + 1 }, (_, i) => i * 20);
+    const yTicks = Array.from({ length: Math.floor(yMax / 5) + 1 }, (_, i) => i * 5);
 
     return { width, height, left, right, top, bottom, plotH, xToSvg, yToSvg, paths, yTicks };
   }, []);
@@ -146,7 +146,7 @@ export default function BigOCombinedStepperPlot() {
             );
           })}
 
-          {Array.from({ length: 11 }, (_, i) => i * 10).map((tick) => (
+          {Array.from({ length: maxN + 1 }, (_, i) => i).map((tick) => (
             <line
               key={`gx-${tick}`}
               x1={model.xToSvg(tick)}
@@ -185,7 +185,7 @@ export default function BigOCombinedStepperPlot() {
             return <circle key={`dot-${curve.key}`} cx={x} cy={y} r={5} fill="#f472b6" />;
           })}
 
-          {Array.from({ length: 11 }, (_, i) => i * 10).map((tick) => (
+          {Array.from({ length: maxN + 1 }, (_, i) => i).map((tick) => (
             <text
               key={`xt-${tick}`}
               x={model.xToSvg(tick)}
