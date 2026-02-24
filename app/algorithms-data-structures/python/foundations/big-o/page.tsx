@@ -732,10 +732,11 @@ export default function BigOFoundationsPage() {
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
           <MathBlock
-            tex={String.raw`\begin{aligned}
+            tex={String.raw`\require{cancel}
+\begin{aligned}
 {\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
 &= {\color{white}\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}} \\
-&= {\color{white}\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}{{\color{white}\cancel{{\color{#22d3ee}n}}}}} \\
+&= {\color{white}\frac{2\cancel{{\color{#22d3ee}n}}}{\cancel{{\color{#22d3ee}n}}}} \\
 &= {\color{white}2}
 \end{aligned}`}
             className="math-center text-white/90"
