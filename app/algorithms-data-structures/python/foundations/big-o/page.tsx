@@ -618,7 +618,7 @@ export default function BigOFoundationsPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We measure this using{" "}
           <MathInline
-            tex={String.raw`\frac{T(2n)}{T(n)}`}
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}`}
             className="math-inline !text-white"
           />
           .
@@ -639,14 +639,20 @@ export default function BigOFoundationsPage() {
             Suppose the work does not depend on input size{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" />:
           </p>
-          <MathBlock tex={String.raw`T(n)=5`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})=5}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input gives:
           </p>
-          <MathBlock tex={String.raw`T(2n)=5`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=5}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
           <MathBlock
-            tex={String.raw`\frac{T(2n)}{T(n)}=\frac{5}{5}=1`}
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{5}{5}=1}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
@@ -663,38 +669,44 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now suppose the work grows logarithmically:
           </p>
-          <MathBlock tex={String.raw`T(n)=\log_2(n)`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})=\log_2({\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Double the input:
           </p>
-          <MathBlock tex={String.raw`T(2n)=\log_2(2n)`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=\log_2(2{\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Using the log rule:
           </p>
           <MathBlock
-            tex={String.raw`\log_2(2n)=\log_2(2)+\log_2(n)`}
+            tex={String.raw`{\color{white}\log_2(2{\color{#22d3ee}n})=\log_2(2)+\log_2({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
           <MathBlock
-            tex={String.raw`T(2n)=1+\log_2(n)`}
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=1+\log_2({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now compare:
           </p>
           <MathBlock
-            tex={String.raw`\frac{T(2n)}{T(n)}=\frac{\log_2(n)+1}{\log_2(n)}`}
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{\log_2({\color{#22d3ee}n})+1}{\log_2({\color{#22d3ee}n})}}`}
             className="math-center text-white/90"
           />
           <MathBlock
-            tex={String.raw`=1+\frac{1}{\log_2(n)}`}
+            tex={String.raw`{\color{white}=1+\frac{1}{\log_2({\color{#22d3ee}n})}}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             As{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows,{" "}
-            <MathInline tex={String.raw`\frac{1}{\log_2(n)}\to 0`} className="math-inline !text-white" />,
+            <MathInline tex={String.raw`{\color{white}\frac{1}{\log_2({\color{#22d3ee}n})}\to 0}`} className="math-inline !text-white" />,
             so the ratio approaches 1. Doubling input adds only a very small extra
             amount of work. This is why logarithmic growth scales so well.
           </p>
@@ -707,13 +719,22 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now suppose work grows in direct proportion to input size:
           </p>
-          <MathBlock tex={String.raw`T(n)=n`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#22d3ee}n}}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Double the input:
           </p>
-          <MathBlock tex={String.raw`T(2n)=2n`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
-          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n}{n}=2`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}=2}`}
+            className="math-center text-white/90"
+          />
           <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input doubles the work. If the list doubles in size, runtime
@@ -728,38 +749,44 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now suppose the work is:
           </p>
-          <MathBlock tex={String.raw`T(n)=n\log_2(n)`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Double the input:
           </p>
-          <MathBlock tex={String.raw`T(2n)=2n\log_2(2n)`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}\log_2(2{\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Apply the log rule:
           </p>
           <MathBlock
-            tex={String.raw`T(2n)=2n(\log_2(n)+1)`}
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}(\log_2({\color{#22d3ee}n})+1)}`}
             className="math-center text-white/90"
           />
           <MathBlock
-            tex={String.raw`T(2n)=2n\log_2(n)+2n`}
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now compare:
           </p>
           <MathBlock
-            tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n\log_2(n)+2n}{n\log_2(n)}`}
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}}`}
             className="math-center text-white/90"
           />
           <MathBlock
-            tex={String.raw`=2+\frac{2}{\log_2(n)}`}
+            tex={String.raw`{\color{white}=2+\frac{2}{\log_2({\color{#22d3ee}n})}}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             As{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows,{" "}
-            <MathInline tex={String.raw`\frac{2}{\log_2(n)}\to 0`} className="math-inline !text-white" />,
+            <MathInline tex={String.raw`{\color{white}\frac{2}{\log_2({\color{#22d3ee}n})}\to 0}`} className="math-inline !text-white" />,
             so the ratio approaches 2. Doubling input makes work slightly more than
             double. It grows faster than linear time, but much slower than quadratic.
           </p>
@@ -772,14 +799,26 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now suppose:
           </p>
-          <MathBlock tex={String.raw`T(n)=n^2`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#22d3ee}n}^2}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Double the input:
           </p>
-          <MathBlock tex={String.raw`T(2n)=(2n)^2`} className="math-center text-white/90" />
-          <MathBlock tex={String.raw`T(2n)=4n^2`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=(2{\color{#22d3ee}n})^2}`}
+            className="math-center text-white/90"
+          />
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=4{\color{#22d3ee}n}^2}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
-          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{4n^2}{n^2}=4`} className="math-center text-white/90" />
+          <MathBlock
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{4{\color{#22d3ee}n}^2}{{\color{#22d3ee}n}^2}=4}`}
+            className="math-center text-white/90"
+          />
           <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input makes the work about 4 times larger. This is why
@@ -794,13 +833,38 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Using the doubling test:
           </p>
-          <ul className="grid gap-1 list-disc pl-5 text-base leading-7 text-[color:var(--color-muted)]">
-            <li><BigONotation kind="o1" /> - about x1</li>
-            <li><BigONotation kind="ologn" /> - almost x1</li>
-            <li><BigONotation kind="on" /> - x2</li>
-            <li><BigONotation kind="onlogn" /> - slightly more than x2</li>
-            <li><BigONotation kind="on2" /> - x4</li>
-          </ul>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <thead>
+                <tr className="border-b border-white/10 text-white">
+                  <th className="py-2 pr-6">Big-O</th>
+                  <th className="py-2">Doubling effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="py-2 pr-6"><BigONotation kind="o1" /></td>
+                  <td className="py-2">about x1</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2 pr-6"><BigONotation kind="ologn" /></td>
+                  <td className="py-2">almost x1</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2 pr-6"><BigONotation kind="on" /></td>
+                  <td className="py-2">x2</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-2 pr-6"><BigONotation kind="onlogn" /></td>
+                  <td className="py-2">slightly more than x2</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-6"><BigONotation kind="on2" /></td>
+                  <td className="py-2">x4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The doubling test turns abstract symbols into a concrete question:
             how much worse does it get when input size doubles?
