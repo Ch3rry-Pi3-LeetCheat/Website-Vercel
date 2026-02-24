@@ -684,12 +684,7 @@ export default function BigOFoundationsPage() {
             Using the log rule:
           </p>
           <MathBlock
-            tex={String.raw`\begin{aligned}
-{\color{white}\log_2(2{\color{#22d3ee}n})}
-&= {\color{white}\log_2(2)+\log_2({\color{#22d3ee}n})} \\[3pt]
-{\color{white}T(2{\color{#22d3ee}n})}
-&= {\color{white}1+\log_2({\color{#22d3ee}n})}
-\end{aligned}`}
+            tex={String.raw`{\color{white}\log_2(2{\color{#22d3ee}n})=\log_2(2)+\log_2({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -706,6 +701,10 @@ export default function BigOFoundationsPage() {
             />
             .
           </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=1+\log_2({\color{#22d3ee}n})}`}
+            className="math-center text-white/90"
+          />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now compare:
           </p>
