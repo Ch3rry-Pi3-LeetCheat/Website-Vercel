@@ -688,13 +688,38 @@ export default function BigOFoundationsPage() {
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Here,{" "}
+            A helpful way to read a logarithm of the form{" "}
+            <MathInline
+              tex={String.raw`{\color{white}\log_a(b)}`}
+              className="math-inline !text-white"
+            />{" "}
+            is: &quot;what power do we raise{" "}
+            <MathInline
+              tex={String.raw`{\color{white}a}`}
+              className="math-inline !text-white"
+            />{" "}
+            to, to get{" "}
+            <MathInline
+              tex={String.raw`{\color{white}b}`}
+              className="math-inline !text-white"
+            />
+            ?&quot;.
+            In our case,{" "}
+            <MathInline
+              tex={String.raw`{\color{white}\log_2(2)}`}
+              className="math-inline !text-white"
+            />{" "}
+            asks: &quot;what power of 2 gives 2?&quot; Since{" "}
+            <MathInline
+              tex={String.raw`{\color{white}2^1=2}`}
+              className="math-inline !text-white"
+            />
+            , we get{" "}
             <MathInline
               tex={String.raw`{\color{white}\log_2(2)=1}`}
               className="math-inline !text-white"
-            />{" "}
-            because 2 raised to the power 1 gives 2. That is why the next line
-            has{" "}
+            />
+            . Therefore, we obtain{" "}
             <MathInline
               tex={String.raw`{\color{white}1+\log_2({\color{#22d3ee}n})}`}
               className="math-inline !text-white"
