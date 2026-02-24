@@ -41,9 +41,11 @@ export default function BigOFoundationsPage() {
     { id: "intro", label: "Introduction" },
     { id: "intuition", label: "Core intuition" },
     { id: "notation", label: "What Big-O means" },
-    { id: "notation-example", label: "Concrete example", level: 2 },
-    { id: "notation-compare", label: "Compare methods", level: 2 },
-    { id: "notation-formal", label: "Compact formal form", level: 2 },
+    { id: "notation-list", label: "Shopping list table", level: 2 },
+    { id: "notation-o1", label: "O(1) direct lookup", level: 2 },
+    { id: "notation-on", label: "O(n) linear search", level: 2 },
+    { id: "notation-ologn", label: "O(log n) preview", level: 2 },
+    { id: "notation-formal", label: "Optional formal note", level: 2 },
     { id: "what-not", label: "What Big-O is not" },
     { id: "equation-reading", label: "How to read equations" },
     { id: "math-primer", label: "Mini math primer" },
@@ -190,114 +192,160 @@ export default function BigOFoundationsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           What Big-O means
         </h2>
-        <section id="notation-example" className="grid gap-4">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Let&apos;s use one concrete shopping-list example and compare different tasks.
+          This makes it easier to see why some operations are cheap and others are expensive.
+        </p>
+
+        <section id="notation-list" className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Concrete example
+            Shopping list table
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Imagine we have a shopping list, and the task is to find one item,
-            like apples.
+            We&apos;ll treat this as an indexed list. The order is intentionally not alphabetical.
           </p>
+          <div className="glass-panel rounded-2xl p-4">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
+                <thead>
+                  <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em]">
+                    <th className="w-1/4 py-2">Index</th>
+                    <th className="w-1/2 py-2">Item</th>
+                    <th className="w-1/4 py-2">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">1</td>
+                    <td className="py-2">Bread</td>
+                    <td className="py-2">2</td>
+                  </tr>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">2</td>
+                    <td className="py-2">Pasta</td>
+                    <td className="py-2">1</td>
+                  </tr>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">3</td>
+                    <td className="py-2">Tomatoes</td>
+                    <td className="py-2">6</td>
+                  </tr>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                  </tr>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">10</td>
+                    <td className="py-2">Apples</td>
+                    <td className="py-2">3</td>
+                  </tr>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 text-white">100</td>
+                    <td className="py-2">Bananas</td>
+                    <td className="py-2">5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="notation-o1" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            O(1) direct lookup
+          </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            If the list has 10 items, we may need up to 10 checks. If the list has
-            100 items, we may need up to 100 checks. Same task, but much more work
-            as the input grows.
+            Task: &quot;What is the item at position 10?&quot; or &quot;What is the item at position 100?&quot;
           </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="w-48 py-2 text-white">-&gt; jump to index 10</td>
+                  <td className="py-2">read row 10 directly: Apples, quantity 3</td>
+                </tr>
+                <tr>
+                  <td className="w-48 py-2 text-white">-&gt; jump to index 100</td>
+                  <td className="py-2">read row 100 directly: Bananas, quantity 5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We usually call input size{" "}
-            <MathInline tex={String.raw`n`} className="math-inline math-nvar" />.
-            In this shopping-list example, if the list has 10 items then input size
-            is 10; if the list has 100 items then input size is 100.
-            Then we call the total amount of work{" "}
-            <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />.
-            In plain language, one unit of &quot;work&quot; here is: look at one item on
-            the list and ask, &quot;Is this apples?&quot;
+            You do not scan through all earlier rows. You jump straight to the index,
+            so both lookups are roughly constant-time work:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})=\text{total work when input size is }{\color{#22d3ee}n}}`}
+            tex={String.raw`T_{\text{lookup}}(10)\approx 1,\qquad T_{\text{lookup}}(100)\approx 1,\qquad T(n)=O(1)`}
+            className="math-center text-white/90"
+          />
+        </section>
+
+        <section id="notation-on" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            O(n) linear search
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Different task: &quot;Find apples&quot; or &quot;Find bananas&quot; by name.
+            Now you start at the top and check items one by one until you find the target.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="w-60 py-2 text-white">search Apples</td>
+                  <td className="py-2">check 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 10 (found)</td>
+                </tr>
+                <tr>
+                  <td className="w-60 py-2 text-white">search Bananas</td>
+                  <td className="py-2">check 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 100 (found)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <MathBlock
+            tex={String.raw`T_{\text{search}}(10)\approx 10,\qquad T_{\text{search}}(100)\approx 100,\qquad T(n)=O(n)`}
+            className="math-center text-white/90"
+          />
+        </section>
+
+        <section id="notation-ologn" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            O(log n) preview
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For search tasks, linear scan is not your only option. On sorted data,
+            binary search can find a target with far fewer checks:
+          </p>
+          <MathBlock
+            tex={String.raw`T_{\text{binary}}(10)\approx 4,\qquad T_{\text{binary}}(100)\approx 7,\qquad T(n)=O(\log n)`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            For the shopping-list scan, work grows roughly one-for-one with n:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 10,\qquad T({\color{#22d3ee}100})\approx 100}`}
-            className="math-center text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            That is why we summarize this as{" "}
-            <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />.
+            We&apos;ll cover binary search itself in a dedicated section later. For now,
+            the point is: same broad goal (search), different algorithm, very different scaling.
           </p>
         </section>
 
-        <section id="notation-compare" className="grid gap-4">
+        <section id="notation-formal" className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Compare methods
+            Optional formal note
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Now imagine a different method for the same kind of task: if data is
-            sorted, we can repeatedly cut the search range in half (binary search).
-            That gives much slower growth in work:
+            This line is not a special proof you must memorize. It is just the compact,
+            textbook way to say exactly what we already described in plain language.
+            You can skip it for now and come back later.
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 4,\qquad T({\color{#22d3ee}100})\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}:\ T({\color{#22d3ee}n})\le {\color{#a78bfa}c}\cdot f({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This is the main reason Big-O is discussed: it helps you compare
-            different algorithms for the same goal and choose the one that scales
-            better as data grows.
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            In general,{" "}
-            <MathInline
-              tex={String.raw`{\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})`}
-              className="math-inline math-white"
-            />{" "}
-            means:
-            after input is big enough, total work grows no faster than a constant
-            multiple of{" "}
-            <MathInline
-              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />.
-          </p>
-        </section>
-
-        <section id="notation-formal" className="grid gap-4">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Compact formal form
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            If you see the compact formal version, it is this same idea written in
-            short math form:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}: {\color{white}T({\color{#22d3ee}n})}\le {\color{#a78bfa}c}\cdot {\color{white}f({\color{#22d3ee}n})}}`}
-            className="math-center text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Reading that line in plain language:{" "}
-            <MathInline tex={String.raw`\exists`} className="math-inline !text-white" />{" "}
-            means
-            &quot;there exists&quot; (at least one value works),{" "}
-            <MathInline tex={String.raw`\forall`} className="math-inline !text-white" />{" "}
-            means
-            &quot;for every&quot; value in a range, and{" "}
-            <MathInline tex={String.raw`:`} className="math-inline !text-white" />{" "}
-            means
-            &quot;such that the next condition must hold.&quot;
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Key takeaway: Big-O is about growth shape and decision-making, so you
-            can choose algorithms that keep working well when your data gets much bigger.
-          </p>
         </section>
       </section>
 
