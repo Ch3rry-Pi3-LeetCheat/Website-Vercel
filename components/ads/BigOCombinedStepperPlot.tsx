@@ -180,8 +180,10 @@ export default function BigOCombinedStepperPlot() {
           ))}
 
           {curves.map((curve) => {
+            const rawY = curve.fn(n);
+            if (rawY >= 20) return null;
             const x = model.xToSvg(n);
-            const y = model.yToSvg(curve.fn(n));
+            const y = model.yToSvg(rawY);
             return <circle key={`dot-${curve.key}`} cx={x} cy={y} r={5} fill="#f472b6" />;
           })}
 
