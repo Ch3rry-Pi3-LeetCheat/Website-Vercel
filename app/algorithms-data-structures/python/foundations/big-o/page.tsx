@@ -686,7 +686,7 @@ export default function BigOFoundationsPage() {
           <MathBlock
             tex={String.raw`\begin{aligned}
 {\color{white}\log_2(2{\color{#22d3ee}n})}
-&= {\color{white}\log_2(2)+\log_2({\color{#22d3ee}n})} \\
+&= {\color{white}\log_2(2)+\log_2({\color{#22d3ee}n})} \\[3pt]
 {\color{white}T(2{\color{#22d3ee}n})}
 &= {\color{white}1+\log_2({\color{#22d3ee}n})}
 \end{aligned}`}
@@ -712,8 +712,8 @@ export default function BigOFoundationsPage() {
           <MathBlock
             tex={String.raw`\begin{aligned}
 {\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
-&= {\color{white}\frac{\log_2({\color{#22d3ee}n})+1}{\log_2({\color{#22d3ee}n})}} \\
-&= {\color{white}\frac{\log_2({\color{#22d3ee}n})}{\log_2({\color{#22d3ee}n})}+\frac{1}{\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}\frac{\log_2({\color{#22d3ee}n})+1}{\log_2({\color{#22d3ee}n})}} \\[3pt]
+&= {\color{white}\frac{\log_2({\color{#22d3ee}n})}{\log_2({\color{#22d3ee}n})}+\frac{1}{\log_2({\color{#22d3ee}n})}} \\[3pt]
 &= {\color{white}1+\frac{1}{\log_2({\color{#22d3ee}n})}}
 \end{aligned}`}
             className="math-center text-white/90"
@@ -751,8 +751,8 @@ export default function BigOFoundationsPage() {
             tex={String.raw`\require{cancel}
 \begin{aligned}
 {\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
-&= {\color{white}\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}} \\
-&= {\color{white}\frac{2\cancel{{\color{#22d3ee}n}}}{\cancel{{\color{#22d3ee}n}}}} \\
+&= {\color{white}\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}} \\[3pt]
+&= {\color{white}\frac{2\cancel{{\color{#22d3ee}n}}}{\cancel{{\color{#22d3ee}n}}}} \\[3pt]
 &= {\color{white}2}
 \end{aligned}`}
             className="math-center text-white/90"
@@ -788,7 +788,7 @@ export default function BigOFoundationsPage() {
           <MathBlock
             tex={String.raw`\begin{aligned}
 {\color{white}T(2{\color{#22d3ee}n})}
-&= {\color{white}2{\color{#22d3ee}n}(\log_2({\color{#22d3ee}n})+1)} \\
+&= {\color{white}2{\color{#22d3ee}n}(\log_2({\color{#22d3ee}n})+1)} \\[3pt]
 &= {\color{white}2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}
 \end{aligned}`}
             className="math-center text-white/90"
@@ -800,9 +800,9 @@ export default function BigOFoundationsPage() {
             tex={String.raw`\require{cancel}
 \begin{aligned}
 {\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
-&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\
-&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}+\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\
-&= {\color{white}\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}+\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\[3pt]
+&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}+\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\[3pt]
+&= {\color{white}\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}+\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}} \\[3pt]
 &= {\color{white}2+\frac{2}{\log_2({\color{#22d3ee}n})}}
 \end{aligned}`}
             className="math-center text-white/90"
