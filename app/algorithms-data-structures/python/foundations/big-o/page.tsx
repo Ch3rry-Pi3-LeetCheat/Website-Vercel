@@ -1,40 +1,12 @@
 import ArticleLayout from "@/components/ArticleLayout";
 import BigONotation from "@/components/ads/BigONotation";
+import BigOCombinedStepperPlot from "@/components/ads/BigOCombinedStepperPlot";
+import ComplexityStaticPlot from "@/components/ads/ComplexityStaticPlot";
 import ComplexityWalkthroughPlot from "@/components/ads/ComplexityWalkthroughPlot";
-import CodeBlock from "@/components/CodeBlock";
 import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
 import { adsPythonTopics } from "@/lib/adsTopics";
-
-const linearSearchCode = `nums = [52, 68, 75, 90, 110, 130, 145, 160]
-target = 145
-
-checks = 0
-found_idx = -1
-
-for i, value in enumerate(nums):
-    checks += 1
-    if value == target:
-        found_idx = i
-        break
-
-print(found_idx, checks)`;
-
-const linearSearchOutput = `6 7`;
-
-const hashLookupCode = `index_by_value = {
-    52: 0, 68: 1, 75: 2, 90: 3,
-    110: 4, 130: 5, 145: 6, 160: 7
-}
-
-target = 145
-idx = index_by_value.get(target, -1)
-
-print(idx)`;
-
-const hashLookupOutput = `6`;
 
 export default function BigOFoundationsPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
@@ -57,15 +29,15 @@ export default function BigOFoundationsPage() {
     { id: "math-primer-onlogn", label: "O(n log n) doubling test", level: 2 },
     { id: "math-primer-on2", label: "O(n^2) doubling test", level: 2 },
     { id: "math-primer-summary", label: "Doubling summary", level: 2 },
+    { id: "math-primer-all-curves", label: "All curves interactive", level: 2 },
     { id: "o1", label: "O(1) constant" },
     { id: "ologn", label: "O(log n) logarithmic" },
     { id: "on", label: "O(n) linear" },
     { id: "onlogn", label: "O(n log n) linearithmic" },
     { id: "on2", label: "O(n^2) quadratic" },
-    { id: "space", label: "Space complexity" },
-    { id: "worked", label: "Worked code examples" },
     { id: "summary", label: "Summary" },
-    { id: "summary-takeaways", label: "Key takeaways", level: 2 },
+    { id: "summary-what-is", label: "What Big-O is", level: 2 },
+    { id: "summary-what-is-not", label: "What Big-O is not", level: 2 },
     { id: "summary-do-instead", label: "What to do instead", level: 2 },
     { id: "next", label: "What's next", level: 2 },
   ];
@@ -698,6 +670,7 @@ export default function BigOFoundationsPage() {
             Doubling the input does not increase the work at all. Whether the input
             is 10 or 10 million, runtime stays the same. That is constant time.
           </p>
+          <ComplexityStaticPlot kind="o1" notation={<BigONotation kind="o1" />} />
         </section>
 
         <section id="math-primer-ologn" className="grid gap-2">
@@ -785,6 +758,7 @@ export default function BigOFoundationsPage() {
             so the ratio approaches 1. Doubling input adds only a very small extra
             amount of work. This is why logarithmic growth scales so well.
           </p>
+          <ComplexityStaticPlot kind="ologn" notation={<BigONotation kind="ologn" />} />
         </section>
 
         <section id="math-primer-on" className="grid gap-2">
@@ -821,6 +795,7 @@ export default function BigOFoundationsPage() {
             Doubling the input doubles the work. If the list doubles in size, runtime
             roughly doubles as well. That is linear growth.
           </p>
+          <ComplexityStaticPlot kind="on" notation={<BigONotation kind="on" />} />
         </section>
 
         <section id="math-primer-onlogn" className="grid gap-2">
@@ -879,6 +854,7 @@ export default function BigOFoundationsPage() {
             so the ratio approaches 2. Doubling input makes work slightly more than
             double. It grows faster than linear time, but much slower than quadratic.
           </p>
+          <ComplexityStaticPlot kind="onlogn" notation={<BigONotation kind="onlogn" />} />
         </section>
 
         <section id="math-primer-on2" className="grid gap-2">
@@ -919,6 +895,7 @@ export default function BigOFoundationsPage() {
             Doubling the input makes the work about 4 times larger. This is why
             quadratic algorithms become slow quickly as data grows.
           </p>
+          <ComplexityStaticPlot kind="on2" notation={<BigONotation kind="on2" />} />
         </section>
 
         <section id="math-primer-summary" className="grid gap-3">
@@ -964,6 +941,15 @@ export default function BigOFoundationsPage() {
             The doubling test turns abstract symbols into a concrete question:
             how much worse does it get when input size doubles?
           </p>
+          <section id="math-primer-all-curves" className="grid gap-2">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              All curves on one chart (interactive)
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Step forward/backward in n and watch a pink marker move along each curve.
+            </p>
+            <BigOCombinedStepperPlot />
+          </section>
         </section>
       </section>
 
@@ -1071,65 +1057,22 @@ export default function BigOFoundationsPage() {
         />
       </section>
 
-      <section id="space" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Space complexity
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Space complexity is extra memory used beyond the input itself. Time can improve while space worsens,
-          so treat them as a pair when evaluating trade-offs.
-        </p>
-        <MathBlock
-          tex={String.raw`\text{copy array of size }n \Rightarrow S(n)=n\Rightarrow O(n),\qquad \text{in-place swap}\Rightarrow O(1)`}
-          className="math-center math-lg text-white/90"
-        />
-      </section>
-
-      <section id="worked" className="scroll-mt-28 grid gap-6">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Worked code examples
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Same task, different data structure choice: finding one value in housing data.
-        </p>
-
-        <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Example A: linear scan over a list
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Worst-case time is <BigONotation kind="on" /> because the loop may inspect each element once.
-            Extra space is <BigONotation kind="o1" />.
-          </p>
-          <CodeBlock code={linearSearchCode} title="Python" />
-          <div className="mt-2">
-            <OutputBlock output={linearSearchOutput} />
-          </div>
-        </section>
-
-        <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Example B: dictionary lookup
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Querying is usually <BigONotation kind="o1" /> average-case, but building the dictionary is{" "}
-            <BigONotation kind="on" />. This is the common trade-off: preprocessing for faster repeated queries.
-          </p>
-          <CodeBlock code={hashLookupCode} title="Python" />
-          <div className="mt-2">
-            <OutputBlock output={hashLookupOutput} />
-          </div>
-        </section>
-      </section>
-
       <section id="summary" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Summary
         </h2>
-        <section id="summary-takeaways" className="grid gap-3">
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This page was built to give you both intuition and practical judgment:
+          how growth works, what the formal definition is saying, and how to use
+          Big-O without overclaiming what it can do.
+        </p>
+        <section id="summary-what-is" className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Key takeaways
+            What Big-O is
           </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So, what <span className="text-emerald-400">DID</span> we establish?
+          </p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
               <tbody>
@@ -1148,6 +1091,37 @@ export default function BigOFoundationsPage() {
                 <tr>
                   <td className="w-12 py-2 text-center text-lg">✅</td>
                   <td className="py-2">When analyzing code, define n clearly and track both time and extra space.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="summary-what-is-not" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            What Big-O is not
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Just as importantly, what should you <span className="text-rose-400 font-semibold">NOT</span>{" "}
+            infer from Big-O alone?
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">Big-O is not exact runtime in milliseconds.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">It is not a promise that one method wins for every tiny input.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">It is not complete analysis without space complexity and constant-factor realities.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="py-2">It is not always the full behavior story unless you also state best/average/worst case.</td>
                 </tr>
               </tbody>
             </table>
