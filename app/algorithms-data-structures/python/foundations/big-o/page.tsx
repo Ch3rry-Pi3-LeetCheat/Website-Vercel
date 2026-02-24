@@ -45,7 +45,6 @@ export default function BigOFoundationsPage() {
     { id: "notation-o1", label: "O(1) direct lookup", level: 2 },
     { id: "notation-on", label: "O(n) linear search", level: 2 },
     { id: "notation-ologn", label: "O(log n) preview", level: 2 },
-    { id: "notation-formal", label: "Optional formal note", level: 2 },
     { id: "what-not", label: "What Big-O is not" },
     { id: "equation-reading", label: "How to read equations" },
     { id: "math-primer", label: "Mini math primer" },
@@ -250,6 +249,11 @@ export default function BigOFoundationsPage() {
                     <td className="py-2">Bananas</td>
                     <td className="py-2">5</td>
                   </tr>
+                  <tr>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                    <td className="py-2 text-white/70">&#8942;</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -263,26 +267,40 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Task: &quot;What is the item at position 10?&quot; or &quot;What is the item at position 100?&quot;
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-              <tbody>
-                <tr className="border-b border-white/10">
-                  <td className="w-48 py-2 text-white">-&gt; jump to index 10</td>
-                  <td className="py-2">read row 10 directly: Apples, quantity 3</td>
-                </tr>
-                <tr>
-                  <td className="w-48 py-2 text-white">-&gt; jump to index 100</td>
-                  <td className="py-2">read row 100 directly: Bananas, quantity 5</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="glass-panel rounded-2xl p-4">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
+                <thead>
+                  <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em]">
+                    <th className="w-1/5 py-2">Path</th>
+                    <th className="w-1/5 py-2">Index</th>
+                    <th className="w-2/5 py-2">Item</th>
+                    <th className="w-1/5 py-2">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">-&gt; jump</td>
+                    <td className="py-2 text-white">10</td>
+                    <td className="py-2">Apples</td>
+                    <td className="py-2">3</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 text-white">-&gt; jump</td>
+                    <td className="py-2 text-white">100</td>
+                    <td className="py-2">Bananas</td>
+                    <td className="py-2">5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             You do not scan through all earlier rows. You jump straight to the index,
             so both lookups are roughly constant-time work:
           </p>
           <MathBlock
-            tex={String.raw`T_{\text{lookup}}(10)\approx 1,\qquad T_{\text{lookup}}(100)\approx 1,\qquad T(n)=O(1)`}
+            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 1,\qquad T({\color{#22d3ee}100})\approx 1,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(1)}`}
             className="math-center text-white/90"
           />
         </section>
@@ -295,22 +313,36 @@ export default function BigOFoundationsPage() {
             Different task: &quot;Find apples&quot; or &quot;Find bananas&quot; by name.
             Now you start at the top and check items one by one until you find the target.
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-              <tbody>
-                <tr className="border-b border-white/10">
-                  <td className="w-60 py-2 text-white">search Apples</td>
-                  <td className="py-2">check 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 10 (found)</td>
-                </tr>
-                <tr>
-                  <td className="w-60 py-2 text-white">search Bananas</td>
-                  <td className="py-2">check 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 100 (found)</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="glass-panel rounded-2xl p-4">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-center text-sm text-[color:var(--color-muted)]">
+                <thead>
+                  <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em]">
+                    <th className="w-2/5 py-2">Path</th>
+                    <th className="w-1/5 py-2">Found At Index</th>
+                    <th className="w-1/5 py-2">Item</th>
+                    <th className="w-1/5 py-2">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-white/10">
+                    <td className="py-2 text-white">-&gt; 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 10</td>
+                    <td className="py-2 text-white">10</td>
+                    <td className="py-2">Apples</td>
+                    <td className="py-2">3</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 text-white">-&gt; 1 -&gt; 2 -&gt; 3 -&gt; ... -&gt; 100</td>
+                    <td className="py-2 text-white">100</td>
+                    <td className="py-2">Bananas</td>
+                    <td className="py-2">5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <MathBlock
-            tex={String.raw`T_{\text{search}}(10)\approx 10,\qquad T_{\text{search}}(100)\approx 100,\qquad T(n)=O(n)`}
+            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 10,\qquad T({\color{#22d3ee}100})\approx 100,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
         </section>
@@ -324,28 +356,17 @@ export default function BigOFoundationsPage() {
             binary search can find a target with far fewer checks:
           </p>
           <MathBlock
-            tex={String.raw`T_{\text{binary}}(10)\approx 4,\qquad T_{\text{binary}}(100)\approx 7,\qquad T(n)=O(\log n)`}
+            tex={String.raw`{\color{white}T({\color{#22d3ee}10})\approx 4,\qquad T({\color{#22d3ee}100})\approx 7,\qquad T({\color{#22d3ee}n})={\color{#f472b6}O}(\log {\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We&apos;ll cover binary search itself in a dedicated section later. For now,
             the point is: same broad goal (search), different algorithm, very different scaling.
           </p>
-        </section>
-
-        <section id="notation-formal" className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Optional formal note
-          </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This line is not a special proof you must memorize. It is just the compact,
-            textbook way to say exactly what we already described in plain language.
-            You can skip it for now and come back later.
+            That&apos;s the practical reason Big-O matters: it helps you choose
+            approaches that still feel fast when your input gets much larger.
           </p>
-          <MathBlock
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}:\ T({\color{#22d3ee}n})\le {\color{#a78bfa}c}\cdot f({\color{#22d3ee}n})}`}
-            className="math-center text-white/90"
-          />
         </section>
       </section>
 
