@@ -379,56 +379,69 @@ export default function BigOFoundationsPage() {
           Formal definition
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In this section, we look at what{" "}
-          <MathInline
-            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}`}
-            className="math-inline math-white"
-          />{" "}
-          means in a more formal, maths-heavy way.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          If you&apos;re mainly building intuition, you can skim this once and come back
-          later. If you want to justify a complexity claim properly, this is the language
-          you&apos;ll use.
+          This is the same Big-O idea you already understand, just written in
+          precise math language.
         </p>
 
         <section id="formal-plain" className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             Plain English
           </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Start with the short version:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}`}
+            className="math-center text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This does <span className="text-white">not</span> mean{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            is exactly equal to{" "}
+            <MathInline
+              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />
+            . It means something looser and more practical:
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            As{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" />{" "}
+            gets large,{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            does not grow faster than{" "}
+            <MathInline
+              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            up to a constant multiplier.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The compact formal line is:
+          </p>
           <MathBlock
             tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})\iff \exists {\color{#a78bfa}c}>0,\exists {\color{#a78bfa}n_{\color{white}0}},\forall {\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}:\ T({\color{#22d3ee}n})\le {\color{#a78bfa}c}\cdot f({\color{#22d3ee}n})}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            In plain words: we can say{" "}
-            <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />{" "}
-            is &quot;Big-O of{" "}
-            <MathInline
-              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />
-            &quot; if there is some constant multiplier{" "}
-            <MathInline
-              tex={String.raw`{\color{#a78bfa}c}`}
-              className="math-inline math-white"
-            />{" "}
+            Read slowly, in plain words: there exists some positive constant{" "}
+            <MathInline tex={String.raw`{\color{#a78bfa}c}`} className="math-inline math-white" />,
             and some starting point{" "}
             <MathInline
               tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
               className="math-inline math-white"
             />
-            , so that from that point onward{" "}
+            , such that for every{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}`} className="math-inline math-white" />,
+            we have{" "}
             <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />{" "}
-            stays at or below{" "}
-            <MathInline
-              tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})\le {\color{#a78bfa}c}\cdot f({\color{#22d3ee}n})}`}
               className="math-inline math-white"
             />
             .
@@ -439,32 +452,37 @@ export default function BigOFoundationsPage() {
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             Two key ideas
           </h3>
-          <div className="grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-            <p>
-              1) We only care about <span className="text-white">large enough n</span>.
-              That is why the definition uses{" "}
-              <MathInline
-                tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
-                className="math-inline math-white"
-              />
-              .
-            </p>
-            <p>
-              2) We allow a <span className="text-white">constant multiplier</span>. That is why
-              the definition uses{" "}
-              <MathInline
-                tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
-                className="math-inline math-white"
-              />{" "}
-              and
-              not just{" "}
-              <MathInline
-                tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
-                className="math-inline math-white"
-              />
-              .
-            </p>
-          </div>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">1) We focus on large inputs.</span>{" "}
+            We are not trying to model tiny values forever. We care about what
+            happens eventually, when data gets big.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            That is why the definition uses{" "}
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
+              className="math-inline math-white"
+            />
+            .
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            <span className="text-white font-semibold">2) We allow constant scaling.</span>{" "}
+            If one function is just a constant multiple of another, we treat them
+            as the same growth family for Big-O purposes.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            That is why the definition uses{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            instead of requiring{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})\le f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />
+            .
+          </p>
         </section>
 
         <section id="formal-example" className="grid gap-3">
@@ -472,34 +490,45 @@ export default function BigOFoundationsPage() {
             Worked example
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Let&apos;s prove that{" "}
+            Let&apos;s do this gently and step by step.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Goal: show that{" "}
             <MathInline
               tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
               className="math-inline math-white"
             />
             .
           </p>
+
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            For{" "}
+            Step 1: for{" "}
             <MathInline
               tex={String.raw`{\color{#22d3ee}n}\ge 1`}
               className="math-inline math-white"
-            />{" "}
-            we know:
+            />
+            , the smaller terms can be bounded by{" "}
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}n}^2`}
+              className="math-inline math-white"
+            />
+            :
           </p>
           <MathBlock
             tex={String.raw`{\color{white}10{\color{#22d3ee}n}\le 10{\color{#22d3ee}n}^2,\qquad 5\le 5{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
+
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            So:
+            Step 2: replace those terms:
           </p>
           <MathBlock
             tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5\le 3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}^2+5{\color{#22d3ee}n}^2=18{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
+
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Choose{" "}
+            Step 3: choose constants{" "}
             <MathInline
               tex={String.raw`{\color{#a78bfa}c}=18`}
               className="math-inline math-white"
@@ -509,13 +538,12 @@ export default function BigOFoundationsPage() {
               tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}=1`}
               className="math-inline math-white"
             />
-            .
-            Then for every{" "}
+            . Then for every{" "}
             <MathInline
               tex={String.raw`{\color{#22d3ee}n}\ge 1`}
               className="math-inline math-white"
             />
-            , the required inequality holds, so{" "}
+            , the condition holds, so{" "}
             <MathInline
               tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
               className="math-inline math-white"
