@@ -57,8 +57,6 @@ export default function BigOFoundationsPage() {
     { id: "math-primer-onlogn", label: "O(n log n) doubling test", level: 2 },
     { id: "math-primer-on2", label: "O(n^2) doubling test", level: 2 },
     { id: "math-primer-summary", label: "Doubling summary", level: 2 },
-    { id: "workflow", label: "Code analysis workflow" },
-    { id: "growth-table", label: "Complexity reference table" },
     { id: "o1", label: "O(1) constant" },
     { id: "ologn", label: "O(log n) logarithmic" },
     { id: "on", label: "O(n) linear" },
@@ -67,6 +65,8 @@ export default function BigOFoundationsPage() {
     { id: "space", label: "Space complexity" },
     { id: "worked", label: "Worked code examples" },
     { id: "summary", label: "Summary" },
+    { id: "summary-takeaways", label: "Key takeaways", level: 2 },
+    { id: "summary-do-instead", label: "What to do instead", level: 2 },
     { id: "next", label: "What's next", level: 2 },
   ];
 
@@ -447,7 +447,11 @@ export default function BigOFoundationsPage() {
             a positive constant{" "}
             <MathInline tex={String.raw`{\color{#a78bfa}c}`} className="math-inline math-white" />{" "}
             with{" "}
-            <MathInline tex={String.raw`{\color{#a78bfa}c>0}`} className="math-inline math-white" />, and a
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}{\color{white}>0}`}
+              className="math-inline math-white"
+            />
+            , and a
             starting input size{" "}
             <MathInline
               tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
@@ -456,7 +460,7 @@ export default function BigOFoundationsPage() {
             , such that for every{" "}
             <MathInline tex={String.raw`{\color{white}\forall}`} className="math-inline math-white" />{" "}
             input size{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}n`} className="math-inline math-white" />{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" />{" "}
             with{" "}
             <MathInline tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`} className="math-inline math-white" />,
             the work{" "}
@@ -495,37 +499,43 @@ export default function BigOFoundationsPage() {
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             Two key ideas
           </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-white font-semibold">1) We focus on large inputs.</span>{" "}
-            We are not trying to model tiny values forever. We care about what
-            happens eventually, when data gets big.
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            That is why the definition uses{" "}
-            <MathInline
-              tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
-              className="math-inline math-white"
-            />
-            .
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            <span className="text-white font-semibold">2) We allow constant scaling.</span>{" "}
-            If one function is just a constant multiple of another, we treat them
-            as the same growth family for Big-O purposes.
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            That is why the definition uses{" "}
-            <MathInline
-              tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />{" "}
-            instead of requiring{" "}
-            <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})\le f({\color{#22d3ee}n})}`}
-              className="math-inline math-white"
-            />
-            .
-          </p>
+          <ol className="ml-6 list-decimal pl-6 grid gap-6 text-base leading-7 text-[color:var(--color-muted)]">
+            <li className="grid gap-2">
+              <p>
+                <span className="text-white font-semibold">We focus on large inputs.</span>{" "}
+                We are not trying to model tiny values forever. We care about what
+                happens eventually, when data gets big.
+              </p>
+              <p>
+                That is why the definition uses{" "}
+                <MathInline
+                  tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
+                  className="math-inline math-white"
+                />
+                .
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <p>
+                <span className="text-white font-semibold">We allow constant scaling.</span>{" "}
+                If one function is just a constant multiple of another, we treat them
+                as the same growth family for Big-O purposes.
+              </p>
+              <p>
+                That is why the definition uses{" "}
+                <MathInline
+                  tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+                  className="math-inline math-white"
+                />{" "}
+                instead of requiring{" "}
+                <MathInline
+                  tex={String.raw`{\color{white}T({\color{#22d3ee}n})\le f({\color{#22d3ee}n})}`}
+                  className="math-inline math-white"
+                />
+                .
+              </p>
+            </li>
+          </ol>
         </section>
 
         <section id="formal-example" className="grid gap-3">
@@ -618,27 +628,6 @@ export default function BigOFoundationsPage() {
               <tr>
                 <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">It is not always the full behavior story unless you also state best/average/worst case.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          So what should you do instead?
-        </p>
-        <div className="ml-4 overflow-x-auto">
-          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-            <tbody>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">➡️</td>
-                <td className="py-2">Use Big-O to compare scaling trends as n grows.</td>
-              </tr>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">➡️</td>
-                <td className="py-2">Pair asymptotic analysis with real constraints: constants, memory, and data distribution.</td>
-              </tr>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">➡️</td>
-                <td className="py-2">State assumptions clearly: input model, case type, and operation cost model.</td>
               </tr>
             </tbody>
           </table>
@@ -939,28 +928,28 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Using the doubling test:
           </p>
-          <div className="overflow-x-auto">
+          <div className="ml-4 overflow-x-auto">
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
               <thead>
-                <tr className="border-b border-white/10 text-white">
+                <tr className="text-white">
                   <th className="py-2 pr-6">Big-O</th>
                   <th className="py-2">Doubling effect</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="py-2 pr-6"><BigONotation kind="o1" /></td>
                   <td className="py-2">about x1</td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="py-2 pr-6"><BigONotation kind="ologn" /></td>
                   <td className="py-2">almost x1</td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="py-2 pr-6"><BigONotation kind="on" /></td>
                   <td className="py-2">x2</td>
                 </tr>
-                <tr className="border-b border-white/10">
+                <tr>
                   <td className="py-2 pr-6"><BigONotation kind="onlogn" /></td>
                   <td className="py-2">slightly more than x2</td>
                 </tr>
@@ -976,69 +965,6 @@ export default function BigOFoundationsPage() {
             how much worse does it get when input size doubles?
           </p>
         </section>
-      </section>
-
-      <section id="workflow" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Code analysis workflow
-        </h2>
-        <ol className="grid gap-2 list-decimal pl-5 text-sm leading-6 text-[color:var(--color-muted)]">
-          <li>Choose the input size variable (what exactly is n?).</li>
-          <li>Count how many times each block can run as n grows.</li>
-          <li>Add costs for sequential blocks, multiply costs for nested loops.</li>
-          <li>Keep the dominant term for large n (drop constants and lower-order terms).</li>
-          <li>Report time and extra space together.</li>
-        </ol>
-      </section>
-
-      <section id="growth-table" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Complexity reference table
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
-            <thead>
-              <tr className="text-white">
-                <th className="py-2 pr-6 text-base font-semibold">Complexity</th>
-                <th className="py-2 pr-6 text-base font-semibold">If input doubles...</th>
-                <th className="py-2 pr-6 text-base font-semibold">Mental picture</th>
-                <th className="py-2 text-base font-semibold">Typical example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="py-2 pr-6"><BigONotation kind="o1" /></td>
-                <td className="py-2 pr-6">Work stays about the same.</td>
-                <td className="py-2 pr-6">Direct access by address/key.</td>
-                <td className="py-2">Array index, hash lookup (average).</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-6"><BigONotation kind="ologn" /></td>
-                <td className="py-2 pr-6">Only a small extra amount.</td>
-                <td className="py-2 pr-6">Repeatedly cut problem size.</td>
-                <td className="py-2">Binary search.</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-6"><BigONotation kind="on" /></td>
-                <td className="py-2 pr-6">Work roughly doubles.</td>
-                <td className="py-2 pr-6">One full pass through items.</td>
-                <td className="py-2">Linear scan, count frequencies.</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-6"><BigONotation kind="onlogn" /></td>
-                <td className="py-2 pr-6">A bit more than 2x.</td>
-                <td className="py-2 pr-6">Process all items across log levels.</td>
-                <td className="py-2">Merge sort, heap sort.</td>
-              </tr>
-              <tr>
-                <td className="py-2 pr-6"><BigONotation kind="on2" /></td>
-                <td className="py-2 pr-6">Trends toward 4x.</td>
-                <td className="py-2 pr-6">Compare each item with many others.</td>
-                <td className="py-2">Nested loop pair checks.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </section>
 
       <section id="o1" className="scroll-mt-28 grid gap-4">
@@ -1200,12 +1126,56 @@ export default function BigOFoundationsPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Summary
         </h2>
-        <ul className="grid gap-2 text-sm text-[color:var(--color-muted)]">
-          <li>Big-O is a growth model for large inputs, not a stopwatch number.</li>
-          <li>The doubling question builds fast intuition: what happens when n becomes 2n?</li>
-          <li>Read equations as model, evaluate, then compare growth.</li>
-          <li>When analyzing code, define n clearly and track both time and extra space.</li>
-        </ul>
+        <section id="summary-takeaways" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Key takeaways
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">Big-O is a growth model for large inputs, not a stopwatch number.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">The doubling question builds fast intuition: what happens when n becomes 2n?</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">Read equations as model, evaluate, then compare growth.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">When analyzing code, define n clearly and track both time and extra space.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="summary-do-instead" className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            What to do instead
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">Use Big-O to compare scaling trends as n grows.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">Pair asymptotic analysis with real constraints: constants, memory, and data distribution.</td>
+                </tr>
+                <tr>
+                  <td className="w-12 py-2 text-center text-lg">✅</td>
+                  <td className="py-2">State assumptions clearly: input model, case type, and operation cost model.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
         <section id="next" className="grid gap-2">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             What&apos;s next

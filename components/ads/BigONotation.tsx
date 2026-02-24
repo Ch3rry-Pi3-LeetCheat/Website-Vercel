@@ -33,7 +33,7 @@ export default function BigONotation({ kind }: BigONotationProps) {
       {kind === "on2" ? (
         <>
           <MathInline tex={String.raw`n`} className="math-inline math-nvar" />
-          <sup className="text-[0.7em] leading-none text-[#22d3ee]">2</sup>
+          <sup className="text-[0.7em] leading-none text-white">2</sup>
         </>
       ) : null}
       <span className="text-white">)</span>
