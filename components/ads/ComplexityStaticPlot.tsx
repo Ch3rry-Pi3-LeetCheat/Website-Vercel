@@ -204,34 +204,39 @@ export default function ComplexityStaticPlot({
             x={plot.xN}
             y={plot.height - plot.bottom + 30}
             textAnchor="middle"
-            className="fill-cyan-300 text-[11px]"
+            className="text-[11px]"
           >
-            n
+            <tspan fill="#22d3ee">n</tspan>
           </text>
           <text
             x={plot.x2N}
             y={plot.height - plot.bottom + 30}
             textAnchor="middle"
-            className="fill-cyan-300 text-[11px]"
+            className="text-[11px]"
           >
-            2n
+            <tspan fill="rgba(231,238,248,0.95)">2</tspan>
+            <tspan fill="#22d3ee">n</tspan>
           </text>
 
           <text
             x={plot.left - 8}
             y={plot.yN - (Math.abs(plot.y2N - plot.yN) < 12 ? 10 : 4)}
             textAnchor="end"
-            className="fill-white text-[11px]"
+            className="text-[11px]"
           >
-            T(n)={formatVal(plot.tN)}
+            <tspan fill="white">T(</tspan>
+            <tspan fill="#22d3ee">n</tspan>
+            <tspan fill="white">)={formatVal(plot.tN)}</tspan>
           </text>
           <text
             x={plot.left - 8}
             y={plot.y2N + (Math.abs(plot.y2N - plot.yN) < 12 ? 12 : -4)}
             textAnchor="end"
-            className="fill-white text-[11px]"
+            className="text-[11px]"
           >
-            T(2n)={formatVal(plot.t2N)}
+            <tspan fill="white">T(2</tspan>
+            <tspan fill="#22d3ee">n</tspan>
+            <tspan fill="white">)={formatVal(plot.t2N)}</tspan>
           </text>
 
           <text
@@ -242,8 +247,10 @@ export default function ComplexityStaticPlot({
           >
             n
           </text>
-          <text x={16} y={plot.top + 2} className="fill-white/80 text-[12px]">
-            T(n)
+          <text x={16} y={plot.top + 2} className="text-[12px]">
+            <tspan fill="rgba(231,238,248,0.8)">T(</tspan>
+            <tspan fill="#22d3ee">n</tspan>
+            <tspan fill="rgba(231,238,248,0.8)">)</tspan>
           </text>
         </svg>
       </div>

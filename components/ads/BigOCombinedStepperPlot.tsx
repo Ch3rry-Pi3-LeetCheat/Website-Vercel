@@ -1,20 +1,21 @@
 "use client";
 
+import BigONotation from "@/components/ads/BigONotation";
 import { useMemo, useState } from "react";
 
 type Curve = {
   key: string;
-  label: string;
+  kind: "o1" | "ologn" | "on" | "onlogn" | "on2";
   color: string;
   fn: (n: number) => number;
 };
 
 const curves: Curve[] = [
-  { key: "o1", label: "O(1)", color: "#34d399", fn: () => 7 },
-  { key: "ologn", label: "O(log n)", color: "#60a5fa", fn: (n) => Math.log2(Math.max(1, n)) },
-  { key: "on", label: "O(n)", color: "#22d3ee", fn: (n) => n },
-  { key: "onlogn", label: "O(n log n)", color: "#a78bfa", fn: (n) => n * Math.log2(Math.max(1, n)) },
-  { key: "on2", label: "O(n^2)", color: "#f59e0b", fn: (n) => n * n },
+  { key: "o1", kind: "o1", color: "#34d399", fn: () => 7 },
+  { key: "ologn", kind: "ologn", color: "#60a5fa", fn: (n) => (n < 1 ? 0 : Math.log2(Math.max(1, n))) },
+  { key: "on", kind: "on", color: "#22d3ee", fn: (n) => n },
+  { key: "onlogn", kind: "onlogn", color: "#a78bfa", fn: (n) => (n < 1 ? 0 : n * Math.log2(Math.max(1, n))) },
+  { key: "on2", kind: "on2", color: "#f59e0b", fn: (n) => n * n },
 ];
 
 const minN = 1;
@@ -32,27 +33,24 @@ export default function BigOCombinedStepperPlot() {
     const bottom = 38;
     const plotW = width - left - right;
     const plotH = height - top - bottom;
+    const yMax = 220;
 
     const xToSvg = (x: number) => left + (x / maxN) * plotW;
-
-    const allYs = curves.flatMap((curve) =>
-      Array.from({ length: maxN }, (_, i) => curve.fn(i + 1)),
-    );
-    const maxY = Math.max(...allYs, 1) * 1.04;
-    const yToSvg = (y: number) => top + plotH - (y / maxY) * plotH;
+    const yToSvg = (y: number) => {
+      const clipped = Math.min(y, yMax);
+      return top + plotH - (clipped / yMax) * plotH;
+    };
 
     const paths = curves.map((curve) => {
-      const d = Array.from({ length: maxN }, (_, i) => {
-        const x = i + 1;
+      const d = Array.from({ length: maxN + 1 }, (_, i) => {
+        const x = i;
         const y = curve.fn(x);
         return `${i === 0 ? "M" : "L"} ${xToSvg(x)} ${yToSvg(y)}`;
       }).join(" ");
       return { key: curve.key, d, color: curve.color };
     });
 
-    const stepY = maxY > 9000 ? 2000 : maxY > 2000 ? 500 : maxY > 500 ? 100 : 10;
-    const yTickMax = Math.ceil(maxY / stepY) * stepY;
-    const yTicks = Array.from({ length: Math.floor(yTickMax / stepY) + 1 }, (_, i) => i * stepY);
+    const yTicks = [0, 50, 100, 150, 200];
 
     return { width, height, left, right, top, bottom, plotH, xToSvg, yToSvg, paths, yTicks };
   }, []);
@@ -82,7 +80,7 @@ export default function BigOCombinedStepperPlot() {
             Next
           </button>
           <label className="ml-2 text-sm text-[color:var(--color-muted)]">
-            n = <span className="text-white">{n}</span>
+            <span className="text-cyan-300">n</span> = <span className="text-white">{n}</span>
           </label>
           <input
             type="range"
@@ -102,7 +100,7 @@ export default function BigOCombinedStepperPlot() {
                 className="inline-block h-2.5 w-2.5 rounded-full"
                 style={{ backgroundColor: curve.color }}
               />
-              <span>{curve.label}</span>
+              <BigONotation kind={curve.kind} />
             </div>
           ))}
         </div>
@@ -196,8 +194,10 @@ export default function BigOCombinedStepperPlot() {
           >
             n
           </text>
-          <text x={12} y={model.top + 2} className="fill-white/80 text-[12px]">
-            T(n)
+          <text x={12} y={model.top + 2} className="text-[12px]">
+            <tspan fill="rgba(231,238,248,0.8)">T(</tspan>
+            <tspan fill="#22d3ee">n</tspan>
+            <tspan fill="rgba(231,238,248,0.8)">)</tspan>
           </text>
         </svg>
       </div>

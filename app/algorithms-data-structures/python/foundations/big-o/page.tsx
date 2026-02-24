@@ -2,7 +2,6 @@ import ArticleLayout from "@/components/ArticleLayout";
 import BigONotation from "@/components/ads/BigONotation";
 import BigOCombinedStepperPlot from "@/components/ads/BigOCombinedStepperPlot";
 import ComplexityStaticPlot from "@/components/ads/ComplexityStaticPlot";
-import ComplexityWalkthroughPlot from "@/components/ads/ComplexityWalkthroughPlot";
 import InfoPanel from "@/components/InfoPanel";
 import RightRail from "@/components/RightRail";
 import { MathBlock, MathInline } from "@/components/Math";
@@ -30,11 +29,6 @@ export default function BigOFoundationsPage() {
     { id: "math-primer-on2", label: "O(n^2) doubling test", level: 2 },
     { id: "math-primer-summary", label: "Doubling summary", level: 2 },
     { id: "math-primer-all-curves", label: "All curves interactive", level: 2 },
-    { id: "o1", label: "O(1) constant" },
-    { id: "ologn", label: "O(log n) logarithmic" },
-    { id: "on", label: "O(n) linear" },
-    { id: "onlogn", label: "O(n log n) linearithmic" },
-    { id: "on2", label: "O(n^2) quadratic" },
     { id: "summary", label: "Summary" },
     { id: "summary-what-is", label: "What Big-O is", level: 2 },
     { id: "summary-what-is-not", label: "What Big-O is not", level: 2 },
@@ -951,110 +945,6 @@ export default function BigOFoundationsPage() {
             <BigOCombinedStepperPlot />
           </section>
         </section>
-      </section>
-
-      <section id="o1" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation kind="o1" /> constant
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Constant time means the number of operations does not depend on{" "}
-          <MathInline tex={String.raw`n`} className="math-inline math-nvar" />. Accessing
-          one array position is still one direct lookup whether the array has 10 or 10 million elements.
-        </p>
-        <MathBlock
-          tex={String.raw`T(n)=7,\quad T(100)=7,\quad T(200)=7`}
-          className="math-center math-lg text-white/90"
-        />
-        <ComplexityWalkthroughPlot
-          kind="o1"
-          notation={<BigONotation kind="o1" />}
-          tTex={String.raw`T(n)=7`}
-        />
-      </section>
-
-      <section id="ologn" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation kind="ologn" /> logarithmic
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Logarithmic growth appears when each step removes a fixed fraction of remaining work.
-          Binary search is the canonical example: every comparison halves the search interval.
-        </p>
-        <MathBlock
-          tex={String.raw`T(n)=\log_2 n,\quad T(8)=3,\quad T(1024)=10`}
-          className="math-center math-lg text-white/90"
-        />
-        <ComplexityWalkthroughPlot
-          kind="ologn"
-          notation={<BigONotation kind="ologn" />}
-          tTex={String.raw`T(n)=\log_2 n`}
-        />
-      </section>
-
-      <section id="on" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation kind="on" /> linear
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Linear growth means each extra item contributes a constant amount of extra work.
-          A single full pass through data is usually linear.
-        </p>
-        <MathBlock
-          tex={String.raw`T(n)=3n+5,\quad T(100)=305,\quad T(200)=605`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Big-O keeps the dominant growth term, so{" "}
-          <MathInline tex={String.raw`3n+5=O(n)`} className="math-inline !text-white" />.
-        </p>
-        <ComplexityWalkthroughPlot
-          kind="on"
-          notation={<BigONotation kind="on" />}
-          tTex={String.raw`T(n)=n`}
-        />
-      </section>
-
-      <section id="onlogn" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation kind="onlogn" /> linearithmic
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Linearithmic growth is common in efficient comparison sorting. You process all items
-          but do so over logarithmic levels of splitting/merging.
-        </p>
-        <MathBlock
-          tex={String.raw`T(n)=n\log_2 n,\quad T(16)=64,\quad T(64)=384`}
-          className="math-center math-lg text-white/90"
-        />
-        <ComplexityWalkthroughPlot
-          kind="onlogn"
-          notation={<BigONotation kind="onlogn" />}
-          tTex={String.raw`T(n)=n\log_2 n`}
-        />
-      </section>
-
-      <section id="on2" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          <BigONotation kind="on2" /> quadratic
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Quadratic growth typically appears when each item is compared with many other items.
-          Nested loops over the same dataset are a common source.
-        </p>
-        <MathBlock
-          tex={String.raw`T(n)=2n^2+3n,\quad T(100)=20300,\quad T(200)=80600`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For large n, the square term dominates, so{" "}
-          <MathInline tex={String.raw`2n^2+3n=O(n^2)`} className="math-inline !text-white" />.
-        </p>
-        <ComplexityWalkthroughPlot
-          kind="on2"
-          notation={<BigONotation kind="on2" />}
-          tTex={String.raw`T(n)=n^2`}
-        />
       </section>
 
       <section id="summary" className="scroll-mt-28 grid gap-4">
