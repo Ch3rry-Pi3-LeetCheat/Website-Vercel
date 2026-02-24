@@ -732,7 +732,11 @@ export default function BigOFoundationsPage() {
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
           <MathBlock
-            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}=2}`}
+            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}}`}
+            className="math-center text-white/90"
+          />
+          <MathBlock
+            tex={String.raw`{\color{white}\frac{2\cancel{{\color{#22d3ee}n}}}{\cancel{{\color{#22d3ee}n}}}=2}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
