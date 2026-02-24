@@ -15,12 +15,12 @@ declare global {
 const mathJaxConfig = `
   window.MathJax = {
     loader: {
-      load: ["[tex]/color", "[tex]/cancel", "[tex]/ams"]
+      load: ["[tex]/color", "[tex]/cancel"]
     },
     tex: {
       inlineMath: [["\\\\(", "\\\\)"], ["$", "$"]],
       displayMath: [["\\\\[", "\\\\]"], ["$$", "$$"]],
-      packages: { "[+]": ["color", "cancel", "ams"] }
+      packages: { "[+]": ["color", "cancel"] }
     },
     svg: { fontCache: "global" }
   };
