@@ -42,15 +42,38 @@ export default function BigOCombinedStepperPlot() {
     };
 
     const paths = curves.map((curve) => {
-      const d = Array.from({ length: maxN + 1 }, (_, i) => {
-        const x = i;
+      let d = "";
+      let started = false;
+      let prevX = 0;
+      let prevY = curve.fn(0);
+
+      for (let x = 0; x <= maxN; x += 1) {
         const y = curve.fn(x);
-        return `${i === 0 ? "M" : "L"} ${xToSvg(x)} ${yToSvg(y)}`;
-      }).join(" ");
+
+        if (y <= yMax) {
+          d += `${started ? " L" : "M"} ${xToSvg(x)} ${yToSvg(y)}`;
+          started = true;
+          prevX = x;
+          prevY = y;
+          continue;
+        }
+
+        if (started) {
+          const dy = y - prevY;
+          const dx = x - prevX;
+          const ratio = dy === 0 ? 0 : (yMax - prevY) / dy;
+          const xHit = prevX + ratio * dx;
+          d += ` L ${xToSvg(xHit)} ${yToSvg(yMax)}`;
+        } else {
+          d += `M ${xToSvg(x)} ${yToSvg(yMax)}`;
+        }
+        break;
+      }
+
       return { key: curve.key, d, color: curve.color };
     });
 
-    const yTicks = [0, 50, 100, 150, 200];
+    const yTicks = Array.from({ length: Math.floor(yMax / 20) + 1 }, (_, i) => i * 20);
 
     return { width, height, left, right, top, bottom, plotH, xToSvg, yToSvg, paths, yTicks };
   }, []);
