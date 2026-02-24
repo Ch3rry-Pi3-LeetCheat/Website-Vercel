@@ -10,7 +10,7 @@ type Curve = {
 };
 
 const curves: Curve[] = [
-  { key: "o1", label: "O(1)", color: "#f472b6", fn: () => 7 },
+  { key: "o1", label: "O(1)", color: "#34d399", fn: () => 7 },
   { key: "ologn", label: "O(log n)", color: "#60a5fa", fn: (n) => Math.log2(Math.max(1, n)) },
   { key: "on", label: "O(n)", color: "#22d3ee", fn: (n) => n },
   { key: "onlogn", label: "O(n log n)", color: "#a78bfa", fn: (n) => n * Math.log2(Math.max(1, n)) },
@@ -19,11 +19,6 @@ const curves: Curve[] = [
 
 const minN = 1;
 const maxN = 100;
-
-function toDisplayY(raw: number) {
-  // Log scaling keeps all curves visible on one chart.
-  return Math.log10(raw + 1);
-}
 
 export default function BigOCombinedStepperPlot() {
   const [n, setN] = useState(10);
@@ -40,22 +35,26 @@ export default function BigOCombinedStepperPlot() {
 
     const xToSvg = (x: number) => left + (x / maxN) * plotW;
 
-    const allDisplayYs = curves.flatMap((curve) =>
-      Array.from({ length: maxN }, (_, i) => toDisplayY(curve.fn(i + 1))),
+    const allYs = curves.flatMap((curve) =>
+      Array.from({ length: maxN }, (_, i) => curve.fn(i + 1)),
     );
-    const maxDisplayY = Math.max(...allDisplayYs, 1);
-    const yToSvg = (displayY: number) => top + plotH - (displayY / maxDisplayY) * plotH;
+    const maxY = Math.max(...allYs, 1) * 1.04;
+    const yToSvg = (y: number) => top + plotH - (y / maxY) * plotH;
 
     const paths = curves.map((curve) => {
       const d = Array.from({ length: maxN }, (_, i) => {
         const x = i + 1;
-        const y = toDisplayY(curve.fn(x));
+        const y = curve.fn(x);
         return `${i === 0 ? "M" : "L"} ${xToSvg(x)} ${yToSvg(y)}`;
       }).join(" ");
       return { key: curve.key, d, color: curve.color };
     });
 
-    return { width, height, left, right, top, bottom, plotH, xToSvg, yToSvg, paths };
+    const stepY = maxY > 9000 ? 2000 : maxY > 2000 ? 500 : maxY > 500 ? 100 : 10;
+    const yTickMax = Math.ceil(maxY / stepY) * stepY;
+    const yTicks = Array.from({ length: Math.floor(yTickMax / stepY) + 1 }, (_, i) => i * stepY);
+
+    return { width, height, left, right, top, bottom, plotH, xToSvg, yToSvg, paths, yTicks };
   }, []);
 
   const step = (delta: number) => {
@@ -111,11 +110,11 @@ export default function BigOCombinedStepperPlot() {
 
       <div className="mt-3 overflow-x-auto">
         <svg viewBox={`0 0 ${model.width} ${model.height}`} className="h-[320px] min-w-[760px] w-full">
-          {[0, 0.25, 0.5, 0.75, 1].map((f, i) => {
-            const y = model.top + (1 - f) * model.plotH;
+          {model.yTicks.map((tick) => {
+            const y = model.yToSvg(tick);
             return (
               <line
-                key={`gy-${i}`}
+                key={`gy-${tick}`}
                 x1={model.left}
                 y1={y}
                 x2={model.width - model.right}
@@ -161,7 +160,7 @@ export default function BigOCombinedStepperPlot() {
 
           {curves.map((curve) => {
             const x = model.xToSvg(n);
-            const y = model.yToSvg(toDisplayY(curve.fn(n)));
+            const y = model.yToSvg(curve.fn(n));
             return <circle key={`dot-${curve.key}`} cx={x} cy={y} r={5} fill="#f472b6" />;
           })}
 
@@ -177,6 +176,18 @@ export default function BigOCombinedStepperPlot() {
             </text>
           ))}
 
+          {model.yTicks.map((tick) => (
+            <text
+              key={`yt-${tick}`}
+              x={model.left - 8}
+              y={model.yToSvg(tick) + 4}
+              textAnchor="end"
+              className="fill-white/70 text-[11px]"
+            >
+              {tick}
+            </text>
+          ))}
+
           <text
             x={model.width - 8}
             y={model.height - 8}
@@ -186,11 +197,10 @@ export default function BigOCombinedStepperPlot() {
             n
           </text>
           <text x={12} y={model.top + 2} className="fill-white/80 text-[12px]">
-            scaled T(n)
+            T(n)
           </text>
         </svg>
       </div>
     </div>
   );
 }
-

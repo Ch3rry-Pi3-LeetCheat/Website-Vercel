@@ -26,6 +26,12 @@ function compute(kind: BigOKind, n: number) {
   }
 }
 
+function formatVal(v: number) {
+  if (v >= 100) return v.toFixed(0);
+  if (v >= 10) return v.toFixed(1);
+  return v.toFixed(2);
+}
+
 export default function ComplexityStaticPlot({
   kind,
   notation,
@@ -47,15 +53,41 @@ export default function ComplexityStaticPlot({
     });
     const rawMaxY = Math.max(...values.map((p) => p.y), 1);
     const maxY = rawMaxY * (kind === "o1" ? 1.35 : 1.12);
+    const nRef = 16;
+    const nDouble = 32;
 
     const xToSvg = (x: number) => left + ((x - 1) / (maxN - 1)) * plotW;
     const yToSvg = (y: number) => top + plotH - (y / maxY) * plotH;
+    const tN = compute(kind, nRef);
+    const t2N = compute(kind, nDouble);
+    const xN = xToSvg(nRef);
+    const x2N = xToSvg(nDouble);
+    const yN = yToSvg(tN);
+    const y2N = yToSvg(t2N);
 
     const path = values
       .map((p, i) => `${i === 0 ? "M" : "L"} ${xToSvg(p.x)} ${yToSvg(p.y)}`)
       .join(" ");
 
-    return { width, height, left, right, top, bottom, plotH, xToSvg, path };
+    return {
+      width,
+      height,
+      left,
+      right,
+      top,
+      bottom,
+      plotH,
+      xToSvg,
+      path,
+      nRef,
+      nDouble,
+      tN,
+      t2N,
+      xN,
+      x2N,
+      yN,
+      y2N,
+    };
   }, [kind]);
 
   return (
@@ -115,6 +147,47 @@ export default function ComplexityStaticPlot({
 
           <path d={plot.path} fill="none" stroke="#38bdf8" strokeWidth="2.5" />
 
+          <line
+            x1={plot.xN}
+            y1={plot.height - plot.bottom}
+            x2={plot.xN}
+            y2={plot.yN}
+            stroke="rgba(231,238,248,0.9)"
+            strokeWidth="1.5"
+            strokeDasharray="6 5"
+          />
+          <line
+            x1={plot.x2N}
+            y1={plot.height - plot.bottom}
+            x2={plot.x2N}
+            y2={plot.y2N}
+            stroke="rgba(231,238,248,0.9)"
+            strokeWidth="1.5"
+            strokeDasharray="6 5"
+          />
+
+          <line
+            x1={plot.left}
+            y1={plot.yN}
+            x2={plot.xN}
+            y2={plot.yN}
+            stroke="rgba(231,238,248,0.9)"
+            strokeWidth="1.5"
+            strokeDasharray="6 5"
+          />
+          <line
+            x1={plot.left}
+            y1={plot.y2N}
+            x2={plot.x2N}
+            y2={plot.y2N}
+            stroke="rgba(231,238,248,0.9)"
+            strokeWidth="1.5"
+            strokeDasharray="6 5"
+          />
+
+          <circle cx={plot.xN} cy={plot.yN} r={4.5} fill="#f472b6" />
+          <circle cx={plot.x2N} cy={plot.y2N} r={4.5} fill="#f472b6" />
+
           {[1, 16, 32, 48, 64].map((tick) => (
             <text
               key={`xt-${tick}`}
@@ -126,6 +199,40 @@ export default function ComplexityStaticPlot({
               {tick}
             </text>
           ))}
+
+          <text
+            x={plot.xN}
+            y={plot.height - plot.bottom + 30}
+            textAnchor="middle"
+            className="fill-cyan-300 text-[11px]"
+          >
+            n
+          </text>
+          <text
+            x={plot.x2N}
+            y={plot.height - plot.bottom + 30}
+            textAnchor="middle"
+            className="fill-cyan-300 text-[11px]"
+          >
+            2n
+          </text>
+
+          <text
+            x={plot.left - 8}
+            y={plot.yN - (Math.abs(plot.y2N - plot.yN) < 12 ? 10 : 4)}
+            textAnchor="end"
+            className="fill-white text-[11px]"
+          >
+            T(n)={formatVal(plot.tN)}
+          </text>
+          <text
+            x={plot.left - 8}
+            y={plot.y2N + (Math.abs(plot.y2N - plot.yN) < 12 ? 12 : -4)}
+            textAnchor="end"
+            className="fill-white text-[11px]"
+          >
+            T(2n)={formatVal(plot.t2N)}
+          </text>
 
           <text
             x={plot.width - 8}
@@ -143,4 +250,3 @@ export default function ComplexityStaticPlot({
     </div>
   );
 }
-
