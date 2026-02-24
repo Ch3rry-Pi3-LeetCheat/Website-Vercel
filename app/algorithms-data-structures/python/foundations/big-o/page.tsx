@@ -435,18 +435,56 @@ export default function BigOFoundationsPage() {
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Read slowly, in plain words: there exists some positive constant{" "}
-            <MathInline tex={String.raw`{\color{#a78bfa}c}`} className="math-inline math-white" />,
-            and some starting point{" "}
+            <span className="text-white font-semibold">In plain English:</span>{" "}
+            we say{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})={\color{#f472b6}O}({\color{white}f({\color{#22d3ee}n})})}`}
+              className="math-inline math-white"
+            />{" "}
+            <MathInline tex={String.raw`{\color{white}\iff}`} className="math-inline math-white" />{" "}
+            there exists{" "}
+            <MathInline tex={String.raw`{\color{white}\exists}`} className="math-inline math-white" />{" "}
+            a positive constant{" "}
+            <MathInline tex={String.raw`{\color{#a78bfa}c}`} className="math-inline math-white" />{" "}
+            with{" "}
+            <MathInline tex={String.raw`{\color{#a78bfa}c>0}`} className="math-inline math-white" />, and a
+            starting input size{" "}
             <MathInline
               tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
               className="math-inline math-white"
             />
             , such that for every{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}n}\ge {\color{#a78bfa}n_{\color{white}0}}`} className="math-inline math-white" />,
-            we have{" "}
+            <MathInline tex={String.raw`{\color{white}\forall}`} className="math-inline math-white" />{" "}
+            input size{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n`} className="math-inline math-white" />{" "}
+            with{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`} className="math-inline math-white" />,
+            the work{" "}
             <MathInline
-              tex={String.raw`{\color{white}T({\color{#22d3ee}n})\le {\color{#a78bfa}c}\cdot f({\color{#22d3ee}n})}`}
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            is at most{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}\cdot{\color{white}f({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />
+            .
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So after some cutoff{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
+              className="math-inline math-white"
+            />
+            ,{" "}
+            <MathInline
+              tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+              className="math-inline math-white"
+            />{" "}
+            stays below a scaled copy of{" "}
+            <MathInline
+              tex={String.raw`{\color{white}f({\color{#22d3ee}n})}`}
               className="math-inline math-white"
             />
             .
@@ -639,6 +677,11 @@ export default function BigOFoundationsPage() {
             Suppose the work does not depend on input size{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" />:
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Here, 5 is just an example of a fixed amount of work: think of 5
+            basic steps. The key point is that this number does not grow when{" "}
+            <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows.
+          </p>
           <MathBlock
             tex={String.raw`{\color{white}T({\color{#22d3ee}n})=5}`}
             className="math-center text-white/90"
@@ -652,7 +695,13 @@ export default function BigOFoundationsPage() {
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
           <MathBlock
-            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{5}{5}=1}`}
+            tex={String.raw`\require{cancel}
+\begin{aligned}
+{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
+&= {\color{white}\frac{5}{5}} \\[3pt]
+&= {\color{white}\frac{\cancel{5}}{\cancel{5}}} \\[3pt]
+&= {\color{white}1}
+\end{aligned}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
@@ -704,6 +753,8 @@ export default function BigOFoundationsPage() {
               className="math-inline !text-white"
             />
             ?&quot;.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
             In our case,{" "}
             <MathInline
               tex={String.raw`{\color{white}\log_2(2)}`}
@@ -719,12 +770,7 @@ export default function BigOFoundationsPage() {
               tex={String.raw`{\color{white}\log_2(2)=1}`}
               className="math-inline !text-white"
             />
-            . Therefore, we obtain{" "}
-            <MathInline
-              tex={String.raw`{\color{white}1+\log_2({\color{#22d3ee}n})}`}
-              className="math-inline !text-white"
-            />
-            .
+            . Therefore, we obtain:
           </p>
           <MathBlock
             tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=1+\log_2({\color{#22d3ee}n})}`}
@@ -835,6 +881,11 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             As{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows,{" "}
+            <MathInline
+              tex={String.raw`{\color{white}\log_2({\color{#22d3ee}n})\to\infty}`}
+              className="math-inline !text-white"
+            />
+            . So the denominator keeps getting larger and larger, which makes{" "}
             <MathInline tex={String.raw`{\color{white}\frac{2}{\log_2({\color{#22d3ee}n})}\to 0}`} className="math-inline !text-white" />,
             so the ratio approaches 2. Doubling input makes work slightly more than
             double. It grows faster than linear time, but much slower than quadratic.
@@ -865,7 +916,13 @@ export default function BigOFoundationsPage() {
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">Now compare:</p>
           <MathBlock
-            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{4{\color{#22d3ee}n}^2}{{\color{#22d3ee}n}^2}=4}`}
+            tex={String.raw`\require{cancel}
+\begin{aligned}
+{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
+&= {\color{white}\frac{4{\color{#22d3ee}n}^2}{{\color{#22d3ee}n}^2}} \\[3pt]
+&= {\color{white}\frac{4\cancel{{\color{#22d3ee}n}^2}}{\cancel{{\color{#22d3ee}n}^2}}} \\[3pt]
+&= {\color{white}4}
+\end{aligned}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
