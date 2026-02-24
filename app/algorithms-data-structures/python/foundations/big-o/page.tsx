@@ -734,7 +734,7 @@ export default function BigOFoundationsPage() {
           <MathBlock
             tex={String.raw`\begin{aligned}
 {\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}} &{\color{white}= \frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}}} \\
-&{\color{white}= \frac{2{\color{#ef4444}\cancel{{\color{#22d3ee}n}}}{{\color{#ef4444}\cancel{{\color{#22d3ee}n}}}}=2}
+&{\color{white}= \frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}{{\color{white}\cancel{{\color{#22d3ee}n}}}}=2}
 \end{aligned}`}
             className="math-center text-white/90"
           />
