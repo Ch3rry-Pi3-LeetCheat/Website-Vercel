@@ -52,6 +52,14 @@ export default function BigOFoundationsPage() {
     { id: "what-not", label: "What Big-O is not" },
     { id: "equation-reading", label: "How to read equations" },
     { id: "math-primer", label: "Mini math primer" },
+    { id: "math-primer-o1", label: "O(1) doubling test", level: 2 },
+    { id: "math-primer-ologn", label: "O(log n) doubling test", level: 2 },
+    { id: "math-primer-on", label: "O(n) doubling test", level: 2 },
+    { id: "math-primer-onlogn", label: "O(n log n) doubling test", level: 2 },
+    { id: "math-primer-on2", label: "O(n^2) doubling test", level: 2 },
+    { id: "math-primer-on3", label: "O(n^3) doubling test", level: 2 },
+    { id: "math-primer-o2n", label: "O(2^n) doubling test", level: 2 },
+    { id: "math-primer-summary", label: "Doubling summary", level: 2 },
     { id: "workflow", label: "Code analysis workflow" },
     { id: "growth-table", label: "Complexity reference table" },
     { id: "o1", label: "O(1) constant" },
@@ -643,67 +651,141 @@ export default function BigOFoundationsPage() {
           Mini math primer
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Instead of one dense expression, break the doubling ratio down line by line.
-          We use
-          <MathInline tex={String.raw`\frac{T(2n)}{T(n)}`} className="math-inline !text-white" />{" "}
-          to ask: how much more work after doubling input?
+          The doubling test asks one simple question:
+          if we double the input size, how much more work do we do?
+          We measure that with{" "}
+          <MathInline tex={String.raw`\frac{T(2n)}{T(n)}`} className="math-inline !text-white" />.
         </p>
-        <div className="grid gap-3 text-sm text-[color:var(--color-muted)]">
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">
-              <BigONotation kind="o1" />: constant
-            </p>
-            <MathBlock
-              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{1}{1}=1`}
-              className="math-center text-white/90"
-            />
-            <p>Doubling input keeps work essentially unchanged.</p>
+
+        <section id="math-primer-o1" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <BigONotation kind="o1" /> constant time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: suppose <MathInline tex={String.raw`T(n)=5`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: doubling input gives <MathInline tex={String.raw`T(2n)=5`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{5}{5}=1`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Doubling input changes almost nothing.</p>
+        </section>
+
+        <section id="math-primer-ologn" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <BigONotation kind="ologn" /> logarithmic time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: suppose <MathInline tex={String.raw`T(n)=\log_2(n)`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: double input:</p>
+          <MathBlock tex={String.raw`T(2n)=\log_2(2n)=\log_2(2)+\log_2(n)=1+\log_2(n)`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{\log_2(n)+1}{\log_2(n)}=1+\frac{1}{\log_2(n)}`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            As n gets large, <MathInline tex={String.raw`\frac{1}{\log_2(n)}\to 0`} className="math-inline !text-white" />, so the ratio approaches 1.
+            Doubling input adds only a tiny extra amount of work.
+          </p>
+        </section>
+
+        <section id="math-primer-on" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <BigONotation kind="on" /> linear time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: <MathInline tex={String.raw`T(n)=n`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: <MathInline tex={String.raw`T(2n)=2n`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n}{n}=2`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Doubling input doubles the work.</p>
+        </section>
+
+        <section id="math-primer-onlogn" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <BigONotation kind="onlogn" /> linearithmic time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: <MathInline tex={String.raw`T(n)=n\log_2(n)`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: double input:</p>
+          <MathBlock tex={String.raw`T(2n)=2n\log_2(2n)=2n(\log_2(n)+1)=2n\log_2(n)+2n`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n\log_2(n)+2n}{n\log_2(n)}=2+\frac{2}{\log_2(n)}`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            As n grows, <MathInline tex={String.raw`\frac{2}{\log_2(n)}\to 0`} className="math-inline !text-white" />, so this approaches 2.
+            Doubling input gives slightly more than 2x work.
+          </p>
+        </section>
+
+        <section id="math-primer-on2" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <BigONotation kind="on2" /> quadratic time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: <MathInline tex={String.raw`T(n)=n^2`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: <MathInline tex={String.raw`T(2n)=(2n)^2=4n^2`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{4n^2}{n^2}=4`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Doubling input makes work about 4x larger.</p>
+        </section>
+
+        <section id="math-primer-on3" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <span className="inline-flex items-baseline gap-[1px] align-middle whitespace-nowrap">
+              <MathInline tex={String.raw`O`} className="math-inline math-o" />
+              <span className="text-white">(</span>
+              <MathInline tex={String.raw`n`} className="math-inline math-nvar" />
+              <sup className="text-[0.7em] leading-none text-[#22d3ee]">3</sup>
+              <span className="text-white">)</span>
+            </span>{" "}
+            cubic time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: <MathInline tex={String.raw`T(n)=n^3`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: <MathInline tex={String.raw`T(2n)=(2n)^3=8n^3`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{8n^3}{n^3}=8`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Doubling input makes work about 8x larger.</p>
+        </section>
+
+        <section id="math-primer-o2n" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            <span className="inline-flex items-baseline gap-[1px] align-middle whitespace-nowrap">
+              <MathInline tex={String.raw`O`} className="math-inline math-o" />
+              <span className="text-white">(</span>
+              <MathInline tex={String.raw`2`} className="math-inline math-white" />
+              <sup className="text-[0.7em] leading-none text-[#22d3ee]">n</sup>
+              <span className="text-white">)</span>
+            </span>{" "}
+            exponential time
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 1: <MathInline tex={String.raw`T(n)=2^n`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 2: <MathInline tex={String.raw`T(2n)=2^{2n}`} className="math-inline !text-white" />.</p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">Step 3: compare:</p>
+          <MathBlock tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2^{2n}}{2^n}=2^n`} className="math-center text-white/90" />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This multiplier itself grows with n, so doubling input can explode cost very quickly.
+          </p>
+        </section>
+
+        <section id="math-primer-summary" className="grid gap-2">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Doubling summary
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+              <thead>
+                <tr className="border-b border-white/10 text-white">
+                  <th className="py-2 pr-6">Complexity</th>
+                  <th className="py-2">Doubling effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><BigONotation kind="o1" /></td><td className="py-2">x1</td></tr>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><BigONotation kind="ologn" /></td><td className="py-2">about x1</td></tr>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><BigONotation kind="on" /></td><td className="py-2">x2</td></tr>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><BigONotation kind="onlogn" /></td><td className="py-2">slightly more than x2</td></tr>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><BigONotation kind="on2" /></td><td className="py-2">x4</td></tr>
+                <tr className="border-b border-white/10"><td className="py-2 pr-6"><span className="inline-flex items-baseline gap-[1px] align-middle whitespace-nowrap"><MathInline tex={String.raw`O`} className="math-inline math-o" /><span className="text-white">(</span><MathInline tex={String.raw`n`} className="math-inline math-nvar" /><sup className="text-[0.7em] leading-none text-[#22d3ee]">3</sup><span className="text-white">)</span></span></td><td className="py-2">x8</td></tr>
+                <tr><td className="py-2 pr-6"><span className="inline-flex items-baseline gap-[1px] align-middle whitespace-nowrap"><MathInline tex={String.raw`O`} className="math-inline math-o" /><span className="text-white">(</span><MathInline tex={String.raw`2`} className="math-inline math-white" /><sup className="text-[0.7em] leading-none text-[#22d3ee]">n</sup><span className="text-white">)</span></span></td><td className="py-2">x(2^n), explodes quickly</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">
-              <BigONotation kind="ologn" />: logarithmic
-            </p>
-            <MathBlock
-              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{\log_2(2n)}{\log_2(n)}=1+\frac{1}{\log_2(n)}`}
-              className="math-center text-white/90"
-            />
-            <p>Doubling input adds only a small extra amount of work.</p>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">
-              <BigONotation kind="on" />: linear
-            </p>
-            <MathBlock
-              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n}{n}=2`}
-              className="math-center text-white/90"
-            />
-            <p>Doubling input roughly doubles work.</p>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">
-              <BigONotation kind="onlogn" />: linearithmic
-            </p>
-            <MathBlock
-              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{2n\log_2(2n)}{n\log_2(n)}=2\left(1+\frac{1}{\log_2(n)}\right)`}
-              className="math-center text-white/90"
-            />
-            <p>Doubling input is slightly worse than 2x.</p>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3">
-            <p className="text-white font-semibold">
-              <BigONotation kind="on2" />: quadratic
-            </p>
-            <MathBlock
-              tex={String.raw`\frac{T(2n)}{T(n)}=\frac{(2n)^2}{n^2}=4`}
-              className="math-center text-white/90"
-            />
-            <p>Doubling input trends toward 4x work.</p>
-          </div>
-        </div>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Put together: <BigONotation kind="onlogn" /> sits between <BigONotation kind="on" /> and{" "}
-          <BigONotation kind="on2" /> because doubling is more than 2x, but less than 4x.
-        </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The power of this test is simple: ask &quot;what happens when I double input?&quot;
+            and growth rates become much easier to feel.
+          </p>
+        </section>
       </section>
 
       <section id="workflow" className="scroll-mt-28 grid gap-4">
