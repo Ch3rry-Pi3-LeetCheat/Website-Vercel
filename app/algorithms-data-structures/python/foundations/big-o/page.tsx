@@ -684,22 +684,38 @@ export default function BigOFoundationsPage() {
             Using the log rule:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}\log_2(2{\color{#22d3ee}n})=\log_2(2)+\log_2({\color{#22d3ee}n})}`}
+            tex={String.raw`\begin{aligned}
+{\color{white}\log_2(2{\color{#22d3ee}n})}
+&= {\color{white}\log_2(2)+\log_2({\color{#22d3ee}n})} \\
+{\color{white}T(2{\color{#22d3ee}n})}
+&= {\color{white}1+\log_2({\color{#22d3ee}n})}
+\end{aligned}`}
             className="math-center text-white/90"
           />
-          <MathBlock
-            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=1+\log_2({\color{#22d3ee}n})}`}
-            className="math-center text-white/90"
-          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Here,{" "}
+            <MathInline
+              tex={String.raw`{\color{white}\log_2(2)=1}`}
+              className="math-inline !text-white"
+            />{" "}
+            because 2 raised to the power 1 gives 2. That is why the next line
+            has{" "}
+            <MathInline
+              tex={String.raw`{\color{white}1+\log_2({\color{#22d3ee}n})}`}
+              className="math-inline !text-white"
+            />
+            .
+          </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now compare:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{\log_2({\color{#22d3ee}n})+1}{\log_2({\color{#22d3ee}n})}}`}
-            className="math-center text-white/90"
-          />
-          <MathBlock
-            tex={String.raw`{\color{white}=1+\frac{1}{\log_2({\color{#22d3ee}n})}}`}
+            tex={String.raw`\begin{aligned}
+{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
+&= {\color{white}\frac{\log_2({\color{#22d3ee}n})+1}{\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}\frac{\log_2({\color{#22d3ee}n})}{\log_2({\color{#22d3ee}n})}+\frac{1}{\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}1+\frac{1}{\log_2({\color{#22d3ee}n})}}
+\end{aligned}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
@@ -770,22 +786,25 @@ export default function BigOFoundationsPage() {
             Apply the log rule:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}(\log_2({\color{#22d3ee}n})+1)}`}
-            className="math-center text-white/90"
-          />
-          <MathBlock
-            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})=2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}`}
+            tex={String.raw`\begin{aligned}
+{\color{white}T(2{\color{#22d3ee}n})}
+&= {\color{white}2{\color{#22d3ee}n}(\log_2({\color{#22d3ee}n})+1)} \\
+&= {\color{white}2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}
+\end{aligned}`}
             className="math-center text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now compare:
           </p>
           <MathBlock
-            tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}}`}
-            className="math-center text-white/90"
-          />
-          <MathBlock
-            tex={String.raw`{\color{white}=2+\frac{2}{\log_2({\color{#22d3ee}n})}}`}
+            tex={String.raw`\require{cancel}
+\begin{aligned}
+{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}}
+&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})+2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}\frac{2{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}+\frac{2{\color{#22d3ee}n}}{{\color{#22d3ee}n}\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}+\frac{2{\color{white}\cancel{{\color{#22d3ee}n}}}}{{\color{white}\cancel{{\color{#22d3ee}n}}}\log_2({\color{#22d3ee}n})}} \\
+&= {\color{white}2+\frac{2}{\log_2({\color{#22d3ee}n})}}
+\end{aligned}`}
             className="math-center text-white/90"
           />
           <h4 className="text-base font-semibold text-white">What this means</h4>
