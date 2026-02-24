@@ -12,9 +12,9 @@ type Curve = {
 
 const curves: Curve[] = [
   { key: "o1", kind: "o1", color: "#34d399", fn: () => 7 },
-  { key: "ologn", kind: "ologn", color: "#60a5fa", fn: (n) => (n < 1 ? 0 : Math.log2(Math.max(1, n))) },
+  { key: "ologn", kind: "ologn", color: "#60a5fa", fn: (n) => Math.log2(Math.max(1, n)) },
   { key: "on", kind: "on", color: "#22d3ee", fn: (n) => n },
-  { key: "onlogn", kind: "onlogn", color: "#a78bfa", fn: (n) => (n < 1 ? 0 : n * Math.log2(Math.max(1, n))) },
+  { key: "onlogn", kind: "onlogn", color: "#a78bfa", fn: (n) => n * Math.log2(Math.max(1, n)) },
   { key: "on2", kind: "on2", color: "#f59e0b", fn: (n) => n * n },
 ];
 
@@ -35,7 +35,7 @@ export default function BigOCombinedStepperPlot() {
     const plotH = height - top - bottom;
     const yMax = 20;
 
-    const xToSvg = (x: number) => left + (x / maxN) * plotW;
+    const xToSvg = (x: number) => left + ((x - minN) / (maxN - minN)) * plotW;
     const yToSvg = (y: number) => {
       const clipped = Math.min(y, yMax);
       return top + plotH - (clipped / yMax) * plotH;
@@ -45,10 +45,10 @@ export default function BigOCombinedStepperPlot() {
       let d = "";
       let started = false;
       const stepX = 0.05;
-      let prevX = 0;
-      let prevY = curve.fn(0);
+      let prevX = minN;
+      let prevY = curve.fn(minN);
 
-      for (let x = 0; x <= maxN + 1e-9; x += stepX) {
+      for (let x = minN; x <= maxN + 1e-9; x += stepX) {
         const y = curve.fn(x);
 
         if (y <= yMax) {
@@ -147,7 +147,7 @@ export default function BigOCombinedStepperPlot() {
             );
           })}
 
-          {Array.from({ length: maxN + 1 }, (_, i) => i).map((tick) => (
+          {Array.from({ length: maxN - minN + 1 }, (_, i) => i + minN).map((tick) => (
             <line
               key={`gx-${tick}`}
               x1={model.xToSvg(tick)}
@@ -188,7 +188,7 @@ export default function BigOCombinedStepperPlot() {
             return <circle key={`dot-${curve.key}`} cx={x} cy={y} r={5} fill="#f472b6" />;
           })}
 
-          {Array.from({ length: maxN + 1 }, (_, i) => i).map((tick) => (
+          {Array.from({ length: maxN - minN + 1 }, (_, i) => i + minN).map((tick) => (
             <text
               key={`xt-${tick}`}
               x={model.xToSvg(tick)}
@@ -220,7 +220,7 @@ export default function BigOCombinedStepperPlot() {
           >
             n
           </text>
-          <text x={12} y={model.top + 2} className="text-[12px]">
+          <text x={model.left - 34} y={model.top - 8} className="text-[12px]">
             <tspan fill="rgba(231,238,248,0.8)">T(</tspan>
             <tspan fill="#22d3ee">n</tspan>
             <tspan fill="rgba(231,238,248,0.8)">)</tspan>
