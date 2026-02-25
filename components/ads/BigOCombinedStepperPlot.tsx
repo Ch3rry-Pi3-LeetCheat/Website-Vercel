@@ -1,6 +1,5 @@
 "use client";
 
-import BigONotation from "@/components/ads/BigONotation";
 import { useMemo, useState } from "react";
 
 type Curve = {
@@ -20,6 +19,58 @@ const curves: Curve[] = [
 
 const minN = 1;
 const maxN = 10;
+
+function curveLabel(kind: Curve["kind"]) {
+  switch (kind) {
+    case "o1":
+      return (
+        <>
+          <tspan fill="#f472b6">O</tspan>
+          <tspan fill="white">(1)</tspan>
+        </>
+      );
+    case "ologn":
+      return (
+        <>
+          <tspan fill="#f472b6">O</tspan>
+          <tspan fill="white">(log </tspan>
+          <tspan fill="#22d3ee">n</tspan>
+          <tspan fill="white">)</tspan>
+        </>
+      );
+    case "on":
+      return (
+        <>
+          <tspan fill="#f472b6">O</tspan>
+          <tspan fill="white">(</tspan>
+          <tspan fill="#22d3ee">n</tspan>
+          <tspan fill="white">)</tspan>
+        </>
+      );
+    case "onlogn":
+      return (
+        <>
+          <tspan fill="#f472b6">O</tspan>
+          <tspan fill="white">(</tspan>
+          <tspan fill="#22d3ee">n</tspan>
+          <tspan fill="white"> log </tspan>
+          <tspan fill="#22d3ee">n</tspan>
+          <tspan fill="white">)</tspan>
+        </>
+      );
+    case "on2":
+      return (
+        <>
+          <tspan fill="#f472b6">O</tspan>
+          <tspan fill="white">(</tspan>
+          <tspan fill="#22d3ee">n</tspan>
+          <tspan fill="white">^2)</tspan>
+        </>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function BigOCombinedStepperPlot() {
   const [n, setN] = useState(5);
@@ -117,17 +168,6 @@ export default function BigOCombinedStepperPlot() {
           />
         </div>
 
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[color:var(--color-muted)]">
-          {curves.map((curve) => (
-            <div key={curve.key} className="inline-flex items-center gap-2">
-              <span
-                className="inline-block h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: curve.color }}
-              />
-              <BigONotation kind={curve.kind} />
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="mt-3 overflow-x-auto">
@@ -186,6 +226,37 @@ export default function BigOCombinedStepperPlot() {
             const x = model.xToSvg(n);
             const y = model.yToSvg(rawY);
             return <circle key={`dot-${curve.key}`} cx={x} cy={y} r={5} fill="#f472b6" />;
+          })}
+
+          {curves.map((curve) => {
+            const anchorX =
+              curve.key === "o1"
+                ? 8.2
+                : curve.key === "ologn"
+                  ? 8.4
+                  : curve.key === "on"
+                    ? 8.6
+                    : curve.key === "onlogn"
+                      ? 5.9
+                      : 4.2;
+            const anchorY = Math.min(curve.fn(anchorX), 19.5);
+            const x = model.xToSvg(anchorX);
+            const y = model.yToSvg(anchorY);
+            const dy =
+              curve.key === "o1"
+                ? -8
+                : curve.key === "ologn"
+                  ? -10
+                  : curve.key === "on"
+                    ? 14
+                    : curve.key === "onlogn"
+                      ? -10
+                      : -8;
+            return (
+              <text key={`label-${curve.key}`} x={x + 8} y={y + dy} className="text-[13px]">
+                {curveLabel(curve.kind)}
+              </text>
+            );
           })}
 
           {Array.from({ length: maxN - minN + 1 }, (_, i) => i + minN).map((tick) => (

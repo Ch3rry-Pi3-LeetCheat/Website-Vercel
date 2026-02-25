@@ -1,6 +1,5 @@
 import ArticleLayout from "@/components/ArticleLayout";
 import BigONotation from "@/components/ads/BigONotation";
-import BigOCombinedStepperPlot from "@/components/ads/BigOCombinedStepperPlot";
 import ComplexityStaticPlot from "@/components/ads/ComplexityStaticPlot";
 import InfoPanel from "@/components/InfoPanel";
 import RightRail from "@/components/RightRail";
@@ -20,15 +19,12 @@ export default function BigOFoundationsPage() {
     { id: "formal-plain", label: "Plain English", level: 2 },
     { id: "formal-ideas", label: "Two key ideas", level: 2 },
     { id: "formal-example", label: "Worked example", level: 2 },
-    { id: "what-not", label: "What Big-O is not" },
     { id: "math-primer", label: "Doubling test intuition" },
     { id: "math-primer-o1", label: "O(1) doubling test", level: 2 },
     { id: "math-primer-ologn", label: "O(log n) doubling test", level: 2 },
     { id: "math-primer-on", label: "O(n) doubling test", level: 2 },
     { id: "math-primer-onlogn", label: "O(n log n) doubling test", level: 2 },
     { id: "math-primer-on2", label: "O(n^2) doubling test", level: 2 },
-    { id: "math-primer-summary", label: "Doubling summary", level: 2 },
-    { id: "math-primer-all-curves", label: "All curves interactive", level: 2 },
     { id: "summary", label: "Summary" },
     { id: "summary-what-is", label: "What Big-O is", level: 2 },
     { id: "summary-what-is-not", label: "What Big-O is not", level: 2 },
@@ -511,43 +507,99 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Let&apos;s do this gently and step by step.
           </p>
+          <h4 className="text-base font-semibold text-white">Goal</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Goal: show that{" "}
+            We want to prove{" "}
             <MathInline
               tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
               className="math-inline math-white"
             />
+            . From the formal definition just above, this means we must find a
+            positive constant{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}c}`}
+              className="math-inline math-white"
+            />{" "}
+            and a starting point{" "}
+            <MathInline
+              tex={String.raw`{\color{#a78bfa}n_{\color{white}0}}`}
+              className="math-inline math-white"
+            />{" "}
+            so that for every{" "}
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}n}\ge{\color{#a78bfa}n_{\color{white}0}}`}
+              className="math-inline math-white"
+            />
+            , the function stays below a scaled copy of{" "}
+            <MathInline
+              tex={String.raw`{\color{white}{\color{#22d3ee}n}^2}`}
+              className="math-inline math-white"
+            />
             .
           </p>
+          <MathBlock
+            tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5\le{\color{#a78bfa}c}\cdot{\color{#22d3ee}n}^2}`}
+            className="math-center text-white/90"
+          />
 
+          <h4 className="text-base font-semibold text-white">Step 1: bound the smaller terms</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Step 1: for{" "}
+            The term{" "}
+            <MathInline
+              tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2}`}
+              className="math-inline math-white"
+            />{" "}
+            already matches our target growth. The extra pieces{" "}
+            <MathInline
+              tex={String.raw`{\color{white}10{\color{#22d3ee}n}}`}
+              className="math-inline math-white"
+            />{" "}
+            and{" "}
+            <MathInline
+              tex={String.raw`{\color{white}5}`}
+              className="math-inline math-white"
+            />{" "}
+            are smaller-order pieces, so we rewrite them in terms of{" "}
+            <MathInline
+              tex={String.raw`{\color{white}{\color{#22d3ee}n}^2}`}
+              className="math-inline math-white"
+            />
+            . When{" "}
             <MathInline
               tex={String.raw`{\color{#22d3ee}n}\ge 1`}
               className="math-inline math-white"
             />
-            , the smaller terms can be bounded by{" "}
+            , we know{" "}
             <MathInline
-              tex={String.raw`{\color{#22d3ee}n}^2`}
+              tex={String.raw`{\color{white}{\color{#22d3ee}n}^2\ge{\color{#22d3ee}n}}`}
+              className="math-inline math-white"
+            />{" "}
+            and{" "}
+            <MathInline
+              tex={String.raw`{\color{white}{\color{#22d3ee}n}^2\ge 1}`}
               className="math-inline math-white"
             />
-            :
+            . Multiplying those facts by 10 and 5 is why we get:
           </p>
           <MathBlock
             tex={String.raw`{\color{white}10{\color{#22d3ee}n}\le 10{\color{#22d3ee}n}^2,\qquad 5\le 5{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
 
+          <h4 className="text-base font-semibold text-white">Step 2: substitute into the full expression</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Step 2: replace those terms:
+            Now replace each smaller term by its upper bound from Step 1. This is
+            important because it gives one clean upper bound for the entire function,
+            which is exactly what Big-O asks us to show.
           </p>
           <MathBlock
             tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5\le 3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}^2+5{\color{#22d3ee}n}^2=18{\color{#22d3ee}n}^2}`}
             className="math-center text-white/90"
           />
 
+          <h4 className="text-base font-semibold text-white">Step 3: match the formal definition</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Step 3: choose constants{" "}
+            We can now pick{" "}
             <MathInline
               tex={String.raw`{\color{#a78bfa}c}=18`}
               className="math-inline math-white"
@@ -562,7 +614,13 @@ export default function BigOFoundationsPage() {
               tex={String.raw`{\color{#22d3ee}n}\ge 1`}
               className="math-inline math-white"
             />
-            , the condition holds, so{" "}
+            , we have{" "}
+            <MathInline
+              tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5\le 18{\color{#22d3ee}n}^2}`}
+              className="math-inline math-white"
+            />
+            . That is exactly the condition in the definition, so the proof is complete:
+            {" "}
             <MathInline
               tex={String.raw`{\color{white}3{\color{#22d3ee}n}^2+10{\color{#22d3ee}n}+5={\color{#f472b6}O}({\color{#22d3ee}n}^2)}`}
               className="math-inline math-white"
@@ -570,34 +628,6 @@ export default function BigOFoundationsPage() {
             .
           </p>
         </section>
-      </section>
-
-      <section id="what-not" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          What Big-O is not
-        </h2>
-        <div className="ml-4 overflow-x-auto">
-          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-            <tbody>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
-                <td className="py-2">Big-O is not exact runtime in milliseconds.</td>
-              </tr>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
-                <td className="py-2">It is not a promise that one method wins for every tiny input.</td>
-              </tr>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
-                <td className="py-2">It is not complete analysis without space complexity and constant-factor realities.</td>
-              </tr>
-              <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
-                <td className="py-2">It is not always the full behavior story unless you also state best/average/worst case.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </section>
 
       <section id="math-primer" className="scroll-mt-28 grid gap-4">
@@ -659,12 +689,22 @@ export default function BigOFoundationsPage() {
 \end{aligned}`}
             className="math-center text-white/90"
           />
-          <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input does not increase the work at all. Whether the input
             is 10 or 10 million, runtime stays the same. That is constant time.
           </p>
-          <ComplexityStaticPlot kind="o1" notation={<BigONotation kind="o1" />} />
+          <h4 className="text-base font-semibold text-white">
+            Plot of <BigONotation kind="o1" />
+          </h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This sketch uses the same reference points as the other plots so you
+            can compare shapes directly. The dashed guides show where{" "}
+            <MathInline tex={String.raw`n=16`} className="math-inline math-white" />{" "}
+            and{" "}
+            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />{" "}
+            land on the curve.
+          </p>
+          <ComplexityStaticPlot kind="o1" />
         </section>
 
         <section id="math-primer-ologn" className="grid gap-2">
@@ -744,7 +784,6 @@ export default function BigOFoundationsPage() {
 \end{aligned}`}
             className="math-center text-white/90"
           />
-          <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             As{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows,{" "}
@@ -752,7 +791,22 @@ export default function BigOFoundationsPage() {
             so the ratio approaches 1. Doubling input adds only a very small extra
             amount of work. This is why logarithmic growth scales so well.
           </p>
-          <ComplexityStaticPlot kind="ologn" notation={<BigONotation kind="ologn" />} />
+          <h4 className="text-base font-semibold text-white">
+            Plot of <BigONotation kind="ologn" />
+          </h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The same two markers are used here too:{" "}
+            <MathInline tex={String.raw`n=16`} className="math-inline math-white" />{" "}
+            and{" "}
+            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />.
+            These values are especially useful for logs because{" "}
+            <MathInline
+              tex={String.raw`\log_2(16)=4,\ \log_2(32)=5`}
+              className="math-inline math-white"
+            />{" "}
+            are clean numbers.
+          </p>
+          <ComplexityStaticPlot kind="ologn" />
         </section>
 
         <section id="math-primer-on" className="grid gap-2">
@@ -784,12 +838,25 @@ export default function BigOFoundationsPage() {
 \end{aligned}`}
             className="math-center text-white/90"
           />
-          <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input doubles the work. If the list doubles in size, runtime
             roughly doubles as well. That is linear growth.
           </p>
-          <ComplexityStaticPlot kind="on" notation={<BigONotation kind="on" />} />
+          <h4 className="text-base font-semibold text-white">
+            Plot of <BigONotation kind="on" />
+          </h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The dashed guides show the two comparison inputs,{" "}
+            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />.
+            The y-axis then reads off the corresponding work values{" "}
+            <MathInline
+              tex={String.raw`T(n)\ \text{and}\ T(2n)`}
+              className="math-inline math-white"
+            />
+            .
+          </p>
+          <ComplexityStaticPlot kind="on" />
         </section>
 
         <section id="math-primer-onlogn" className="grid gap-2">
@@ -835,7 +902,6 @@ export default function BigOFoundationsPage() {
 \end{aligned}`}
             className="math-center text-white/90"
           />
-          <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             As{" "}
             <MathInline tex={String.raw`n`} className="math-inline math-nvar" /> grows,{" "}
@@ -848,7 +914,18 @@ export default function BigOFoundationsPage() {
             so the ratio approaches 2. Doubling input makes work slightly more than
             double. It grows faster than linear time, but much slower than quadratic.
           </p>
-          <ComplexityStaticPlot kind="onlogn" notation={<BigONotation kind="onlogn" />} />
+          <h4 className="text-base font-semibold text-white">
+            Plot of <BigONotation kind="onlogn" />
+          </h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We again use{" "}
+            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />{" "}
+            so the curve can be compared directly with the other growth families.
+            Watch how this curve rises faster than linear, but not as sharply as
+            quadratic.
+          </p>
+          <ComplexityStaticPlot kind="onlogn" />
         </section>
 
         <section id="math-primer-on2" className="grid gap-2">
@@ -884,67 +961,27 @@ export default function BigOFoundationsPage() {
 \end{aligned}`}
             className="math-center text-white/90"
           />
-          <h4 className="text-base font-semibold text-white">What this means</h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Doubling the input makes the work about 4 times larger. This is why
             quadratic algorithms become slow quickly as data grows.
           </p>
-          <ComplexityStaticPlot kind="on2" notation={<BigONotation kind="on2" />} />
+          <h4 className="text-base font-semibold text-white">
+            Plot of <BigONotation kind="on2" />
+          </h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            With the same reference points{" "}
+            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />,
+            you can see the steep rise in{" "}
+            <MathInline
+              tex={String.raw`T(n)`}
+              className="math-inline math-white"
+            />{" "}
+            and why doubling input pushes work toward 4x.
+          </p>
+          <ComplexityStaticPlot kind="on2" />
         </section>
 
-        <section id="math-primer-summary" className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Putting it all together
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Using the doubling test:
-          </p>
-          <div className="ml-4 overflow-x-auto">
-            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-              <thead>
-                <tr className="text-white">
-                  <th className="py-2 pr-6">Big-O</th>
-                  <th className="py-2">Doubling effect</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-2 pr-6"><BigONotation kind="o1" /></td>
-                  <td className="py-2">about x1</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-6"><BigONotation kind="ologn" /></td>
-                  <td className="py-2">almost x1</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-6"><BigONotation kind="on" /></td>
-                  <td className="py-2">x2</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-6"><BigONotation kind="onlogn" /></td>
-                  <td className="py-2">slightly more than x2</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-6"><BigONotation kind="on2" /></td>
-                  <td className="py-2">x4</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The doubling test turns abstract symbols into a concrete question:
-            how much worse does it get when input size doubles?
-          </p>
-          <section id="math-primer-all-curves" className="grid gap-2">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              All curves on one chart (interactive)
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Step forward/backward in n and watch a pink marker move along each curve.
-            </p>
-            <BigOCombinedStepperPlot />
-          </section>
-        </section>
       </section>
 
       <section id="summary" className="scroll-mt-28 grid gap-4">

@@ -1,12 +1,11 @@
 "use client";
 
 import type { BigOKind } from "@/components/ads/BigONotation";
-import type { ReactNode } from "react";
+import { MathBlock, MathInline } from "@/components/Math";
 import { useMemo } from "react";
 
 type ComplexityStaticPlotProps = {
   kind: BigOKind;
-  notation: ReactNode;
 };
 
 function compute(kind: BigOKind, n: number) {
@@ -34,7 +33,6 @@ function formatVal(v: number) {
 
 export default function ComplexityStaticPlot({
   kind,
-  notation,
 }: ComplexityStaticPlotProps) {
   const plot = useMemo(() => {
     const width = 620;
@@ -60,6 +58,7 @@ export default function ComplexityStaticPlot({
     const yToSvg = (y: number) => top + plotH - (y / maxY) * plotH;
     const tN = compute(kind, nRef);
     const t2N = compute(kind, nDouble);
+    const ratio = t2N / Math.max(tN, Number.EPSILON);
     const xN = xToSvg(nRef);
     const x2N = xToSvg(nDouble);
     const yN = yToSvg(tN);
@@ -83,6 +82,7 @@ export default function ComplexityStaticPlot({
       nDouble,
       tN,
       t2N,
+      ratio,
       xN,
       x2N,
       yN,
@@ -90,16 +90,13 @@ export default function ComplexityStaticPlot({
     };
   }, [kind]);
 
+  const ratioText = formatVal(plot.ratio);
+  const tNText = formatVal(plot.tN);
+  const t2NText = formatVal(plot.t2N);
+
   return (
     <div className="glass-panel rounded-2xl p-4">
-      <div className="grid gap-2 md:grid-cols-[1fr_auto] md:items-end">
-        <div className="text-sm text-[color:var(--color-muted)]">
-          <span className="text-white font-semibold">Static growth sketch</span>
-        </div>
-        <div className="text-sm text-white">{notation}</div>
-      </div>
-
-      <div className="mt-3 overflow-x-auto">
+      <div className="overflow-x-auto">
         <svg viewBox={`0 0 ${plot.width} ${plot.height}`} className="h-[250px] min-w-[620px] w-full">
           {[0, 0.25, 0.5, 0.75].map((f, i) => {
             const y = plot.top + (1 - f) * plot.plotH;
@@ -253,6 +250,46 @@ export default function ComplexityStaticPlot({
             <tspan fill="rgba(231,238,248,0.8)">)</tspan>
           </text>
         </svg>
+      </div>
+
+      <div className="mt-3 grid gap-2 text-sm leading-6 text-[color:var(--color-muted)]">
+        <p>
+          The dashed guides mark the same two sample inputs on every plot:{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}n}=16`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`2{\color{#22d3ee}n}=32`}
+            className="math-inline math-white"
+          />
+          . We keep these fixed so you can compare growth shapes directly.
+        </p>
+        <p>
+          Here{" "}
+          <MathInline
+            tex={String.raw`{\color{white}T({\color{#22d3ee}n})}`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{white}T(2{\color{#22d3ee}n})}`}
+            className="math-inline math-white"
+          />{" "}
+          are model work units (roughly counts of basic operations), not exact
+          seconds on a clock.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{white}\frac{T(2{\color{#22d3ee}n})}{T({\color{#22d3ee}n})}=\frac{` +
+            t2NText +
+            `}{` +
+            tNText +
+            `}=` +
+            ratioText +
+            `}`}
+          className="math-center text-white/90"
+        />
       </div>
     </div>
   );
