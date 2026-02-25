@@ -699,9 +699,9 @@ export default function BigOFoundationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             This sketch uses the same reference points as the other plots so you
             can compare shapes directly. The dashed guides show where{" "}
-            <MathInline tex={String.raw`n=16`} className="math-inline math-white" />{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}=5`} className="math-inline math-white" />{" "}
             and{" "}
-            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />{" "}
+            <MathInline tex={String.raw`2{\color{#22d3ee}n}=10`} className="math-inline math-white" />{" "}
             land on the curve.
           </p>
           <ComplexityStaticPlot kind="o1" />
@@ -796,15 +796,15 @@ export default function BigOFoundationsPage() {
           </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The same two markers are used here too:{" "}
-            <MathInline tex={String.raw`n=16`} className="math-inline math-white" />{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}=5`} className="math-inline math-white" />{" "}
             and{" "}
-            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />.
-            These values are especially useful for logs because{" "}
+            <MathInline tex={String.raw`2{\color{#22d3ee}n}=10`} className="math-inline math-white" />.
+            These choices are useful because we can read the values directly as{" "}
             <MathInline
-              tex={String.raw`\log_2(16)=4,\ \log_2(32)=5`}
+              tex={String.raw`\log_2(5)\ \text{and}\ \log_2(10)`}
               className="math-inline math-white"
             />{" "}
-            are clean numbers.
+            and then compare how little they change.
           </p>
           <ComplexityStaticPlot kind="ologn" />
         </section>
@@ -847,11 +847,11 @@ export default function BigOFoundationsPage() {
           </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The dashed guides show the two comparison inputs,{" "}
-            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
-            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />.
+            <MathInline tex={String.raw`{\color{#22d3ee}n}=5`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2{\color{#22d3ee}n}=10`} className="math-inline math-white" />.
             The y-axis then reads off the corresponding work values{" "}
             <MathInline
-              tex={String.raw`T(n)\ \text{and}\ T(2n)`}
+              tex={String.raw`T({\color{#22d3ee}n})\ \text{and}\ T(2{\color{#22d3ee}n})`}
               className="math-inline math-white"
             />
             .
@@ -919,8 +919,8 @@ export default function BigOFoundationsPage() {
           </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We again use{" "}
-            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
-            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}=5`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2{\color{#22d3ee}n}=10`} className="math-inline math-white" />{" "}
             so the curve can be compared directly with the other growth families.
             Watch how this curve rises faster than linear, but not as sharply as
             quadratic.
@@ -970,11 +970,11 @@ export default function BigOFoundationsPage() {
           </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             With the same reference points{" "}
-            <MathInline tex={String.raw`n=16`} className="math-inline math-white" /> and{" "}
-            <MathInline tex={String.raw`2n=32`} className="math-inline math-white" />,
+            <MathInline tex={String.raw`{\color{#22d3ee}n}=5`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`2{\color{#22d3ee}n}=10`} className="math-inline math-white" />,
             you can see the steep rise in{" "}
             <MathInline
-              tex={String.raw`T(n)`}
+              tex={String.raw`T({\color{#22d3ee}n})`}
               className="math-inline math-white"
             />{" "}
             and why doubling input pushes work toward 4x.
