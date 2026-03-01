@@ -1,147 +1,316 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
-import CodeBlock from "@/components/CodeBlock";
-import CollapsibleExample from "@/components/CollapsibleExample";
 import InfoPanel from "@/components/InfoPanel";
-import OutputBlock from "@/components/OutputBlock";
-import SketchDiagram from "@/components/SketchDiagram";
+import RightRail from "@/components/RightRail";
+import { pythonDataframeLessons } from "@/lib/pythonTopics";
 
-const pageTitle = "Python Dataframes 101";
-const pageDescription =
-  "Create your first pandas dataframe, inspect its structure, and build intuition for tabular data workflows.";
-
-export const metadata: Metadata = {
-  title: pageTitle,
-  description: pageDescription,
+type SkillItem = {
+  title: string;
+  note: string;
+  level: "Easy";
+  href?: string;
+  status: "Ready" | "Planned";
 };
 
-const createCode = `import pandas as pd
+type SkillGroup = {
+  id: string;
+  title: string;
+  items: SkillItem[];
+};
 
-data = {
-    "name": ["Ava", "Ben", "Chen"],
-    "role": ["Analyst", "Engineer", "PM"],
-    "score": [88, 92, 79],
-}
+export const metadata: Metadata = {
+  title: "Python DataFrames 101 Roadmap",
+  description:
+    "A structured, LeetCode-style roadmap for pandas dataframe interview skills.",
+};
 
-df = pd.DataFrame(data)
-df`;
+const skillGroups: SkillGroup[] = [
+  {
+    id: "group-structures",
+    title: "Pandas Data Structures",
+    items: [
+      {
+        title: "Create a DataFrame from List",
+        note: "Build tables from column lists and row records.",
+        level: "Easy",
+        href: "/topics/python-programming/dataframes/creating-dataframes",
+        status: "Ready",
+      },
+    ],
+  },
+  {
+    id: "group-inspection",
+    title: "Data Inspection",
+    items: [
+      {
+        title: "Get the Size of a DataFrame",
+        note: "Use shape quickly and interpret rows vs columns clearly.",
+        level: "Easy",
+        href: "/topics/python-programming/dataframes/inspection-basics",
+        status: "Ready",
+      },
+      {
+        title: "Display the First Three Rows",
+        note: "Read head() output to sanity-check structure before analysis.",
+        level: "Easy",
+        href: "/topics/python-programming/dataframes/inspection-basics",
+        status: "Ready",
+      },
+    ],
+  },
+  {
+    id: "group-selecting",
+    title: "Data Selecting",
+    items: [
+      {
+        title: "Select Data",
+        note: "Slice rows and columns with masks, loc, and iloc.",
+        level: "Easy",
+        href: "/topics/python-programming/dataframes/selecting-and-filtering",
+        status: "Ready",
+      },
+      {
+        title: "Create a New Column",
+        note: "Derive columns from existing features safely.",
+        level: "Easy",
+        status: "Planned",
+      },
+    ],
+  },
+  {
+    id: "group-cleaning",
+    title: "Data Cleaning",
+    items: [
+      { title: "Drop Duplicate Rows", note: "Use dedup rules intentionally.", level: "Easy", status: "Planned" },
+      { title: "Drop Missing Data", note: "Handle null-heavy rows with explicit rules.", level: "Easy", status: "Planned" },
+      { title: "Modify Columns", note: "Apply value transforms without side effects.", level: "Easy", status: "Planned" },
+      { title: "Rename Columns", note: "Standardize schema names for cleaner pipelines.", level: "Easy", status: "Planned" },
+      { title: "Change Data Type", note: "Cast columns to correct types before modeling.", level: "Easy", status: "Planned" },
+      { title: "Fill Missing Data", note: "Use fill strategies that preserve signal.", level: "Easy", status: "Planned" },
+    ],
+  },
+  {
+    id: "group-reshaping",
+    title: "Table Reshaping",
+    items: [
+      { title: "Reshape Data: Concatenate", note: "Combine aligned tables by rows or columns.", level: "Easy", status: "Planned" },
+      { title: "Reshape Data: Pivot", note: "Turn long tables into wide summaries.", level: "Easy", status: "Planned" },
+      { title: "Reshape Data: Melt", note: "Turn wide tables into long format for analysis.", level: "Easy", status: "Planned" },
+    ],
+  },
+  {
+    id: "group-advanced",
+    title: "Advanced Techniques",
+    items: [
+      { title: "Method Chaining", note: "Build readable pipelines with one expression per step.", level: "Easy", status: "Planned" },
+    ],
+  },
+];
 
-const createOutput = `    name      role  score
-0    Ava   Analyst     88
-1    Ben  Engineer     92
-2   Chen        PM     79`;
-
-const rowsCode = `rows = [
-    {"city": "London", "visits": 120, "rating": 4.7},
-    {"city": "Edinburgh", "visits": 54, "rating": 4.5},
-    {"city": "Bristol", "visits": 88, "rating": 4.3},
-]
-
-df = pd.DataFrame.from_records(rows)
-df`;
-
-const rowsOutput = `        city  visits  rating
-0     London     120     4.7
-1  Edinburgh      54     4.5
-2    Bristol      88     4.3`;
-
-const inspectCode = `df.shape
-df.dtypes
-df.head(2)`;
-
-const inspectOutput = `(3, 3)
-name      object
-role      object
-score      int64
-dtype: object
-    name      role  score
-0    Ava   Analyst     88
-1    Ben  Engineer     92`;
-
-export default function DataframesPage() {
-  const tocItems = [
-    { id: "introduction", label: "Introduction" },
-    { id: "intuition", label: "Intuition" },
-    { id: "diagram", label: "Diagram: Table view" },
-    { id: "example-1", label: "Example 1: From a dictionary" },
-    { id: "example-2", label: "Example 2: From records" },
-    { id: "example-3", label: "Example 3: Inspect structure" },
+export default function DataframesRoadmapPage() {
+  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
+    { id: "intro", label: "Introduction" },
+    { id: "why-track", label: "Why this track" },
+    { id: "skills-map", label: "Skills map" },
+    { id: "learning-path", label: "Grouped roadmap" },
+    { id: "next-steps", label: "Next steps" },
   ];
 
   return (
     <ArticleLayout
-      eyebrow="Python Programming"
-      title="Create your first dataframe"
-      description="Dataframes show up in almost every data interview and ML workflow. Here we build one, inspect it, and validate the structure before analysis."
+      eyebrow="Python Programming - DataFrames"
+      title="DataFrames 101 roadmap"
+      description="This is the central hub for interview-style pandas dataframe skills. Work through the lessons in order, then revisit by category for targeted practice."
       tocItems={tocItems}
-    >
-      <InfoPanel id="introduction" title="Introduction" variant="intro">
-        <p>
-          A dataframe is a two-dimensional table with rows and columns. It is
-          the standard structure for data analysis in Python because it mirrors
-          how data arrives from CSV files, SQL queries, or APIs.
-        </p>
-        <p>
-          In interviews, you&apos;ll be expected to create, inspect, and transform
-          dataframes confidently. The fastest way to earn trust is to show you
-          can build the table and verify it before doing any calculations.
-        </p>
-      </InfoPanel>
-
-      <InfoPanel id="intuition" title="Intuition" variant="intuition">
-        <p>
-          Think of a dataframe like a spreadsheet: columns are labeled, rows
-          are records, and every operation is a question about rows, columns,
-          or both.
-        </p>
-        <p>
-          The key habit is validation. You create the dataframe, check its
-          shape and types, then move on. That rhythm prevents silent bugs when
-          the data scales.
-        </p>
-      </InfoPanel>
-
-      <div id="diagram" className="scroll-mt-28">
-        <SketchDiagram
-          title="Sketch: dataframe layout"
-          variant="table"
-          caption="Rows are records, columns are features. Most operations slice one or both."
+      rightRail={
+        <RightRail
+          sections={[{ title: "Within DataFrames", links: pythonDataframeLessons }]}
+          activeHref="/topics/python-programming/dataframes"
         />
-      </div>
-
-      <CollapsibleExample
-        id="example-1"
-        title="Example 1: Create from a dictionary"
-        defaultOpen
-      >
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Step by step: start with a dictionary where keys are column names and
-          values are lists. Pandas lines up each list into a column to build the
-          table instantly.
+      }
+    >
+      <InfoPanel id="intro" title="Introduction" variant="intro">
+        <p>
+          This page is your dataframe skill map. Instead of one long lesson,
+          each interview skill gets its own focused page with examples you can
+          execute and explain quickly.
         </p>
-        <CodeBlock code={createCode} title="Python" />
-        <OutputBlock output={createOutput} />
-      </CollapsibleExample>
+        <p>Here&apos;s how this track is structured and why each part matters:</p>
+        <div className="ml-4 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Core setup</td>
+                <td className="py-2">Create and inspect tables before doing any transformations.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Selection skills</td>
+                <td className="py-2">Filter rows and choose columns with readable, safe code.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Cleaning</td>
+                <td className="py-2">Handle missing data, duplicates, and schema consistency.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Reshaping</td>
+                <td className="py-2">Move between long and wide formats efficiently.</td>
+              </tr>
+              <tr>
+                <td className="w-56 py-2 pr-4 text-white font-semibold">Pipelines</td>
+                <td className="py-2">Use method chaining to present concise interview solutions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </InfoPanel>
 
-      <CollapsibleExample id="example-2" title="Example 2: Build from records">
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Step by step: when data arrives as individual records, put each row
-          in a dictionary, collect them into a list, and let pandas stitch them
-          together with <span className="font-mono inline-code">from_records</span>.
+      <InfoPanel id="why-track" title="Why this track" variant="intuition">
+        <p>
+          Dataframe interview problems are usually short, but they test precision.
+          You are expected to know the exact pandas operation and explain why it is
+          safe, clear, and correct.
         </p>
-        <CodeBlock code={rowsCode} title="Python" />
-        <OutputBlock output={rowsOutput} />
-      </CollapsibleExample>
+        <p>
+          The path below is organized to build that exact fluency, from setup to
+          transformations to complete chainable solutions.
+        </p>
+      </InfoPanel>
 
-      <CollapsibleExample id="example-3" title="Example 3: Inspect structure">
+      <section id="skills-map" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Skills map
+        </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Step by step: check the dataframe&apos;s shape to confirm rows and
-          columns, inspect dtypes to ensure numeric vs text columns are correct,
-          then preview the first rows to sanity-check your data.
+          Ready items are live lessons now. Planned items are the next lessons in
+          the same format.
         </p>
-        <CodeBlock code={inspectCode} title="Python" />
-        <OutputBlock output={inspectOutput} />
-      </CollapsibleExample>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm text-[color:var(--color-muted)]">
+            <thead>
+              <tr className="border-b border-white/10 text-xs uppercase tracking-[0.16em] text-white/90">
+                <th className="py-2">Skill</th>
+                <th className="py-2">Page</th>
+                <th className="py-2 text-center">Level</th>
+                <th className="py-2 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-white/10">
+                <td className="py-3 text-white">Create a DataFrame from List</td>
+                <td className="py-3">
+                  <Link
+                    href="/topics/python-programming/dataframes/creating-dataframes"
+                    className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+                  >
+                    Creating DataFrames
+                  </Link>
+                </td>
+                <td className="py-3 text-center text-emerald-400">Easy</td>
+                <td className="py-3 text-center text-emerald-400">Ready</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-3 text-white">Get the Size of a DataFrame</td>
+                <td className="py-3">
+                  <Link
+                    href="/topics/python-programming/dataframes/inspection-basics"
+                    className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+                  >
+                    Inspection basics
+                  </Link>
+                </td>
+                <td className="py-3 text-center text-emerald-400">Easy</td>
+                <td className="py-3 text-center text-emerald-400">Ready</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="py-3 text-white">Display the First Three Rows</td>
+                <td className="py-3">
+                  <Link
+                    href="/topics/python-programming/dataframes/inspection-basics"
+                    className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+                  >
+                    Inspection basics
+                  </Link>
+                </td>
+                <td className="py-3 text-center text-emerald-400">Easy</td>
+                <td className="py-3 text-center text-emerald-400">Ready</td>
+              </tr>
+              <tr>
+                <td className="py-3 text-white">Select Data</td>
+                <td className="py-3">
+                  <Link
+                    href="/topics/python-programming/dataframes/selecting-and-filtering"
+                    className="text-[color:var(--color-accent-2)] underline underline-offset-4 hover:text-white transition"
+                  >
+                    Selecting and filtering
+                  </Link>
+                </td>
+                <td className="py-3 text-center text-emerald-400">Easy</td>
+                <td className="py-3 text-center text-emerald-400">Ready</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="learning-path" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Grouped roadmap
+        </h2>
+        <div className="grid gap-6">
+          {skillGroups.map((group) => (
+            <section key={group.id} id={group.id} className="glass-panel rounded-2xl overflow-hidden">
+              <div className="border-b border-white/10 bg-white/5 px-5 py-4">
+                <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+                  {group.title}
+                </h3>
+              </div>
+              <div className="divide-y divide-white/10">
+                {group.items.map((item) => (
+                  <div
+                    key={`${group.id}-${item.title}`}
+                    className="grid gap-3 px-5 py-4 md:grid-cols-[minmax(0,1fr)_100px_110px] md:items-center"
+                  >
+                    <div className="grid gap-1">
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          className="text-lg font-semibold text-white hover:text-[color:var(--color-accent-2)] transition"
+                        >
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <p className="text-lg font-semibold text-white">{item.title}</p>
+                      )}
+                      <p className="text-sm text-[color:var(--color-muted)]">{item.note}</p>
+                    </div>
+                    <p className="text-sm text-emerald-400 md:text-center">{item.level}</p>
+                    <p
+                      className={`text-sm md:text-center ${
+                        item.status === "Ready" ? "text-emerald-400" : "text-[color:var(--color-muted)]"
+                      }`}
+                    >
+                      {item.status}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </section>
+
+      <section id="next-steps" className="scroll-mt-28 grid gap-3">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Next steps
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Start with <span className="text-white">Creating DataFrames</span>, then
+          move to <span className="text-white">Inspection basics</span> and{" "}
+          <span className="text-white">Selecting and filtering</span>. That gives
+          you enough tooling to solve most beginner pandas interview prompts.
+        </p>
+      </section>
     </ArticleLayout>
   );
 }

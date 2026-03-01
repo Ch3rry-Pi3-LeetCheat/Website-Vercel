@@ -2,18 +2,34 @@ import Link from "next/link";
 
 const articles = [
   {
-    title: "Python Dataframes 101",
+    title: "DataFrames 101 roadmap",
     description:
-      "Create a dataframe, inspect structure, and validate outputs before analysis.",
+      "LeetCode-style pandas skill map with grouped lessons and progression.",
     href: "/topics/python-programming/dataframes",
-    duration: "18 min",
+    duration: "12 min",
     level: "Beginner",
   },
   {
-    title: "Dataframe slicing for interview questions",
+    title: "Creating DataFrames",
     description:
-      "Row filters, column selection, and safe indexing patterns you can explain under pressure.",
-    href: "/topics/python-programming/dataframe-slicing",
+      "Build dataframes from column lists, row records, and tuple input safely.",
+    href: "/topics/python-programming/dataframes/creating-dataframes",
+    duration: "20 min",
+    level: "Beginner",
+  },
+  {
+    title: "Inspection basics",
+    description:
+      "Read shape, head(), and dtypes quickly before writing transformation logic.",
+    href: "/topics/python-programming/dataframes/inspection-basics",
+    duration: "16 min",
+    level: "Beginner",
+  },
+  {
+    title: "Selecting and filtering",
+    description:
+      "Row masks, column selection, and loc/iloc patterns for interview-style tasks.",
+    href: "/topics/python-programming/dataframes/selecting-and-filtering",
     duration: "24 min",
     level: "Beginner",
   },
