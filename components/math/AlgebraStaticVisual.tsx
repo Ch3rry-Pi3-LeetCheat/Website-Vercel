@@ -1,5 +1,5 @@
 type AlgebraStaticVisualProps = {
-  title: string;
+  title?: string;
   caption?: string;
   variant: "substitution-flow" | "line-graph" | "equation-balance";
   framed?: boolean;
@@ -13,10 +13,12 @@ export default function AlgebraStaticVisual({
 }: AlgebraStaticVisualProps) {
   const content = (
     <>
-      <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-        {title}
-      </p>
-      <div className="mt-4">
+      {title ? (
+        <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
+          {title}
+        </p>
+      ) : null}
+      <div className={title ? "mt-4" : undefined}>
         {variant === "substitution-flow" && (
           <svg viewBox="0 0 760 180" className="h-40 w-full">
             <rect x="30" y="45" width="150" height="80" rx="18" fill="rgba(15, 23, 42, 0.92)" stroke="rgba(148, 163, 184, 0.3)" />
@@ -41,15 +43,15 @@ export default function AlgebraStaticVisual({
 
         {variant === "line-graph" && (
           <svg viewBox="0 0 760 540" className="h-auto w-full">
-            <line x1="90" y1="380" x2="710" y2="380" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
-            <line x1="90" y1="380" x2="90" y2="48" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+            <line x1="90" y1="452" x2="710" y2="452" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+            <line x1="90" y1="452" x2="90" y2="62" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
 
             {[0, 1, 2, 3, 4].map((tick) => {
               const x = 90 + tick * 140;
               return (
                 <g key={`x-${tick}`}>
-                  <line x1={x} y1="380" x2={x} y2="388" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
-                  <text x={x} y="416" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                  <line x1={x} y1="452" x2={x} y2="462" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
+                  <text x={x} y="490" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                     {tick}
                   </text>
                 </g>
@@ -57,7 +59,7 @@ export default function AlgebraStaticVisual({
             })}
 
             {[0, 2, 4, 6, 8].map((tick) => {
-              const y = 380 - tick * 42;
+              const y = 452 - tick * 48;
               return (
                 <g key={`y-${tick}`}>
                   <line x1="82" y1={y} x2="90" y2={y} stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
@@ -69,13 +71,13 @@ export default function AlgebraStaticVisual({
               );
             })}
 
-            <path d="M90 380 L230 296 L370 212 L510 128 L650 44" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
+            <path d="M90 452 L230 356 L370 260 L510 164 L650 68" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
 
             {[
-              [90, 380],
-              [230, 296],
-              [370, 212],
-              [510, 128],
+              [90, 452],
+              [230, 356],
+              [370, 260],
+              [510, 164],
             ].map(([cx, cy], idx) => (
               <g key={`p-${idx}`}>
                 <circle cx={cx} cy={cy} r="6" fill="#f472b6" />
@@ -83,13 +85,13 @@ export default function AlgebraStaticVisual({
               </g>
             ))}
 
-            <text x="710" y="456" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
+            <text x="710" y="506" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
               x
             </text>
-            <text x="36" y="54" fill="#f472b6" fontSize="14" fontWeight="700">
+            <text x="36" y="72" fill="#f472b6" fontSize="14" fontWeight="700">
               y
             </text>
-            <text x="520" y="72" fill="#e7eef8" fontSize="16" fontWeight="700">
+            <text x="520" y="106" fill="#e7eef8" fontSize="16" fontWeight="700">
               y = 2x
             </text>
           </svg>

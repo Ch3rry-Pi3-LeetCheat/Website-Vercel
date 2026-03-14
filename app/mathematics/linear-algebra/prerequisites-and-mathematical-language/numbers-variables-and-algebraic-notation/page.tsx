@@ -23,8 +23,11 @@ export default function NumbersVariablesAlgebraicNotationPage() {
     { id: "variables", label: "What a variable means" },
     { id: "variable-roles", label: "Three roles for variables", level: 2 },
     { id: "expressions", label: "Expressions and substitution" },
-    { id: "graph-intuition", label: "Graph intuition" },
+    { id: "structure", label: "Reading structure and grouping", level: 2 },
+    { id: "worked-example", label: "Worked substitution example", level: 2 },
     { id: "equations", label: "Equations and equality" },
+    { id: "balancing-example", label: "A first balancing example", level: 2 },
+    { id: "graph-intuition", label: "Graph intuition" },
     { id: "notation", label: "Common notation habits" },
     { id: "mistakes", label: "Common mistakes" },
     { id: "why-la", label: "Why this matters for linear algebra" },
@@ -258,6 +261,19 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             &pound;3 delivery fee, making the total &pound;8. The unknown cost of the
             item itself is the variable.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A quick numerical check helps here. If the item cost were{" "}
+            <MathInline tex={String.raw`5`} className="math-inline math-white" />,
+            then the total would be:
+          </p>
+          <MathBlock
+            tex={String.raw`5+3=8`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            So in this case the unknown value must be{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}=5`} className="math-inline math-white" />.
+          </p>
         </section>
 
         <section className="grid gap-3">
@@ -280,6 +296,19 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             then the total money earned depends on how many hours you work. The
             hours can vary, so the variable tracks that changing input.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We can make that concrete with a couple of simple values:
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+{\color{#22d3ee}x}=1 &\Rightarrow {\color{#f472b6}y}=2(1)=2 \\
+{\color{#22d3ee}x}=4 &\Rightarrow {\color{#f472b6}y}=2(4)=8
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The rule stays the same. Only the input changes, and the output changes with it.
+          </p>
         </section>
 
         <section className="grid gap-3">
@@ -297,6 +326,19 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             order does not change the result. The letters are not there because
             we care about one special pair of numbers. They are there because we
             want the statement to apply broadly.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For example, if{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}a}=2`} className="math-inline math-white" /> and{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}b}=5`} className="math-inline math-white" />,
+            then both sides become the same ordinary sum:
+          </p>
+          <MathBlock
+            tex={String.raw`2+5=5+2=7`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The general rule is simply saying that this works for any pair of values, not just this one.
           </p>
         </section>
       </section>
@@ -329,44 +371,64 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           <MathInline tex={String.raw`2{\color{#22d3ee}a}-5{\color{#f472b6}b}`} className="math-inline math-white" />
           {" "}as follows:
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          First replace each letter with its assigned value:
+        </p>
         <MathBlock
-          tex={String.raw`\begin{aligned}
-2{\color{#22d3ee}a}-5{\color{#f472b6}b}
-&= 2({\color{#22d3ee}4})-5({\color{#f472b6}1}) \\
-&= {\color{#22d3ee}8}-{\color{#f472b6}5} \\
-&= 3
-\end{aligned}`}
+          tex={String.raw`2{\color{#22d3ee}a}-5{\color{#f472b6}b}=2({\color{#22d3ee}4})-5({\color{#f472b6}1})`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Then carry out the multiplication:
+        </p>
+        <MathBlock
+          tex={String.raw`2({\color{#22d3ee}4})-5({\color{#f472b6}1})={\color{#22d3ee}8}-{\color{#f472b6}5}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Finally subtract:
+        </p>
+        <MathBlock
+          tex={String.raw`8-5=3`}
           className="math-center math-lg text-white/90"
         />
 
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Parentheses matter because they show structure. They tell you what is
-          grouped together before other operations happen.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For instance, start with{" "}
-          <MathInline tex={String.raw`3({\color{#22d3ee}x}+2)`} className="math-inline math-white" />.
-          The parentheses tell us that the addition happens inside the brackets
-          as one grouped unit before the outside multiplication is fully
-          distributed.
-        </p>
-        <MathBlock
-          tex={String.raw`\begin{aligned}
-3({\color{#22d3ee}x}+2) &\neq 3{\color{#22d3ee}x}+2 \\
-\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          because we must distribute the <MathInline tex={String.raw`3`} className="math-inline math-white" /> across
-          the whole bracket:
-        </p>
-        <MathBlock
-          tex={String.raw`\begin{aligned}
-3({\color{#22d3ee}x}+2) &= 3({\color{#22d3ee}x})+3(2) \\
-&= 3{\color{#22d3ee}x}+6
-\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+        <section id="structure" className="scroll-mt-28 grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Reading structure and grouping
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Parentheses matter because they show structure. They tell you what is
+            grouped together before other operations happen.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For instance, start with{" "}
+            <MathInline tex={String.raw`3({\color{#22d3ee}x}+2)`} className="math-inline math-white" />.
+            The parentheses tell us that the addition happens inside the brackets
+            as one grouped unit before the outside multiplication is fully
+            distributed.
+          </p>
+          <MathBlock
+            tex={String.raw`3({\color{#22d3ee}x}+2)\neq 3{\color{#22d3ee}x}+2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            That is because the outside{" "}
+            <MathInline tex={String.raw`3`} className="math-inline math-white" /> multiplies the whole bracket, not just the{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+          </p>
+          <MathBlock
+            tex={String.raw`3({\color{#22d3ee}x}+2)=3({\color{#22d3ee}x})+3(2)`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now distribute the multiplication to each term inside the bracket:
+          </p>
+          <MathBlock
+            tex={String.raw`3({\color{#22d3ee}x})+3(2)=3{\color{#22d3ee}x}+6`}
+            className="math-center math-lg text-white/90"
+          />
+        </section>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This kind of structural reading is extremely important later. In
           linear algebra, expressions such as{" "}
@@ -377,7 +439,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           grouping tells you what operation is happening first.
         </p>
 
-        <section className="grid gap-3">
+        <section id="worked-example" className="scroll-mt-28 grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             A worked substitution example
           </h3>
@@ -386,12 +448,27 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             <MathInline tex={String.raw`2{\color{#22d3ee}x}+1`} className="math-inline math-white" />.
             Now suppose <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Because <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />,
+            we replace the <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> in the expression with{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}3}`} className="math-inline math-white" />.
+          </p>
           <MathBlock
-            tex={String.raw`\begin{aligned}
-2{\color{#22d3ee}x}+1 &= 2(3)+1 \\
-&= 6+1 \\
-&= 7
-\end{aligned}`}
+            tex={String.raw`2{\color{#22d3ee}x}+1=2({\color{#22d3ee}3})+1`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Next do the multiplication:
+          </p>
+          <MathBlock
+            tex={String.raw`2({\color{#22d3ee}3})+1=6+1`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Then add the final 1:
+          </p>
+          <MathBlock
+            tex={String.raw`6+1=7`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -409,13 +486,26 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" /> and suppose{" "}
             <MathInline tex={String.raw`{\color{#22d3ee}x}=5`} className="math-inline math-white" />.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            First substitute <MathInline tex={String.raw`{\color{#22d3ee}5}`} className="math-inline math-white" /> for{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />:
+          </p>
           <MathBlock
-            tex={String.raw`\begin{aligned}
-\frac{{\color{#22d3ee}x}+1}{2}
-&= \frac{{\color{#22d3ee}5}+1}{2} \\
-&= \frac{6}{2} \\
-&= 3
-\end{aligned}`}
+            tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}=\frac{{\color{#22d3ee}5}+1}{2}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now simplify the numerator:
+          </p>
+          <MathBlock
+            tex={String.raw`\frac{{\color{#22d3ee}5}+1}{2}=\frac{6}{2}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Finally divide by 2:
+          </p>
+          <MathBlock
+            tex={String.raw`\frac{6}{2}=3`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -423,72 +513,6 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             one unit. First evaluate the numerator, then divide by 2.
           </p>
         </section>
-      </section>
-
-      <section id="graph-intuition" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Graph intuition: a changing variable produces a changing output
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          One of the most useful early intuitions is this: if a variable can
-          change, then the output of an expression can change with it. For
-          example, consider:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This says that the output{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
-          {" "}depends on the input{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
-          As <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> changes,
-          the value of <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> changes too.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
-          Then:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}0})=0`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}3})=6`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The point is that the rule stays the same while the input changes. The
-          expression is acting like a machine: feed in a new value of{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
-          and it produces the corresponding value of{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />.
-        </p>
-
-        <AlgebraStaticVisual
-          title="Static Graph"
-          variant="line-graph"
-          framed={false}
-          caption="This is the first bridge between algebra and graphing: one variable changes, the other responds according to the rule."
-        />
-
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This matters because later in linear algebra, relationships between
-          variables are often written compactly. If you already understand that a
-          symbolic rule describes how outputs depend on inputs, matrix equations
-          will feel much more natural.
-        </p>
       </section>
 
       <section id="equations" className="scroll-mt-28 grid gap-4">
@@ -504,53 +528,134 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           tex={String.raw`{\color{#22d3ee}x}+3=8`}
           className="math-center math-lg text-white/90"
         />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Solving the equation means finding which value of{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
-          {" "}makes that statement true.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          To solve it, we want to get{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
-          {" "}by itself on the left-hand side.
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#22d3ee}x}+3=8`}
-          className="math-center math-lg text-white/90"
-        />
+        <section id="balancing-example" className="scroll-mt-28 grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            A first balancing example
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Solving the equation means finding which value of{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
+            {" "}makes that statement true.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            To solve it, we want to get{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
+            {" "}by itself on the left-hand side.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}+3=8`}
+            className="math-center math-lg text-white/90"
+          />
 
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          At the moment there is a{" "}
-          <MathInline tex={String.raw`+3`} className="math-inline math-white" /> attached to the left-hand side,
-          so we subtract 3 from the left-hand side.
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#22d3ee}x}+3-3`}
-          className="math-center math-lg text-white/90"
-        />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            At the moment there is a{" "}
+            <MathInline tex={String.raw`+3`} className="math-inline math-white" /> attached to the left-hand side,
+            so we subtract 3 from the left-hand side.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}+3-3`}
+            className="math-center math-lg text-white/90"
+          />
 
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          However, whatever we do on one side, we must do on the other side as
-          well. Otherwise the equality would no longer hold.
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#22d3ee}x}+3-3=8-3`}
-          className="math-center math-lg text-white/90"
-        />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            However, whatever we do on one side, we must do on the other side as
+            well. Otherwise the equality would no longer hold.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}+3-3=8-3`}
+            className="math-center math-lg text-white/90"
+          />
 
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now simplify both sides.
-        </p>
-        <MathBlock
-          tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3-3 &= 8-3 \\
-{\color{#22d3ee}x} &= 5
-\end{aligned}`}
-          className="math-center math-lg text-white/90"
-        />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now simplify both sides.
+          </p>
+          <MathBlock
+            tex={String.raw`8-3=5`}
+            className="math-center math-lg text-white/90"
+          />
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}=5`}
+            className="math-center math-lg text-white/90"
+          />
+        </section>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This balancing habit becomes essential later when solving systems of
           equations, performing elimination, and interpreting matrix equations.
+        </p>
+      </section>
+
+      <section id="graph-intuition" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Graph intuition: a changing variable produces a changing output
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Once substitution feels comfortable, the next step is to notice that
+          some expressions do not produce just one answer. They produce a
+          different output each time the input changes.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
+          className="math-center math-lg text-white/90"
+        />
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            From a rule to specific values
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This says that the output{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
+            {" "}depends on the input{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+            We can see that by trying a few simple values one at a time.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
+            Then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}0})=0`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}3})=6`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The rule stays the same while the input changes. That is the key
+            idea behind a graph: one rule, many input-output pairs.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            From specific values to a picture
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If we plot those input-output pairs on axes, we get a visual picture
+            of the rule. That picture is the graph.
+          </p>
+          <AlgebraStaticVisual
+            variant="line-graph"
+            framed={false}
+            caption="This is the first bridge between algebra and graphing: one variable changes, the other responds according to the rule."
+          />
+        </section>
+
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This matters because later in linear algebra, relationships between
+          variables are often written compactly. If you already understand that a
+          symbolic rule describes how outputs depend on inputs, matrix equations
+          will feel much more natural.
         </p>
       </section>
 
