@@ -350,6 +350,121 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </section>
       </section>
 
+      <section id="graph-intuition" className="scroll-mt-28 grid gap-4">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+          Graph intuition: a changing variable produces a changing output
+        </h3>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Once a variable is allowed to change, the next step is to notice that
+          some expressions do not produce just one answer. They produce a
+          different output each time the input changes.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
+          className="math-center math-lg text-white/90"
+        />
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            From a rule to specific values
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This says that the output{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
+            {" "}depends on the input{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+            We can see that by trying a few simple values one at a time.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
+            Then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}0})=0`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}3})=6`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The rule stays the same while the input changes. That is the key
+            idea behind a graph: one rule, many input-output pairs.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            A second rule with the same input
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We can do the same thing with a different rule. For example, consider{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}y}={\color{#22d3ee}x}+2`} className="math-inline math-white" />.
+            The input is still{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />, but the rule has changed,
+            so the output will change in a different way.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
+            Then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}0})+2=2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}1})+2=3`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}3})+2=5`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is useful because it shows that the same input can be fed into
+            two different rules and produce two different outputs.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            From specific values to a picture
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If we plot those input-output pairs on axes, we get a visual picture
+            of the rule. We can even plot two different rules on the same axes
+            and compare them directly.
+          </p>
+          <AlgebraStaticVisual
+            variant="line-graph"
+            framed={false}
+            caption="Both rules use the same input axis. The blue line shows how y = 2x responds, while the orange line shows how y = x + 2 responds."
+          />
+        </section>
+
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This matters because later in linear algebra, relationships between
+          variables are often written compactly. If you already understand that a
+          symbolic rule describes how outputs depend on inputs, matrix equations
+          will feel much more natural.
+        </p>
+      </section>
+
       <section id="expressions" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Expressions
@@ -596,125 +711,10 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </p>
       </section>
 
-      <section id="graph-intuition" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Graph intuition: a changing variable produces a changing output
-        </h2>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Once substitution feels comfortable, the next step is to notice that
-          some expressions do not produce just one answer. They produce a
-          different output each time the input changes.
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
-          className="math-center math-lg text-white/90"
-        />
-        <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            From a rule to specific values
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This says that the output{" "}
-            <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
-            {" "}depends on the input{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
-            We can see that by trying a few simple values one at a time.
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
-            Then:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}0})=0`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}3})=6`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            The rule stays the same while the input changes. That is the key
-            idea behind a graph: one rule, many input-output pairs.
-          </p>
-        </section>
-
-        <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            A second rule with the same input
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We can do the same thing with a different rule. For example, consider{" "}
-            <MathInline tex={String.raw`{\color{#f472b6}y}={\color{#22d3ee}x}+2`} className="math-inline math-white" />.
-            The input is still{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />, but the rule has changed,
-            so the output will change in a different way.
-          </p>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
-            Then:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}0})+2=2`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}1})+2=3`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}3})+2=5`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This is useful because it shows that the same input can be fed into
-            two different rules and produce two different outputs.
-          </p>
-        </section>
-
-        <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            From specific values to a picture
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            If we plot those input-output pairs on axes, we get a visual picture
-            of the rule. We can even plot two different rules on the same axes
-            and compare them directly.
-          </p>
-          <AlgebraStaticVisual
-            variant="line-graph"
-            framed={false}
-            caption="Both rules use the same input axis. The blue line shows how y = 2x responds, while the orange line shows how y = x + 2 responds."
-          />
-        </section>
-
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This matters because later in linear algebra, relationships between
-          variables are often written compactly. If you already understand that a
-          symbolic rule describes how outputs depend on inputs, matrix equations
-          will feel much more natural.
-        </p>
-      </section>
-
       <section id="notation" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Common notation habits
-        </h2>
+        </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Mathematics uses shorthand constantly. That shorthand is efficient, but
           beginners often find it dense because many operations are written
