@@ -31,7 +31,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
     { id: "balancing-example", label: "A first balancing example", level: 2 },
     { id: "mistakes", label: "Common mistakes", level: 2 },
     { id: "why-la", label: "Linear algebra bridge" },
-    { id: "summary", label: "Summary", level: 2 },
+    { id: "summary", label: "Summary" },
   ];
 
   return (
@@ -904,9 +904,9 @@ export default function NumbersVariablesAlgebraicNotationPage() {
       </section>
 
       <section id="summary" className="scroll-mt-28 grid gap-4">
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Summary
-        </h3>
+        </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The main lesson is not just a set of definitions. It is a way of
           reading mathematics more calmly and more structurally.
