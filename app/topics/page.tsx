@@ -16,6 +16,13 @@ const tracks = [
     status: "Coming soon",
   },
   {
+    title: "Mathematics",
+    description:
+      "Foundational math tracks for problem solving, machine learning, and algorithmic thinking.",
+    href: "/mathematics",
+    status: "Active",
+  },
+  {
     title: "LLMs & Agents",
     description:
       "Prompting, retrieval, evaluation, and production-grade agent patterns.",

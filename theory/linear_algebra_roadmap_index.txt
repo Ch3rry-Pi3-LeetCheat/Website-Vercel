@@ -1,0 +1,336 @@
+Linear algebra roadmap index
+
+Purpose of this document
+
+This document defines the learning roadmap for a linear algebra theory library.
+It is intended to act as an index for a structured set of lesson notes, moving
+from complete beginner ideas to advanced topics.
+
+The goal is not to write all of linear algebra in one file.
+The goal is to define the order in which the theory should be learned and documented,
+so that each lesson builds naturally on the previous one.
+
+This document should therefore be treated as a roadmap and index, not as the final notes.
+
+How this will be used
+
+The plan is to work through linear algebra topic by topic.
+For each topic listed below, a separate beginner-friendly lesson note can later be created.
+
+Each future lesson note should aim to include:
+
+- intuitive explanation
+- geometric intuition where useful
+- formal definitions
+- worked examples
+- common mistakes and misconceptions
+- computational examples
+- why the topic matters
+- links to the previous and next lessons
+
+This means the linear algebra folder can gradually become a structured library
+of learning notes rather than a random collection of disconnected topics.
+
+Why this roadmap exists
+
+Linear algebra becomes difficult when topics are learned in the wrong order.
+For example, eigenvalues make little sense without matrices and linear transformations.
+Least squares is much easier once projections and orthogonality are clear.
+SVD is far easier once basis, rank, diagonalization, and orthonormality are in place.
+
+This roadmap is therefore designed as a dependency-aware study sequence.
+
+Phase 0: prerequisites and mathematical language
+
+These topics make sure the student can read later notation comfortably.
+
+1. Numbers, variables, and algebraic notation
+2. Functions, graphs, and mappings
+3. Coordinate plane and geometric points
+4. Solving simple equations and rearranging expressions
+5. Sigma notation and basic mathematical notation used in linear algebra
+
+Why this phase matters
+
+A beginner often struggles with linear algebra not because the ideas are impossible,
+but because the notation and symbolic manipulation are unfamiliar.
+
+Phase 1: vectors and geometric intuition
+
+This phase introduces the central objects of linear algebra.
+
+6. Scalars, vectors, and vector notation
+7. Vector addition and scalar multiplication
+8. Magnitude, distance, and normalization
+9. Dot product and geometric meaning
+10. Angles between vectors
+11. Projections of one vector onto another
+12. Linear combinations
+13. Span
+
+Why this phase matters
+
+Vectors are the basic language of linear algebra.
+Without comfort here, matrices and transformations later feel abstract and mechanical.
+
+Phase 2: lines, planes, subspaces, basis, and dimension
+
+This phase builds the structural idea of vector spaces.
+
+14. Lines and planes as sets of vectors
+15. Subspaces
+16. Linear independence and dependence
+17. Basis
+18. Dimension
+19. Column space
+20. Null space
+21. Rank and nullity intuition
+
+Why this phase matters
+
+This is where the learner stops seeing vectors as isolated arrows and starts seeing
+linear algebra as the study of spaces and structure.
+
+Phase 3: systems of linear equations and matrices
+
+This phase connects algebraic equations to matrix language.
+
+22. Systems of linear equations
+23. Augmented matrices
+24. Matrix notation and what a matrix represents
+25. Matrix addition and scalar multiplication
+26. Matrix multiplication
+27. Identity matrix
+28. Inverse matrix
+29. Row operations
+30. Gaussian elimination
+31. Row echelon form and reduced row echelon form
+32. Solving systems using elimination
+33. When systems have one solution, infinitely many, or none
+
+Why this phase matters
+
+This is usually where linear algebra becomes computationally useful.
+It also provides the bridge from equations to transformations and structure.
+
+Phase 4: linear transformations
+
+This phase explains what matrices really mean.
+
+34. Functions versus linear transformations
+35. What makes a transformation linear
+36. Matrix as a linear transformation
+37. Transformation of lines, planes, and grids
+38. Composition of transformations
+39. Kernel
+40. Image
+41. Matrix representation of a transformation
+42. Change of coordinates and change of basis
+
+Why this phase matters
+
+This is one of the deepest conceptual shifts in the whole subject.
+Matrices stop being tables of numbers and become operators acting on spaces.
+
+Phase 5: determinants and invertibility
+
+This phase explains invertibility more deeply.
+
+43. Determinant intuition as scaling and orientation
+44. Determinants of 2x2 and 3x3 matrices
+45. Cofactors and expansion
+46. Determinant and invertibility
+47. Determinant and volume scaling
+48. Singular versus nonsingular matrices
+
+Why this phase matters
+
+The determinant ties together geometry, invertibility, and system solvability.
+
+Phase 6: eigenvalues and eigenvectors
+
+This phase introduces one of the most important ideas in all of linear algebra.
+
+49. Eigenvectors and eigenvalues
+50. Characteristic equation
+51. Finding eigenvalues in simple examples
+52. Finding eigenvectors from eigenvalues
+53. Geometric meaning of eigenvectors
+54. Diagonalization
+55. When diagonalization is possible
+56. Why diagonalization is useful
+57. Matrix powers through diagonalization
+
+Why this phase matters
+
+Eigen concepts show how a transformation behaves in its natural directions.
+They are foundational for differential equations, PCA, Markov chains, and many algorithms.
+
+Phase 7: orthogonality and inner product spaces
+
+This phase builds the geometry needed for approximation and decomposition.
+
+58. Inner products
+59. Orthogonal vectors
+60. Orthonormal sets
+61. Orthogonal complements
+62. Projections onto subspaces
+63. Gram-Schmidt process
+64. Orthonormal bases
+65. Orthogonal matrices
+66. Least squares problems
+
+Why this phase matters
+
+Orthogonality is one of the major organizing ideas of linear algebra.
+It is essential for approximation, regression, numerical methods, and decompositions.
+
+Phase 8: symmetric matrices and the spectral viewpoint
+
+This phase refines eigenvalue theory in an especially important setting.
+
+67. Symmetric matrices
+68. Real eigenvalues of symmetric matrices
+69. Orthogonal diagonalization
+70. Spectral theorem
+71. Quadratic forms
+72. Positive definite, negative definite, and indefinite matrices
+
+Why this phase matters
+
+Symmetric matrices are central in optimization, statistics, physics, and machine learning.
+They are also the cleanest setting in which eigen ideas become especially elegant.
+
+Phase 9: matrix factorizations
+
+This phase introduces the major decomposition tools.
+
+73. LU decomposition
+74. Why LU helps solve systems efficiently
+75. QR decomposition
+76. Why QR is tied to orthogonality and least squares
+77. Singular value decomposition
+78. Singular values and singular vectors
+79. Geometric interpretation of SVD
+80. Pseudoinverse
+81. Low-rank approximation
+
+Why this phase matters
+
+Factorizations are where linear algebra becomes a powerful computational toolkit.
+They are central to scientific computing, data science, and advanced algorithms.
+
+Phase 10: advanced computational and applied linear algebra
+
+This phase connects theory to real-world use.
+
+82. Numerical stability and conditioning
+83. Ill-conditioned systems
+84. Sparse matrices
+85. Iterative methods intuition
+86. PCA as an application of eigenvectors and SVD
+87. Linear algebra in computer graphics
+88. Linear algebra in machine learning
+89. Linear algebra in optimization
+90. Matrix methods in graphs and networks
+91. Matrix exponentiation and recurrence relations
+
+Why this phase matters
+
+This phase shows why linear algebra matters beyond exams.
+It links the theory to coding, algorithms, data analysis, and applied mathematics.
+
+Phase 11: advanced and optional extensions
+
+These topics are useful once the core foundation is strong.
+
+92. Complex vector spaces
+93. Hermitian and unitary matrices
+94. Jordan form
+95. Generalized eigenvectors
+96. Bilinear forms
+97. Tensors and multilinear ideas
+98. Advanced operator viewpoint
+
+Why this phase matters
+
+These topics are valuable for deeper mathematics, physics, and advanced applications,
+but they should come only after the main structure of linear algebra is secure.
+
+Recommended study order
+
+The recommended practical order is:
+
+1. Scalars, vectors, and vector operations
+2. Dot product, magnitude, angles, and projections
+3. Linear combinations, span, subspaces
+4. Linear independence, basis, and dimension
+5. Systems of linear equations
+6. Matrices and matrix multiplication
+7. Row reduction and solving systems
+8. Rank, null space, and column space
+9. Linear transformations
+10. Kernel and image
+11. Determinants and invertibility
+12. Eigenvalues and eigenvectors
+13. Diagonalization
+14. Inner products and orthogonality
+15. Gram-Schmidt and orthonormal bases
+16. Least squares
+17. Symmetric matrices and the spectral theorem
+18. LU decomposition
+19. QR decomposition
+20. Singular value decomposition
+21. Pseudoinverse and low-rank approximation
+22. Numerical stability and conditioning
+23. Applications such as PCA, graphics, optimization, and graph methods
+24. Complex spaces, Hermitian matrices, and Jordan form
+
+Recommended first block
+
+The best first block is:
+
+- scalars, vectors, and vector notation
+- vector addition and scalar multiplication
+- magnitude, dot product, and angles
+- linear combinations and span
+- linear independence, basis, and dimension
+
+This block creates the conceptual foundation needed before matrices are introduced.
+
+How future lesson notes should be organized
+
+A sensible naming convention would be:
+
+- 01_scalars_vectors_and_notation.txt
+- 02_vector_addition_and_scalar_multiplication.txt
+- 03_magnitude_dot_product_and_angles.txt
+- 04_linear_combinations_and_span.txt
+- 05_linear_independence_basis_and_dimension.txt
+- 06_systems_of_linear_equations.txt
+- 07_matrices_and_matrix_operations.txt
+- 08_row_reduction_and_gaussian_elimination.txt
+- 09_rank_null_space_and_column_space.txt
+- 10_linear_transformations.txt
+
+and so on.
+
+Each lesson note should ideally include:
+
+- topic name
+- intuitive explanation
+- formal idea
+- geometric interpretation
+- worked examples
+- computational examples
+- common mistakes
+- why it matters
+- what topic it leads into next
+
+Working conclusion
+
+This roadmap should be treated as the master index for a structured linear algebra library.
+The key idea is simple:
+
+learn the ideas in the right order, document them clearly, and make each later topic
+easier by building on what has already been understood.
