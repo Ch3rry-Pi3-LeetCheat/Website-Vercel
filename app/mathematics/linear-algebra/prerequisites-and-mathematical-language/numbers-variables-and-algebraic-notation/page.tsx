@@ -297,13 +297,20 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             hours can vary, so the variable tracks that changing input.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We can make that concrete with a couple of simple values:
+            We can make that concrete with a couple of simple values.
+            In the first example, we will use{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
           </p>
           <MathBlock
-            tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}=1 &\Rightarrow {\color{#f472b6}y}=2(1)=2 \\
-{\color{#22d3ee}x}=4 &\Rightarrow {\color{#f472b6}y}=2(4)=8
-\end{aligned}`}
+            tex={String.raw`{\color{#22d3ee}x}=1\Rightarrow {\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            As a second example, we will use{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}=4`} className="math-inline math-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}=4\Rightarrow {\color{#f472b6}y}=2({\color{#22d3ee}4})=8`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
