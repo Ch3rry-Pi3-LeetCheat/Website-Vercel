@@ -237,13 +237,13 @@ export default function AlgebraStaticVisual({
                 </text>
               ))}
 
-              <path d="M214 130 L546 130" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
-              <path d="M214 200 L546 200" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
-              <path d="M214 270 L546 270" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M198 130 L562 130" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
+              <path d="M198 200 L562 200" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
+              <path d="M198 270 L562 270" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
 
-              <path d="M532 118 L546 130 L532 142" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
-              <path d="M532 188 L546 200 L532 212" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
-              <path d="M532 258 L546 270 L532 282" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
+              <path d="M548 118 L562 130 L548 142" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
+              <path d="M548 188 L562 200 L548 212" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
+              <path d="M548 258 L562 270 L548 282" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
             </svg>
             <div className="pointer-events-none absolute left-1/2 top-[14%] -translate-x-1/2 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Rule</p>
