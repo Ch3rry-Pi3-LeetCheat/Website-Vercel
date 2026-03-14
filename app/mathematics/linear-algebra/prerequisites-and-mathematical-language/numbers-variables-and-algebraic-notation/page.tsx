@@ -21,6 +21,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
     { id: "why", label: "Why this topic comes first" },
     { id: "numbers", label: "What numbers are doing" },
     { id: "variables", label: "What a variable means" },
+    { id: "variable-roles", label: "Three roles for variables", level: 2 },
     { id: "expressions", label: "Expressions and substitution" },
     { id: "graph-intuition", label: "Graph intuition" },
     { id: "equations", label: "Equations and equality" },
@@ -35,6 +36,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
       eyebrow="Mathematics - Linear Algebra - Prerequisites"
       title="Numbers, variables, and algebraic notation"
       description="Before vectors and matrices, the symbols themselves need to feel readable. This lesson builds that base carefully: what numbers represent, what variables do, how expressions are evaluated, how equations are interpreted, and why this symbolic fluency matters for every later page in linear algebra."
+      descriptionClassName="!max-w-none"
       tocItems={tocItems}
       rightRail={
         <RightRail
@@ -49,7 +51,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
       <InfoPanel id="intro" title="Introduction" variant="intro">
         <p>
           A lot of people think they are struggling with mathematics when the
-          deeper problem is actually simpler: <span className="text-white font-semibold">the notation still feels foreign</span>.
+          deeper problem is actually smaller: <span className="text-white font-semibold">the notation still feels foreign</span>.
           If every expression feels like a code to decode, then even easy ideas
           feel harder than they really are.
         </p>
@@ -90,12 +92,13 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <InfoPanel id="why" title="Why this topic comes first" variant="intuition">
         <p>
-          Later in the track you will see expressions such as{" "}
-          <MathInline tex={String.raw`A{\color{#22d3ee}x}={\color{#86efac}b}`} className="math-inline math-white" />,
-          {" "}<MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^n`} className="math-inline math-white" />,
-          {" "}<MathInline tex={String.raw`3{\color{#22d3ee}u}+2{\color{#fbbf24}v}`} className="math-inline math-white" />,
-          and{" "}
-          <MathInline tex={String.raw`\lambda{\color{#22d3ee}v}`} className="math-inline math-white" />.
+          Later in the track you will see expressions such as:
+        </p>
+        <MathBlock
+          tex={String.raw`A{\color{#22d3ee}x}={\color{#86efac}b},\qquad {\color{#22d3ee}x}\in\mathbb{R}^n,\qquad 3{\color{#22d3ee}u}+2{\color{#fbbf24}v},\qquad \lambda{\color{#22d3ee}v}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p>
           Those are not difficult because the universe suddenly changed. They
           are difficult only if letters, coefficients, grouping, and equality
           are still unstable in your head.
@@ -116,27 +119,35 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           algebra, the main question is not only what the number means in a
           story. The main question is <span className="text-white font-semibold">what role it is playing inside the expression</span>.
         </p>
-        <div className="overflow-x-auto">
+        <div className="ml-4 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-40 py-2 pr-4 font-semibold text-white">Example</td>
                 <td className="py-2">How the number is functioning</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">3 + 5</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`3+5`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">Two fixed values are being combined.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">4x</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">The number 4 is a coefficient or scale factor on the variable.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">x + 7</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}+7`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">The number 7 is a fixed offset being added.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">x / 2</td>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}}{2}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">The number 2 acts as a divisor.</td>
               </tr>
             </tbody>
@@ -144,11 +155,11 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This matters because linear algebra constantly uses numbers as
-          coefficients, coordinates, weights, and scaling values. When you later
-          see something like{" "}
-          <MathInline tex={String.raw`3{\color{#22d3ee}u}-2{\color{#fbbf24}v}`} className="math-inline math-white" />,
-          those numbers are not decorative. They are telling you how strongly
-          each vector is being scaled before the combination is formed.
+          coefficients, coordinates, weights, and scaling values. For now, you
+          do <span className="text-white font-semibold">not</span> need to know what a vector is. The immediate
+          lesson is simpler: numbers do not just sit there as labels. They can
+          tell you how strongly something is being multiplied, shifted, or
+          scaled inside the expression.
         </p>
       </section>
 
@@ -168,8 +179,15 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           one fixed number. It is a placeholder. Once we assign it a value, the
           expression can be evaluated.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For example, if <MathInline tex={String.raw`{\color{#22d3ee}x}=5`} className="math-inline math-white" />, then we
+          substitute that value into the expression:
+        </p>
         <MathBlock
-          tex={String.raw`\text{If } {\color{#22d3ee}x}=5,\quad {\color{#22d3ee}x}+3=5+3=8`}
+          tex={String.raw`\begin{aligned}
+{\color{#22d3ee}x}+3 &= 5+3 \\
+&= 8
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -177,30 +195,78 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           It is just a compact symbol that lets us talk about values before we
           pin them down.
         </p>
-        <div className="glass-panel rounded-2xl p-4 text-base leading-7 text-[color:var(--color-muted)]">
-          <p className="font-semibold text-white">Three common roles for a variable</p>
-          <p>
-            Unknown value: solve{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}+3=8`} className="math-inline math-white" /> for{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
-          </p>
-          <p>
-            Changing value: study how{" "}
-            <MathInline tex={String.raw`{\color{#86efac}y}=2{\color{#22d3ee}x}`} className="math-inline math-white" /> behaves
-            as <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> changes.
-          </p>
-          <p>
-            General value: write a pattern such as{" "}
-            <MathInline tex={String.raw`{\color{#fbbf24}a}+{\color{#f472b6}b}={\color{#f472b6}b}+{\color{#fbbf24}a}`} className="math-inline math-white" />
-            {" "}without choosing one specific pair of numbers.
-          </p>
-        </div>
+      </section>
 
-        <AlgebraStaticVisual
-          title="Substitution Flow"
-          variant="substitution-flow"
-          caption="This is the mental model for evaluation: start with a symbol, assign it a value, and let the expression produce an output."
-        />
+      <section id="variable-roles" className="scroll-mt-28 grid gap-4">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+          Three common roles for a variable
+        </h3>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          A beginner-friendly way to think about variables is that they usually
+          appear in one of three roles.
+        </p>
+
+        <section className="grid gap-3">
+          <h4 className="text-lg font-semibold text-white">1. Unknown value</h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Sometimes the variable stands for a value we are trying to find. A
+            simple example is:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}+3=8`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Here we are solving for <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+            In plain English, this means: what number, when 3 is added to it,
+            gives 8?
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            An everyday version would be: you bought something and then paid a
+            GBP3 delivery fee, making the total GBP8. The unknown cost of the
+            item itself is the variable.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h4 className="text-lg font-semibold text-white">2. Changing value</h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Sometimes the variable is allowed to change, and we want to study
+            what happens to another quantity when it does. For example:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#86efac}y}=2{\color{#22d3ee}x}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Here we are interested in how{" "}
+            <MathInline tex={String.raw`{\color{#86efac}y}`} className="math-inline math-white" /> changes as{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> increases or decreases.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A very ordinary example is hourly pay. If you earn GBP2 per hour,
+            then the total money earned depends on how many hours you work. The
+            hours can vary, so the variable tracks that changing input.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h4 className="text-lg font-semibold text-white">3. General value</h4>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Sometimes we use variables because we want to state a general rule,
+            not because we are solving one specific numerical problem.
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#fbbf24}a}+{\color{#f472b6}b}={\color{#f472b6}b}+{\color{#fbbf24}a}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This says that addition works the same way in general: swapping the
+            order does not change the result. The letters are not there because
+            we care about one special pair of numbers. They are there because we
+            want the statement to apply broadly.
+          </p>
+        </section>
       </section>
 
       <section id="expressions" className="scroll-mt-28 grid gap-4">
