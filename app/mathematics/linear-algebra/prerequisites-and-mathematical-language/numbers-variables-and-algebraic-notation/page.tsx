@@ -341,7 +341,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             then both sides become the same ordinary sum:
           </p>
           <MathBlock
-            tex={String.raw`2+5=5+2=7`}
+            tex={String.raw`{\color{#22d3ee}2}+{\color{#f472b6}5}={\color{#f472b6}5}+{\color{#22d3ee}2}=7`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -419,6 +419,11 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             tex={String.raw`3({\color{#22d3ee}x}+2)\neq 3{\color{#22d3ee}x}+2`}
             className="math-center math-lg text-white/90"
           />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            The crossed equality sign{" "}
+            <MathInline tex={String.raw`\neq`} className="math-inline math-white" /> means
+            {" "}“is not equal to”.
+          </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             That is because the outside{" "}
             <MathInline tex={String.raw`3`} className="math-inline math-white" /> multiplies the whole bracket, not just the{" "}
@@ -645,16 +650,56 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
         <section className="grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            A second rule with the same input
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            We can do the same thing with a different rule. For example, consider{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}y}={\color{#22d3ee}x}+2`} className="math-inline math-white" />.
+            The input is still{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />, but the rule has changed,
+            so the output will change in a different way.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
+            Then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}0})+2=2`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}1})+2=3`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}y}=({\color{#22d3ee}3})+2=5`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is useful because it shows that the same input can be fed into
+            two different rules and produce two different outputs.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             From specific values to a picture
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             If we plot those input-output pairs on axes, we get a visual picture
-            of the rule. That picture is the graph.
+            of the rule. We can even plot two different rules on the same axes
+            and compare them directly.
           </p>
           <AlgebraStaticVisual
             variant="line-graph"
             framed={false}
-            caption="This is the first bridge between algebra and graphing: one variable changes, the other responds according to the rule."
+            caption="Both rules use the same input axis. The blue line shows how y = 2x responds, while the orange line shows how y = x + 2 responds."
           />
         </section>
 
@@ -686,31 +731,59 @@ export default function NumbersVariablesAlgebraicNotationPage() {
                 <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">Means 4 multiplied by x. The multiplication sign is omitted.</td>
+                <td className="py-2">
+                  Means{" "}
+                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
+                  which is 4 multiplied by{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+                  The multiplication sign is omitted.
+                </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">Means x multiplied by itself.</td>
+                <td className="py-2">
+                  Means{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />{" "}
+                  which is{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}\cdot{\color{#22d3ee}x}`} className="math-inline math-white" />.
+                </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">The entire quantity x + 1 is divided by 2.</td>
+                <td className="py-2">
+                  The entire quantity{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}+1`} className="math-inline math-white" />{" "}
+                  is divided by{" "}
+                  <MathInline tex={String.raw`2`} className="math-inline math-white" />.
+                </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`-{\color{#22d3ee}x}`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">The negative of x, not a completely separate symbol.</td>
+                <td className="py-2">
+                  The negative of{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
+                  not a completely separate symbol.
+                </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`{\color{#22d3ee}a}{\color{#f472b6}b}`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">Means a multiplied by b when letters are written side by side.</td>
+                <td className="py-2">
+                  Means{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}a}\cdot{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
+                  when the letters{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}a}`} className="math-inline math-white" />{" "}
+                  and{" "}
+                  <MathInline tex={String.raw`{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
+                  are written side by side.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -731,23 +804,45 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             <tbody>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">&#10060;</td>
-                <td className="py-2">Treating a variable as if it already has a fixed value when none has been assigned.</td>
+                <td className="py-2">
+                  Treating a variable such as{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
+                  as if it already has a fixed value when none has been assigned.
+                </td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">&#10060;</td>
-                <td className="py-2">Reading 4x as if it were a two-character name instead of 4 times x.</td>
+                <td className="py-2">
+                  Reading{" "}
+                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
+                  as if it were a two-character name instead of 4 times{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+                </td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">&#10060;</td>
-                <td className="py-2">Ignoring parentheses and accidentally changing the structure of the expression.</td>
+                <td className="py-2">
+                  Ignoring parentheses and accidentally changing the structure of
+                  an expression such as{" "}
+                  <MathInline tex={String.raw`3({\color{#22d3ee}x}+2)`} className="math-inline math-white" />.
+                </td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">&#10060;</td>
-                <td className="py-2">Changing one side of an equation without making the matching change on the other side.</td>
+                <td className="py-2">
+                  Changing one side of an equation such as{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}+3=8`} className="math-inline math-white" />{" "}
+                  without making the matching change on the other side.
+                </td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">&#10060;</td>
-                <td className="py-2">Thinking notation is the idea itself, rather than a compact language for describing the idea.</td>
+                <td className="py-2">
+                  Thinking notation such as{" "}
+                  <MathInline tex={String.raw`{\color{#22d3ee}x},\ {\color{#f472b6}y},\ 4{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
+                  is the idea itself, rather than a compact language for
+                  describing the idea.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -763,26 +858,43 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           the whole track.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In linear algebra, you constantly meet expressions such as{" "}
-          <MathInline tex={String.raw`3{\color{#22d3ee}u}+2{\color{#f472b6}v}`} className="math-inline math-white" />,
-          {" "}<MathInline tex={String.raw`A{\color{#22d3ee}x}={\color{#f472b6}b}`} className="math-inline math-white" />,
-          {" "}<MathInline tex={String.raw`{\color{#22d3ee}x}_1+{\color{#22d3ee}x}_2`} className="math-inline math-white" />,
-          and{" "}
-          <MathInline tex={String.raw`\lambda{\color{#22d3ee}v}`} className="math-inline math-white" />.
+          In linear algebra, you constantly meet expressions such as:
+        </p>
+        <MathBlock
+          tex={String.raw`3{\color{#22d3ee}u}+2{\color{#f472b6}v},\qquad A{\color{#22d3ee}x}={\color{#f472b6}b},\qquad {\color{#22d3ee}x}_1+{\color{#22d3ee}x}_2,\qquad \lambda{\color{#22d3ee}v}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           To understand those later, you need to already be comfortable with:
         </p>
         <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
           <p>
             <span className="text-white font-semibold">variables</span> as placeholders for values or objects
           </p>
+          <p className="ml-6">
+            Example: in <MathInline tex={String.raw`{\color{#22d3ee}x}+3`} className="math-inline math-white" />, the symbol{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> is standing in for a value we have not fixed yet.
+          </p>
           <p>
             <span className="text-white font-semibold">coefficients</span> as numbers that scale those objects
+          </p>
+          <p className="ml-6">
+            Example: in <MathInline tex={String.raw`3{\color{#22d3ee}u}`} className="math-inline math-white" />, the 3 tells you the object{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}u}`} className="math-inline math-white" /> is being scaled by 3.
           </p>
           <p>
             <span className="text-white font-semibold">grouping</span> as a signal of structure
           </p>
+          <p className="ml-6">
+            Example: <MathInline tex={String.raw`A({\color{#22d3ee}x}+{\color{#f472b6}y})`} className="math-inline math-white" /> tells you to treat{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}+{\color{#f472b6}y}`} className="math-inline math-white" /> as one grouped quantity first.
+          </p>
           <p>
             <span className="text-white font-semibold">equations</span> as statements that must remain balanced
+          </p>
+          <p className="ml-6">
+            Example: in <MathInline tex={String.raw`{\color{#22d3ee}x}+3=8`} className="math-inline math-white" />, if you subtract 3 from the left-hand side,
+            you must also subtract 3 from the right-hand side.
           </p>
         </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -802,24 +914,24 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">1</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Numbers provide fixed values and often act as coefficients, offsets, or divisors.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">2</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Variables are symbols for values that may be unknown, changing, or general.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">3</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Expressions become concrete once values are substituted, but their grouping must be respected.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">4</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Equations assert equality, so valid algebra must preserve the balance between both sides.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">5</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">This fluency is the symbolic base needed before vectors, matrices, and linear transformations can feel natural.</td>
               </tr>
             </tbody>
