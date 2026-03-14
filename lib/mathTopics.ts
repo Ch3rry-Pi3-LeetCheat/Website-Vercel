@@ -53,4 +53,10 @@ export const linearAlgebraPrerequisiteLessons: TopicLink[] = [
       "The first lesson: read symbols correctly, evaluate expressions, and stop notation from blocking the ideas.",
     href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/numbers-variables-and-algebraic-notation",
   },
+  {
+    label: "Functions, graphs, and mappings",
+    description:
+      "Understand input-output rules, see how equations become graphs, and build the language that later powers transformations.",
+    href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/functions-graphs-and-mappings",
+  },
 ];
