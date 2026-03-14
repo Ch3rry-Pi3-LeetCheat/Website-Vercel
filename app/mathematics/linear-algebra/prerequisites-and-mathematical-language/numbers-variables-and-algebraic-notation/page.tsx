@@ -119,33 +119,33 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           algebra, the main question is not only what the number means in a
           story. The main question is <span className="text-white font-semibold">what role it is playing inside the expression</span>.
         </p>
-        <div className="ml-4 overflow-x-auto">
+        <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-40 py-2 pr-4 font-semibold text-white">Example</td>
-                <td className="py-2">How the number is functioning</td>
+                <td className="w-40 py-2 pr-4 text-center font-semibold text-white">Example</td>
+                <td className="py-2 font-semibold text-white">How the number is functioning</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`3+5`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Two fixed values are being combined.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">The number 4 is a coefficient or scale factor on the variable.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`{\color{#22d3ee}x}+7`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">The number 7 is a fixed offset being added.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}}{2}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">The number 2 acts as a divisor.</td>
@@ -185,7 +185,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3 &= 5+3 \\
+{\color{#22d3ee}x}+3 &= {\color{#22d3ee}5}+3 \\
 &= 8
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -223,7 +223,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             An everyday version would be: you bought something and then paid a
-            GBP3 delivery fee, making the total GBP8. The unknown cost of the
+            &pound;3 delivery fee, making the total &pound;8. The unknown cost of the
             item itself is the variable.
           </p>
         </section>
@@ -244,7 +244,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> increases or decreases.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            A very ordinary example is hourly pay. If you earn GBP2 per hour,
+            A very ordinary example is hourly pay. If you earn &pound;2 per hour,
             then the total money earned depends on how many hours you work. The
             hours can vary, so the variable tracks that changing input.
           </p>
@@ -289,8 +289,21 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           To evaluate an expression, substitute values for the variables and
           then compute carefully, respecting the grouping.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For example, if{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}a}=4`} className="math-inline math-white" /> and{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}b}=1`} className="math-inline math-white" />,
+          then we can substitute those values into{" "}
+          <MathInline tex={String.raw`2{\color{#22d3ee}a}-5{\color{#f472b6}b}`} className="math-inline math-white" />
+          {" "}as follows:
+        </p>
         <MathBlock
-          tex={String.raw`\text{If } {\color{#fbbf24}a}=4 \text{ and } {\color{#f472b6}b}=1,\quad 2{\color{#fbbf24}a}-5{\color{#f472b6}b}=2(4)-5(1)=8-5=3`}
+          tex={String.raw`\begin{aligned}
+2{\color{#22d3ee}a}-5{\color{#f472b6}b}
+&= 2({\color{#22d3ee}4)-5({\color{#f472b6}1)} \\
+&= {\color{#22d3ee}8}-{\color{#f472b6}5} \\
+&= 3
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
 
@@ -298,8 +311,18 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           Parentheses matter because they show structure. They tell you what is
           grouped together before other operations happen.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For instance, start with{" "}
+          <MathInline tex={String.raw`3({\color{#22d3ee}x}+2)`} className="math-inline math-white" />.
+          The parentheses tell us that the addition happens inside the brackets
+          as one grouped unit before the outside multiplication is fully
+          distributed.
+        </p>
         <MathBlock
-          tex={String.raw`3({\color{#22d3ee}x}+2)\neq 3{\color{#22d3ee}x}+2 \qquad \text{because } 3({\color{#22d3ee}x}+2)=3{\color{#22d3ee}x}+6`}
+          tex={String.raw`\begin{aligned}
+3({\color{#22d3ee}x}+2) &\neq 3{\color{#22d3ee}x}+2 \\
+\text{because } 3({\color{#22d3ee}x}+2) &= 3{\color{#22d3ee}x}+6
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -312,9 +335,11 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           grouping tells you what operation is happening first.
         </p>
 
-        <div className="glass-panel rounded-2xl p-4 text-base leading-7 text-[color:var(--color-muted)]">
-          <p className="font-semibold text-white">A worked substitution example</p>
-          <p>
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            A worked substitution example
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Start with the expression{" "}
             <MathInline tex={String.raw`2{\color{#22d3ee}x}+1`} className="math-inline math-white" />.
             Now suppose <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />.
@@ -327,11 +352,11 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 \end{aligned}`}
             className="math-center math-lg text-white/90"
           />
-          <p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The idea is simple: once the variable gets a value, the expression
             becomes an ordinary calculation.
           </p>
-        </div>
+        </section>
       </section>
 
       <section id="graph-intuition" className="scroll-mt-28 grid gap-4">
@@ -344,52 +369,51 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           example, consider:
         </p>
         <MathBlock
-          tex={String.raw`{\color{#86efac}y}=2{\color{#22d3ee}x}`}
+          tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This says that the output{" "}
-          <MathInline tex={String.raw`{\color{#86efac}y}`} className="math-inline math-white" />
+          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
           {" "}depends on the input{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
           As <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> changes,
-          the value of <MathInline tex={String.raw`{\color{#86efac}y}`} className="math-inline math-white" /> changes too.
+          the value of <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> changes too.
         </p>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-            <tbody>
-              <tr className="border-b border-white/10">
-                <td className="w-24 py-2 pr-4 font-semibold text-cyan-300">x</td>
-                <td className="w-24 py-2 pr-4 font-semibold text-emerald-300">y</td>
-                <td className="py-2">Explanation</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-cyan-300">0</td>
-                <td className="py-2 text-emerald-300">0</td>
-                <td className="py-2">Double 0 to get 0.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-cyan-300">1</td>
-                <td className="py-2 text-emerald-300">2</td>
-                <td className="py-2">Double 1 to get 2.</td>
-              </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-cyan-300">2</td>
-                <td className="py-2 text-emerald-300">4</td>
-                <td className="py-2">Double 2 to get 4.</td>
-              </tr>
-              <tr>
-                <td className="py-2 text-cyan-300">3</td>
-                <td className="py-2 text-emerald-300">6</td>
-                <td className="py-2">Double 3 to get 6.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Start with <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />.
+          Then:
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}0})=0`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now try <MathInline tex={String.raw`{\color{#22d3ee}x}=1`} className="math-inline math-white" />:
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}1})=2`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          And if <MathInline tex={String.raw`{\color{#22d3ee}x}=3`} className="math-inline math-white" />, then:
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}y}=2({\color{#22d3ee}3})=6`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The point is that the rule stays the same while the input changes. The
+          expression is acting like a machine: feed in a new value of{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
+          and it produces the corresponding value of{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />.
+        </p>
 
         <AlgebraStaticVisual
           title="Static Graph"
           variant="line-graph"
+          framed={false}
           caption="This is the first bridge between algebra and graphing: one variable changes, the other responds according to the rule."
         />
 

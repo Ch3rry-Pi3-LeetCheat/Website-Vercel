@@ -2,15 +2,17 @@ type AlgebraStaticVisualProps = {
   title: string;
   caption?: string;
   variant: "substitution-flow" | "line-graph" | "equation-balance";
+  framed?: boolean;
 };
 
 export default function AlgebraStaticVisual({
   title,
   caption,
   variant,
+  framed = true,
 }: AlgebraStaticVisualProps) {
-  return (
-    <div className="sketch-panel rounded-2xl px-6 py-5">
+  const content = (
+    <>
       <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
         {title}
       </p>
@@ -38,17 +40,17 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "line-graph" && (
-          <svg viewBox="0 0 760 260" className="h-56 w-full">
-            <rect x="70" y="20" width="650" height="190" fill="rgba(1,8,28,0.9)" />
-            <line x1="90" y1="190" x2="710" y2="190" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
-            <line x1="90" y1="190" x2="90" y2="30" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+          <svg viewBox="0 0 760 320" className="h-72 w-full">
+            <rect x="70" y="26" width="650" height="230" fill="rgba(1,8,28,0.9)" />
+            <line x1="90" y1="230" x2="710" y2="230" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+            <line x1="90" y1="230" x2="90" y2="36" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
 
             {[0, 1, 2, 3, 4].map((tick) => {
               const x = 90 + tick * 140;
               return (
                 <g key={`x-${tick}`}>
-                  <line x1={x} y1="190" x2={x} y2="198" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
-                  <text x={x} y="220" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                  <line x1={x} y1="230" x2={x} y2="238" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
+                  <text x={x} y="262" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                     {tick}
                   </text>
                 </g>
@@ -56,7 +58,7 @@ export default function AlgebraStaticVisual({
             })}
 
             {[0, 2, 4, 6, 8].map((tick) => {
-              const y = 190 - tick * 20;
+              const y = 230 - tick * 24;
               return (
                 <g key={`y-${tick}`}>
                   <line x1="82" y1={y} x2="90" y2={y} stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
@@ -68,27 +70,27 @@ export default function AlgebraStaticVisual({
               );
             })}
 
-            <path d="M90 190 L230 150 L370 110 L510 70 L650 30" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
+            <path d="M90 230 L230 182 L370 134 L510 86 L650 38" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
 
             {[
-              [90, 190],
-              [230, 150],
-              [370, 110],
-              [510, 70],
+              [90, 230],
+              [230, 182],
+              [370, 134],
+              [510, 86],
             ].map(([cx, cy], idx) => (
               <g key={`p-${idx}`}>
-                <circle cx={cx} cy={cy} r="6" fill="#86efac" />
-                <circle cx={cx} cy={cy} r="10" fill="none" stroke="rgba(134,239,172,0.3)" strokeWidth="2" />
+                <circle cx={cx} cy={cy} r="6" fill="#f472b6" />
+                <circle cx={cx} cy={cy} r="10" fill="none" stroke="rgba(244,114,182,0.3)" strokeWidth="2" />
               </g>
             ))}
 
-            <text x="710" y="242" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
+            <text x="710" y="288" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
               x
             </text>
-            <text x="36" y="34" fill="#86efac" fontSize="14" fontWeight="700">
+            <text x="36" y="40" fill="#f472b6" fontSize="14" fontWeight="700">
               y
             </text>
-            <text x="520" y="52" fill="#e7eef8" fontSize="16" fontWeight="700">
+            <text x="520" y="60" fill="#e7eef8" fontSize="16" fontWeight="700">
               y = 2x
             </text>
           </svg>
@@ -120,6 +122,16 @@ export default function AlgebraStaticVisual({
           {caption}
         </p>
       ) : null}
+    </>
+  );
+
+  if (!framed) {
+    return <div className="grid gap-1">{content}</div>;
+  }
+
+  return (
+    <div className="sketch-panel rounded-2xl px-6 py-5">
+      {content}
     </div>
   );
 }
