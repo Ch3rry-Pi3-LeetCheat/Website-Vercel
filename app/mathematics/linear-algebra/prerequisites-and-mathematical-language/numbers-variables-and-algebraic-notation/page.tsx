@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function NumbersVariablesAlgebraicNotationPage() {
-  const tocItems = [
+  const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
     { id: "why", label: "Why this topic comes first" },
     { id: "numbers", label: "What numbers are doing" },
