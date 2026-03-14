@@ -364,9 +364,9 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           className="math-center math-lg text-white/90"
         />
         <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+          <h4 className="text-lg font-semibold text-white">
             From a rule to specific values
-          </h3>
+          </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             This says that the output{" "}
             <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" />
@@ -403,9 +403,9 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </section>
 
         <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+          <h4 className="text-lg font-semibold text-white">
             A second rule with the same input
-          </h3>
+          </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             We can do the same thing with a different rule. For example, consider{" "}
             <MathInline tex={String.raw`{\color{#f472b6}y}={\color{#22d3ee}x}+2`} className="math-inline math-white" />.
@@ -442,9 +442,9 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </section>
 
         <section className="grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+          <h4 className="text-lg font-semibold text-white">
             From specific values to a picture
-          </h3>
+          </h4>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             If we plot those input-output pairs on axes, we get a visual picture
             of the rule. We can even plot two different rules on the same axes
@@ -640,6 +640,90 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             one unit. First evaluate the numerator, then divide by 2.
           </p>
         </section>
+
+        <section id="notation" className="scroll-mt-28 grid gap-4">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Common notation habits
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Mathematics uses shorthand constantly. That shorthand is efficient, but
+            beginners often find it dense because many operations are written
+            compactly rather than spelled out.
+          </p>
+          <div className="ml-8 overflow-x-auto">
+            <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+              <tbody>
+                <tr>
+                  <td className="w-40 py-2 pr-4 text-center font-semibold text-white">Notation</td>
+                  <td className="py-2 font-semibold text-white">Meaning</td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-center text-white">
+                    <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
+                  </td>
+                  <td className="py-2">
+                    Means{" "}
+                    <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
+                    which is 4 multiplied by{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+                    The multiplication sign is omitted.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-center text-white">
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />
+                  </td>
+                  <td className="py-2">
+                    Means{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />{" "}
+                    which is{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}\cdot{\color{#22d3ee}x}`} className="math-inline math-white" />.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-center text-white">
+                    <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" />
+                  </td>
+                  <td className="py-2">
+                    The entire quantity{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}+1`} className="math-inline math-white" />{" "}
+                    is divided by{" "}
+                    <MathInline tex={String.raw`2`} className="math-inline math-white" />.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-center text-white">
+                    <MathInline tex={String.raw`-{\color{#22d3ee}x}`} className="math-inline math-white" />
+                  </td>
+                  <td className="py-2">
+                    The negative of{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
+                    not a completely separate symbol.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-2 text-center text-white">
+                    <MathInline tex={String.raw`{\color{#22d3ee}a}{\color{#f472b6}b}`} className="math-inline math-white" />
+                  </td>
+                  <td className="py-2">
+                    Means{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}a}\cdot{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
+                    when the letters{" "}
+                    <MathInline tex={String.raw`{\color{#22d3ee}a}`} className="math-inline math-white" />{" "}
+                    and{" "}
+                    <MathInline tex={String.raw`{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
+                    are written side by side.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A large part of early mathematical fluency is simply becoming
+            comfortable with this compression. The ideas are usually simpler than
+            the notation first makes them appear.
+          </p>
+        </section>
       </section>
 
       <section id="equations" className="scroll-mt-28 grid gap-4">
@@ -711,94 +795,10 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </p>
       </section>
 
-      <section id="notation" className="scroll-mt-28 grid gap-4">
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-          Common notation habits
-        </h3>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Mathematics uses shorthand constantly. That shorthand is efficient, but
-          beginners often find it dense because many operations are written
-          compactly rather than spelled out.
-        </p>
-        <div className="ml-8 overflow-x-auto">
-          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
-            <tbody>
-              <tr>
-                <td className="w-40 py-2 pr-4 text-center font-semibold text-white">Notation</td>
-                <td className="py-2 font-semibold text-white">Meaning</td>
-              </tr>
-              <tr>
-                <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
-                </td>
-                <td className="py-2">
-                  Means{" "}
-                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />{" "}
-                  which is 4 multiplied by{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
-                  The multiplication sign is omitted.
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />
-                </td>
-                <td className="py-2">
-                  Means{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />{" "}
-                  which is{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}\cdot{\color{#22d3ee}x}`} className="math-inline math-white" />.
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" />
-                </td>
-                <td className="py-2">
-                  The entire quantity{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}+1`} className="math-inline math-white" />{" "}
-                  is divided by{" "}
-                  <MathInline tex={String.raw`2`} className="math-inline math-white" />.
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`-{\color{#22d3ee}x}`} className="math-inline math-white" />
-                </td>
-                <td className="py-2">
-                  The negative of{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
-                  not a completely separate symbol.
-                </td>
-              </tr>
-              <tr>
-                <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#22d3ee}a}{\color{#f472b6}b}`} className="math-inline math-white" />
-                </td>
-                <td className="py-2">
-                  Means{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}a}\cdot{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
-                  when the letters{" "}
-                  <MathInline tex={String.raw`{\color{#22d3ee}a}`} className="math-inline math-white" />{" "}
-                  and{" "}
-                  <MathInline tex={String.raw`{\color{#f472b6}b}`} className="math-inline math-white" />{" "}
-                  are written side by side.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A large part of early mathematical fluency is simply becoming
-          comfortable with this compression. The ideas are usually simpler than
-          the notation first makes them appear.
-        </p>
-      </section>
-
       <section id="mistakes" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Common mistakes and misconceptions
-        </h2>
+        </h3>
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
