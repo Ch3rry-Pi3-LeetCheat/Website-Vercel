@@ -187,7 +187,7 @@ export default function AlgebraStaticVisual({
                 rx="86"
                 ry="108"
                 fill="rgba(15,23,42,0.32)"
-                stroke="rgba(244,114,182,0.85)"
+                stroke="rgba(34,211,238,0.85)"
                 strokeWidth="4"
               />
               <ellipse
@@ -214,7 +214,7 @@ export default function AlgebraStaticVisual({
                   y={y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fill="#22d3ee"
+                  fill="#ffffff"
                   fontSize="34"
                   fontWeight="700"
                 >
@@ -229,7 +229,7 @@ export default function AlgebraStaticVisual({
                   y={y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fill="#f59e0b"
+                  fill="#ffffff"
                   fontSize="34"
                   fontWeight="700"
                 >
@@ -237,15 +237,15 @@ export default function AlgebraStaticVisual({
                 </text>
               ))}
 
-              <path d="M198 130 L562 130" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
-              <path d="M198 200 L562 200" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
-              <path d="M198 270 L562 270" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" strokeDasharray="8 8" />
+              <path d="M198 130 L562 130" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
+              <path d="M198 200 L562 200" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
+              <path d="M198 270 L562 270" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
 
               <path d="M548 118 L562 130 L548 142" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
               <path d="M548 188 L562 200 L548 212" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
               <path d="M548 258 L562 270 L548 282" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
             </svg>
-            <div className="pointer-events-none absolute left-1/2 top-[14%] -translate-x-1/2 text-center">
+            <div className="pointer-events-none absolute left-1/2 top-[8%] -translate-x-1/2 text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Rule</p>
               <div className="mt-2 rounded-2xl border border-cyan-400/20 bg-slate-950/75 px-5 py-3 text-white shadow-[0_0_0_1px_rgba(56,189,248,0.06)]">
                 <MathInline
