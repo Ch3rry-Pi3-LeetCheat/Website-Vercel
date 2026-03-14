@@ -183,7 +183,7 @@ details[open] .example-chevron {
 .math-inline mjx-container {
   display: inline-block !important;
   line-height: 1;
-  vertical-align: 0.08em;
+  vertical-align: 0;
 }
 
 .math-inline mjx-container > svg {
