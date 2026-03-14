@@ -213,6 +213,7 @@ export default function AlgebraStaticVisual({
                   x="160"
                   y={y}
                   textAnchor="middle"
+                  dominantBaseline="middle"
                   fill="#22d3ee"
                   fontSize="34"
                   fontWeight="700"
@@ -227,6 +228,7 @@ export default function AlgebraStaticVisual({
                   x="600"
                   y={y}
                   textAnchor="middle"
+                  dominantBaseline="middle"
                   fill="#f59e0b"
                   fontSize="34"
                   fontWeight="700"
@@ -235,9 +237,9 @@ export default function AlgebraStaticVisual({
                 </text>
               ))}
 
-              <path d="M214 122 C330 122, 430 130, 546 130" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
-              <path d="M214 192 C330 192, 430 200, 546 200" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
-              <path d="M214 262 C330 262, 430 270, 546 270" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M214 130 L546 130" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M214 200 L546 200" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M214 270 L546 270" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
 
               <path d="M532 118 L546 130 L532 142" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
               <path d="M532 188 L546 200 L532 212" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
