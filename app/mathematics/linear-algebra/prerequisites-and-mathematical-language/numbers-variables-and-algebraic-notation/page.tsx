@@ -62,7 +62,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           more approachable.
         </p>
         <p>Here is the roadmap for this lesson:</p>
-        <div className="ml-4 overflow-x-auto">
+        <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr className="border-b border-white/10">
@@ -131,11 +131,25 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A beginner-friendly picture is apples. If one{" "}
-          <span className="text-2xl align-[-0.2em]">🍎</span> stands for one{" "}
+          <span
+            role="img"
+            aria-label="apple"
+            className="relative -top-0.5 inline-flex align-middle text-2xl leading-none"
+          >
+            🍎
+          </span>{" "}
+          stands for one{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
           then <MathInline tex={String.raw`3{\color{#22d3ee}x}`} className="math-inline math-white" />
           {" "}is just three apples:{" "}
-          <span className="text-2xl align-[-0.2em]">🍎🍎🍎</span>.
+          <span
+            role="img"
+            aria-label="three apples"
+            className="relative -top-0.5 inline-flex align-middle text-2xl leading-none"
+          >
+            🍎🍎🍎
+          </span>
+          .
         </p>
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
@@ -495,21 +509,40 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
           {" "}makes that statement true.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          To solve it, we want to get{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />
+          {" "}by itself on the left-hand side.
+        </p>
         <MathBlock
-          tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3 &= 8 \\
-{\color{#22d3ee}x} &= 5
-\end{aligned}`}
+          tex={String.raw`{\color{#22d3ee}x}+3=8`}
           className="math-center math-lg text-white/90"
         />
 
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A good rule of thumb is: <span className="text-white font-semibold">whatever you do to one side, do to the other side as well</span>.
-          That preserves the equality.
+          At the moment there is a{" "}
+          <MathInline tex={String.raw`+3`} className="math-inline math-white" /> attached to the left-hand side,
+          so we subtract 3 from the left-hand side.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#22d3ee}x}+3-3`}
+          className="math-center math-lg text-white/90"
+        />
+
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          However, whatever we do on one side, we must do on the other side as
+          well. Otherwise the equality would no longer hold.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#22d3ee}x}+3-3=8-3`}
+          className="math-center math-lg text-white/90"
+        />
+
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now simplify both sides.
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3 &= 8 \\
 {\color{#22d3ee}x}+3-3 &= 8-3 \\
 {\color{#22d3ee}x} &= 5
 \end{aligned}`}
@@ -534,35 +567,35 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-56 py-2 pr-4 font-semibold text-white">Notation</td>
+                <td className="w-40 py-2 pr-4 text-center font-semibold text-white">Notation</td>
                 <td className="py-2 font-semibold text-white">Meaning</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Means 4 multiplied by x. The multiplication sign is omitted.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Means x multiplied by itself.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">The entire quantity x + 1 is divided by 2.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`-{\color{#22d3ee}x}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">The negative of x, not a completely separate symbol.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">
+                <td className="py-2 text-center text-white">
                   <MathInline tex={String.raw`{\color{#22d3ee}a}{\color{#f472b6}b}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Means a multiplied by b when letters are written side by side.</td>
@@ -585,23 +618,23 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="w-12 py-2 text-center text-lg">&#10060;</td>
                 <td className="py-2">Treating a variable as if it already has a fixed value when none has been assigned.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="w-12 py-2 text-center text-lg">&#10060;</td>
                 <td className="py-2">Reading 4x as if it were a two-character name instead of 4 times x.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="w-12 py-2 text-center text-lg">&#10060;</td>
                 <td className="py-2">Ignoring parentheses and accidentally changing the structure of the expression.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="w-12 py-2 text-center text-lg">&#10060;</td>
                 <td className="py-2">Changing one side of an equation without making the matching change on the other side.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">❌</td>
+                <td className="w-12 py-2 text-center text-lg">&#10060;</td>
                 <td className="py-2">Thinking notation is the idea itself, rather than a compact language for describing the idea.</td>
               </tr>
             </tbody>
@@ -654,7 +687,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           The main lesson is not just a set of definitions. It is a way of
           reading mathematics more calmly and more structurally.
         </p>
-        <div className="overflow-x-auto">
+        <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr className="border-b border-white/10">
