@@ -35,22 +35,21 @@ export default function AlgebraStaticVisual({
             <text x="380" y="101" textAnchor="middle" fill="#22d3ee" fontSize="28" fontWeight="700">x + 3</text>
 
             <text x="655" y="76" textAnchor="middle" fill="#e7eef8" fontSize="16" fontWeight="700" letterSpacing="1.5">OUTPUT</text>
-            <text x="655" y="101" textAnchor="middle" fill="#86efac" fontSize="28" fontWeight="700">8</text>
+            <text x="655" y="101" textAnchor="middle" fill="#f472b6" fontSize="28" fontWeight="700">8</text>
           </svg>
         )}
 
         {variant === "line-graph" && (
-          <svg viewBox="0 0 760 320" className="h-72 w-full">
-            <rect x="70" y="26" width="650" height="230" fill="rgba(1,8,28,0.9)" />
-            <line x1="90" y1="230" x2="710" y2="230" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
-            <line x1="90" y1="230" x2="90" y2="36" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+          <svg viewBox="0 0 760 420" className="h-96 w-full">
+            <line x1="90" y1="300" x2="710" y2="300" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
+            <line x1="90" y1="300" x2="90" y2="40" stroke="rgba(231,238,248,0.8)" strokeWidth="2" />
 
             {[0, 1, 2, 3, 4].map((tick) => {
               const x = 90 + tick * 140;
               return (
                 <g key={`x-${tick}`}>
-                  <line x1={x} y1="230" x2={x} y2="238" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
-                  <text x={x} y="262" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                  <line x1={x} y1="300" x2={x} y2="308" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
+                  <text x={x} y="334" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                     {tick}
                   </text>
                 </g>
@@ -58,7 +57,7 @@ export default function AlgebraStaticVisual({
             })}
 
             {[0, 2, 4, 6, 8].map((tick) => {
-              const y = 230 - tick * 24;
+              const y = 300 - tick * 32;
               return (
                 <g key={`y-${tick}`}>
                   <line x1="82" y1={y} x2="90" y2={y} stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
@@ -70,13 +69,13 @@ export default function AlgebraStaticVisual({
               );
             })}
 
-            <path d="M90 230 L230 182 L370 134 L510 86 L650 38" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
+            <path d="M90 300 L230 236 L370 172 L510 108 L650 44" fill="none" stroke="#38bdf8" strokeWidth="3.5" />
 
             {[
-              [90, 230],
-              [230, 182],
-              [370, 134],
-              [510, 86],
+              [90, 300],
+              [230, 236],
+              [370, 172],
+              [510, 108],
             ].map(([cx, cy], idx) => (
               <g key={`p-${idx}`}>
                 <circle cx={cx} cy={cy} r="6" fill="#f472b6" />
@@ -84,13 +83,13 @@ export default function AlgebraStaticVisual({
               </g>
             ))}
 
-            <text x="710" y="288" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
+            <text x="710" y="362" textAnchor="end" fill="#22d3ee" fontSize="14" fontWeight="700">
               x
             </text>
-            <text x="36" y="40" fill="#f472b6" fontSize="14" fontWeight="700">
+            <text x="36" y="46" fill="#f472b6" fontSize="14" fontWeight="700">
               y
             </text>
-            <text x="520" y="60" fill="#e7eef8" fontSize="16" fontWeight="700">
+            <text x="520" y="64" fill="#e7eef8" fontSize="16" fontWeight="700">
               y = 2x
             </text>
           </svg>
@@ -108,7 +107,7 @@ export default function AlgebraStaticVisual({
             <text x="220" y="135" textAnchor="middle" fill="#22d3ee" fontSize="30" fontWeight="700">
               x + 3
             </text>
-            <text x="540" y="135" textAnchor="middle" fill="#86efac" fontSize="30" fontWeight="700">
+            <text x="540" y="135" textAnchor="middle" fill="#f472b6" fontSize="30" fontWeight="700">
               8
             </text>
             <text x="380" y="108" textAnchor="middle" fill="#e7eef8" fontSize="16" fontWeight="700" letterSpacing="1.5">
@@ -118,7 +117,7 @@ export default function AlgebraStaticVisual({
         )}
       </div>
       {caption ? (
-        <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+        <p className="mt-3 text-base leading-7 text-[color:var(--color-muted)]">
           {caption}
         </p>
       ) : null}

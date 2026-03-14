@@ -95,7 +95,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           Later in the track you will see expressions such as:
         </p>
         <MathBlock
-          tex={String.raw`A{\color{#22d3ee}x}={\color{#86efac}b},\qquad {\color{#22d3ee}x}\in\mathbb{R}^n,\qquad 3{\color{#22d3ee}u}+2{\color{#fbbf24}v},\qquad \lambda{\color{#22d3ee}v}`}
+          tex={String.raw`A{\color{#22d3ee}x}={\color{#f472b6}b},\qquad {\color{#22d3ee}x}\in\mathbb{R}^n,\qquad 3{\color{#22d3ee}u}+2{\color{#f472b6}v},\qquad \lambda{\color{#22d3ee}v}`}
           className="math-center math-lg text-white/90"
         />
         <p>
@@ -118,6 +118,24 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           coordinate, a score, a probability, or a scaling factor. But in
           algebra, the main question is not only what the number means in a
           story. The main question is <span className="text-white font-semibold">what role it is playing inside the expression</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          It also helps to say one simple thing very explicitly:{" "}
+          <MathInline tex={String.raw`3{\color{#22d3ee}x}`} className="math-inline math-white" /> means
+          {" "}three lots of <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+          In other words:
+        </p>
+        <MathBlock
+          tex={String.raw`3{\color{#22d3ee}x}={\color{#22d3ee}x}+{\color{#22d3ee}x}+{\color{#22d3ee}x}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          A beginner-friendly picture is apples. If one{" "}
+          <span className="text-2xl align-[-0.2em]">🍎</span> stands for one{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
+          then <MathInline tex={String.raw`3{\color{#22d3ee}x}`} className="math-inline math-white" />
+          {" "}is just three apples:{" "}
+          <span className="text-2xl align-[-0.2em]">🍎🍎🍎</span>.
         </p>
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
@@ -235,12 +253,12 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             what happens to another quantity when it does. For example:
           </p>
           <MathBlock
-            tex={String.raw`{\color{#86efac}y}=2{\color{#22d3ee}x}`}
+            tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Here we are interested in how{" "}
-            <MathInline tex={String.raw`{\color{#86efac}y}`} className="math-inline math-white" /> changes as{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> changes as{" "}
             <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> increases or decreases.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -257,7 +275,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
             not because we are solving one specific numerical problem.
           </p>
           <MathBlock
-            tex={String.raw`{\color{#fbbf24}a}+{\color{#f472b6}b}={\color{#f472b6}b}+{\color{#fbbf24}a}`}
+            tex={String.raw`{\color{#22d3ee}a}+{\color{#f472b6}b}={\color{#f472b6}b}+{\color{#22d3ee}a}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -282,7 +300,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           Examples of expressions include:
         </p>
         <MathBlock
-          tex={String.raw`3{\color{#22d3ee}x},\qquad {\color{#22d3ee}x}+7,\qquad 2{\color{#fbbf24}a}-5{\color{#f472b6}b},\qquad \frac{{\color{#22d3ee}x}+1}{2},\qquad {\color{#86efac}y}^2+4{\color{#86efac}y}+4`}
+          tex={String.raw`3{\color{#22d3ee}x},\qquad {\color{#22d3ee}x}+7,\qquad 2{\color{#22d3ee}a}-5{\color{#f472b6}b},\qquad \frac{{\color{#22d3ee}x}+1}{2},\qquad {\color{#22d3ee}y}^2+4{\color{#22d3ee}y}+4`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -300,7 +318,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 2{\color{#22d3ee}a}-5{\color{#f472b6}b}
-&= 2({\color{#22d3ee}4)-5({\color{#f472b6}1)} \\
+&= 2({\color{#22d3ee}4})-5({\color{#f472b6}1}) \\
 &= {\color{#22d3ee}8}-{\color{#f472b6}5} \\
 &= 3
 \end{aligned}`}
@@ -321,16 +339,26 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 3({\color{#22d3ee}x}+2) &\neq 3{\color{#22d3ee}x}+2 \\
-\text{because } 3({\color{#22d3ee}x}+2) &= 3{\color{#22d3ee}x}+6
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          because we must distribute the <MathInline tex={String.raw`3`} className="math-inline math-white" /> across
+          the whole bracket:
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+3({\color{#22d3ee}x}+2) &= 3({\color{#22d3ee}x})+3(2) \\
+&= 3{\color{#22d3ee}x}+6
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This kind of structural reading is extremely important later. In
           linear algebra, expressions such as{" "}
-          <MathInline tex={String.raw`A({\color{#22d3ee}x}+{\color{#fbbf24}y})`} className="math-inline math-white" />
+          <MathInline tex={String.raw`A({\color{#22d3ee}x}+{\color{#f472b6}y})`} className="math-inline math-white" />
           {" "}and{" "}
-          <MathInline tex={String.raw`A{\color{#22d3ee}x}+A{\color{#fbbf24}y}`} className="math-inline math-white" />
+          <MathInline tex={String.raw`A{\color{#22d3ee}x}+A{\color{#f472b6}y}`} className="math-inline math-white" />
           {" "}look similar but are not just visually decorative forms. The
           grouping tells you what operation is happening first.
         </p>
@@ -355,6 +383,30 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The idea is simple: once the variable gets a value, the expression
             becomes an ordinary calculation.
+          </p>
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Another worked example: dividing a grouped expression
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now take{" "}
+            <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" /> and suppose{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}=5`} className="math-inline math-white" />.
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{{\color{#22d3ee}x}+1}{2}
+&= \frac{{\color{#22d3ee}5}+1}{2} \\
+&= \frac{6}{2} \\
+&= 3
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is a good reminder that grouped expressions should be treated as
+            one unit. First evaluate the numerator, then divide by 2.
           </p>
         </section>
       </section>
@@ -451,12 +503,6 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           className="math-center math-lg text-white/90"
         />
 
-        <AlgebraStaticVisual
-          title="Equality as Balance"
-          variant="equation-balance"
-          caption="A useful beginner mental model is balance. If the two sides are equal, every valid algebra step must preserve that equality."
-        />
-
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A good rule of thumb is: <span className="text-white font-semibold">whatever you do to one side, do to the other side as well</span>.
           That preserves the equality.
@@ -484,31 +530,41 @@ export default function NumbersVariablesAlgebraicNotationPage() {
           beginners often find it dense because many operations are written
           compactly rather than spelled out.
         </p>
-        <div className="overflow-x-auto">
+        <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Notation</td>
-                <td className="py-2">Meaning</td>
+                <td className="py-2 font-semibold text-white">Meaning</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">4x</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`4{\color{#22d3ee}x}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">Means 4 multiplied by x. The multiplication sign is omitted.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">x^2</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`{\color{#22d3ee}x}^2`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">Means x multiplied by itself.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">(x + 1) / 2</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`\frac{{\color{#22d3ee}x}+1}{2}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">The entire quantity x + 1 is divided by 2.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="py-2 text-white">-x</td>
+              <tr>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`-{\color{#22d3ee}x}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">The negative of x, not a completely separate symbol.</td>
               </tr>
               <tr>
-                <td className="py-2 text-white">ab</td>
+                <td className="py-2 text-white">
+                  <MathInline tex={String.raw`{\color{#22d3ee}a}{\color{#f472b6}b}`} className="math-inline math-white" />
+                </td>
                 <td className="py-2">Means a multiplied by b when letters are written side by side.</td>
               </tr>
             </tbody>
@@ -525,27 +581,27 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Common mistakes and misconceptions
         </h2>
-        <div className="overflow-x-auto">
+        <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">X</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Treating a variable as if it already has a fixed value when none has been assigned.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">X</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Reading 4x as if it were a two-character name instead of 4 times x.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">X</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Ignoring parentheses and accidentally changing the structure of the expression.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">X</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Changing one side of an equation without making the matching change on the other side.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">X</td>
+                <td className="w-12 py-2 text-center text-lg">❌</td>
                 <td className="py-2">Thinking notation is the idea itself, rather than a compact language for describing the idea.</td>
               </tr>
             </tbody>
@@ -563,8 +619,8 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In linear algebra, you constantly meet expressions such as{" "}
-          <MathInline tex={String.raw`3{\color{#22d3ee}u}+2{\color{#fbbf24}v}`} className="math-inline math-white" />,
-          {" "}<MathInline tex={String.raw`A{\color{#22d3ee}x}={\color{#86efac}b}`} className="math-inline math-white" />,
+          <MathInline tex={String.raw`3{\color{#22d3ee}u}+2{\color{#f472b6}v}`} className="math-inline math-white" />,
+          {" "}<MathInline tex={String.raw`A{\color{#22d3ee}x}={\color{#f472b6}b}`} className="math-inline math-white" />,
           {" "}<MathInline tex={String.raw`{\color{#22d3ee}x}_1+{\color{#22d3ee}x}_2`} className="math-inline math-white" />,
           and{" "}
           <MathInline tex={String.raw`\lambda{\color{#22d3ee}v}`} className="math-inline math-white" />.
