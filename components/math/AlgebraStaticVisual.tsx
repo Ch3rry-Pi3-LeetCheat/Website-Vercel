@@ -8,9 +8,127 @@ type AlgebraStaticVisualProps = {
     | "line-graph"
     | "equation-balance"
     | "function-machine"
-    | "mapping-diagram";
+    | "mapping-diagram"
+    | "mapping-injective"
+    | "mapping-many-to-one"
+    | "mapping-surjective"
+    | "mapping-bijective"
+    | "mapping-not-function";
   framed?: boolean;
 };
+
+type MappingDiagramConfig = {
+  leftValues: string[];
+  rightValues: string[];
+  arrows: Array<{ from: number; to: number; stroke?: string }>;
+  ruleTex?: string;
+  leftStroke?: string;
+  rightStroke?: string;
+};
+
+function getMappingPositions(count: number, center = 200, spacing = 70) {
+  const start = center - ((count - 1) * spacing) / 2;
+  return Array.from({ length: count }, (_, idx) => start + idx * spacing);
+}
+
+function renderMappingDiagram({
+  leftValues,
+  rightValues,
+  arrows,
+  ruleTex,
+  leftStroke = "rgba(34,211,238,0.85)",
+  rightStroke = "rgba(244,114,182,0.85)",
+}: MappingDiagramConfig) {
+  const leftYs = getMappingPositions(leftValues.length);
+  const rightYs = getMappingPositions(rightValues.length);
+
+  return (
+    <div className="relative">
+      <svg viewBox="0 0 760 330" className="h-auto w-full">
+        <ellipse
+          cx="160"
+          cy="200"
+          rx="86"
+          ry="108"
+          fill="rgba(15,23,42,0.32)"
+          stroke={leftStroke}
+          strokeWidth="4"
+        />
+        <ellipse
+          cx="600"
+          cy="200"
+          rx="86"
+          ry="108"
+          fill="rgba(15,23,42,0.32)"
+          stroke={rightStroke}
+          strokeWidth="4"
+        />
+
+        <text x="160" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
+          Inputs
+        </text>
+        <text x="600" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
+          Outputs
+        </text>
+
+        {leftValues.map((value, idx) => (
+          <text
+            key={`left-${value}-${idx}`}
+            x="160"
+            y={leftYs[idx]}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="#ffffff"
+            fontSize="34"
+            fontWeight="700"
+          >
+            {value}
+          </text>
+        ))}
+
+        {rightValues.map((value, idx) => (
+          <text
+            key={`right-${value}-${idx}`}
+            x="600"
+            y={rightYs[idx]}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="#ffffff"
+            fontSize="34"
+            fontWeight="700"
+          >
+            {value}
+          </text>
+        ))}
+
+        {arrows.map((arrow, idx) => {
+          const y1 = leftYs[arrow.from];
+          const y2 = rightYs[arrow.to];
+          const stroke = arrow.stroke ?? "rgba(231,238,248,0.9)";
+          return (
+            <g key={`arrow-${idx}`}>
+              <path d={`M198 ${y1} L562 ${y2}`} fill="none" stroke={stroke} strokeWidth="3" />
+              <path
+                d={`M548 ${y2 - 12} L562 ${y2} L548 ${y2 + 12}`}
+                stroke={stroke}
+                strokeWidth="3"
+                fill="none"
+              />
+            </g>
+          );
+        })}
+      </svg>
+      {ruleTex ? (
+        <div className="pointer-events-none absolute left-1/2 top-[8%] -translate-x-1/2 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Rule</p>
+          <div className="mt-2 rounded-2xl border border-cyan-400/20 bg-slate-950/75 px-5 py-3 text-white shadow-[0_0_0_1px_rgba(56,189,248,0.06)]">
+            <MathInline tex={ruleTex} className="math-inline math-white text-2xl" />
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export default function AlgebraStaticVisual({
   title,
@@ -178,84 +296,78 @@ export default function AlgebraStaticVisual({
           </div>
         )}
 
-        {variant === "mapping-diagram" && (
-          <div className="relative">
-            <svg viewBox="0 0 760 330" className="h-auto w-full">
-              <ellipse
-                cx="160"
-                cy="200"
-                rx="86"
-                ry="108"
-                fill="rgba(15,23,42,0.32)"
-                stroke="rgba(34,211,238,0.85)"
-                strokeWidth="4"
-              />
-              <ellipse
-                cx="600"
-                cy="200"
-                rx="86"
-                ry="108"
-                fill="rgba(15,23,42,0.32)"
-                stroke="rgba(244,114,182,0.85)"
-                strokeWidth="4"
-              />
+        {variant === "mapping-diagram" &&
+          renderMappingDiagram({
+            leftValues: ["0", "1", "2"],
+            rightValues: ["1", "3", "5"],
+            arrows: [
+              { from: 0, to: 0 },
+              { from: 1, to: 1 },
+              { from: 2, to: 2 },
+            ],
+            ruleTex: String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`,
+          })}
 
-              <text x="160" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
-                Inputs
-              </text>
-              <text x="600" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
-                Outputs
-              </text>
+        {variant === "mapping-injective" &&
+          renderMappingDiagram({
+            leftValues: ["1", "2", "3"],
+            rightValues: ["2", "3", "4"],
+            arrows: [
+              { from: 0, to: 0 },
+              { from: 1, to: 1 },
+              { from: 2, to: 2 },
+            ],
+            ruleTex: String.raw`f({\color{#22d3ee}x})={\color{#22d3ee}x}+1`,
+          })}
 
-              {[130, 200, 270].map((y, idx) => (
-                <text
-                  key={`left-${idx}`}
-                  x="160"
-                  y={y}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fill="#ffffff"
-                  fontSize="34"
-                  fontWeight="700"
-                >
-                  {idx}
-                </text>
-              ))}
+        {variant === "mapping-many-to-one" &&
+          renderMappingDiagram({
+            leftValues: ["-2", "0", "2"],
+            rightValues: ["0", "4"],
+            arrows: [
+              { from: 0, to: 1 },
+              { from: 1, to: 0 },
+              { from: 2, to: 1 },
+            ],
+            ruleTex: String.raw`g({\color{#22d3ee}x})={\color{#22d3ee}x}^{2}`,
+          })}
 
-              {[130, 200, 270].map((y, idx) => (
-                <text
-                  key={`right-${idx}`}
-                  x="600"
-                  y={y}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fill="#ffffff"
-                  fontSize="34"
-                  fontWeight="700"
-                >
-                  {[1, 3, 5][idx]}
-                </text>
-              ))}
+        {variant === "mapping-surjective" &&
+          renderMappingDiagram({
+            leftValues: ["0", "1", "2"],
+            rightValues: ["A", "B"],
+            arrows: [
+              { from: 0, to: 0 },
+              { from: 1, to: 1 },
+              { from: 2, to: 1 },
+            ],
+            leftStroke: "rgba(34,211,238,0.85)",
+            rightStroke: "rgba(244,114,182,0.85)",
+          })}
 
-              <path d="M198 130 L562 130" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
-              <path d="M198 200 L562 200" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
-              <path d="M198 270 L562 270" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="3" />
+        {variant === "mapping-bijective" &&
+          renderMappingDiagram({
+            leftValues: ["0", "1", "2"],
+            rightValues: ["1", "3", "5"],
+            arrows: [
+              { from: 0, to: 0 },
+              { from: 1, to: 1 },
+              { from: 2, to: 2 },
+            ],
+          })}
 
-              <path d="M548 118 L562 130 L548 142" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
-              <path d="M548 188 L562 200 L548 212" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
-              <path d="M548 258 L562 270 L548 282" stroke="rgba(231,238,248,0.9)" strokeWidth="3" fill="none" />
-            </svg>
-            <div className="pointer-events-none absolute left-1/2 top-[8%] -translate-x-1/2 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Rule</p>
-              <div className="mt-2 rounded-2xl border border-cyan-400/20 bg-slate-950/75 px-5 py-3 text-white shadow-[0_0_0_1px_rgba(56,189,248,0.06)]">
-                <MathInline
-                  tex={String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`}
-                  className="math-inline math-white text-2xl"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        {variant === "mapping-not-function" &&
+          renderMappingDiagram({
+            leftValues: ["2", "3"],
+            rightValues: ["5", "7"],
+            arrows: [
+              { from: 0, to: 0, stroke: "rgba(248,113,113,0.95)" },
+              { from: 0, to: 1, stroke: "rgba(248,113,113,0.95)" },
+              { from: 1, to: 1, stroke: "rgba(231,238,248,0.9)" },
+            ],
+            leftStroke: "rgba(248,113,113,0.85)",
+            rightStroke: "rgba(244,114,182,0.85)",
+          })}
 
         {variant === "equation-balance" && (
           <svg viewBox="0 0 760 210" className="h-44 w-full">

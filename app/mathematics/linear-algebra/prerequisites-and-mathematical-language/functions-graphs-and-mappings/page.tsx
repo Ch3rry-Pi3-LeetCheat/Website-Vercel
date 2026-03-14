@@ -122,6 +122,30 @@ export default function FunctionsGraphsMappingsPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We can also write this idea as{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}y}=f({\color{#22d3ee}x})`}
+            className="math-inline math-white"
+          />{" "}
+          or, in this specific example,{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}y}=2{\color{#22d3ee}x}+1`}
+            className="math-inline math-white"
+          />
+          . In words, we would say that{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> is a
+          function of <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The usual language is that{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> is the{" "}
+          <span className="text-white font-semibold">independent variable</span> and{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> is the{" "}
+          <span className="text-white font-semibold">dependent variable</span>, because the value of{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}y}`} className="math-inline math-white" /> depends on the
+          value chosen for <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This says: take the input{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />,
           multiply it by 2, then add 1. The letter{" "}
@@ -307,60 +331,103 @@ export default function FunctionsGraphsMappingsPage() {
           the same output, but a single input should not split into two
           different outputs if the rule is a function.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          With these chosen input and output sets, this particular diagram is
+          also <span className="text-white font-semibold">one-to-one</span> and{" "}
+          <span className="text-white font-semibold">onto</span>. That makes it a{" "}
+          <span className="text-white font-semibold">bijective</span> function.
+        </p>
 
         <section id="mapping-types" className="scroll-mt-28 grid gap-3">
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             Different kinds of mapping behavior
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This is a good place to introduce a few simple function types,
-            because arrow diagrams make the differences easier to see than
-            abstract definitions do.
+            This is where the more official names start to appear.{" "}
+            <span className="text-white font-semibold">Injective</span> means one-to-one,{" "}
+            <span className="text-white font-semibold">surjective</span> means onto, and{" "}
+            <span className="text-white font-semibold">bijective</span> means both at once.
+            Also, you were right to question one-to-many: a one-to-many relation
+            is <span className="text-white font-semibold">not</span> a function.
           </p>
-          <div className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
-            <p>
-              <span className="text-white font-semibold">One-to-one:</span> different inputs go
-              to different outputs. Under{" "}
-              <MathInline
-                tex={String.raw`f({\color{#22d3ee}x})={\color{#22d3ee}x}+1`}
-                className="math-inline math-white"
-              />
-              , the inputs <MathInline tex={String.raw`1`} className="math-inline math-white" /> and{" "}
-              <MathInline tex={String.raw`2`} className="math-inline math-white" /> go to{" "}
-              <MathInline tex={String.raw`2`} className="math-inline math-white" /> and{" "}
-              <MathInline tex={String.raw`3`} className="math-inline math-white" />.
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              One-to-one (injective)
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              A function is one-to-one if different inputs always land on
+              different outputs. No two arrows merge.
             </p>
-            <p>
-              <span className="text-white font-semibold">Many-to-one:</span> different inputs can
-              still land on the same output while the rule remains a function.
-              For example, if{" "}
-              <MathInline
-                tex={String.raw`g({\color{#22d3ee}x})={\color{#22d3ee}x}^{2}`}
-                className="math-inline math-white"
-              />
-              , then <MathInline tex={String.raw`g(2)=4`} className="math-inline math-white" /> and{" "}
-              <MathInline tex={String.raw`g(-2)=4`} className="math-inline math-white" />.
+            <AlgebraStaticVisual
+              variant="mapping-injective"
+              framed={false}
+              caption="Each input lands on a different output, so this mapping is one-to-one."
+            />
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              Many-to-one
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              This still counts as a function. Different inputs are allowed to
+              share an output, as long as each individual input still has only
+              one arrow leaving it.
             </p>
-            <p>
-              <span className="text-white font-semibold">Onto:</span> every output we care about
-              gets hit by at least one input. If the allowed outputs are{" "}
-              <MathInline tex={String.raw`\{1,3,5\}`} className="math-inline math-white" />, then{" "}
-              <MathInline
-                tex={String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`}
-                className="math-inline math-white"
-              />{" "}
-              with inputs <MathInline tex={String.raw`\{0,1,2\}`} className="math-inline math-white" /> is onto
-              that output set because it reaches all three values.
+            <AlgebraStaticVisual
+              variant="mapping-many-to-one"
+              framed={false}
+              caption="Here two different inputs land on the same output. That is many-to-one, but it is still a function."
+            />
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              Onto (surjective)
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              A function is onto if every output in the chosen output set gets
+              hit by at least one input. Surjective does not mean one-to-one;
+              it only means nothing on the output side is left unused.
             </p>
-            <p>
-              <span className="text-white font-semibold">Not a function:</span> one input is sent
-              to two different outputs. If an input{" "}
-              <MathInline tex={String.raw`2`} className="math-inline math-white" /> pointed to both{" "}
-              <MathInline tex={String.raw`5`} className="math-inline math-white" /> and{" "}
-              <MathInline tex={String.raw`7`} className="math-inline math-white" />, the rule would
-              fail the basic function test.
+            <AlgebraStaticVisual
+              variant="mapping-surjective"
+              framed={false}
+              caption="Both output values are reached by at least one input, so this mapping is onto."
+            />
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              Bijective
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Bijective means one-to-one and onto at the same time. Every input
+              gets its own unique output, and every output is used.
             </p>
-          </div>
+            <AlgebraStaticVisual
+              variant="mapping-bijective"
+              framed={false}
+              caption="This is the cleanest possible pairing: no collisions on the right, and no unused outputs."
+            />
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              Not a function
+            </h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              If one input splits into two different outputs, the basic function
+              rule is broken. This is the situation people sometimes call
+              one-to-many, but technically it is not a function at all.
+            </p>
+            <AlgebraStaticVisual
+              variant="mapping-not-function"
+              framed={false}
+              caption="The red split shows the failure: one input is trying to produce two different outputs."
+            />
+          </section>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Later, these labels become more formal. For now, the important
             beginner question is simply: how are the arrows behaving?
