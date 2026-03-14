@@ -18,20 +18,20 @@ export const metadata: Metadata = {
 export default function NumbersVariablesAlgebraicNotationPage() {
   const tocItems: { id: string; label: string; level?: 1 | 2 }[] = [
     { id: "intro", label: "Introduction" },
-    { id: "why", label: "Why this topic comes first" },
-    { id: "numbers", label: "What numbers are doing" },
-    { id: "variables", label: "What a variable means" },
+    { id: "why", label: "Why this topic comes first", level: 2 },
+    { id: "numbers", label: "Numbers" },
+    { id: "variables", label: "Variables" },
     { id: "variable-roles", label: "Three roles for variables", level: 2 },
-    { id: "expressions", label: "Expressions and substitution" },
+    { id: "graph-intuition", label: "Graph intuition", level: 2 },
+    { id: "expressions", label: "Expressions" },
     { id: "structure", label: "Reading structure and grouping", level: 2 },
     { id: "worked-example", label: "Worked substitution example", level: 2 },
-    { id: "equations", label: "Equations and equality" },
+    { id: "notation", label: "Common notation habits", level: 2 },
+    { id: "equations", label: "Equations" },
     { id: "balancing-example", label: "A first balancing example", level: 2 },
-    { id: "graph-intuition", label: "Graph intuition" },
-    { id: "notation", label: "Common notation habits" },
-    { id: "mistakes", label: "Common mistakes" },
-    { id: "why-la", label: "Why this matters for linear algebra" },
-    { id: "summary", label: "Summary" },
+    { id: "mistakes", label: "Common mistakes", level: 2 },
+    { id: "why-la", label: "Linear algebra bridge" },
+    { id: "summary", label: "Summary", level: 2 },
   ];
 
   return (
@@ -74,15 +74,15 @@ export default function NumbersVariablesAlgebraicNotationPage() {
               </tr>
               <tr className="border-b border-white/10">
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Variables</td>
-                <td className="py-2">How letters stand for unknown, changing, or general values.</td>
+                <td className="py-2">How letters stand for unknown, changing, or general values, and how changing inputs lead to changing outputs.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Expressions</td>
-                <td className="py-2">How to read structure, substitute values, and evaluate carefully.</td>
+                <td className="py-2">How to read structure, substitute values, evaluate carefully, and get comfortable with compact notation.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Equations</td>
-                <td className="py-2">What equality means and why both sides must stay balanced.</td>
+                <td className="py-2">What equality means, why both sides must stay balanced, and the common mistakes to avoid.</td>
               </tr>
               <tr>
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Linear algebra bridge</td>
@@ -93,7 +93,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
         </div>
       </InfoPanel>
 
-      <InfoPanel id="why" title="Why this topic comes first" variant="intuition">
+      <InfoPanel id="why" title="Why this topic comes first" variant="intuition" headingLevel={3}>
         <p>
           Later in the track you will see expressions such as:
         </p>
@@ -114,7 +114,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <section id="numbers" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          What numbers are doing
+          Numbers
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A number is just a value. It might represent a count, a distance, a
@@ -200,7 +200,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <section id="variables" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          What a variable means
+          Variables
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A variable is a symbol, usually a letter, that stands for a value. The
@@ -352,7 +352,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <section id="expressions" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Expressions and substitution
+          Expressions
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           An expression is a mathematical phrase. It may contain numbers,
@@ -529,7 +529,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <section id="equations" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Equations and equality
+          Equations
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           An equation says that two expressions are equal. It is not just a line
@@ -851,7 +851,7 @@ export default function NumbersVariablesAlgebraicNotationPage() {
 
       <section id="why-la" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Why this matters for linear algebra
+          Linear algebra bridge
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This lesson may look elementary, but it is doing foundational work for
@@ -904,9 +904,9 @@ export default function NumbersVariablesAlgebraicNotationPage() {
       </section>
 
       <section id="summary" className="scroll-mt-28 grid gap-4">
-        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Summary
-        </h2>
+        </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The main lesson is not just a set of definitions. It is a way of
           reading mathematics more calmly and more structurally.
