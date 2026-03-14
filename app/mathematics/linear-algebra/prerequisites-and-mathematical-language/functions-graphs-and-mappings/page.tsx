@@ -25,6 +25,7 @@ export default function FunctionsGraphsMappingsPage() {
     { id: "table-to-graph", label: "From a table to a graph", level: 2 },
     { id: "compare-graphs", label: "Comparing two rules", level: 2 },
     { id: "mappings", label: "Mappings" },
+    { id: "mapping-types", label: "Different kinds of mapping behavior", level: 2 },
     { id: "bridge", label: "Linear algebra bridge" },
     { id: "summary", label: "Summary" },
   ];
@@ -142,29 +143,29 @@ export default function FunctionsGraphsMappingsPage() {
             <MathInline tex={String.raw`{\color{#22d3ee}x}=0`} className="math-inline math-white" />, then:
           </p>
           <MathBlock
-            tex={String.raw`f(0)=2(0)+1=1`}
+            tex={String.raw`f({\color{#22d3ee}0})=2({\color{#22d3ee}0})+1=1`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             If we use <MathInline tex={String.raw`{\color{#22d3ee}x}=2`} className="math-inline math-white" />, then:
           </p>
           <MathBlock
-            tex={String.raw`f(2)=2(2)+1=5`}
+            tex={String.raw`f({\color{#22d3ee}2})=2({\color{#22d3ee}2})+1=5`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             And if we use <MathInline tex={String.raw`{\color{#22d3ee}x}=4`} className="math-inline math-white" />, then:
           </p>
           <MathBlock
-            tex={String.raw`f(4)=2(4)+1=9`}
+            tex={String.raw`f({\color{#22d3ee}4})=2({\color{#22d3ee}4})+1=9`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             So the notation{" "}
-            <MathInline tex={String.raw`f(2)`} className="math-inline math-white" /> does not mean
-            “<MathInline tex={String.raw`f`} className="math-inline math-white" /> times 2”.
-            It means “the output of the function{" "}
-            <MathInline tex={String.raw`f`} className="math-inline math-white" /> when the input is 2”.
+            <MathInline tex={String.raw`f(2)`} className="math-inline math-white" /> does not mean{" "}
+            <span className="text-white font-semibold">f multiplied by 2</span>. It means the output of the
+            function <MathInline tex={String.raw`f`} className="math-inline math-white" /> when the input is{" "}
+            <MathInline tex={String.raw`2`} className="math-inline math-white" />.
           </p>
         </section>
       </section>
@@ -193,7 +194,7 @@ export default function FunctionsGraphsMappingsPage() {
                 <tr>
                   <td className="w-40 py-2 pr-4 text-center font-semibold text-white">Input</td>
                   <td className="w-48 py-2 pr-4 text-center font-semibold text-white">Output</td>
-                  <td className="py-2 font-semibold text-white">Point on the graph</td>
+                  <td className="py-2 text-center font-semibold text-white">Coordinates</td>
                 </tr>
                 <tr>
                   <td className="py-2 text-center text-white">
@@ -202,8 +203,11 @@ export default function FunctionsGraphsMappingsPage() {
                   <td className="py-2 text-center text-white">
                     <MathInline tex={String.raw`1`} className="math-inline math-white" />
                   </td>
-                  <td className="py-2">
-                    <MathInline tex={String.raw`(0,1)`} className="math-inline math-white" />
+                  <td className="py-2 text-center">
+                    <MathInline
+                      tex={String.raw`({\color{#22d3ee}0},{\color{#f472b6}1})`}
+                      className="math-inline math-white"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -213,8 +217,11 @@ export default function FunctionsGraphsMappingsPage() {
                   <td className="py-2 text-center text-white">
                     <MathInline tex={String.raw`3`} className="math-inline math-white" />
                   </td>
-                  <td className="py-2">
-                    <MathInline tex={String.raw`(1,3)`} className="math-inline math-white" />
+                  <td className="py-2 text-center">
+                    <MathInline
+                      tex={String.raw`({\color{#22d3ee}1},{\color{#f472b6}3})`}
+                      className="math-inline math-white"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -224,8 +231,11 @@ export default function FunctionsGraphsMappingsPage() {
                   <td className="py-2 text-center text-white">
                     <MathInline tex={String.raw`5`} className="math-inline math-white" />
                   </td>
-                  <td className="py-2">
-                    <MathInline tex={String.raw`(2,5)`} className="math-inline math-white" />
+                  <td className="py-2 text-center">
+                    <MathInline
+                      tex={String.raw`({\color{#22d3ee}2},{\color{#f472b6}5})`}
+                      className="math-inline math-white"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -235,8 +245,11 @@ export default function FunctionsGraphsMappingsPage() {
                   <td className="py-2 text-center text-white">
                     <MathInline tex={String.raw`7`} className="math-inline math-white" />
                   </td>
-                  <td className="py-2">
-                    <MathInline tex={String.raw`(3,7)`} className="math-inline math-white" />
+                  <td className="py-2 text-center">
+                    <MathInline
+                      tex={String.raw`({\color{#22d3ee}3},{\color{#f472b6}7})`}
+                      className="math-inline math-white"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -289,11 +302,70 @@ export default function FunctionsGraphsMappingsPage() {
           caption="The mapping diagram shows the same rule in arrow form: each input on the left is sent to exactly one output on the right."
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          That “exactly one output for each input” idea is one of the key habits
-          to keep. Different inputs may sometimes land on the same output, but a
-          single input should not split into two different outputs if the rule is
-          a function.
+          That <span className="text-white font-semibold">exactly one output for each input</span> idea is
+          one of the key habits to keep. Different inputs may sometimes land on
+          the same output, but a single input should not split into two
+          different outputs if the rule is a function.
         </p>
+
+        <section id="mapping-types" className="scroll-mt-28 grid gap-3">
+          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+            Different kinds of mapping behavior
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is a good place to introduce a few simple function types,
+            because arrow diagrams make the differences easier to see than
+            abstract definitions do.
+          </p>
+          <div className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+            <p>
+              <span className="text-white font-semibold">One-to-one:</span> different inputs go
+              to different outputs. Under{" "}
+              <MathInline
+                tex={String.raw`f({\color{#22d3ee}x})={\color{#22d3ee}x}+1`}
+                className="math-inline math-white"
+              />
+              , the inputs <MathInline tex={String.raw`1`} className="math-inline math-white" /> and{" "}
+              <MathInline tex={String.raw`2`} className="math-inline math-white" /> go to{" "}
+              <MathInline tex={String.raw`2`} className="math-inline math-white" /> and{" "}
+              <MathInline tex={String.raw`3`} className="math-inline math-white" />.
+            </p>
+            <p>
+              <span className="text-white font-semibold">Many-to-one:</span> different inputs can
+              still land on the same output while the rule remains a function.
+              For example, if{" "}
+              <MathInline
+                tex={String.raw`g({\color{#22d3ee}x})={\color{#22d3ee}x}^{2}`}
+                className="math-inline math-white"
+              />
+              , then <MathInline tex={String.raw`g(2)=4`} className="math-inline math-white" /> and{" "}
+              <MathInline tex={String.raw`g(-2)=4`} className="math-inline math-white" />.
+            </p>
+            <p>
+              <span className="text-white font-semibold">Onto:</span> every output we care about
+              gets hit by at least one input. If the allowed outputs are{" "}
+              <MathInline tex={String.raw`\{1,3,5\}`} className="math-inline math-white" />, then{" "}
+              <MathInline
+                tex={String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`}
+                className="math-inline math-white"
+              />{" "}
+              with inputs <MathInline tex={String.raw`\{0,1,2\}`} className="math-inline math-white" /> is onto
+              that output set because it reaches all three values.
+            </p>
+            <p>
+              <span className="text-white font-semibold">Not a function:</span> one input is sent
+              to two different outputs. If an input{" "}
+              <MathInline tex={String.raw`2`} className="math-inline math-white" /> pointed to both{" "}
+              <MathInline tex={String.raw`5`} className="math-inline math-white" /> and{" "}
+              <MathInline tex={String.raw`7`} className="math-inline math-white" />, the rule would
+              fail the basic function test.
+            </p>
+          </div>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Later, these labels become more formal. For now, the important
+            beginner question is simply: how are the arrows behaving?
+          </p>
+        </section>
       </section>
 
       <section id="bridge" className="scroll-mt-28 grid gap-4">

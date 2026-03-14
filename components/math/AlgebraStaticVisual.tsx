@@ -49,26 +49,50 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "function-machine" && (
-          <svg viewBox="0 0 760 220" className="h-48 w-full">
-            <rect x="36" y="56" width="170" height="96" rx="22" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(148, 163, 184, 0.28)" />
-            <rect x="280" y="34" width="200" height="140" rx="28" fill="rgba(21, 36, 59, 0.94)" stroke="rgba(56, 189, 248, 0.32)" />
-            <rect x="554" y="56" width="170" height="96" rx="22" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(148, 163, 184, 0.28)" />
+          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_44px_minmax(0,1.2fr)_44px_minmax(0,1fr)] md:items-center">
+            <div className="rounded-[28px] border border-white/15 bg-slate-950/70 px-6 py-6 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">Input</p>
+              <div className="mt-3 text-3xl font-semibold text-white">
+                <MathInline
+                  tex={String.raw`{\color{#22d3ee}x}={\color{#22d3ee}2}`}
+                  className="math-inline math-white text-3xl"
+                />
+              </div>
+              <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+                Choose one input value.
+              </p>
+            </div>
 
-            <path d="M206 104 L280 104" stroke="rgba(231,238,248,0.86)" strokeWidth="3" strokeDasharray="5 7" />
-            <path d="M480 104 L554 104" stroke="rgba(231,238,248,0.86)" strokeWidth="3" strokeDasharray="5 7" />
-            <path d="M268 95 L280 104 L268 113" stroke="rgba(231,238,248,0.86)" strokeWidth="3" fill="none" />
-            <path d="M542 95 L554 104 L542 113" stroke="rgba(231,238,248,0.86)" strokeWidth="3" fill="none" />
+            <div className="hidden text-center text-4xl text-white/75 md:block">→</div>
 
-            <text x="121" y="88" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700" letterSpacing="1.5">INPUT</text>
-            <text x="121" y="121" textAnchor="middle" fill="#22d3ee" fontSize="30" fontWeight="700">x = 2</text>
+            <div className="rounded-[32px] border border-cyan-400/25 bg-[rgba(21,36,59,0.94)] px-7 py-7 text-center shadow-[0_0_0_1px_rgba(56,189,248,0.06)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Function</p>
+              <div className="mt-3 text-3xl font-semibold text-white">
+                <MathInline
+                  tex={String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`}
+                  className="math-inline math-white text-3xl"
+                />
+              </div>
+              <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+                Apply the same rule to whatever input arrives.
+              </p>
+            </div>
 
-            <text x="380" y="76" textAnchor="middle" fill="#e7eef8" fontSize="16" fontWeight="700" letterSpacing="1.6">FUNCTION</text>
-            <text x="380" y="112" textAnchor="middle" fill="#f472b6" fontSize="26" fontWeight="700">f(x) = 2x + 1</text>
-            <text x="380" y="142" textAnchor="middle" fill="rgba(231,238,248,0.78)" fontSize="13">take an input, apply the rule, produce an output</text>
+            <div className="hidden text-center text-4xl text-white/75 md:block">→</div>
 
-            <text x="639" y="88" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700" letterSpacing="1.5">OUTPUT</text>
-            <text x="639" y="121" textAnchor="middle" fill="#f59e0b" fontSize="30" fontWeight="700">5</text>
-          </svg>
+            <div className="rounded-[28px] border border-white/15 bg-slate-950/70 px-6 py-6 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white">Output</p>
+              <div className="mt-3 text-3xl font-semibold text-white">
+                <MathInline
+                  tex={String.raw`{\color{#f59e0b}5}`}
+                  className="math-inline math-white text-3xl"
+                />
+              </div>
+              <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+                The rule turns the input into one result.
+              </p>
+            </div>
+          </div>
         )}
 
         {variant === "line-graph" && (
@@ -123,8 +147,8 @@ export default function AlgebraStaticVisual({
                 [510, 212],
               ].map(([cx, cy], idx) => (
                 <g key={`q-${idx}`}>
-                  <circle cx={cx} cy={cy} r="5.5" fill="#f59e0b" />
-                  <circle cx={cx} cy={cy} r="9.5" fill="none" stroke="rgba(245,158,11,0.26)" strokeWidth="2" />
+                  <circle cx={cx} cy={cy} r="5.5" fill="#f472b6" />
+                  <circle cx={cx} cy={cy} r="9.5" fill="none" stroke="rgba(244,114,182,0.3)" strokeWidth="2" />
                 </g>
               ))}
 
@@ -155,39 +179,80 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "mapping-diagram" && (
-          <svg viewBox="0 0 760 260" className="h-52 w-full">
-            <text x="180" y="34" textAnchor="middle" fill="#e7eef8" fontSize="16" fontWeight="700" letterSpacing="1.5">INPUTS</text>
-            <text x="580" y="34" textAnchor="middle" fill="#e7eef8" fontSize="16" fontWeight="700" letterSpacing="1.5">OUTPUTS</text>
+          <div className="relative">
+            <svg viewBox="0 0 760 330" className="h-auto w-full">
+              <ellipse
+                cx="160"
+                cy="200"
+                rx="86"
+                ry="108"
+                fill="rgba(15,23,42,0.32)"
+                stroke="rgba(244,114,182,0.85)"
+                strokeWidth="4"
+              />
+              <ellipse
+                cx="600"
+                cy="200"
+                rx="86"
+                ry="108"
+                fill="rgba(15,23,42,0.32)"
+                stroke="rgba(244,114,182,0.85)"
+                strokeWidth="4"
+              />
 
-            {[72, 132, 192].map((y, idx) => (
-              <g key={`left-${idx}`}>
-                <circle cx="180" cy={y} r="24" fill="rgba(15, 23, 42, 0.92)" stroke="rgba(56, 189, 248, 0.35)" />
-                <text x="180" y={y + 7} textAnchor="middle" fill="#22d3ee" fontSize="24" fontWeight="700">
+              <text x="160" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
+                Inputs
+              </text>
+              <text x="600" y="76" textAnchor="middle" fill="#e7eef8" fontSize="18" fontWeight="700">
+                Outputs
+              </text>
+
+              {[130, 200, 270].map((y, idx) => (
+                <text
+                  key={`left-${idx}`}
+                  x="160"
+                  y={y}
+                  textAnchor="middle"
+                  fill="#22d3ee"
+                  fontSize="34"
+                  fontWeight="700"
+                >
                   {idx}
                 </text>
-              </g>
-            ))}
+              ))}
 
-            {[102, 162, 222].map((y, idx) => (
-              <g key={`right-${idx}`}>
-                <circle cx="580" cy={y} r="24" fill="rgba(15, 23, 42, 0.92)" stroke="rgba(245, 158, 11, 0.35)" />
-                <text x="580" y={y + 7} textAnchor="middle" fill="#f59e0b" fontSize="24" fontWeight="700">
+              {[130, 200, 270].map((y, idx) => (
+                <text
+                  key={`right-${idx}`}
+                  x="600"
+                  y={y}
+                  textAnchor="middle"
+                  fill="#f59e0b"
+                  fontSize="34"
+                  fontWeight="700"
+                >
                   {[1, 3, 5][idx]}
                 </text>
-              </g>
-            ))}
+              ))}
 
-            <path d="M204 72 C320 72, 420 102, 556 102" fill="none" stroke="rgba(244,114,182,0.9)" strokeWidth="3" />
-            <path d="M204 132 C320 132, 420 162, 556 162" fill="none" stroke="rgba(244,114,182,0.9)" strokeWidth="3" />
-            <path d="M204 192 C320 192, 420 222, 556 222" fill="none" stroke="rgba(244,114,182,0.9)" strokeWidth="3" />
+              <path d="M214 122 C330 122, 430 130, 546 130" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M214 192 C330 192, 430 200, 546 200" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
+              <path d="M214 262 C330 262, 430 270, 546 270" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" />
 
-            <path d="M544 96 L556 102 L544 108" stroke="rgba(244,114,182,0.9)" strokeWidth="3" fill="none" />
-            <path d="M544 156 L556 162 L544 168" stroke="rgba(244,114,182,0.9)" strokeWidth="3" fill="none" />
-            <path d="M544 216 L556 222 L544 228" stroke="rgba(244,114,182,0.9)" strokeWidth="3" fill="none" />
-
-            <text x="380" y="76" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700" letterSpacing="1.3">RULE</text>
-            <text x="380" y="102" textAnchor="middle" fill="#f472b6" fontSize="24" fontWeight="700">f(x) = 2x + 1</text>
-          </svg>
+              <path d="M532 118 L546 130 L532 142" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
+              <path d="M532 188 L546 200 L532 212" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
+              <path d="M532 258 L546 270 L532 282" stroke="rgba(56,189,248,0.95)" strokeWidth="3.5" fill="none" />
+            </svg>
+            <div className="pointer-events-none absolute left-1/2 top-[14%] -translate-x-1/2 text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Rule</p>
+              <div className="mt-2 rounded-2xl border border-cyan-400/20 bg-slate-950/75 px-5 py-3 text-white shadow-[0_0_0_1px_rgba(56,189,248,0.06)]">
+                <MathInline
+                  tex={String.raw`f({\color{#22d3ee}x})=2{\color{#22d3ee}x}+1`}
+                  className="math-inline math-white text-2xl"
+                />
+              </div>
+            </div>
+          </div>
         )}
 
         {variant === "equation-balance" && (
