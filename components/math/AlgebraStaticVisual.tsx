@@ -308,11 +308,10 @@ export default function AlgebraStaticVisual({
               <path d="M636 312 L650 320 L636 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
               <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
-              <path d="M220 320 L420 200" stroke="#22d3ee" strokeWidth="4" fill="none" />
-              <path d="M404 198 L420 200 L412 214" stroke="#22d3ee" strokeWidth="4" fill="none" />
+              <path d="M220 320 L420 200" stroke="rgba(231,238,248,0.95)" strokeWidth="3" fill="none" />
+              <path d="M406 198 L420 200 L412 212" stroke="rgba(231,238,248,0.95)" strokeWidth="3" fill="none" />
 
-              <path d="M220 320 L420 320" stroke="rgba(34,211,238,0.6)" strokeWidth="3" strokeDasharray="7 6" />
-              <path d="M420 320 L420 200" stroke="rgba(244,114,182,0.7)" strokeWidth="3" strokeDasharray="7 6" />
+              <path d="M420 320 L420 200" stroke="rgba(244,114,182,0.7)" strokeWidth="2" strokeDasharray="6 6" />
 
               <circle cx="220" cy="320" r="5.5" fill="#ffffff" />
               <circle cx="420" cy="200" r="7" fill="#22d3ee" />
@@ -321,16 +320,15 @@ export default function AlgebraStaticVisual({
               <text x="222" y="350" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
               <text x="656" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
-              <text x="300" y="310" fill="#22d3ee" fontSize="14" fontWeight="700">+2 in x</text>
               <text x="434" y="264" fill="#f472b6" fontSize="14" fontWeight="700">+1 in y</text>
             </svg>
             <div className="pointer-events-none absolute right-[7%] top-[10%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
               <MathInline
-                tex={String.raw`\mathbf{v}=\begin{bmatrix}{\color{#22d3ee}2}\\[0.2em]{\color{#f472b6}1}\end{bmatrix}`}
+                tex={String.raw`{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.2em]1\end{bmatrix}`}
                 className="math-inline math-white text-xl"
               />
               <MathInline
-                tex={String.raw`\mathbf{v}=({\color{#22d3ee}2},{\color{#f472b6}1})`}
+                tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(2,1)`}
                 className="math-inline math-white text-base"
               />
             </div>
@@ -345,33 +343,35 @@ export default function AlgebraStaticVisual({
               <path d="M636 312 L650 320 L636 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
               <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
-              <path d="M220 320 L350 250" stroke="#22d3ee" strokeWidth="4" fill="none" />
-              <path d="M334 248 L350 250 L341 263" stroke="#22d3ee" strokeWidth="4" fill="none" />
+              <path d="M220 320 L350 255" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
+              <path d="M337 251 L350 255 L341 267" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
 
-              <path d="M220 320 L480 180" stroke="#f472b6" strokeWidth="4" fill="none" />
-              <path d="M464 178 L480 180 L471 194" stroke="#f472b6" strokeWidth="4" fill="none" />
+              <path d="M220 320 L480 190" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
+              <path d="M467 186 L480 190 L471 202" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
+
+              <path d="M350 255 L480 255" stroke="rgba(34,211,238,0.7)" strokeWidth="2" strokeDasharray="6 6" />
+              <path d="M350 255 L350 320" stroke="rgba(231,238,248,0.45)" strokeWidth="1.5" />
+              <path d="M480 320 L480 190" stroke="rgba(244,114,182,0.7)" strokeWidth="2" strokeDasharray="6 6" />
 
               <circle cx="220" cy="320" r="5.5" fill="#ffffff" />
+              <g>
+                <circle cx="350" cy="255" r="6.5" fill="#22d3ee" />
+                <circle cx="350" cy="255" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+              </g>
+              <g>
+                <circle cx="480" cy="190" r="6.5" fill="#22d3ee" />
+                <circle cx="480" cy="190" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+              </g>
+
+              <text x="350" y="236" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
+              <text x="480" y="170" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">2v</text>
+
+              <text x="415" y="244" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">move 2 to the right</text>
+              <text x="498" y="258" fill="#f472b6" fontSize="13" fontWeight="700">move up 2 places</text>
 
               <text x="656" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
-            <div className="pointer-events-none absolute right-[7%] top-[12%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
-              <div className="inline-flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#22d3ee]" />
-                <MathInline
-                  tex={String.raw`\mathbf{v}`}
-                  className="math-inline math-white text-base"
-                />
-              </div>
-              <div className="inline-flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#f472b6]" />
-                <MathInline
-                  tex={String.raw`2\mathbf{v}`}
-                  className="math-inline math-white text-base"
-                />
-              </div>
-            </div>
           </div>
         )}
 

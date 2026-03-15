@@ -226,7 +226,7 @@ export default function SigmaNotationPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-2(1)+2(2)+2(3)+2(4) &= 2+4+6+8 \\[0.55em]
+2({\color{#22d3ee}1})+2({\color{#22d3ee}2})+2({\color{#22d3ee}3})+2({\color{#22d3ee}4}) &= 2+4+6+8 \\[0.55em]
 &= 20
 \end{aligned}`}
               className="math-center math-lg text-white/90"
@@ -250,7 +250,7 @@ export default function SigmaNotationPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-(1+1)+(2+1)+(3+1) &= 2+3+4 \\[0.55em]
+({\color{#22d3ee}1}+1)+({\color{#22d3ee}2}+1)+({\color{#22d3ee}3}+1) &= 2+3+4 \\[0.55em]
 &= 9
 \end{aligned}`}
               className="math-center math-lg text-white/90"
@@ -275,7 +275,7 @@ export default function SigmaNotationPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
+m_{\color{#22d3ee}1}+m_{\color{#22d3ee}2}+m_{\color{#22d3ee}3}+m_{\color{#22d3ee}4} &= 6+7+8+9 \\[0.55em]
 &= 30
 \end{aligned}`}
               className="math-center math-lg text-white/90"
@@ -302,38 +302,44 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}_{1}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`x_{\color{#22d3ee}1}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}_{1}`} className="math-inline math-white" /> means
-                  “x sub 1” or “the first x-value in a list”.
+                  <MathInline tex={String.raw`x_{\color{#22d3ee}1}`} className="math-inline math-white" /> means{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> sub 1, or the first{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" />-value in a list.
                 </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#f472b6}x}_{2}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`x_{\color{#f472b6}2}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">
-                  <MathInline tex={String.raw`{\color{#f472b6}x}_{2}`} className="math-inline math-white" /> means
-                  “x sub 2” or “the second x-value in a list”.
+                  <MathInline tex={String.raw`x_{\color{#f472b6}2}`} className="math-inline math-white" /> means{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> sub 2, or the second{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" />-value in a list.
                 </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`x\in\mathbb{R}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}`} className="math-inline math-white" /> means
-                  “x is in the real numbers” or “x is a real number”.
+                  <MathInline tex={String.raw`x\in\mathbb{R}`} className="math-inline math-white" /> means{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> is in the real numbers, or{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> is a real number.
                 </td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{n}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">
-                  <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{n}`} className="math-inline math-white" /> means
-                  “x is in R to the n”, meaning x has n real components.
+                  <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> means{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> is in R to the{" "}
+                  <MathInline tex={String.raw`n`} className="math-inline math-white" />, meaning{" "}
+                  <MathInline tex={String.raw`x`} className="math-inline math-white" /> has{" "}
+                  <MathInline tex={String.raw`n`} className="math-inline math-white" /> real components.
                 </td>
               </tr>
               <tr>
@@ -356,11 +362,11 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             A subscript usually labels position, not multiplication. So{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}_{1}`} className="math-inline math-white" /> is
-            different from <MathInline tex={String.raw`{\color{#22d3ee}x}\cdot 1`} className="math-inline math-white" />.
+            <MathInline tex={String.raw`x_{\color{#22d3ee}1}`} className="math-inline math-white" /> is
+            different from <MathInline tex={String.raw`x\cdot 1`} className="math-inline math-white" />.
           </p>
           <MathBlock
-            tex={String.raw`({\color{#22d3ee}x}_{1},{\color{#f472b6}x}_{2},{\color{#86efac}x}_{3})`}
+            tex={String.raw`(x_{\color{#22d3ee}1},x_{\color{#f472b6}2},x_{\color{#86efac}3})`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -369,16 +375,16 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             The dimension symbol in{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{n}`} className="math-inline math-white" /> tells
+            <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> tells
             you how many real components the object has.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             For example, if{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{3}`} className="math-inline math-white" />,
+            <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}3}`} className="math-inline math-white" />,
             then one possible instance is:
           </p>
           <MathBlock
-            tex={String.raw`{\color{#22d3ee}x}=\begin{pmatrix}2\\-1\\4\end{pmatrix}\qquad\text{or}\qquad {\color{#22d3ee}x}=(2,-1,4)`}
+            tex={String.raw`x=\begin{pmatrix}2\\-1\\4\end{pmatrix}\in\mathbb{R}^{\color{#22d3ee}3}\qquad\text{or}\qquad x=(2,-1,4)\in\mathbb{R}^{\color{#22d3ee}3}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -393,7 +399,7 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
             often written in component form as:
           </p>
           <MathBlock
-            tex={String.raw`x=(x_{1},x_{2},\ldots,x_{\color{#22d3ee}n})`}
+            tex={String.raw`x=(x_{\color{#22d3ee}1},x_{\color{#f472b6}2},\ldots,x_{\color{#22d3ee}n})`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -429,7 +435,13 @@ a_{{\color{#f472b6}m}1} & a_{{\color{#f472b6}m}2} & \cdots & a_{{\color{#f472b6}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Read this as: <span className="text-white font-semibold">x is a real <span className="text-cyan-300">3</span>-dimensional vector</span>, or more simply, x has <span className="text-cyan-300 font-semibold">3</span> real components.
+              Read this as:{" "}
+              <span className="text-white font-semibold">
+                <MathInline tex={String.raw`x`} className="math-inline math-white" /> is a real{" "}
+                <span className="text-cyan-300">3</span>-dimensional vector
+              </span>
+              , or more simply, <MathInline tex={String.raw`x`} className="math-inline math-white" /> has{" "}
+              <span className="text-cyan-300 font-semibold">3</span> real components.
             </p>
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               One concrete example would be:
@@ -451,11 +463,11 @@ a_{{\color{#f472b6}m}1} & a_{{\color{#f472b6}m}2} & \cdots & a_{{\color{#f472b6}
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               Read this as: add the first three components of{" "}
-              <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />.
+              <MathInline tex={String.raw`x`} className="math-inline math-white" />.
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-x_{\color{#f472b6}1}+x_{\color{#f472b6}2}+x_{\color{#f472b6}3}
+x_{\color{#22d3ee}1}+x_{\color{#f472b6}2}+x_{\color{#86efac}3}
 \end{aligned}`}
               className="math-center math-lg text-white/90"
             />
@@ -615,7 +627,7 @@ x_{\color{#f472b6}1}+x_{\color{#f472b6}2}+x_{\color{#f472b6}3}
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
-                <td className="py-2">Notation such as <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{n}`} className="math-inline math-white" /> tells you what kind of object you are dealing with.</td>
+                <td className="py-2">Notation such as <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> tells you what kind of object you are dealing with.</td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>

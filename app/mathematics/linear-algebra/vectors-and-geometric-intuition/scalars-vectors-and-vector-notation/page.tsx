@@ -99,7 +99,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           <span className="text-white font-semibold">not just single numbers anymore</span>.
         </p>
         <MathBlock
-          tex={String.raw`3,\qquad \mathbf{v}=({\color{#22d3ee}2},{\color{#f472b6}1}),\qquad \mathbf{v}=\begin{bmatrix}{\color{#22d3ee}2}\\[0.35em]{\color{#f472b6}1}\end{bmatrix},\qquad 2\mathbf{v}`}
+          tex={String.raw`3,\qquad {\color{#22d3ee}\mathbf{v}}=(2,1),\qquad {\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.35em]1\end{bmatrix},\qquad 2{\color{#22d3ee}\mathbf{v}}`}
           className="math-center math-lg text-white/90"
         />
         <p>
@@ -119,7 +119,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           is <span className="text-white font-semibold">one quantity, not a multi-part object</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For example, <MathInline tex={String.raw`3`} className="math-inline math-white" /> apples,
+          For example, <MathInline tex={String.raw`3`} className="math-inline math-white" /> apples,{" "}
           <MathInline tex={String.raw`5`} className="math-inline math-white" /> metres, or{" "}
           <MathInline tex={String.raw`\tfrac{1}{2}`} className="math-inline math-white" /> of a cake are all scalar-style descriptions.
           They tell you <span className="text-white font-semibold">how much</span>, but not a direction.
@@ -174,7 +174,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           <span className="text-white font-semibold">a directed change with components</span>.
         </p>
         <MathBlock
-          tex={String.raw`\mathbf{v}=({\color{#22d3ee}2},{\color{#f472b6}1})=\begin{bmatrix}{\color{#22d3ee}2}\\[0.35em]{\color{#f472b6}1}\end{bmatrix}`}
+          tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(2,1)=\begin{bmatrix}2\\[0.35em]1\end{bmatrix}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -227,21 +227,27 @@ export default function ScalarsVectorsAndVectorNotationPage() {
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`\mathbf{v}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" />
                 </td>
-                <td className="py-2">A vector named <MathInline tex={String.raw`\mathbf{v}`} className="math-inline math-white" />.</td>
+                <td className="py-2">A vector named <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" />.</td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`({\color{#22d3ee}2},{\color{#f472b6}1})`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`(2,1)`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Tuple form: the vector’s two components written side by side.</td>
               </tr>
               <tr>
                 <td className="py-2 text-center text-white">
-                  <MathInline tex={String.raw`\begin{bmatrix}{\color{#22d3ee}2}\\[0.25em]{\color{#f472b6}1}\end{bmatrix}`} className="math-inline math-white" />
+                  <MathInline tex={String.raw`\begin{bmatrix}2\\[0.25em]1\end{bmatrix}`} className="math-inline math-white" />
                 </td>
                 <td className="py-2">Column-vector form: the same vector written vertically.</td>
+              </tr>
+              <tr>
+                <td className="py-2 text-center text-white">
+                  <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}^{T}=\begin{bmatrix}2 & 1\end{bmatrix}`} className="math-inline math-white" />
+                </td>
+                <td className="py-2">Transpose form: the row version of the same vector, written as <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}^{T}`} className="math-inline math-white" />.</td>
               </tr>
             </tbody>
           </table>
@@ -256,19 +262,26 @@ export default function ScalarsVectorsAndVectorNotationPage() {
             <span className="text-white font-semibold">components</span>.
           </p>
           <MathBlock
-            tex={String.raw`\mathbf{x}=(x_{\color{#22d3ee}1},x_{\color{#f472b6}2},\ldots,x_{\color{#22d3ee}n}),\qquad \mathbf{x}\in\mathbb{R}^{\color{#22d3ee}n}`}
+            tex={String.raw`\mathbf{x}=(x_{1},x_{2},\ldots,x_{\color{#22d3ee}n}),\qquad \mathbf{x}\in\mathbb{R}^{\color{#22d3ee}n}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This says that <MathInline tex={String.raw`\mathbf{x}`} className="math-inline math-white" /> is an
+            This says that <MathInline tex={String.raw`\mathbf{x}`} className="math-inline math-white" /> is an{" "}
             <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" />-dimensional real vector.
             It has <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" /> real components.
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Symbolically, a 3-dimensional version could be written as:
+          </p>
+          <MathBlock
+            tex={String.raw`\mathbf{x}=(x_{\color{#22d3ee}1},x_{\color{#f472b6}2},x_{\color{#86efac}3})\in\mathbb{R}^{\color{#22d3ee}3}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
             A concrete 3-dimensional example would be:
           </p>
           <MathBlock
-            tex={String.raw`\mathbf{x}=\begin{bmatrix}{\color{#22d3ee}2}\\[0.35em]{\color{#f472b6}-1}\\[0.35em]{\color{#86efac}4}\end{bmatrix}\in\mathbb{R}^{\color{#22d3ee}3}`}
+            tex={String.raw`\mathbf{x}=\begin{bmatrix}2\\[0.35em]-1\\[0.35em]4\end{bmatrix}\in\mathbb{R}^{\color{#22d3ee}3}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -300,12 +313,12 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             This is where scalars and vectors meet. If{" "}
-            <MathInline tex={String.raw`\mathbf{v}`} className="math-inline math-white" /> is a vector,
-            then <MathInline tex={String.raw`2\mathbf{v}`} className="math-inline math-white" /> means:
+            <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> is a vector,
+            then <MathInline tex={String.raw`2{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> means:
             keep the same direction, but make the vector twice as long.
           </p>
           <MathBlock
-            tex={String.raw`\mathbf{v}=\begin{bmatrix}{\color{#22d3ee}2}\\[0.35em]{\color{#f472b6}1}\end{bmatrix},\qquad 2\mathbf{v}=\begin{bmatrix}{\color{#22d3ee}4}\\[0.35em]{\color{#f472b6}2}\end{bmatrix}`}
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.35em]1\end{bmatrix},\qquad 2{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}4\\[0.35em]2\end{bmatrix}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -315,7 +328,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           <AlgebraStaticVisual
             variant="vector-scaling"
             framed={false}
-            caption="A scalar can stretch a vector. Here the pink arrow is twice the length of the blue one, but it keeps the same direction."
+            caption="A scalar can stretch a vector. Here the second vector reaches farther in the same direction, and the helper lines show the extra horizontal and vertical change."
           />
         </section>
       </section>
@@ -329,7 +342,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           of the subject keeps returning to.
         </p>
         <MathBlock
-          tex={String.raw`\mathbf{u}+\mathbf{v},\qquad 2\mathbf{v},\qquad A\mathbf{v}`}
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}+{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad A{\color{#22d3ee}\mathbf{v}}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -389,7 +402,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">✅</td>
-                <td className="py-2">Scalars can scale vectors, for example <MathInline tex={String.raw`2\mathbf{v}`} className="math-inline math-white" />.</td>
+                <td className="py-2">Scalars can scale vectors, for example <MathInline tex={String.raw`2{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" />.</td>
               </tr>
               <tr>
                 <td className="w-12 py-2 text-center text-lg">✅</td>
