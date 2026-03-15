@@ -170,6 +170,11 @@ export default function SolvingSimpleEquationsPage() {
           <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
             Worked examples
           </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Each example below is written as a short, balanced chain. The lines
+            are aligned at the equals sign so you can track exactly what
+            changes from one step to the next.
+          </p>
 
           <section className="grid gap-3">
             <h4 className="text-lg font-semibold text-white">1. Adding and subtracting</h4>
@@ -185,16 +190,16 @@ export default function SolvingSimpleEquationsPage() {
               so we subtract 3 from both sides.
             </p>
             <MathBlock
-              tex={String.raw`{\color{#22d3ee}x}+3-3=8-3`}
+              tex={String.raw`\begin{aligned}
+{\color{#22d3ee}x}+3 &= 8 \\
+{\color{#22d3ee}x}+3-3 &= 8-3 \\
+{\color{#22d3ee}x} &= 5
+\end{aligned}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Now simplify:
+              The last line is the clean answer because the variable has been isolated.
             </p>
-            <MathBlock
-              tex={String.raw`{\color{#22d3ee}x}=5`}
-              className="math-center math-lg text-white/90"
-            />
           </section>
 
           <section className="grid gap-3">
@@ -210,16 +215,16 @@ export default function SolvingSimpleEquationsPage() {
               The variable is being multiplied by 2, so divide both sides by 2.
             </p>
             <MathBlock
-              tex={String.raw`\frac{2{\color{#22d3ee}x}}{2}=\frac{10}{2}`}
+              tex={String.raw`\begin{aligned}
+2{\color{#22d3ee}x} &= 10 \\
+\frac{2{\color{#22d3ee}x}}{2} &= \frac{10}{2} \\
+{\color{#22d3ee}x} &= 5
+\end{aligned}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Then simplify:
+              This is the same logic as before, but now the inverse operation is division rather than subtraction.
             </p>
-            <MathBlock
-              tex={String.raw`{\color{#22d3ee}x}=5`}
-              className="math-center math-lg text-white/90"
-            />
           </section>
 
           <section className="grid gap-3">
@@ -235,16 +240,16 @@ export default function SolvingSimpleEquationsPage() {
               The variable is being divided by 3, so multiply both sides by 3.
             </p>
             <MathBlock
-              tex={String.raw`3\cdot\frac{{\color{#22d3ee}x}}{3}=4\cdot 3`}
+              tex={String.raw`\begin{aligned}
+\frac{{\color{#22d3ee}x}}{3} &= 4 \\
+3\cdot\frac{{\color{#22d3ee}x}}{3} &= 4\cdot 3 \\
+{\color{#22d3ee}x} &= 12
+\end{aligned}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Then simplify:
+              Again, the balancing rule stays the same even though the surface appearance looks different.
             </p>
-            <MathBlock
-              tex={String.raw`{\color{#22d3ee}x}=12`}
-              className="math-center math-lg text-white/90"
-            />
           </section>
         </section>
       </section>
@@ -280,24 +285,16 @@ export default function SolvingSimpleEquationsPage() {
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            First subtract 1 from both sides.
+            First subtract 1 from both sides. Then divide both sides by 2. The
+            full chain looks like this:
           </p>
           <MathBlock
-            tex={String.raw`{\color{#f472b6}y}-1=2{\color{#22d3ee}x}`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Then divide both sides by 2.
-          </p>
-          <MathBlock
-            tex={String.raw`\frac{{\color{#f472b6}y}-1}{2}={\color{#22d3ee}x}`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            It is often cleaner to write the isolated variable on the left:
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#22d3ee}x}=\frac{{\color{#f472b6}y}-1}{2}`}
+            tex={String.raw`\begin{aligned}
+{\color{#f472b6}y} &= 2{\color{#22d3ee}x}+1 \\
+{\color{#f472b6}y}-1 &= 2{\color{#22d3ee}x} \\
+\frac{{\color{#f472b6}y}-1}{2} &= {\color{#22d3ee}x} \\
+{\color{#22d3ee}x} &= \frac{{\color{#f472b6}y}-1}{2}
+\end{aligned}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -322,14 +319,11 @@ export default function SolvingSimpleEquationsPage() {
             sides by 3.
           </p>
           <MathBlock
-            tex={String.raw`{\color{#22d3ee}x}+2=5`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Then subtract 2 from both sides.
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#22d3ee}x}=3`}
+            tex={String.raw`\begin{aligned}
+3({\color{#22d3ee}x}+2) &= 15 \\
+{\color{#22d3ee}x}+2 &= 5 \\
+{\color{#22d3ee}x} &= 3
+\end{aligned}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -361,14 +355,11 @@ export default function SolvingSimpleEquationsPage() {
           <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" />:
         </p>
         <MathBlock
-          tex={String.raw`{\color{#22d3ee}5}+3=8`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now simplify:
-        </p>
-        <MathBlock
-          tex={String.raw`8=8`}
+          tex={String.raw`\begin{aligned}
+{\color{#22d3ee}x}+3 &= 8 \\
+{\color{#22d3ee}5}+3 &= 8 \\
+8 &= 8
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -383,19 +374,19 @@ export default function SolvingSimpleEquationsPage() {
             <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
               <tbody>
                 <tr>
-                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="w-12 py-2 text-center text-lg">{"\u274C"}</td>
                   <td className="py-2">Changing one side of the equation without making the same balancing change on the other side.</td>
                 </tr>
                 <tr>
-                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="w-12 py-2 text-center text-lg">{"\u274C"}</td>
                   <td className="py-2">Undoing operations in the wrong order when brackets or multiple steps are involved.</td>
                 </tr>
                 <tr>
-                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="w-12 py-2 text-center text-lg">{"\u274C"}</td>
                   <td className="py-2">Treating <MathInline tex={String.raw`3({\color{#22d3ee}x}+2)`} className="math-inline math-white" /> as if only the <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> were multiplied by 3.</td>
                 </tr>
                 <tr>
-                  <td className="w-12 py-2 text-center text-lg">❌</td>
+                  <td className="w-12 py-2 text-center text-lg">{"\u274C"}</td>
                   <td className="py-2">Stopping too early and forgetting to check whether the solution really satisfies the original equation.</td>
                 </tr>
               </tbody>
@@ -424,25 +415,25 @@ export default function SolvingSimpleEquationsPage() {
         </p>
         <ul className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <li className="flex items-start gap-3">
-            <span className="pt-0.5 text-white">•</span>
+            <span className="pt-0.5 text-white">{"\u2022"}</span>
             <span>
               <span className="text-white font-semibold">solving equations</span> trains you to isolate an unknown carefully
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="pt-0.5 text-white">•</span>
+            <span className="pt-0.5 text-white">{"\u2022"}</span>
             <span>
               <span className="text-white font-semibold">rearranging formulas</span> trains you to rewrite a statement without changing its meaning
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="pt-0.5 text-white">•</span>
+            <span className="pt-0.5 text-white">{"\u2022"}</span>
             <span>
               <span className="text-white font-semibold">checking solutions</span> trains you to verify, not just assume
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="pt-0.5 text-white">•</span>
+            <span className="pt-0.5 text-white">{"\u2022"}</span>
             <span>
               <span className="text-white font-semibold">linear algebra</span> later applies the same balance-and-structure thinking on a larger scale
             </span>
@@ -462,23 +453,23 @@ export default function SolvingSimpleEquationsPage() {
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">✅</td>
+                <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
                 <td className="py-2">To solve an equation, isolate the variable by undoing the operations attached to it.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">✅</td>
+                <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
                 <td className="py-2">Whatever you do to one side, do to the other side as well.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">✅</td>
+                <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
                 <td className="py-2">Rearranging a formula means rewriting it so a different symbol becomes the subject.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">✅</td>
+                <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
                 <td className="py-2">Grouped expressions should be handled as one unit before you move inside them.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">✅</td>
+                <td className="w-12 py-2 text-center text-lg">{"\u2705"}</td>
                 <td className="py-2">A good habit is to substitute the answer back in and check that the original equation still works.</td>
               </tr>
             </tbody>

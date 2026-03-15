@@ -98,6 +98,23 @@ Block math rules:
 - usually pair with `className="math-center math-lg text-white/90"`
 - do not cram too much explanation into one math line when normal prose would be clearer
 
+Worked-equation rules:
+
+- most lesson pages should contain several fully worked, step-by-step examples
+- if a short sequence is just algebraic transformation, align the lines at `=` so the change is easy to scan
+- if the reasoning changes, insert a normal text line before the next display
+- prefer a few short aligned chains over one oversized block with too much happening at once
+
+Example:
+
+```tex
+\begin{aligned}
+2{\color{#22d3ee}x} &= 10 \\
+\frac{2{\color{#22d3ee}x}}{2} &= \frac{10}{2} \\
+{\color{#22d3ee}x} &= 5
+\end{aligned}
+```
+
 ## 4. Variable Colour Conventions
 
 Default convention we have settled on:
@@ -133,6 +150,7 @@ When substituting a value into a variable:
 - the substituted number should usually inherit the variable’s colour
 - if the substituted value sits inside parentheses, colour the number in the parentheses
 - write the substitution step explicitly
+- if the substitution produces a short chain of equal forms, align those lines at `=`
 
 Example:
 
@@ -151,6 +169,16 @@ Then break the rest into separate steps with prose between them:
 ```
 
 Do not over-compress multi-step substitutions into one giant block if separate lines plus normal text are clearer.
+
+Example of a short aligned substitution check:
+
+```tex
+\begin{aligned}
+{\color{#22d3ee}x}+2 &= 5 \\
+({\color{#22d3ee}3})+2 &= 5 \\
+5 &= 5
+\end{aligned}
+```
 
 ## 6. How to Break Up Display Math
 
