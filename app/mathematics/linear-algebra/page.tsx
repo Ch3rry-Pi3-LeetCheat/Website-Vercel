@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ArticleLayout from "@/components/ArticleLayout";
 import RightRail from "@/components/RightRail";
-import { linearAlgebraPrerequisiteLessons } from "@/lib/mathTopics";
+import {
+  linearAlgebraPhases,
+  linearAlgebraPrerequisiteLessons,
+  linearAlgebraVectorLessons,
+} from "@/lib/mathTopics";
 
 export const metadata: Metadata = {
   title: "Linear Algebra Roadmap",
@@ -36,7 +40,8 @@ export default function LinearAlgebraPage() {
         <RightRail
           sections={[
             { title: "Within Mathematics", links: mathematicsLinks },
-            { title: "First phase", links: linearAlgebraPrerequisiteLessons },
+            { title: "Phase pages", links: linearAlgebraPhases },
+            { title: "Start here", links: linearAlgebraPrerequisiteLessons },
           ]}
           activeHref="/mathematics/linear-algebra"
         />
@@ -122,6 +127,18 @@ export default function LinearAlgebraPage() {
           Scalars, vectors, length, dot product, angles, and projections form
           the first real conceptual layer of linear algebra.
         </p>
+        <Link
+          href="/mathematics/linear-algebra/vectors-and-geometric-intuition"
+          className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
+        >
+          <h3 className="text-xl font-semibold text-white">
+            Open the vectors phase
+          </h3>
+          <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
+            Start with scalars, vectors, and vector notation before moving into
+            magnitude, dot product, angles, and projections.
+          </p>
+        </Link>
       </section>
 
       <section id="phase-subspaces" className="scroll-mt-28 grid gap-3">
@@ -167,6 +184,23 @@ export default function LinearAlgebraPage() {
               className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
             >
               <h3 className="text-xl font-semibold text-white">{lesson.label}</h3>
+              <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
+                {lesson.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <div className="grid gap-4 pt-2">
+          {linearAlgebraVectorLessons.map((lesson) => (
+            <Link
+              key={lesson.href}
+              href={lesson.href}
+              className="glass-panel rounded-2xl px-6 py-6 transition hover:border-white/30"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--color-muted)]">
+                First lesson in Phase 1
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-white">{lesson.label}</h3>
               <p className="mt-2 text-sm leading-6 text-[color:var(--color-muted)]">
                 {lesson.description}
               </p>

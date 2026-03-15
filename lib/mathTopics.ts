@@ -24,7 +24,7 @@ export const linearAlgebraPhases: TopicLink[] = [
     label: "Vectors and geometric intuition",
     description:
       "Scalars, vectors, magnitude, dot product, and the first geometric mental models.",
-    href: "/mathematics/linear-algebra#phase-vectors",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition",
   },
   {
     label: "Subspaces, basis, and dimension",
@@ -76,5 +76,14 @@ export const linearAlgebraPrerequisiteLessons: TopicLink[] = [
     description:
       "Read summation symbols, subscripts, and compact notation without losing the underlying meaning.",
     href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/sigma-notation-and-basic-mathematical-notation",
+  },
+];
+
+export const linearAlgebraVectorLessons: TopicLink[] = [
+  {
+    label: "Scalars, vectors, and vector notation",
+    description:
+      "Distinguish single numbers from vectors, read vector notation, and build the first geometric intuition.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/scalars-vectors-and-vector-notation",
   },
 ];
