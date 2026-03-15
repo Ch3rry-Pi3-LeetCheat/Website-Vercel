@@ -49,6 +49,11 @@ For geometry-heavy lessons:
 - prefer `concept -> worked example -> plot` inside the same section
 - if a plot is about scaling, keep it inside the `Scaling` section
 - if a plot is about comparing two vectors, keep it inside the comparison section
+- when an operation has a standard name, use it where it helps:
+  - `head-to-tail` / `triangle rule`
+  - `parallelogram rule`
+  - `commutative`, `associative`, `distributive`, `identity`, `inverse`
+- if those laws are introduced, give at least one small concrete example rather than listing the names only
 
 ## 2. Tone and Writing Style
 
@@ -323,6 +328,7 @@ General plot rules:
 - visuals should feel tall enough, not squashed
 - when a plot only needs the positive quadrant, do not draw axis segments to the left of or below the origin
 - use proper SVG `marker` arrowheads for vector arrows instead of hand-drawn arrowhead paths
+- prefer the filled triangular marker style used in `components/ml/PredictionGuidePlot.tsx`, not outlined arrowhead strokes
 - plots should feel visually centered rather than pushed hard to one side
 - if named vectors such as `v` and `u` are plotted, label the points directly and avoid a legend unless it adds something important
 - integer tick marks from the origin usually work best for small beginner examples
@@ -357,6 +363,7 @@ Current vector-plot pattern:
 - positive-quadrant-only layout when the example is introductory
 - shorten vector paths slightly so the marker arrowhead finishes cleanly before the endpoint dot
 - short component annotations like `+2 in x` or `+1 in y` only when they are being directly explained
+- in geometric addition pictures, use dashed helper copies only where they clarify the triangle / parallelogram construction; avoid overloading the picture with extra arrowheads on every helper segment
 
 If the user says a plot should look like one in `what-is-ml`, inspect that exact plot and copy the relevant proportions or structure instead of approximating.
 

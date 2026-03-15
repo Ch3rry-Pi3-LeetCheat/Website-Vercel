@@ -26,7 +26,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
     { id: "components", label: "Components and dimension", level: 2 },
     { id: "compare", label: "Comparing vectors" },
     { id: "scaling", label: "Scaling a vector" },
-    { id: "bridge", label: "Linear algebra bridge" },
+    { id: "bridge", label: "What comes next" },
     { id: "summary", label: "Summary" },
   ];
 
@@ -83,8 +83,8 @@ export default function ScalarsVectorsAndVectorNotationPage() {
                 <td className="py-2">How a scalar changes a vector by stretching it while keeping the same direction.</td>
               </tr>
               <tr>
-                <td className="w-56 py-2 pr-4 font-semibold text-white">Linear algebra bridge</td>
-                <td className="py-2">Why vectors become the central objects that later get added, scaled, and transformed.</td>
+                <td className="w-56 py-2 pr-4 font-semibold text-white">What comes next</td>
+                <td className="py-2">Why vectors become the central objects that the next pages will add, scale, compare, and transform.</td>
               </tr>
             </tbody>
           </table>
@@ -351,19 +351,20 @@ export default function ScalarsVectorsAndVectorNotationPage() {
 
       <section id="bridge" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Linear algebra bridge
+          What comes next
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This lesson matters because vectors are the main objects that the rest
-          of the subject keeps returning to.
+          This page does not need to do the operations yet. It needs to make
+          the objects feel readable before the next lessons start operating on
+          them.
         </p>
         <MathBlock
           tex={String.raw`{\color{#f472b6}\mathbf{u}}+{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad A{\color{#22d3ee}\mathbf{v}}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Those expressions will look much less intimidating once the basic
-          habits are in place:
+          The goal here is simply that those expressions no longer look like a
+          foreign alphabet once the next pages introduce them:
         </p>
         <ul className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
           <li className="flex items-start gap-3">
@@ -387,7 +388,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
           <li className="flex items-start gap-3">
             <span className="pt-0.5 text-white">•</span>
             <span>
-              <span className="text-white font-semibold">linear algebra</span> later studies how vectors combine, scale, and transform
+              <span className="text-white font-semibold">the next lessons</span> will show how vectors combine, scale, and transform
             </span>
           </li>
         </ul>

@@ -53,11 +53,11 @@ function renderMappingDiagram({
     <div className="relative">
       <svg viewBox="0 0 760 330" className="h-auto w-full">
         <defs>
-          <marker id="mapping-arrow-default" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-            <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="1.5" />
+          <marker id="mapping-arrow-default" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.9)" />
           </marker>
-          <marker id="mapping-arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-            <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(248,113,113,0.95)" strokeWidth="1.5" />
+          <marker id="mapping-arrow-red" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(248,113,113,0.95)" />
           </marker>
         </defs>
         <ellipse
@@ -230,7 +230,7 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 760 540" className="h-auto w-full">
               <defs>
                 <marker id="line-graph-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.8)" />
                 </marker>
               </defs>
               <line x1="90" y1="452" x2="710" y2="452" stroke="rgba(231,238,248,0.8)" strokeWidth="2" markerEnd="url(#line-graph-axis-arrow)" />
@@ -318,10 +318,10 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-basic-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
                 </marker>
-                <marker id="vector-basic-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
+                <marker id="vector-basic-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
                 </marker>
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
@@ -374,23 +374,23 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-addition-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
                 </marker>
-                <marker id="vector-addition-blue-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(34,211,238,0.95)" strokeWidth="1.5" />
+                <marker id="vector-addition-blue-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(34,211,238,0.95)" />
                 </marker>
-                <marker id="vector-addition-pink-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(244,114,182,0.95)" strokeWidth="1.5" />
+                <marker id="vector-addition-pink-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(244,114,182,0.95)" />
                 </marker>
-                <marker id="vector-addition-white-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
+                <marker id="vector-addition-white-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
                 </marker>
               </defs>
-              <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
-              <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
+              <line x1="140" y1="340" x2="580" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
+              <line x1="140" y1="340" x2="140" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
-                const x = 110 + tick * 90;
+                const x = 140 + tick * 85;
                 return (
                   <g key={`vector-addition-x-${tick}`}>
                     <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
@@ -402,35 +402,40 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3].map((tick) => {
-                const y = 340 - tick * 90;
+                const y = 340 - tick * 80;
                 return (
                   <g key={`vector-addition-y-${tick}`}>
-                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1="132" y1={y} x2="148" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="118" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
                 );
               })}
 
-              <path d="M110 340 L278 256" stroke="rgba(34,211,238,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-blue-arrow)" />
-              <path d="M110 340 L188 184" stroke="rgba(244,114,182,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-pink-arrow)" />
-              <path d="M110 340 L359 91" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-addition-white-arrow)" />
-              <path d="M290 250 L359 112" stroke="rgba(244,114,182,0.75)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" markerEnd="url(#vector-addition-pink-arrow)" />
+              <path d="M140 340 L294 268" stroke="rgba(34,211,238,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-blue-arrow)" />
+              <path d="M140 340 L217 194" stroke="rgba(244,114,182,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-pink-arrow)" />
+              <path d="M140 340 L382 112" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-addition-white-arrow)" />
+              <path d="M310 260 L395 100" stroke="rgba(244,114,182,0.72)" strokeWidth="1.4" strokeDasharray="6 5" fill="none" />
+              <path d="M225 180 L395 100" stroke="rgba(34,211,238,0.72)" strokeWidth="1.4" strokeDasharray="6 5" fill="none" />
 
-              <circle cx="110" cy="340" r="5.5" fill="#ffffff" />
-              <circle cx="290" cy="250" r="7" fill="#22d3ee" />
-              <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
-              <circle cx="200" cy="160" r="7" fill="#f472b6" />
-              <circle cx="200" cy="160" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
-              <circle cx="380" cy="70" r="6.5" fill="#ffffff" />
-              <circle cx="380" cy="70" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+              <circle cx="140" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="310" cy="260" r="7" fill="#22d3ee" />
+              <circle cx="310" cy="260" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="225" cy="180" r="7" fill="#f472b6" />
+              <circle cx="225" cy="180" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="395" cy="100" r="6.5" fill="#ffffff" />
+              <circle cx="395" cy="100" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
 
-              <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="200" y="142" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-              <text x="380" y="50" textAnchor="middle" fill="#ffffff" fontSize="14" fontWeight="700">v + u</text>
-              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="310" y="242" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="225" y="162" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="395" y="78" textAnchor="middle" fontSize="14" fontWeight="700">
+                <tspan fill="#22d3ee">v</tspan>
+                <tspan fill="#ffffff"> + </tspan>
+                <tspan fill="#f472b6">u</tspan>
+              </text>
+              <text x="586" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="154" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
@@ -440,10 +445,10 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-scaling-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
                 </marker>
-                <marker id="vector-scaling-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
+                <marker id="vector-scaling-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
                 </marker>
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
@@ -501,10 +506,10 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-two-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
                 </marker>
-                <marker id="vector-two-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
+                <marker id="vector-two-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
                 </marker>
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
@@ -627,7 +632,7 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 760 560" className="h-auto w-full">
               <defs>
                 <marker id="coordinate-basic-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.85)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.85)" />
                 </marker>
               </defs>
               <line x1="120" y1="280" x2="640" y2="280" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
@@ -697,7 +702,7 @@ export default function AlgebraStaticVisual({
             <svg viewBox="0 0 760 520" className="h-auto w-full">
               <defs>
                 <marker id="coordinate-move-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.85)" strokeWidth="1.5" />
+                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.85)" />
                 </marker>
               </defs>
               <line x1="28" y1="360" x2="540" y2="360" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
