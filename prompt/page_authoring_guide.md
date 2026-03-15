@@ -43,6 +43,13 @@ Example pattern:
 
 Do not let the intro roadmap and the real page structure drift apart unless there is a strong reason.
 
+For geometry-heavy lessons:
+
+- do not create a separate `Geometric intuition` section if the visuals can sit directly inside the sections they explain
+- prefer `concept -> worked example -> plot` inside the same section
+- if a plot is about scaling, keep it inside the `Scaling` section
+- if a plot is about comparing two vectors, keep it inside the comparison section
+
 ## 2. Tone and Writing Style
 
 Preferred style:
@@ -314,6 +321,12 @@ General plot rules:
 - avoid boxed visuals unless the box is doing real work
 - labels that are mathematical expressions should use `MathInline`, not plain SVG text
 - visuals should feel tall enough, not squashed
+- when a plot only needs the positive quadrant, do not draw axis segments to the left of or below the origin
+- use proper SVG `marker` arrowheads for vector arrows instead of hand-drawn arrowhead paths
+- plots should feel visually centered rather than pushed hard to one side
+- if named vectors such as `v` and `u` are plotted, label the points directly and avoid a legend unless it adds something important
+- integer tick marks from the origin usually work best for small beginner examples
+- helper lines should be thin and only remain if they are actively helping the explanation
 
 Current common line-graph pattern:
 
@@ -335,6 +348,13 @@ Graph markers:
 
 - current shared linear-algebra graph convention uses pink point markers
 - even the secondary line may still use pink markers if that helps consistency
+
+Current vector-plot pattern:
+
+- slim white vector lines
+- SVG markers for arrowheads
+- positive-quadrant-only layout when the example is introductory
+- short component annotations like `+2 in x` or `+1 in y` only when they are being directly explained
 
 If the user says a plot should look like one in `what-is-ml`, inspect that exact plot and copy the relevant proportions or structure instead of approximating.
 

@@ -294,6 +294,11 @@ export default function ScalarsVectorsAndVectorNotationPage() {
             any other situation where one object needs three coordinates rather
             than two.
           </p>
+          <AlgebraStaticVisual
+            variant="vector-3d"
+            framed={false}
+            caption="The same 3-dimensional vector can be pictured as a point or arrow in 3D space, with one component along each axis."
+          />
         </section>
       </section>
 
