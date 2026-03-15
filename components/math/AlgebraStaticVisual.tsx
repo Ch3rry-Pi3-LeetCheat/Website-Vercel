@@ -303,24 +303,48 @@ export default function AlgebraStaticVisual({
         {variant === "vector-basic" && (
           <div className="relative">
             <svg viewBox="0 0 760 420" className="h-auto w-full">
-              <line x1="120" y1="320" x2="650" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <line x1="220" y1="80" x2="220" y2="360" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <path d="M636 312 L650 320 L636 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
-              <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+              <line x1="150" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="60" x2="220" y2="350" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <path d="M626 312 L640 320 L626 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+              <path d="M212 74 L220 60 L228 74" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
-              <path d="M220 320 L420 200" stroke="rgba(231,238,248,0.95)" strokeWidth="3" fill="none" />
-              <path d="M406 198 L420 200 L412 212" stroke="rgba(231,238,248,0.95)" strokeWidth="3" fill="none" />
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 220 + tick * 80;
+                return (
+                  <g key={`vector-basic-x-${tick}`}>
+                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
 
-              <path d="M420 320 L420 200" stroke="rgba(244,114,182,0.7)" strokeWidth="2" strokeDasharray="6 6" />
+              {[1, 2, 3].map((tick) => {
+                const y = 320 - tick * 80;
+                return (
+                  <g key={`vector-basic-y-${tick}`}>
+                    <line x1="214" y1={y} x2="226" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="202" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path d="M220 320 L380 240" stroke="rgba(231,238,248,0.95)" strokeWidth="2.25" fill="none" />
+              <path d="M367 238 L380 240 L371 251" stroke="rgba(231,238,248,0.95)" strokeWidth="2.25" fill="none" />
+
+              <path d="M380 320 L380 240" stroke="rgba(244,114,182,0.68)" strokeWidth="1.5" strokeDasharray="5 5" />
 
               <circle cx="220" cy="320" r="5.5" fill="#ffffff" />
-              <circle cx="420" cy="200" r="7" fill="#22d3ee" />
-              <circle cx="420" cy="200" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="380" cy="240" r="7" fill="#22d3ee" />
+              <circle cx="380" cy="240" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <text x="222" y="350" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
-              <text x="656" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
-              <text x="434" y="264" fill="#f472b6" fontSize="14" fontWeight="700">+1 in y</text>
+              <text x="222" y="348" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
+              <text x="646" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="232" y="56" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="300" y="306" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">+2 in x</text>
             </svg>
             <div className="pointer-events-none absolute right-[7%] top-[10%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
               <MathInline
@@ -338,39 +362,56 @@ export default function AlgebraStaticVisual({
         {variant === "vector-scaling" && (
           <div className="relative">
             <svg viewBox="0 0 760 420" className="h-auto w-full">
-              <line x1="120" y1="320" x2="650" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <line x1="220" y1="80" x2="220" y2="360" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <path d="M636 312 L650 320 L636 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
-              <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+              <line x1="150" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="60" x2="220" y2="350" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <path d="M626 312 L640 320 L626 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+              <path d="M212 74 L220 60 L228 74" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
-              <path d="M220 320 L350 255" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
-              <path d="M337 251 L350 255 L341 267" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 220 + tick * 80;
+                return (
+                  <g key={`vector-scaling-x-${tick}`}>
+                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
 
-              <path d="M220 320 L480 190" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
-              <path d="M467 186 L480 190 L471 202" stroke="rgba(231,238,248,0.95)" strokeWidth="2.5" fill="none" />
+              {[1, 2, 3].map((tick) => {
+                const y = 320 - tick * 80;
+                return (
+                  <g key={`vector-scaling-y-${tick}`}>
+                    <line x1="214" y1={y} x2="226" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="202" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
 
-              <path d="M350 255 L480 255" stroke="rgba(34,211,238,0.7)" strokeWidth="2" strokeDasharray="6 6" />
-              <path d="M350 255 L350 320" stroke="rgba(231,238,248,0.45)" strokeWidth="1.5" />
-              <path d="M480 320 L480 190" stroke="rgba(244,114,182,0.7)" strokeWidth="2" strokeDasharray="6 6" />
+              <path d="M220 320 L380 240" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+              <path d="M367 238 L380 240 L371 251" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+
+              <path d="M220 320 L540 160" stroke="rgba(231,238,248,0.95)" strokeWidth="2" strokeDasharray="7 6" fill="none" />
+              <path d="M527 158 L540 160 L531 171" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
 
               <circle cx="220" cy="320" r="5.5" fill="#ffffff" />
               <g>
-                <circle cx="350" cy="255" r="6.5" fill="#22d3ee" />
-                <circle cx="350" cy="255" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+                <circle cx="380" cy="240" r="6.5" fill="#22d3ee" />
+                <circle cx="380" cy="240" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
               </g>
               <g>
-                <circle cx="480" cy="190" r="6.5" fill="#22d3ee" />
-                <circle cx="480" cy="190" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+                <circle cx="540" cy="160" r="6.5" fill="#22d3ee" />
+                <circle cx="540" cy="160" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
               </g>
 
-              <text x="350" y="236" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
-              <text x="480" y="170" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">2v</text>
+              <text x="380" y="222" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
+              <text x="540" y="142" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">2v</text>
 
-              <text x="415" y="244" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">move 2 to the right</text>
-              <text x="498" y="258" fill="#f472b6" fontSize="13" fontWeight="700">move up 2 places</text>
-
-              <text x="656" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="646" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="232" y="56" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}

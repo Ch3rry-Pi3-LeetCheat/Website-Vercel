@@ -166,7 +166,8 @@ export default function ScalarsVectorsAndVectorNotationPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A vector is a structured object with components. In the most beginner-friendly
           reading, a vector in two dimensions can be treated like an instruction:
-          move some amount horizontally and some amount vertically.
+          move some amount <span className="font-semibold text-[#22d3ee]">horizontally</span> and
+          some amount <span className="font-semibold text-[#f472b6]">vertically</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For example, if someone says “walk 2 metres east and 1 metre north,”
@@ -274,7 +275,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
             Symbolically, a 3-dimensional version could be written as:
           </p>
           <MathBlock
-            tex={String.raw`\mathbf{x}=(x_{\color{#22d3ee}1},x_{\color{#f472b6}2},x_{\color{#86efac}3})\in\mathbb{R}^{\color{#22d3ee}3}`}
+            tex={String.raw`\mathbf{x}=(x_1,x_2,x_3)\in\mathbb{R}^{\color{#22d3ee}3}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
