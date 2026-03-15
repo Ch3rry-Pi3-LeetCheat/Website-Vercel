@@ -324,7 +324,7 @@ export default function AlgebraStaticVisual({
                 </marker>
               </defs>
               <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
-              <line x1="180" y1="80" x2="180" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
+              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 180 + tick * 72;
@@ -380,7 +380,7 @@ export default function AlgebraStaticVisual({
                 </marker>
               </defs>
               <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
-              <line x1="180" y1="80" x2="180" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
+              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 180 + tick * 72;
@@ -441,7 +441,7 @@ export default function AlgebraStaticVisual({
                 </marker>
               </defs>
               <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
-              <line x1="180" y1="80" x2="180" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
+              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 180 + tick * 72;
@@ -564,7 +564,7 @@ export default function AlgebraStaticVisual({
                 </marker>
               </defs>
               <line x1="120" y1="280" x2="640" y2="280" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
-              <line x1="380" y1="40" x2="380" y2="520" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
+              <line x1="380" y1="520" x2="380" y2="40" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
 
               {[-4, -3, -2, -1, 1, 2, 3, 4].map((tick) => {
                 const x = 380 + tick * 48;
@@ -634,7 +634,7 @@ export default function AlgebraStaticVisual({
                 </marker>
               </defs>
               <line x1="28" y1="360" x2="540" y2="360" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
-              <line x1="220" y1="80" x2="220" y2="440" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
+              <line x1="220" y1="440" x2="220" y2="80" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
 
               <path d="M316 312 L412 312" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
               <path d="M412 312 L412 216" stroke="#f472b6" strokeWidth="3" strokeDasharray="7 6" />
