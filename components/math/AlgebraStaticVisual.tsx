@@ -7,6 +7,7 @@ type AlgebraStaticVisualProps = {
     | "substitution-flow"
     | "line-graph"
     | "vector-basic"
+    | "vector-two"
     | "vector-scaling"
     | "equation-balance"
     | "function-machine"
@@ -303,8 +304,8 @@ export default function AlgebraStaticVisual({
         {variant === "vector-basic" && (
           <div className="relative">
             <svg viewBox="0 0 760 420" className="h-auto w-full">
-              <line x1="150" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <line x1="220" y1="60" x2="220" y2="350" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="60" x2="220" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
               <path d="M626 312 L640 320 L626 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
               <path d="M212 74 L220 60 L228 74" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
@@ -344,26 +345,18 @@ export default function AlgebraStaticVisual({
               <text x="222" y="348" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
               <text x="646" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="56" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="380" y="224" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="300" y="306" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">+2 in x</text>
+              <text x="392" y="286" fill="#f472b6" fontSize="13" fontWeight="700">+1 in y</text>
             </svg>
-            <div className="pointer-events-none absolute right-[7%] top-[10%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
-              <MathInline
-                tex={String.raw`{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.2em]1\end{bmatrix}`}
-                className="math-inline math-white text-xl"
-              />
-              <MathInline
-                tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(2,1)`}
-                className="math-inline math-white text-base"
-              />
-            </div>
           </div>
         )}
 
         {variant === "vector-scaling" && (
           <div className="relative">
             <svg viewBox="0 0 760 420" className="h-auto w-full">
-              <line x1="150" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
-              <line x1="220" y1="60" x2="220" y2="350" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="60" x2="220" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
               <path d="M626 312 L640 320 L626 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
               <path d="M212 74 L220 60 L228 74" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
 
@@ -409,6 +402,64 @@ export default function AlgebraStaticVisual({
 
               <text x="380" y="222" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
               <text x="540" y="142" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">2v</text>
+
+              <text x="646" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="232" y="56" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "vector-two" && (
+          <div className="relative">
+            <svg viewBox="0 0 760 420" className="h-auto w-full">
+              <line x1="220" y1="320" x2="640" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <line x1="220" y1="60" x2="220" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" />
+              <path d="M626 312 L640 320 L626 328" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+              <path d="M212 74 L220 60 L228 74" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" />
+
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 220 + tick * 80;
+                return (
+                  <g key={`vector-two-x-${tick}`}>
+                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {[1, 2, 3].map((tick) => {
+                const y = 320 - tick * 80;
+                return (
+                  <g key={`vector-two-y-${tick}`}>
+                    <line x1="214" y1={y} x2="226" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="202" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path d="M220 320 L380 240" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+              <path d="M367 238 L380 240 L371 251" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+
+              <path d="M220 320 L300 80" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+              <path d="M292 94 L300 80 L306 94" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" />
+
+              <circle cx="220" cy="320" r="5.5" fill="#ffffff" />
+
+              <g>
+                <circle cx="380" cy="240" r="7" fill="#22d3ee" />
+                <circle cx="380" cy="240" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              </g>
+              <g>
+                <circle cx="300" cy="80" r="7" fill="#f472b6" />
+                <circle cx="300" cy="80" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              </g>
+
+              <text x="380" y="224" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="300" y="62" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
 
               <text x="646" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="56" fill="#f472b6" fontSize="14" fontWeight="700">y</text>

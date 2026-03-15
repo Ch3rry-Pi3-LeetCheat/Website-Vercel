@@ -24,8 +24,8 @@ export default function ScalarsVectorsAndVectorNotationPage() {
     { id: "point-vs-vector", label: "Point versus vector", level: 2 },
     { id: "notation", label: "Vector notation" },
     { id: "components", label: "Components and dimension", level: 2 },
-    { id: "geometry", label: "Geometric intuition" },
-    { id: "scaling", label: "Scaling a vector", level: 2 },
+    { id: "compare", label: "Comparing vectors" },
+    { id: "scaling", label: "Scaling a vector" },
     { id: "bridge", label: "Linear algebra bridge" },
     { id: "summary", label: "Summary" },
   ];
@@ -75,8 +75,12 @@ export default function ScalarsVectorsAndVectorNotationPage() {
                 <td className="py-2">How tuple form, column-vector form, and component notation all describe the same basic idea.</td>
               </tr>
               <tr className="border-b border-white/10">
-                <td className="w-56 py-2 pr-4 font-semibold text-white">Geometric intuition</td>
-                <td className="py-2">How vectors behave as arrows and how scalars change their size.</td>
+                <td className="w-56 py-2 pr-4 font-semibold text-white">Comparing vectors</td>
+                <td className="py-2">How more than one vector can be drawn on the same axes and compared by direction and size.</td>
+              </tr>
+              <tr className="border-b border-white/10">
+                <td className="w-56 py-2 pr-4 font-semibold text-white">Scaling a vector</td>
+                <td className="py-2">How a scalar changes a vector by stretching it while keeping the same direction.</td>
               </tr>
               <tr>
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Linear algebra bridge</td>
@@ -282,7 +286,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
             A concrete 3-dimensional example would be:
           </p>
           <MathBlock
-            tex={String.raw`\mathbf{x}=\begin{bmatrix}2\\[0.35em]-1\\[0.35em]4\end{bmatrix}\in\mathbb{R}^{\color{#22d3ee}3}`}
+            tex={String.raw`\mathbf{x}=\begin{bmatrix}2\\[0.35em]1\\[0.35em]4\end{bmatrix}\in\mathbb{R}^{\color{#22d3ee}3}`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -293,45 +297,56 @@ export default function ScalarsVectorsAndVectorNotationPage() {
         </section>
       </section>
 
-      <section id="geometry" className="scroll-mt-28 grid gap-4">
+      <section id="compare" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
-          Geometric intuition
+          Comparing vectors
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The fastest geometric way to think about a vector is as an{" "}
-          <span className="text-white font-semibold">arrow</span>. The arrow has a direction and a length.
+          Once you can read one vector as an arrow, the next natural step is to
+          place <span className="text-white font-semibold">more than one vector</span> on the
+          same axes.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In early linear algebra, drawing a vector from the origin is common
-          because it makes the components easy to read. But the important thing
-          is not the exact starting picture. It is the direction-and-size information
-          carried by the arrow.
+          For example, if{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(2,1)`} className="math-inline math-white" /> and{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,3)`} className="math-inline math-white" />, then both can be
+          drawn from the origin and compared directly.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Seeing them together helps you notice that vectors can point in
+          different directions and have different lengths even when they are
+          drawn on the same coordinate system.
+        </p>
+        <AlgebraStaticVisual
+          variant="vector-two"
+          framed={false}
+          caption="Two vectors can live on the same axes. Putting them together makes direction and size easier to compare."
+        />
+      </section>
 
-        <section id="scaling" className="scroll-mt-28 grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Scaling a vector
-          </h3>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This is where scalars and vectors meet. If{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> is a vector,
-            then <MathInline tex={String.raw`2{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> means:
-            keep the same direction, but make the vector twice as long.
-          </p>
-          <MathBlock
-            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.35em]1\end{bmatrix},\qquad 2{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}4\\[0.35em]2\end{bmatrix}`}
-            className="math-center math-lg text-white/90"
-          />
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            We can read that component by component: the scalar{" "}
-            <MathInline tex={String.raw`2`} className="math-inline math-white" /> doubles each component of the vector.
-          </p>
-          <AlgebraStaticVisual
-            variant="vector-scaling"
-            framed={false}
-            caption="A scalar can stretch a vector. Here the second vector reaches farther in the same direction, and the helper lines show the extra horizontal and vertical change."
-          />
-        </section>
+      <section id="scaling" className="scroll-mt-28 grid gap-4">
+        <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
+          Scaling a vector
+        </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This is where scalars and vectors meet. If{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> is a vector,
+          then <MathInline tex={String.raw`2{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" /> means:
+          keep the same direction, but make the vector twice as long.
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}2\\[0.35em]1\end{bmatrix},\qquad 2{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}4\\[0.35em]2\end{bmatrix}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We can read that component by component: the scalar{" "}
+          <MathInline tex={String.raw`2`} className="math-inline math-white" /> doubles each component of the vector.
+        </p>
+        <AlgebraStaticVisual
+          variant="vector-scaling"
+          framed={false}
+          caption="A scalar can stretch a vector. Here the second vector reaches farther in the same direction."
+        />
       </section>
 
       <section id="bridge" className="scroll-mt-28 grid gap-4">
