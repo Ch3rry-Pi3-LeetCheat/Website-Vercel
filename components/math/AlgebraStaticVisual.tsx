@@ -13,7 +13,9 @@ type AlgebraStaticVisualProps = {
     | "mapping-many-to-one"
     | "mapping-surjective"
     | "mapping-bijective"
-    | "mapping-not-function";
+    | "mapping-not-function"
+    | "coordinate-plane-basic"
+    | "coordinate-plane-movement";
   framed?: boolean;
 };
 
@@ -296,6 +298,141 @@ export default function AlgebraStaticVisual({
           </div>
         )}
 
+        {variant === "coordinate-plane-basic" && (
+          <div className="relative">
+            <svg viewBox="0 0 760 560" className="h-auto w-full">
+              {[0, 1, 2, 3, 4, 5, 6].map((step) => {
+                const x = 380 + step * 48;
+                const xMirror = 380 - step * 48;
+                const y = 280 + step * 48;
+                const yMirror = 280 - step * 48;
+                return (
+                  <g key={`grid-${step}`}>
+                    <line x1={x} y1="40" x2={x} y2="520" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1={xMirror} y1="40" x2={xMirror} y2="520" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1="120" y1={y} x2="640" y2={y} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1="120" y1={yMirror} x2="640" y2={yMirror} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                  </g>
+                );
+              })}
+
+              <line x1="120" y1="280" x2="640" y2="280" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
+              <line x1="380" y1="40" x2="380" y2="520" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
+              <path d="M626 272 L640 280 L626 288" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
+              <path d="M372 54 L380 40 L388 54" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
+
+              {[-4, -3, -2, -1, 1, 2, 3, 4].map((tick) => {
+                const x = 380 + tick * 48;
+                return (
+                  <g key={`xtick-${tick}`}>
+                    <line x1={x} y1="274" x2={x} y2="286" stroke="rgba(231,238,248,0.65)" strokeWidth="1.5" />
+                    <text x={x} y="306" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {[-4, -3, -2, -1, 1, 2, 3, 4].map((tick) => {
+                const y = 280 - tick * 48;
+                return (
+                  <g key={`ytick-${tick}`}>
+                    <line x1="374" y1={y} x2="386" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.5" />
+                    <text x="360" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <circle cx="476" cy="136" r="7" fill="#f472b6" />
+              <circle cx="476" cy="136" r="13" fill="none" stroke="rgba(244,114,182,0.28)" strokeWidth="2" />
+              <text x="490" y="126" fill="#e7eef8" fontSize="15" fontWeight="700">A</text>
+
+              <circle cx="284" cy="184" r="7" fill="#38bdf8" />
+              <circle cx="284" cy="184" r="13" fill="none" stroke="rgba(56,189,248,0.28)" strokeWidth="2" />
+              <text x="250" y="174" fill="#e7eef8" fontSize="15" fontWeight="700">B</text>
+
+              <circle cx="524" cy="376" r="7" fill="#f59e0b" />
+              <circle cx="524" cy="376" r="13" fill="none" stroke="rgba(245,158,11,0.24)" strokeWidth="2" />
+              <text x="538" y="366" fill="#e7eef8" fontSize="15" fontWeight="700">C</text>
+
+              <circle cx="380" cy="280" r="5" fill="#ffffff" />
+              <text x="394" y="268" fill="#e7eef8" fontSize="14" fontWeight="700">O</text>
+
+              <text x="646" y="304" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="392" y="36" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+            <div className="pointer-events-none absolute right-[8%] top-[12%] grid gap-2">
+              <div className="inline-flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#f472b6]" />
+                <MathInline tex={String.raw`A=({\color{#22d3ee}2},{\color{#f472b6}3})`} className="math-inline math-white text-base" />
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#38bdf8]" />
+                <MathInline tex={String.raw`B=({\color{#22d3ee}-2},{\color{#f472b6}2})`} className="math-inline math-white text-base" />
+              </div>
+              <div className="inline-flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#f59e0b]" />
+                <MathInline tex={String.raw`C=({\color{#22d3ee}3},{\color{#f472b6}-2})`} className="math-inline math-white text-base" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {variant === "coordinate-plane-movement" && (
+          <div className="relative">
+            <svg viewBox="0 0 760 520" className="h-auto w-full">
+              {[0, 1, 2, 3, 4, 5, 6].map((step) => {
+                const x = 220 + step * 48;
+                const xMirror = 220 - step * 48;
+                const y = 360 - step * 48;
+                const yMirror = 360 + step * 48;
+                return (
+                  <g key={`move-grid-${step}`}>
+                    <line x1={x} y1="80" x2={x} y2="440" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1={xMirror} y1="80" x2={xMirror} y2="440" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1="28" y1={y} x2="540" y2={y} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                    <line x1="28" y1={yMirror} x2="540" y2={yMirror} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
+                  </g>
+                );
+              })}
+
+              <line x1="28" y1="360" x2="540" y2="360" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
+              <line x1="220" y1="80" x2="220" y2="440" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
+              <path d="M526 352 L540 360 L526 368" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
+              <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
+
+              <circle cx="316" cy="312" r="7" fill="#f472b6" />
+              <text x="328" y="302" fill="#e7eef8" fontSize="14" fontWeight="700">P</text>
+
+              <circle cx="412" cy="216" r="7" fill="#38bdf8" />
+              <text x="424" y="206" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
+
+              <path d="M316 312 L412 312" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
+              <path d="M412 312 L412 216" stroke="#f472b6" strokeWidth="3" strokeDasharray="7 6" />
+
+              <text x="364" y="300" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">+2 in x</text>
+              <text x="430" y="264" fill="#f472b6" fontSize="14" fontWeight="700">+2 in y</text>
+
+              <line x1="316" y1="312" x2="412" y2="216" stroke="rgba(231,238,248,0.4)" strokeWidth="2.5" />
+              <text x="372" y="252" fill="#ffffff" fontSize="14" fontWeight="700">straight-line distance</text>
+
+              <text x="546" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+            <div className="pointer-events-none absolute right-[6%] top-[16%] max-w-[180px] rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm leading-6 text-[color:var(--color-muted)]">
+              <p>
+                <span className="text-white font-semibold">P</span> to{" "}
+                <span className="text-white font-semibold">Q</span> can be read in two ways:
+              </p>
+              <p className="mt-2">
+                horizontal and vertical movement, or one direct diagonal distance
+              </p>
+            </div>
+          </div>
+        )}
+
         {variant === "mapping-diagram" &&
           renderMappingDiagram({
             leftValues: ["0", "1", "2"],
@@ -365,7 +502,7 @@ export default function AlgebraStaticVisual({
               { from: 0, to: 1, stroke: "rgba(248,113,113,0.95)" },
               { from: 1, to: 1, stroke: "rgba(231,238,248,0.9)" },
             ],
-            leftStroke: "rgba(248,113,113,0.85)",
+            leftStroke: "rgba(34,211,238,0.85)",
             rightStroke: "rgba(244,114,182,0.85)",
           })}
 

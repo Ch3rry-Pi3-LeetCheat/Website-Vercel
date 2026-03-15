@@ -25,7 +25,6 @@ export default function FunctionsGraphsMappingsPage() {
     { id: "table-to-graph", label: "From a table to a graph", level: 2 },
     { id: "compare-graphs", label: "Comparing two rules", level: 2 },
     { id: "mappings", label: "Mappings" },
-    { id: "mapping-types", label: "Different kinds of mapping behavior", level: 2 },
     { id: "bridge", label: "Linear algebra bridge" },
     { id: "summary", label: "Summary" },
   ];
@@ -338,101 +337,96 @@ export default function FunctionsGraphsMappingsPage() {
           <span className="text-white font-semibold">bijective</span> function.
         </p>
 
-        <section id="mapping-types" className="scroll-mt-28 grid gap-3">
-          <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
-            Different kinds of mapping behavior
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This is where the more official names start to appear.{" "}
+          <span className="text-white font-semibold">Injective</span> means one-to-one,{" "}
+          <span className="text-white font-semibold">surjective</span> means onto, and{" "}
+          <span className="text-white font-semibold">bijective</span> means both at once.
+          Also, you were right to question one-to-many: a one-to-many relation
+          is <span className="text-white font-semibold">not</span> a function.
+        </p>
+
+        <section className="grid gap-3">
+          <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">
+              One-to-one (injective)
           </h3>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            This is where the more official names start to appear.{" "}
-            <span className="text-white font-semibold">Injective</span> means one-to-one,{" "}
-            <span className="text-white font-semibold">surjective</span> means onto, and{" "}
-            <span className="text-white font-semibold">bijective</span> means both at once.
-            Also, you were right to question one-to-many: a one-to-many relation
-            is <span className="text-white font-semibold">not</span> a function.
+            A function is one-to-one if different inputs always land on
+            different outputs. No two arrows merge.
           </p>
-
-          <section className="grid gap-3">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              One-to-one (injective)
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              A function is one-to-one if different inputs always land on
-              different outputs. No two arrows merge.
-            </p>
-            <AlgebraStaticVisual
-              variant="mapping-injective"
-              framed={false}
-              caption="Each input lands on a different output, so this mapping is one-to-one."
-            />
-          </section>
-
-          <section className="grid gap-3">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              Many-to-one
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              This still counts as a function. Different inputs are allowed to
-              share an output, as long as each individual input still has only
-              one arrow leaving it.
-            </p>
-            <AlgebraStaticVisual
-              variant="mapping-many-to-one"
-              framed={false}
-              caption="Here two different inputs land on the same output. That is many-to-one, but it is still a function."
-            />
-          </section>
-
-          <section className="grid gap-3">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              Onto (surjective)
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              A function is onto if every output in the chosen output set gets
-              hit by at least one input. Surjective does not mean one-to-one;
-              it only means nothing on the output side is left unused.
-            </p>
-            <AlgebraStaticVisual
-              variant="mapping-surjective"
-              framed={false}
-              caption="Both output values are reached by at least one input, so this mapping is onto."
-            />
-          </section>
-
-          <section className="grid gap-3">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              Bijective
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Bijective means one-to-one and onto at the same time. Every input
-              gets its own unique output, and every output is used.
-            </p>
-            <AlgebraStaticVisual
-              variant="mapping-bijective"
-              framed={false}
-              caption="This is the cleanest possible pairing: no collisions on the right, and no unused outputs."
-            />
-          </section>
-
-          <section className="grid gap-3">
-            <h4 className="text-lg font-semibold text-white font-[var(--font-display)]">
-              Not a function
-            </h4>
-            <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              If one input splits into two different outputs, the basic function
-              rule is broken. This is the situation people sometimes call
-              one-to-many, but technically it is not a function at all.
-            </p>
-            <AlgebraStaticVisual
-              variant="mapping-not-function"
-              framed={false}
-              caption="The red split shows the failure: one input is trying to produce two different outputs."
-            />
-          </section>
-          <p className="text-base leading-7 text-[color:var(--color-muted)]">
-            Later, these labels become more formal. For now, the important
-            beginner question is simply: how are the arrows behaving?
-          </p>
+          <AlgebraStaticVisual
+            variant="mapping-injective"
+            framed={false}
+            caption="Each input lands on a different output, so this mapping is one-to-one."
+          />
         </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">
+            Many-to-one
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This still counts as a function. Different inputs are allowed to
+            share an output, as long as each individual input still has only
+            one arrow leaving it.
+          </p>
+          <AlgebraStaticVisual
+            variant="mapping-many-to-one"
+            framed={false}
+            caption="Here two different inputs land on the same output. That is many-to-one, but it is still a function."
+          />
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">
+            Onto (surjective)
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A function is onto if every output in the chosen output set gets
+            hit by at least one input. Surjective does not mean one-to-one;
+            it only means nothing on the output side is left unused.
+          </p>
+          <AlgebraStaticVisual
+            variant="mapping-surjective"
+            framed={false}
+            caption="Both output values are reached by at least one input, so this mapping is onto."
+          />
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">
+            Bijective
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Bijective means one-to-one and onto at the same time. Every input
+            gets its own unique output, and every output is used.
+          </p>
+          <AlgebraStaticVisual
+            variant="mapping-bijective"
+            framed={false}
+            caption="This is the cleanest possible pairing: no collisions on the right, and no unused outputs."
+          />
+        </section>
+
+        <section className="grid gap-3">
+          <h3 className="text-lg font-semibold text-white font-[var(--font-display)]">
+            Not a function
+          </h3>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            If one input splits into two different outputs, the basic function
+            rule is broken. This is the situation people sometimes call
+            one-to-many, but technically it is not a function at all.
+          </p>
+          <AlgebraStaticVisual
+            variant="mapping-not-function"
+            framed={false}
+            caption="The red split shows the failure: one input is trying to produce two different outputs."
+          />
+        </section>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Later, these labels become more formal. For now, the important
+          beginner question is simply: how are the arrows behaving?
+        </p>
       </section>
 
       <section id="bridge" className="scroll-mt-28 grid gap-4">
@@ -450,25 +444,38 @@ export default function FunctionsGraphsMappingsPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           You do not need to know the details yet. The important bridge is
-          simpler: if you already understand functions as rules, graphs as
-          pictures of those rules, and mappings as arrows from inputs to
-          outputs, then later transformations will feel like a natural extension
-          instead of a completely new language.
+          simpler: if you already understand <span className="text-white font-semibold">functions as rules</span>,{" "}
+          <span className="text-white font-semibold">graphs as pictures of those rules</span>, and{" "}
+          <span className="text-white font-semibold">mappings as arrows from inputs to outputs</span>,
+          then later transformations will feel like a natural extension instead
+          of a completely new language.
         </p>
-        <div className="ml-6 grid gap-2 text-base leading-7 text-[color:var(--color-muted)]">
-          <p>
-            <span className="text-white font-semibold">functions</span> train you to think in terms of inputs and outputs
-          </p>
-          <p>
-            <span className="text-white font-semibold">graphs</span> train you to see how a rule behaves visually
-          </p>
-          <p>
-            <span className="text-white font-semibold">mappings</span> train you to track where one object is sent
-          </p>
-          <p>
-            <span className="text-white font-semibold">linear algebra</span> later combines all three viewpoints
-          </p>
-        </div>
+        <ul className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <li className="flex items-start gap-3">
+            <span className="pt-0.5 text-white">•</span>
+            <span>
+              <span className="text-white font-semibold">functions</span> train you to think in terms of inputs and outputs
+            </span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="pt-0.5 text-white">•</span>
+            <span>
+              <span className="text-white font-semibold">graphs</span> train you to see how a rule behaves visually
+            </span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="pt-0.5 text-white">•</span>
+            <span>
+              <span className="text-white font-semibold">mappings</span> train you to track where one object is sent
+            </span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="pt-0.5 text-white">•</span>
+            <span>
+              <span className="text-white font-semibold">linear algebra</span> later combines all three viewpoints
+            </span>
+          </li>
+        </ul>
       </section>
 
       <section id="summary" className="scroll-mt-28 grid gap-4">

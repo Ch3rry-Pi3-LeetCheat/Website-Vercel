@@ -59,4 +59,10 @@ export const linearAlgebraPrerequisiteLessons: TopicLink[] = [
       "Understand input-output rules, see how equations become graphs, and build the language that later powers transformations.",
     href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/functions-graphs-and-mappings",
   },
+  {
+    label: "Coordinate plane and geometric points",
+    description:
+      "Place ordered pairs on axes, interpret location geometrically, and build the first visual bridge toward vectors.",
+    href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/coordinate-plane-and-geometric-points",
+  },
 ];
