@@ -301,21 +301,6 @@ export default function AlgebraStaticVisual({
         {variant === "coordinate-plane-basic" && (
           <div className="relative">
             <svg viewBox="0 0 760 560" className="h-auto w-full">
-              {[0, 1, 2, 3, 4, 5, 6].map((step) => {
-                const x = 380 + step * 48;
-                const xMirror = 380 - step * 48;
-                const y = 280 + step * 48;
-                const yMirror = 280 - step * 48;
-                return (
-                  <g key={`grid-${step}`}>
-                    <line x1={x} y1="40" x2={x} y2="520" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1={xMirror} y1="40" x2={xMirror} y2="520" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1="120" y1={y} x2="640" y2={y} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1="120" y1={yMirror} x2="640" y2={yMirror} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                  </g>
-                );
-              })}
-
               <line x1="120" y1="280" x2="640" y2="280" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
               <line x1="380" y1="40" x2="380" y2="520" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
               <path d="M626 272 L640 280 L626 288" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
@@ -358,12 +343,12 @@ export default function AlgebraStaticVisual({
               <text x="538" y="366" fill="#e7eef8" fontSize="15" fontWeight="700">C</text>
 
               <circle cx="380" cy="280" r="5" fill="#ffffff" />
-              <text x="394" y="268" fill="#e7eef8" fontSize="14" fontWeight="700">O</text>
+              <text x="394" y="266" fill="rgba(231,238,248,0.82)" fontSize="12" fontWeight="700">origin</text>
 
               <text x="646" y="304" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="392" y="36" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
-            <div className="pointer-events-none absolute right-[8%] top-[12%] grid gap-2">
+            <div className="pointer-events-none absolute right-[14%] top-[10%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
               <div className="inline-flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#f472b6]" />
                 <MathInline tex={String.raw`A=({\color{#22d3ee}2},{\color{#f472b6}3})`} className="math-inline math-white text-base" />
@@ -383,31 +368,16 @@ export default function AlgebraStaticVisual({
         {variant === "coordinate-plane-movement" && (
           <div className="relative">
             <svg viewBox="0 0 760 520" className="h-auto w-full">
-              {[0, 1, 2, 3, 4, 5, 6].map((step) => {
-                const x = 220 + step * 48;
-                const xMirror = 220 - step * 48;
-                const y = 360 - step * 48;
-                const yMirror = 360 + step * 48;
-                return (
-                  <g key={`move-grid-${step}`}>
-                    <line x1={x} y1="80" x2={x} y2="440" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1={xMirror} y1="80" x2={xMirror} y2="440" stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1="28" y1={y} x2="540" y2={y} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                    <line x1="28" y1={yMirror} x2="540" y2={yMirror} stroke="rgba(231,238,248,0.08)" strokeWidth="1" />
-                  </g>
-                );
-              })}
-
               <line x1="28" y1="360" x2="540" y2="360" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
               <line x1="220" y1="80" x2="220" y2="440" stroke="rgba(231,238,248,0.85)" strokeWidth="2" />
               <path d="M526 352 L540 360 L526 368" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
               <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
 
               <circle cx="316" cy="312" r="7" fill="#f472b6" />
-              <text x="328" y="302" fill="#e7eef8" fontSize="14" fontWeight="700">P</text>
+              <text x="316" y="292" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">P</text>
 
               <circle cx="412" cy="216" r="7" fill="#38bdf8" />
-              <text x="424" y="206" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
+              <text x="412" y="196" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
 
               <path d="M316 312 L412 312" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
               <path d="M412 312 L412 216" stroke="#f472b6" strokeWidth="3" strokeDasharray="7 6" />
@@ -416,7 +386,6 @@ export default function AlgebraStaticVisual({
               <text x="430" y="264" fill="#f472b6" fontSize="14" fontWeight="700">+2 in y</text>
 
               <line x1="316" y1="312" x2="412" y2="216" stroke="rgba(231,238,248,0.4)" strokeWidth="2.5" />
-              <text x="372" y="252" fill="#ffffff" fontSize="14" fontWeight="700">straight-line distance</text>
 
               <text x="546" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>

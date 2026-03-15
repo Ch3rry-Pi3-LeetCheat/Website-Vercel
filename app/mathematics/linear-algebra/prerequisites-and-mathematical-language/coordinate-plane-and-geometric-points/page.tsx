@@ -155,7 +155,8 @@ export default function CoordinatePlaneAndGeometricPointsPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A point on the plane is usually written as an{" "}
-          <span className="text-white font-semibold">ordered pair</span>:
+          <span className="text-white font-semibold">ordered pair</span>, which is also a very simple kind of{" "}
+          <span className="text-white font-semibold">tuple</span>:
         </p>
         <MathBlock
           tex={String.raw`({\color{#22d3ee}x},{\color{#f472b6}y})`}
@@ -395,23 +396,23 @@ export default function CoordinatePlaneAndGeometricPointsPage() {
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">&#10003;</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">The coordinate plane is built from a horizontal axis, a vertical axis, and the origin.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">&#10003;</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">An ordered pair such as <MathInline tex={String.raw`({\color{#22d3ee}2},{\color{#f472b6}3})`} className="math-inline math-white" /> gives one horizontal value and one vertical value.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">&#10003;</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">The order matters: the first coordinate and second coordinate do different jobs.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">&#10003;</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Points represent location, and movement between points can be read as horizontal and vertical change.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">&#10003;</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">This is the geometric groundwork that later supports vectors and coordinate-based linear algebra.</td>
               </tr>
             </tbody>
