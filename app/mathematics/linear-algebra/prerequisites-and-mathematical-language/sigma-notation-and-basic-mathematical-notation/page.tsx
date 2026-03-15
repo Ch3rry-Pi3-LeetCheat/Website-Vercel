@@ -93,7 +93,7 @@ export default function SigmaNotationPage() {
           ideas in a much more compact way.
         </p>
         <MathBlock
-          tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i},\qquad {\color{#22d3ee}x}_{1},\qquad {\color{#22d3ee}x}_{2},\qquad {\color{#22d3ee}x}\in\mathbb{R}^{n}`}
+          tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i},\qquad x_{\color{#22d3ee}1},\qquad x_{\color{#f472b6}2},\qquad x\in\mathbb{R}^{\color{#22d3ee}n}`}
           className="math-center math-lg text-white/90"
         />
         <p>
@@ -387,13 +387,13 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
           </p>
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             More generally,{" "}
-            <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> means
-            that <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> is an{" "}
+            <MathInline tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> means
+            that <MathInline tex={String.raw`x`} className="math-inline math-white" /> is an{" "}
             <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" />-dimensional vector,
             often written in component form as:
           </p>
           <MathBlock
-            tex={String.raw`{\color{#22d3ee}x}=(x_{1},x_{2},\ldots,x_{n})`}
+            tex={String.raw`x=(x_{1},x_{2},\ldots,x_{\color{#22d3ee}n})`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -405,10 +405,10 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
           </p>
           <MathBlock
             tex={String.raw`A=\begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
+a_{11} & a_{12} & \cdots & a_{1{\color{#22d3ee}n}} \\
+a_{21} & a_{22} & \cdots & a_{2{\color{#22d3ee}n}} \\
 \vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn}
+a_{{\color{#f472b6}m}1} & a_{{\color{#f472b6}m}2} & \cdots & a_{{\color{#f472b6}m}{\color{#22d3ee}n}}
 \end{pmatrix}`}
             className="math-center math-lg text-white/90"
           />
