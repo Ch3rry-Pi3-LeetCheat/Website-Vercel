@@ -191,7 +191,6 @@ export default function SolvingSimpleEquationsPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3 &= 8 \\[0.55em]
 {\color{#22d3ee}x}+3-3 &= 8-3 \\[0.55em]
 {\color{#22d3ee}x} &= 5
 \end{aligned}`}
@@ -216,7 +215,6 @@ export default function SolvingSimpleEquationsPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-2{\color{#22d3ee}x} &= 10 \\[0.55em]
 \frac{2{\color{#22d3ee}x}}{2} &= \frac{10}{2} \\[0.55em]
 {\color{#22d3ee}x} &= 5
 \end{aligned}`}
@@ -241,7 +239,6 @@ export default function SolvingSimpleEquationsPage() {
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
-\frac{{\color{#22d3ee}x}}{3} &= 4 \\[0.55em]
 3\cdot\frac{{\color{#22d3ee}x}}{3} &= 4\cdot 3 \\[0.55em]
 {\color{#22d3ee}x} &= 12
 \end{aligned}`}
@@ -356,8 +353,7 @@ export default function SolvingSimpleEquationsPage() {
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-{\color{#22d3ee}x}+3 &= 8 \\[0.55em]
-{\color{#22d3ee}5}+3 &= 8 \\[0.55em]
+({\color{#22d3ee}5})+3 &= 8 \\[0.55em]
 8 &= 8
 \end{aligned}`}
           className="math-center math-lg text-white/90"
