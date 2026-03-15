@@ -373,12 +373,6 @@ export default function AlgebraStaticVisual({
               <path d="M526 352 L540 360 L526 368" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
               <path d="M212 94 L220 80 L228 94" stroke="rgba(231,238,248,0.85)" strokeWidth="2" fill="none" />
 
-              <circle cx="316" cy="312" r="7" fill="#f472b6" />
-              <text x="316" y="292" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">P</text>
-
-              <circle cx="412" cy="216" r="7" fill="#38bdf8" />
-              <text x="412" y="196" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
-
               <path d="M316 312 L412 312" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
               <path d="M412 312 L412 216" stroke="#f472b6" strokeWidth="3" strokeDasharray="7 6" />
 
@@ -386,6 +380,12 @@ export default function AlgebraStaticVisual({
               <text x="430" y="264" fill="#f472b6" fontSize="14" fontWeight="700">+2 in y</text>
 
               <line x1="316" y1="312" x2="412" y2="216" stroke="rgba(231,238,248,0.4)" strokeWidth="2.5" />
+
+              <circle cx="316" cy="312" r="7" fill="#f472b6" />
+              <text x="316" y="292" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">P</text>
+
+              <circle cx="412" cy="216" r="7" fill="#38bdf8" />
+              <text x="412" y="196" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
 
               <text x="546" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="232" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
