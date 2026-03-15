@@ -71,4 +71,10 @@ export const linearAlgebraPrerequisiteLessons: TopicLink[] = [
       "Use inverse operations, isolate symbols carefully, and rearrange formulas without breaking equality.",
     href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/solving-simple-equations-and-rearranging-expressions",
   },
+  {
+    label: "Sigma notation and basic mathematical notation",
+    description:
+      "Read summation symbols, subscripts, and compact notation without losing the underlying meaning.",
+    href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/sigma-notation-and-basic-mathematical-notation",
+  },
 ];
