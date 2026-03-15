@@ -8,6 +8,7 @@ type AlgebraStaticVisualProps = {
     | "line-graph"
     | "vector-basic"
     | "vector-3d"
+    | "vector-addition"
     | "vector-two"
     | "vector-scaling"
     | "equation-balance"
@@ -314,24 +315,24 @@ export default function AlgebraStaticVisual({
 
         {variant === "vector-basic" && (
           <div className="relative">
-            <svg viewBox="0 0 760 420" className="h-auto w-full">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-basic-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
                 </marker>
-                <marker id="vector-basic-vector-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+                <marker id="vector-basic-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
                 </marker>
               </defs>
-              <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
-              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
+              <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
+              <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
-                const x = 180 + tick * 72;
+                const x = 110 + tick * 90;
                 return (
                   <g key={`vector-basic-x-${tick}`}>
-                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
@@ -339,55 +340,121 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3].map((tick) => {
-                const y = 320 - tick * 72;
+                const y = 340 - tick * 90;
                 return (
                   <g key={`vector-basic-y-${tick}`}>
-                    <line x1="174" y1={y} x2="186" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="162" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
                 );
               })}
 
-              <path d="M180 320 L324 248" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-basic-vector-arrow)" />
+              <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-basic-vector-arrow)" />
 
-              <path d="M324 320 L324 248" stroke="rgba(244,114,182,0.68)" strokeWidth="1.5" strokeDasharray="5 5" />
+              <path d="M290 340 L290 250" stroke="rgba(244,114,182,0.68)" strokeWidth="1.25" strokeDasharray="5 5" />
 
-              <circle cx="180" cy="320" r="5.5" fill="#ffffff" />
-              <circle cx="324" cy="248" r="7" fill="#22d3ee" />
-              <circle cx="324" cy="248" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="110" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="290" cy="250" r="7" fill="#22d3ee" />
+              <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <text x="184" y="348" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
-              <text x="566" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="192" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
-              <text x="324" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="252" y="306" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">+2 in x</text>
-              <text x="336" y="286" fill="#f472b6" fontSize="13" fontWeight="700">+1 in y</text>
+              <text x="116" y="370" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="210" y="330" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">+2 in x</text>
+              <text x="302" y="296" fill="#f472b6" fontSize="13" fontWeight="700">+1 in y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "vector-addition" && (
+          <div className="relative">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
+              <defs>
+                <marker id="vector-addition-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
+                </marker>
+                <marker id="vector-addition-blue-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(34,211,238,0.95)" strokeWidth="1.5" />
+                </marker>
+                <marker id="vector-addition-pink-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(244,114,182,0.95)" strokeWidth="1.5" />
+                </marker>
+                <marker id="vector-addition-white-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
+                </marker>
+              </defs>
+              <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
+              <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
+
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 110 + tick * 90;
+                return (
+                  <g key={`vector-addition-x-${tick}`}>
+                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {[1, 2, 3].map((tick) => {
+                const y = 340 - tick * 90;
+                return (
+                  <g key={`vector-addition-y-${tick}`}>
+                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path d="M110 340 L278 256" stroke="rgba(34,211,238,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-blue-arrow)" />
+              <path d="M110 340 L188 184" stroke="rgba(244,114,182,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-pink-arrow)" />
+              <path d="M110 340 L359 91" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-addition-white-arrow)" />
+              <path d="M290 250 L359 112" stroke="rgba(244,114,182,0.75)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" markerEnd="url(#vector-addition-pink-arrow)" />
+
+              <circle cx="110" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="290" cy="250" r="7" fill="#22d3ee" />
+              <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="200" cy="160" r="7" fill="#f472b6" />
+              <circle cx="200" cy="160" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="380" cy="70" r="6.5" fill="#ffffff" />
+              <circle cx="380" cy="70" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+
+              <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="200" y="142" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="380" y="50" textAnchor="middle" fill="#ffffff" fontSize="14" fontWeight="700">v + u</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
 
         {variant === "vector-scaling" && (
           <div className="relative">
-            <svg viewBox="0 0 760 420" className="h-auto w-full">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-scaling-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
                 </marker>
-                <marker id="vector-scaling-vector-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+                <marker id="vector-scaling-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
                 </marker>
               </defs>
-              <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
-              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
+              <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
+              <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
-                const x = 180 + tick * 72;
+                const x = 110 + tick * 90;
                 return (
                   <g key={`vector-scaling-x-${tick}`}>
-                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
@@ -395,60 +462,60 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3].map((tick) => {
-                const y = 320 - tick * 72;
+                const y = 340 - tick * 90;
                 return (
                   <g key={`vector-scaling-y-${tick}`}>
-                    <line x1="174" y1={y} x2="186" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="162" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
                 );
               })}
 
-              <path d="M180 320 L324 248" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-scaling-vector-arrow)" />
+              <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-scaling-vector-arrow)" />
 
-              <path d="M180 320 L468 176" stroke="rgba(231,238,248,0.95)" strokeWidth="2" strokeDasharray="7 6" fill="none" markerEnd="url(#vector-scaling-vector-arrow)" />
+              <path d="M110 340 L457 166" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" strokeDasharray="7 6" fill="none" markerEnd="url(#vector-scaling-vector-arrow)" />
 
-              <circle cx="180" cy="320" r="5.5" fill="#ffffff" />
+              <circle cx="110" cy="340" r="5.5" fill="#ffffff" />
               <g>
-                <circle cx="324" cy="248" r="6.5" fill="#22d3ee" />
-                <circle cx="324" cy="248" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+                <circle cx="290" cy="250" r="6.5" fill="#22d3ee" />
+                <circle cx="290" cy="250" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
               </g>
               <g>
-                <circle cx="468" cy="176" r="6.5" fill="#22d3ee" />
-                <circle cx="468" cy="176" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+                <circle cx="470" cy="160" r="6.5" fill="#22d3ee" />
+                <circle cx="470" cy="160" r="10.5" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
               </g>
 
-              <text x="324" y="230" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
-              <text x="468" y="158" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">2v</text>
+              <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="470" y="142" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">2v</text>
 
-              <text x="566" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="192" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
 
         {variant === "vector-two" && (
           <div className="relative">
-            <svg viewBox="0 0 760 420" className="h-auto w-full">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
                 <marker id="vector-two-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
                 </marker>
-                <marker id="vector-two-vector-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+                <marker id="vector-two-vector-arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
                   <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
                 </marker>
               </defs>
-              <line x1="180" y1="320" x2="560" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
-              <line x1="180" y1="320" x2="180" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
+              <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
+              <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
-                const x = 180 + tick * 72;
+                const x = 110 + tick * 90;
                 return (
                   <g key={`vector-two-x-${tick}`}>
-                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="344" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
@@ -456,37 +523,37 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3].map((tick) => {
-                const y = 320 - tick * 72;
+                const y = 340 - tick * 90;
                 return (
                   <g key={`vector-two-y-${tick}`}>
-                    <line x1="174" y1={y} x2="186" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="162" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
+                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
                       {tick}
                     </text>
                   </g>
                 );
               })}
 
-              <path d="M180 320 L324 248" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-two-vector-arrow)" />
+              <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-two-vector-arrow)" />
 
-              <path d="M180 320 L396 104" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-two-vector-arrow)" />
+              <path d="M110 340 L370 100" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-two-vector-arrow)" />
 
-              <circle cx="180" cy="320" r="5.5" fill="#ffffff" />
+              <circle cx="110" cy="340" r="5.5" fill="#ffffff" />
 
               <g>
-                <circle cx="324" cy="248" r="7" fill="#22d3ee" />
-                <circle cx="324" cy="248" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <circle cx="290" cy="250" r="7" fill="#22d3ee" />
+                <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
               </g>
               <g>
-                <circle cx="396" cy="104" r="7" fill="#f472b6" />
-                <circle cx="396" cy="104" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="380" cy="70" r="7" fill="#f472b6" />
+                <circle cx="380" cy="70" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
               </g>
 
-              <text x="324" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="396" y="86" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="380" y="52" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
 
-              <text x="566" y="344" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="192" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}

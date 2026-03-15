@@ -309,7 +309,7 @@ export default function ScalarsVectorsAndVectorNotationPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For example, if{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(2,1)`} className="math-inline math-white" /> and{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,3)`} className="math-inline math-white" />, then both can be
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(3,3)`} className="math-inline math-white" />, then both can be
           drawn from the origin and compared directly.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">

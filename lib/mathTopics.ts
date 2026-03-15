@@ -86,4 +86,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Distinguish single numbers from vectors, read vector notation, and build the first geometric intuition.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/scalars-vectors-and-vector-notation",
   },
+  {
+    label: "Vector addition and scalar multiplication",
+    description:
+      "Combine vectors component by component, scale them with numbers, and connect the algebra to the geometric picture.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/vector-addition-and-scalar-multiplication",
+  },
 ];

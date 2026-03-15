@@ -327,6 +327,7 @@ General plot rules:
 - if named vectors such as `v` and `u` are plotted, label the points directly and avoid a legend unless it adds something important
 - integer tick marks from the origin usually work best for small beginner examples
 - helper lines should be thin and only remain if they are actively helping the explanation
+- for vector endpoints, keep the point marker visually above the line so the arrowhead does not look like it is drawn on top of the dot
 
 Current common line-graph pattern:
 
@@ -354,6 +355,7 @@ Current vector-plot pattern:
 - slim white vector lines
 - SVG markers for arrowheads
 - positive-quadrant-only layout when the example is introductory
+- shorten vector paths slightly so the marker arrowhead finishes cleanly before the endpoint dot
 - short component annotations like `+2 in x` or `+1 in y` only when they are being directly explained
 
 If the user says a plot should look like one in `what-is-ml`, inspect that exact plot and copy the relevant proportions or structure instead of approximating.
