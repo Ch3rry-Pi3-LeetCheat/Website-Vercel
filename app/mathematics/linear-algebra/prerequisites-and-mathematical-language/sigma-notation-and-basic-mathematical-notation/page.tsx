@@ -93,7 +93,7 @@ export default function SigmaNotationPage() {
           ideas in a much more compact way.
         </p>
         <MathBlock
-          tex={String.raw`\sum_{i=1}^{4} i,\qquad {\color{#22d3ee}x}_{1},\qquad {\color{#22d3ee}x}_{2},\qquad {\color{#22d3ee}x}\in\mathbb{R}^{n}`}
+          tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i},\qquad {\color{#22d3ee}x}_{1},\qquad {\color{#22d3ee}x}_{2},\qquad {\color{#22d3ee}x}\in\mathbb{R}^{n}`}
           className="math-center math-lg text-white/90"
         />
         <p>
@@ -113,12 +113,17 @@ export default function SigmaNotationPage() {
           starts and stops.
         </p>
         <MathBlock
-          tex={String.raw`\sum_{i=1}^{4} i = 1+2+3+4 = 10`}
+          tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i} = 1+2+3+4 = 10`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So the large sigma symbol <MathInline tex={String.raw`\sum`} className="math-inline math-white" /> can
           be read as <span className="text-white font-semibold">add up the terms</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          In everyday terms, this is no different from adding a short list of
+          daily totals, quiz scores, or sales numbers. Sigma notation is just a
+          compact way of writing that same repeated addition.
         </p>
 
         <section id="parts-of-sigma" className="scroll-mt-28 grid gap-3">
@@ -130,7 +135,7 @@ export default function SigmaNotationPage() {
             what each part is doing.
           </p>
           <MathBlock
-            tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#f472b6}i}`}
+            tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i}`}
             className="math-center math-lg text-white/90"
           />
           <div className="ml-8 overflow-x-auto">
@@ -160,7 +165,7 @@ export default function SigmaNotationPage() {
                 </tr>
                 <tr>
                   <td className="py-2 text-center text-white">
-                    <MathInline tex={String.raw`{\color{#f472b6}i}`} className="math-inline math-white" />
+                    <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" />
                   </td>
                   <td className="py-2">This is the term being added each time.</td>
                 </tr>
@@ -189,13 +194,13 @@ export default function SigmaNotationPage() {
               Start with:
             </p>
             <MathBlock
-              tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#f472b6}i}`}
+              tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} {\color{#22d3ee}i}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               We let <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" /> run through
               the values 1 to 4, and each time the term is just{" "}
-              <MathInline tex={String.raw`{\color{#f472b6}i}`} className="math-inline math-white" />.
+              <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" />.
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
@@ -211,13 +216,13 @@ export default function SigmaNotationPage() {
               Now take:
             </p>
             <MathBlock
-              tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} 2{\color{#f472b6}i}`}
+              tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{4} 2{\color{#22d3ee}i}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
               This time the term is not just{" "}
-              <MathInline tex={String.raw`{\color{#f472b6}i}`} className="math-inline math-white" />. It is{" "}
-              <MathInline tex={String.raw`2{\color{#f472b6}i}`} className="math-inline math-white" />, so we double each value before adding.
+              <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" />. It is{" "}
+              <MathInline tex={String.raw`2{\color{#22d3ee}i}`} className="math-inline math-white" />, so we double each value before adding.
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
@@ -234,7 +239,7 @@ export default function SigmaNotationPage() {
               Another useful example is:
             </p>
             <MathBlock
-              tex={String.raw`\sum_{{\color{#22d3ee}k}=1}^{3} ({\color{#f472b6}k}+1)`}
+              tex={String.raw`\sum_{{\color{#22d3ee}k}=1}^{3} ({\color{#22d3ee}k}+1)`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -247,6 +252,31 @@ export default function SigmaNotationPage() {
               tex={String.raw`\begin{aligned}
 (1+1)+(2+1)+(3+1) &= 2+3+4 \\[0.55em]
 &= 9
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white">4. A simple real-world reading</h4>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Suppose a student scores 6, 7, 8, and 9 marks on four short quizzes.
+              If we write the quiz score on quiz{" "}
+              <MathInline tex={String.raw`{\color{#22d3ee}q}`} className="math-inline math-white" /> as{" "}
+              <MathInline tex={String.raw`m_{\color{#22d3ee}q}`} className="math-inline math-white" />, then the
+              total score can be written compactly as:
+            </p>
+            <MathBlock
+              tex={String.raw`\sum_{{\color{#22d3ee}q}=1}^{4} m_{\color{#22d3ee}q}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Expanding it just means:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
+&= 30
 \end{aligned}`}
               className="math-center math-lg text-white/90"
             />
@@ -326,6 +356,19 @@ export default function SigmaNotationPage() {
             <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{n}`} className="math-inline math-white" /> tells
             you how many real components the object has.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            For example, if{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{3}`} className="math-inline math-white" />,
+            then one possible instance is:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}=\begin{pmatrix}2\\-1\\4\end{pmatrix}\qquad\text{or}\qquad {\color{#22d3ee}x}=(2,-1,4)`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            You can think of that as a 3-part measurement. In a geometric
+            setting, it could even represent a point or position in 3D space.
+          </p>
         </section>
 
         <section id="reading-compact" className="scroll-mt-28 grid gap-3">
@@ -376,6 +419,37 @@ export default function SigmaNotationPage() {
               <MathInline tex={String.raw`i`} className="math-inline math-white" /> and column{" "}
               <MathInline tex={String.raw`j`} className="math-inline math-white" />. That notation will matter once we start talking about matrices.
             </p>
+          </section>
+
+          <section className="grid gap-3">
+            <h4 className="text-lg font-semibold text-white">Example 4</h4>
+            <MathBlock
+              tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{2}\sum_{{\color{#f472b6}j}=1}^{3} a_{{\color{#22d3ee}i}{\color{#f472b6}j}}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              This is a first example with{" "}
+              <span className="text-white font-semibold">two indices</span>.
+              The outer sum runs over{" "}
+              <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" /> and the inner sum
+              runs over <MathInline tex={String.raw`{\color{#f472b6}j}`} className="math-inline math-white" />.
+              In plain English, it means: add all the entries in a 2 by 3 table.
+            </p>
+            <MathBlock
+              tex={String.raw`A=\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              For that concrete matrix, the sum becomes:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+\sum_{{\color{#22d3ee}i}=1}^{2}\sum_{{\color{#f472b6}j}=1}^{3} a_{{\color{#22d3ee}i}{\color{#f472b6}j}}
+&= 1+2+3+4+5+6 \\[0.55em]
+&= 21
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
           </section>
         </section>
       </section>

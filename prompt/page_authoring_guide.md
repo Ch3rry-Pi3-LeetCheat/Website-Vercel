@@ -61,6 +61,14 @@ Preferred teaching pattern:
 4. work through values step by step
 5. connect it to the next topic
 
+Whenever a brief real-world hook genuinely helps, use it:
+
+- totals of scores, sales, hours, or measurements for summation
+- coordinates or position for tuples / vectors
+- ordinary repeated actions when explaining compact notation
+
+Do not force a real-world analogy into every paragraph, but do use one when it makes the abstraction feel easier to picture.
+
 Use emphasis deliberately:
 
 - important phrases: `text-white font-semibold`
@@ -121,6 +129,8 @@ Default convention we have settled on:
 
 - first main variable: blue `#22d3ee`
 - second main variable: pink `#f472b6`
+- if there is only one running index in a sum, keep that index blue
+- if there are two distinct indices, use blue for the first and pink for the second
 
 Examples:
 
