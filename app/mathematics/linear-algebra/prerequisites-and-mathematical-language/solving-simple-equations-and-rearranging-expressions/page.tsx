@@ -315,10 +315,26 @@ export default function SolvingSimpleEquationsPage() {
             The entire bracket is being multiplied by 3, so first divide both
             sides by 3.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is often the cleanest first move, because it treats{" "}
+            <MathInline tex={String.raw`({\color{#22d3ee}x}+2)`} className="math-inline math-white" /> as
+            one grouped object.
+          </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
 3({\color{#22d3ee}x}+2) &= 15 \\[0.55em]
+\frac{3({\color{#22d3ee}x}+2)}{3} &= \frac{15}{3} \\[0.55em]
+{\color{#22d3ee}x}+2 &= 5
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Now subtract 2 from both sides.
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
 {\color{#22d3ee}x}+2 &= 5 \\[0.55em]
+{\color{#22d3ee}x}+2-2 &= 5-2 \\[0.55em]
 {\color{#22d3ee}x} &= 3
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -326,6 +342,41 @@ export default function SolvingSimpleEquationsPage() {
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             This is a good reminder that grouped expressions should be handled
             as one unit before you move inside them.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            There is also another valid route: we can multiply out the brackets first.
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+3({\color{#22d3ee}x}+2) &= 15 \\[0.55em]
+3{\color{#22d3ee}x}+6 &= 15
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Then subtract 6 from both sides.
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+3{\color{#22d3ee}x}+6 &= 15 \\[0.55em]
+3{\color{#22d3ee}x}+6-6 &= 15-6 \\[0.55em]
+3{\color{#22d3ee}x} &= 9
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Finally divide both sides by 3.
+          </p>
+          <MathBlock
+            tex={String.raw`\begin{aligned}
+\frac{3{\color{#22d3ee}x}}{3} &= \frac{9}{3} \\[0.55em]
+{\color{#22d3ee}x} &= 3
+\end{aligned}`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Both methods are correct. The first keeps the bracket intact for longer,
+            and the second expands it immediately.
           </p>
         </section>
       </section>

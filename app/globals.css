@@ -367,5 +367,5 @@ details.flashcard[open] .flashcard-inner {
 
 /* Treat the commonly used lesson-body combination as a global airy default. */
 .text-base.leading-7 {
-  line-height: 2rem;
+  line-height: 2.25rem;
 }
