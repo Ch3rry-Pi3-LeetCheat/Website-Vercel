@@ -65,4 +65,10 @@ export const linearAlgebraPrerequisiteLessons: TopicLink[] = [
       "Place ordered pairs on axes, interpret location geometrically, and build the first visual bridge toward vectors.",
     href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/coordinate-plane-and-geometric-points",
   },
+  {
+    label: "Solving simple equations and rearranging expressions",
+    description:
+      "Use inverse operations, isolate symbols carefully, and rearrange formulas without breaking equality.",
+    href: "/mathematics/linear-algebra/prerequisites-and-mathematical-language/solving-simple-equations-and-rearranging-expressions",
+  },
 ];
