@@ -415,6 +415,12 @@ Important points:
 - emphasis should still stand out against regular prose
 - do not casually collapse everything into pure white
 
+Current paragraph spacing convention for lesson prose:
+
+- `text-base` is `1.0625rem`
+- when we use `text-base leading-7` on lesson pages, we globally loosen it to `2rem` so it behaves more like `leading-8`
+- this is intentional because the default `leading-7` felt a bit cramped for long-form teaching pages
+
 ## 16. Inline Math Alignment
 
 Current global styling for inline math lives in [globals.css](/c:/Users/HP/OneDrive/Documents/Ch3rryPi3%20Ltd/Website/leetcheat-site/app/globals.css):

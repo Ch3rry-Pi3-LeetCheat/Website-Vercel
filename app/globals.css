@@ -364,3 +364,8 @@ details.flashcard[open] .flashcard-inner {
 .text-base {
   font-size: 1.0625rem;
 }
+
+/* Treat the commonly used lesson-body combination as a global airy default. */
+.text-base.leading-7 {
+  line-height: 2rem;
+}
