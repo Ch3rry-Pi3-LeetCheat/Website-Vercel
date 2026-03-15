@@ -417,7 +417,7 @@ Important points:
 
 Current paragraph spacing convention for lesson prose:
 
-- `text-base` is `1.0625rem`
+- `text-base` is `1.125rem`
 - when we use `text-base leading-7` on lesson pages, we globally loosen it to `2.25rem` so it behaves more like `leading-9`
 - this is intentional because the default `leading-7` felt too cramped for long-form teaching pages
 
