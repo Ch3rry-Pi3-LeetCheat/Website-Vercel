@@ -360,7 +360,7 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
             different from <MathInline tex={String.raw`{\color{#22d3ee}x}\cdot 1`} className="math-inline math-white" />.
           </p>
           <MathBlock
-            tex={String.raw`({\color{#22d3ee}x}_{1},{\color{#f472b6}x}_{2},x_{3})`}
+            tex={String.raw`({\color{#22d3ee}x}_{1},{\color{#f472b6}x}_{2},{\color{#86efac}x}_{3})`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -385,6 +385,33 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
             You can think of that as a 3-part measurement. In a geometric
             setting, it could even represent a point or position in 3D space.
           </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            More generally,{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{\color{#22d3ee}n}`} className="math-inline math-white" /> means
+            that <MathInline tex={String.raw`{\color{#22d3ee}x}`} className="math-inline math-white" /> is an{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" />-dimensional vector,
+            often written in component form as:
+          </p>
+          <MathBlock
+            tex={String.raw`{\color{#22d3ee}x}=(x_{1},x_{2},\ldots,x_{n})`}
+            className="math-center math-lg text-white/90"
+          />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            And when we write{" "}
+            <MathInline tex={String.raw`A\in\mathbb{R}^{{\color{#f472b6}m}\times{\color{#22d3ee}n}}`} className="math-inline math-white" />,
+            we mean that <MathInline tex={String.raw`A`} className="math-inline math-white" /> is a real matrix with{" "}
+            <MathInline tex={String.raw`{\color{#f472b6}m}`} className="math-inline math-white" /> rows and{" "}
+            <MathInline tex={String.raw`{\color{#22d3ee}n}`} className="math-inline math-white" /> columns, for example:
+          </p>
+          <MathBlock
+            tex={String.raw`A=\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}`}
+            className="math-center math-lg text-white/90"
+          />
         </section>
 
         <section id="reading-compact" className="scroll-mt-28 grid gap-3">
@@ -398,11 +425,21 @@ m_{1}+m_{2}+m_{3}+m_{4} &= 6+7+8+9 \\[0.55em]
           <section className="grid gap-3">
             <h4 className="text-lg font-semibold text-white">Example 1</h4>
             <MathBlock
-              tex={String.raw`{\color{#22d3ee}x}\in\mathbb{R}^{3}`}
+              tex={String.raw`x\in\mathbb{R}^{\color{#22d3ee}3}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              Read this as: <span className="text-white font-semibold">x is a real 3-dimensional vector</span>, or more simply, x has three real components.
+              Read this as: <span className="text-white font-semibold">x is a real <span className="text-cyan-300">3</span>-dimensional vector</span>, or more simply, x has <span className="text-cyan-300 font-semibold">3</span> real components.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              One concrete example would be:
+            </p>
+            <MathBlock
+              tex={String.raw`x=(2,-1,4)`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              That is one vector, or tuple, with three components.
             </p>
           </section>
 
@@ -449,19 +486,56 @@ x_{\color{#f472b6}1}+x_{\color{#f472b6}2}+x_{\color{#f472b6}3}
               The outer sum runs over{" "}
               <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" /> and the inner sum
               runs over <MathInline tex={String.raw`{\color{#f472b6}j}`} className="math-inline math-white" />.
-              In plain English, it means: add all the entries in a 2 by 3 table.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              The easiest way to read it is in stages. First choose a value of{" "}
+              <MathInline tex={String.raw`{\color{#22d3ee}i}`} className="math-inline math-white" />.
+              That picks a row. Then, for that fixed row, let{" "}
+              <MathInline tex={String.raw`{\color{#f472b6}j}`} className="math-inline math-white" /> run from 1 to 3,
+              which means move across the first, second, and third columns.
+            </p>
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              After that inner sum is finished, return to the outer sum, move to
+              the next row, and repeat. So in plain English, this notation means:
+              <span className="text-white font-semibold"> add all the entries in a 2 by 3 table, row by row</span>.
             </p>
             <MathBlock
               tex={String.raw`A=\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}`}
               className="math-center math-lg text-white/90"
             />
             <p className="text-base leading-7 text-[color:var(--color-muted)]">
-              For that concrete matrix, the sum becomes:
+              Start with the first row, where{" "}
+              <MathInline tex={String.raw`{\color{#22d3ee}i}=1`} className="math-inline math-white" />:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+\sum_{{\color{#f472b6}j}=1}^{3} a_{{\color{#22d3ee}1}{\color{#f472b6}j}}
+&= a_{{\color{#22d3ee}1}{\color{#f472b6}1}}+a_{{\color{#22d3ee}1}{\color{#f472b6}2}}+a_{{\color{#22d3ee}1}{\color{#f472b6}3}} \\[0.55em]
+&= 1+2+3 \\[0.55em]
+&= 6
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Then do the same for the second row, where{" "}
+              <MathInline tex={String.raw`{\color{#22d3ee}i}=2`} className="math-inline math-white" />:
+            </p>
+            <MathBlock
+              tex={String.raw`\begin{aligned}
+\sum_{{\color{#f472b6}j}=1}^{3} a_{{\color{#22d3ee}2}{\color{#f472b6}j}}
+&= a_{{\color{#22d3ee}2}{\color{#f472b6}1}}+a_{{\color{#22d3ee}2}{\color{#f472b6}2}}+a_{{\color{#22d3ee}2}{\color{#f472b6}3}} \\[0.55em]
+&= 4+5+6 \\[0.55em]
+&= 15
+\end{aligned}`}
+              className="math-center math-lg text-white/90"
+            />
+            <p className="text-base leading-7 text-[color:var(--color-muted)]">
+              Now the outer sum adds those two row totals together:
             </p>
             <MathBlock
               tex={String.raw`\begin{aligned}
 \sum_{{\color{#22d3ee}i}=1}^{2}\sum_{{\color{#f472b6}j}=1}^{3} a_{{\color{#22d3ee}i}{\color{#f472b6}j}}
-&= 1+2+3+4+5+6 \\[0.55em]
+&= 6+15 \\[0.55em]
 &= 21
 \end{aligned}`}
               className="math-center math-lg text-white/90"
@@ -479,7 +553,7 @@ x_{\color{#f472b6}1}+x_{\color{#f472b6}2}+x_{\color{#f472b6}3}
           patterns in compressed symbolic form.
         </p>
         <MathBlock
-          tex={String.raw`\sum_{{\color{#22d3ee}j}=1}^{n} {\color{#22d3ee}a}_{ij}{\color{#f472b6}x}_{j},\qquad {\color{#f472b6}b}\in\mathbb{R}^{n},\qquad A\in\mathbb{R}^{m\times n}`}
+          tex={String.raw`\sum_{{\color{#22d3ee}i}=1}^{m}\sum_{{\color{#f472b6}j}=1}^{n} a_{{\color{#22d3ee}i}{\color{#f472b6}j}}x_{\color{#f472b6}j},\qquad b\in\mathbb{R}^{\color{#22d3ee}n},\qquad A\in\mathbb{R}^{{\color{#f472b6}m}\times{\color{#22d3ee}n}}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
