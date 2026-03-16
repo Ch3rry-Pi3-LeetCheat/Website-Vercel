@@ -649,7 +649,7 @@ export default function AlgebraStaticVisual({
               <line x1="216" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
-              <line x1="168" y1="75" x2="102" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="196" y1="88" x2="102" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="222" y1="101" x2="316" y2="145" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
