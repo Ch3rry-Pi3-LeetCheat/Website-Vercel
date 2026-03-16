@@ -653,7 +653,7 @@ export default function AlgebraStaticVisual({
               <line x1="222" y1="108" x2="316" y2="152" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
-              <foreignObject x="34" y="96" width="24" height="28">
+              <foreignObject x="75" y="96" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#f472b6}a}`}
