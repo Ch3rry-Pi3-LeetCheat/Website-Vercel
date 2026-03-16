@@ -645,8 +645,8 @@ export default function AlgebraStaticVisual({
               <line x1="75" y1="116" x2="75" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
-              <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="216" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="170" y1="175" x2="92" y2="175" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="216" y1="175" x2="306" y2="175" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
               <line x1="168" y1="75" x2="102" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
