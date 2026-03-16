@@ -641,7 +641,7 @@ export default function AlgebraStaticVisual({
                 })}
               </defs>
 
-              <g transform="translate(0 -12)">
+              <g transform="translate(0 -18)">
                 {/* Triangle geometry. Change these three points first if the overall shape needs to move or resize. */}
                 <path
                   d="M92 156 L92 56 L306 156 Z"
