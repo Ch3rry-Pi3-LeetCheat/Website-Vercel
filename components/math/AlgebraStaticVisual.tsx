@@ -699,14 +699,14 @@ export default function AlgebraStaticVisual({
 
         {variant === "vector-magnitude" && (
           <div className="relative">
-            <svg viewBox="0 0 540 410" className="h-auto w-full">
+            <svg viewBox="0 48 540 362" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("vector-magnitude-axis-arrow")}
                 {renderFilledArrowMarker("vector-magnitude-vector-arrow", "rgba(231,238,248,1)")}
               </defs>
               {/* Magnitude plot uses 64 units per grid step on both axes, so x/y distances stay visually square. */}
               <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="1" markerEnd="url(#vector-magnitude-axis-arrow)" />
-              <line x1="80" y1="340" x2="80" y2="122" stroke="rgba(231,238,248,1)" strokeWidth="1" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              <line x1="80" y1="340" x2="80" y2="90" stroke="rgba(231,238,248,1)" strokeWidth="1" markerEnd="url(#vector-magnitude-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
                 const x = 80 + tick * 64;
@@ -743,7 +743,7 @@ export default function AlgebraStaticVisual({
               <text x="350" y="246" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
               <text x="336" y="128" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="94" y="114" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="94" y="82" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Magnitude label. Move x/y here when the label should shift without changing the vector itself. */}
               <foreignObject x="155" y="207" width="92" height="24">
