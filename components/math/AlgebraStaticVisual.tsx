@@ -597,19 +597,7 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 420 220" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("pythag-a-arrow", "rgba(231,238,248,1)", {
-                  markerWidth: 6,
-                  markerHeight: 6,
-                  refX: 5.2,
-                  refY: 3,
-                })}
-                {renderFilledArrowMarker("pythag-b-arrow", "rgba(231,238,248,1)", {
-                  markerWidth: 6,
-                  markerHeight: 6,
-                  refX: 5.2,
-                  refY: 3,
-                })}
-                {renderFilledArrowMarker("pythag-c-arrow", "rgba(249,115,22,1)", {
+                {renderFilledArrowMarker("pythag-side-arrow", "rgba(231,238,248,1)", {
                   markerWidth: 6,
                   markerHeight: 6,
                   refX: 5.2,
@@ -619,26 +607,48 @@ export default function AlgebraStaticVisual({
 
               <path
                 d="M92 174 L92 74 L306 174 Z"
-                fill="rgba(192,132,252,0.5)"
+                fill="none"
                 stroke="rgba(231,238,248,1)"
-                strokeWidth="3"
+                strokeWidth="2.2"
                 strokeLinejoin="round"
               />
-              <path d="M92 160 L106 160 L106 174" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2.1" />
+              <path d="M92 160 L106 160 L106 174" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
-              <line x1="64" y1="176" x2="64" y2="72" stroke="rgba(231,238,248,1)" strokeWidth="2" markerStart="url(#pythag-a-arrow)" markerEnd="url(#pythag-a-arrow)" />
-              <line x1="94" y1="198" x2="308" y2="198" stroke="rgba(231,238,248,1)" strokeWidth="2" markerStart="url(#pythag-b-arrow)" markerEnd="url(#pythag-b-arrow)" />
-              <line x1="110" y1="58" x2="324" y2="160" stroke="rgba(249,115,22,1)" strokeWidth="2" markerStart="url(#pythag-c-arrow)" markerEnd="url(#pythag-c-arrow)" />
+              <line x1="56" y1="120" x2="56" y2="74" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="56" y1="134" x2="56" y2="174" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
-              <text x="48" y="128" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="700" fontStyle="italic">
-                a
-              </text>
-              <text x="202" y="214" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="700" fontStyle="italic">
-                b
-              </text>
-              <text x="214" y="88" textAnchor="middle" fill="#f97316" fontSize="20" fontWeight="700" fontStyle="italic">
-                c
-              </text>
+              <line x1="170" y1="196" x2="92" y2="196" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="206" y1="196" x2="306" y2="196" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+
+              <line x1="190" y1="120" x2="92" y2="74" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="226" y1="136" x2="306" y2="174" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+
+              <foreignObject x="34" y="114" width="24" height="28">
+                <div className="flex h-full items-center justify-center text-center">
+                  <MathInline
+                    tex={String.raw`{\color{#f472b6}a}`}
+                    className="math-inline math-white text-base"
+                  />
+                </div>
+              </foreignObject>
+
+              <foreignObject x="176" y="186" width="24" height="28">
+                <div className="flex h-full items-center justify-center text-center">
+                  <MathInline
+                    tex={String.raw`{\color{#22d3ee}b}`}
+                    className="math-inline math-white text-base"
+                  />
+                </div>
+              </foreignObject>
+
+              <foreignObject x="202" y="114" width="24" height="28">
+                <div className="flex h-full items-center justify-center text-center">
+                  <MathInline
+                    tex={String.raw`{\color{#c084fc}c}`}
+                    className="math-inline math-white text-base"
+                  />
+                </div>
+              </foreignObject>
             </svg>
           </div>
         )}
@@ -689,7 +699,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="194" y="170" width="88" height="30">
+              <foreignObject x="188" y="208" width="88" height="30">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{v}}\right\|`}
@@ -721,7 +731,7 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              {[1, 2, 3, 4, 5].map((tick) => {
+              {[1, 2, 3, 4].map((tick) => {
                 const y = 360 - tick * 64;
                 return renderYAxisTick({
                   key: `vector-distance-y-${tick}`,
@@ -749,11 +759,11 @@ export default function AlgebraStaticVisual({
               <text x="546" y="396" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="208" y="170" width="124" height="30">
+              <foreignObject x="234" y="142" width="104" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|`}
-                    className="math-inline math-white text-base"
+                    className="math-inline math-white text-sm"
                   />
                 </div>
               </foreignObject>
@@ -811,11 +821,11 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="98" y="250" width="112" height="30">
+              <foreignObject x="122" y="218" width="74" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|`}
-                    className="math-inline math-white text-base"
+                    className="math-inline math-white text-sm"
                   />
                 </div>
               </foreignObject>

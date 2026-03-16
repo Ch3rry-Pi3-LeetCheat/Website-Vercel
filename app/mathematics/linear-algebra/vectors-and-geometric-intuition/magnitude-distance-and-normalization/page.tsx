@@ -139,6 +139,9 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           tex={String.raw`{\color{#f472b6}a}^{2}\mathbin{\color{white}{+}}{\color{#22d3ee}b}^{2}={\color{#c084fc}c}^{2}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We can visualize this with a simple right triangle:
+        </p>
         <AlgebraStaticVisual
           variant="pythagorean-triangle"
           framed={false}
