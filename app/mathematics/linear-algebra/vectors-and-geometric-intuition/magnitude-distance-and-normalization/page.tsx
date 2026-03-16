@@ -135,10 +135,12 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           says that in any right triangle, the two shorter sides and the
           hypotenuse are tied together by one fixed rule:
         </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}a}^{2}\mathbin{\color{white}{+}}{\color{#22d3ee}b}^{2}={\color{#c084fc}c}^{2}`}
-          className="math-center math-lg text-[1.12em] text-white/90"
-        />
+        <div className="text-white/90" style={{ fontSize: "1.6rem" }}>
+          <MathBlock
+            tex={String.raw`{\color{#f472b6}a}^{2}\mathbin{\color{white}{+}}{\color{#22d3ee}b}^{2}={\color{#c084fc}c}^{2}`}
+            className="math-center"
+          />
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           We can visualize this with a simple right triangle:
         </p>

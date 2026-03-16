@@ -670,7 +670,7 @@ export default function AlgebraStaticVisual({
                   <div className="flex h-full items-center justify-center text-center">
                     <MathInline
                       tex={String.raw`a`}
-                      className="math-inline math-white text-base"
+                      className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
@@ -679,7 +679,7 @@ export default function AlgebraStaticVisual({
                   <div className="flex h-full items-center justify-center text-center">
                     <MathInline
                       tex={String.raw`b`}
-                      className="math-inline math-white text-base"
+                      className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
@@ -688,7 +688,7 @@ export default function AlgebraStaticVisual({
                   <div className="flex h-full items-center justify-center text-center">
                     <MathInline
                       tex={String.raw`c`}
-                      className="math-inline math-white text-base"
+                      className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
