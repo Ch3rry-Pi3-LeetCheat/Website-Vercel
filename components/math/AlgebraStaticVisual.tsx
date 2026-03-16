@@ -15,6 +15,8 @@ type AlgebraStaticVisualProps = {
     | "vector-magnitude"
     | "vector-distance"
     | "vector-normalization"
+    | "dot-product-projection"
+    | "dot-product-sign-cases"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -882,6 +884,109 @@ export default function AlgebraStaticVisual({
                   />
                 </div>
               </foreignObject>
+            </svg>
+          </div>
+        )}
+
+        {variant === "dot-product-projection" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 360" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("dot-product-projection-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("dot-product-projection-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+
+              {/* Geometric dot-product picture: u is the baseline, v is the diagonal, and the dashed line shows v's shadow on u. */}
+              <path d="M100 270 L292 270" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-u-arrow)" />
+              <path d="M100 270 L243.4 78.8" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-v-arrow)" />
+              <path d="M250 270 L250 70" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <path d="M250 258 L238 258 L238 270" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
+              <path d="M140 270 A40 40 0 0 0 124 238" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
+
+              <circle cx="100" cy="270" r="5.5" fill="#ffffff" />
+              <circle cx="300" cy="270" r="7" fill="#f472b6" />
+              <circle cx="300" cy="270" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="250" cy="70" r="7" fill="#22d3ee" />
+              <circle cx="250" cy="70" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="300" y="248" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="250" y="48" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="176" y="256" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">shadow = 3</text>
+
+              <foreignObject x="130" y="220" width="32" height="24">
+                <div className="flex h-full items-center justify-center text-center">
+                  <MathInline
+                    tex={String.raw`\theta`}
+                    className="math-inline math-white text-sm"
+                  />
+                </div>
+              </foreignObject>
+            </svg>
+          </div>
+        )}
+
+        {variant === "dot-product-sign-cases" && (
+          <div className="relative">
+            <svg viewBox="0 0 760 280" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("dot-product-sign-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("dot-product-sign-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+
+              {/* Acute case: vectors point broadly together, so the dot product is positive. */}
+              <g transform="translate(20 0)">
+                <text x="110" y="30" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700">Acute angle</text>
+                <path d="M70 190 L146 190" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-u-arrow)" />
+                <path d="M70 190 L124 126" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-v-arrow)" />
+                <circle cx="70" cy="190" r="5.5" fill="#ffffff" />
+                <text x="150" y="178" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="128" y="112" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="54" y="220" width="116" height="24">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}} > 0`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
+
+              {/* Right angle: vectors are perpendicular, so the dot product is zero. */}
+              <g transform="translate(270 0)">
+                <text x="110" y="30" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700">Right angle</text>
+                <path d="M70 190 L146 190" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-u-arrow)" />
+                <path d="M70 190 L70 112" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-v-arrow)" />
+                <path d="M82 178 L82 166 L70 166" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
+                <circle cx="70" cy="190" r="5.5" fill="#ffffff" />
+                <text x="150" y="178" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="82" y="104" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="54" y="220" width="116" height="24">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}} = 0`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
+
+              {/* Obtuse case: v points partly backwards relative to u, so the dot product is negative. */}
+              <g transform="translate(520 0)">
+                <text x="110" y="30" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700">Obtuse angle</text>
+                <path d="M70 190 L146 190" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-u-arrow)" />
+                <path d="M70 190 L12 128" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-v-arrow)" />
+                <circle cx="70" cy="190" r="5.5" fill="#ffffff" />
+                <text x="150" y="178" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="6" y="116" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="54" y="220" width="116" height="24">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}} < 0`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
             </svg>
           </div>
         )}

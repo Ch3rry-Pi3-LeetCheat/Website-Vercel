@@ -98,4 +98,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Measure vector length, interpret distance as the size of a difference, and turn nonzero vectors into unit vectors.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/magnitude-distance-and-normalization",
   },
+  {
+    label: "Dot product and geometric meaning",
+    description:
+      "Compute dot products component by component, read them as alignment, and connect the algebra to angles and perpendicularity.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/dot-product-and-geometric-meaning",
+  },
 ];
