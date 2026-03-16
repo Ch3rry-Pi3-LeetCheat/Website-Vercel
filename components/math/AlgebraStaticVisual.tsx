@@ -746,7 +746,7 @@ export default function AlgebraStaticVisual({
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Magnitude label. Move x/y here when the label should shift without changing the vector itself. */}
-              <foreignObject x="150" y="262" width="92" height="24">
+              <foreignObject x="200" y="162" width="92" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{v}}\right\|`}
