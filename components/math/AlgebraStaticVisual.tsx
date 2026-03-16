@@ -595,46 +595,66 @@ export default function AlgebraStaticVisual({
 
         {variant === "pythagorean-triangle" && (
           <div className="relative">
-            <svg viewBox="0 0 520 280" className="h-auto w-full">
-              <path d="M90 220 L330 220 L330 80 Z" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="3" />
-              <path d="M330 202 L312 202 L312 220" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2.2" />
+            <svg viewBox="0 0 420 220" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("pythag-a-arrow", "rgba(231,238,248,1)", {
+                  markerWidth: 6,
+                  markerHeight: 6,
+                  refX: 5.2,
+                  refY: 3,
+                })}
+                {renderFilledArrowMarker("pythag-b-arrow", "rgba(231,238,248,1)", {
+                  markerWidth: 6,
+                  markerHeight: 6,
+                  refX: 5.2,
+                  refY: 3,
+                })}
+                {renderFilledArrowMarker("pythag-c-arrow", "rgba(249,115,22,1)", {
+                  markerWidth: 6,
+                  markerHeight: 6,
+                  refX: 5.2,
+                  refY: 3,
+                })}
+              </defs>
 
-              <text x="210" y="246" textAnchor="middle" fill="#ffffff" fontSize="18" fontWeight="700">
+              <path
+                d="M92 174 L92 74 L306 174 Z"
+                fill="rgba(192,132,252,0.5)"
+                stroke="rgba(231,238,248,1)"
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              <path d="M92 160 L106 160 L106 174" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2.1" />
+
+              <line x1="64" y1="176" x2="64" y2="72" stroke="rgba(231,238,248,1)" strokeWidth="2" markerStart="url(#pythag-a-arrow)" markerEnd="url(#pythag-a-arrow)" />
+              <line x1="94" y1="198" x2="308" y2="198" stroke="rgba(231,238,248,1)" strokeWidth="2" markerStart="url(#pythag-b-arrow)" markerEnd="url(#pythag-b-arrow)" />
+              <line x1="110" y1="58" x2="324" y2="160" stroke="rgba(249,115,22,1)" strokeWidth="2" markerStart="url(#pythag-c-arrow)" markerEnd="url(#pythag-c-arrow)" />
+
+              <text x="48" y="128" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="700" fontStyle="italic">
                 a
               </text>
-              <text x="352" y="156" fill="#ffffff" fontSize="18" fontWeight="700">
+              <text x="202" y="214" textAnchor="middle" fill="#ffffff" fontSize="20" fontWeight="700" fontStyle="italic">
                 b
               </text>
-              <text x="214" y="138" fill="#ffffff" fontSize="18" fontWeight="700">
+              <text x="214" y="88" textAnchor="middle" fill="#f97316" fontSize="20" fontWeight="700" fontStyle="italic">
                 c
               </text>
-
-              <foreignObject x="86" y="18" width="348" height="44">
-                <div
-                  className="flex h-full items-center justify-center text-center"
-                >
-                  <MathInline
-                    tex={String.raw`a^{2}\mathbin{\color{white}{+}}b^{2}=c^{2}`}
-                    className="math-inline math-white text-xl"
-                  />
-                </div>
-              </foreignObject>
             </svg>
           </div>
         )}
 
         {variant === "vector-magnitude" && (
           <div className="relative">
-            <svg viewBox="0 0 700 430" className="h-auto w-full">
+            <svg viewBox="0 0 540 410" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("vector-magnitude-axis-arrow")}
                 {renderFilledArrowMarker("vector-magnitude-vector-arrow", "rgba(231,238,248,1)")}
               </defs>
-              <line x1="120" y1="340" x2="620" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
-              <line x1="120" y1="340" x2="120" y2="70" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              <line x1="80" y1="340" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
-                const x = 120 + tick * 65;
+                const x = 80 + tick * 64;
                 return renderXAxisTick({
                   key: `vector-magnitude-x-${tick}`,
                   x,
@@ -645,38 +665,35 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3, 4].map((tick) => {
-                const y = 340 - tick * 65;
+                const y = 340 - tick * 64;
                 return renderYAxisTick({
                   key: `vector-magnitude-y-${tick}`,
-                  axisX: 120,
+                  axisX: 80,
                   y,
                   label: tick,
                   labelOffset: 22,
                 });
               })}
 
-              <path d="M120 340 L380 145" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
-              <path d="M120 340 L380 340" stroke="rgba(148,163,184,0.78)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-              <path d="M380 340 L380 145" stroke="rgba(148,163,184,0.78)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-              <path d="M380 326 L366 326 L366 340" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="2" />
+              <path d="M80 340 L336 148" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
+              <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <path d="M336 326 L322 326 L322 340" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
 
-              <circle cx="120" cy="340" r="5.5" fill="#ffffff" />
-              <circle cx="380" cy="145" r="7" fill="#22d3ee" />
-              <circle cx="380" cy="145" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="80" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="336" cy="148" r="7" fill="#22d3ee" />
+              <circle cx="336" cy="148" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <text x="250" y="330" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
-              <text x="394" y="248" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
-              <text x="380" y="126" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="626" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="134" y="62" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="208" y="328" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
+              <text x="350" y="246" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
+              <text x="336" y="128" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="212" y="198" width="120" height="38">
-                <div
-                  className="flex h-full items-center justify-center text-center"
-                >
+              <foreignObject x="194" y="170" width="88" height="30">
+                <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{v}}\right\|`}
-                    className="math-inline math-white text-lg"
+                    className="math-inline math-white text-base"
                   />
                 </div>
               </foreignObject>
@@ -686,15 +703,15 @@ export default function AlgebraStaticVisual({
 
         {variant === "vector-distance" && (
           <div className="relative">
-            <svg viewBox="0 0 760 450" className="h-auto w-full">
+            <svg viewBox="0 0 580 430" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("vector-distance-axis-arrow")}
               </defs>
-              <line x1="120" y1="360" x2="660" y2="360" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
-              <line x1="120" y1="360" x2="120" y2="80" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
+              <line x1="80" y1="360" x2="522" y2="360" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
+              <line x1="80" y1="360" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
 
               {[1, 2, 3, 4, 5, 6].map((tick) => {
-                const x = 120 + tick * 52;
+                const x = 80 + tick * 64;
                 return renderXAxisTick({
                   key: `vector-distance-x-${tick}`,
                   x,
@@ -705,40 +722,38 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3, 4, 5].map((tick) => {
-                const y = 360 - tick * 52;
+                const y = 360 - tick * 64;
                 return renderYAxisTick({
                   key: `vector-distance-y-${tick}`,
-                  axisX: 120,
+                  axisX: 80,
                   y,
                   label: tick,
                   labelOffset: 22,
                 });
               })}
 
-              <path d="M172 308 L380 152" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" />
-              <path d="M172 308 L380 308" stroke="rgba(148,163,184,0.78)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-              <path d="M380 308 L380 152" stroke="rgba(148,163,184,0.78)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-              <path d="M380 294 L366 294 L366 308" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="2" />
+              <path d="M144 296 L400 104" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" />
+              <path d="M144 296 L400 296" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <path d="M400 296 L400 104" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <path d="M400 282 L386 282 L386 296" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
 
-              <circle cx="172" cy="308" r="7" fill="#f472b6" />
-              <circle cx="172" cy="308" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
-              <circle cx="380" cy="152" r="7" fill="#22d3ee" />
-              <circle cx="380" cy="152" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="144" cy="296" r="7" fill="#f472b6" />
+              <circle cx="144" cy="296" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="400" cy="104" r="7" fill="#22d3ee" />
+              <circle cx="400" cy="104" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <text x="160" y="286" fill="#f472b6" fontSize="14" fontWeight="700">A</text>
-              <text x="394" y="132" fill="#22d3ee" fontSize="14" fontWeight="700">B</text>
-              <text x="276" y="298" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
-              <text x="394" y="236" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
-              <text x="666" y="394" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="134" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="132" y="276" fill="#f472b6" fontSize="14" fontWeight="700">A</text>
+              <text x="414" y="86" fill="#22d3ee" fontSize="14" fontWeight="700">B</text>
+              <text x="272" y="286" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
+              <text x="414" y="208" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
+              <text x="546" y="396" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="220" y="202" width="180" height="38">
-                <div
-                  className="flex h-full items-center justify-center text-center"
-                >
+              <foreignObject x="208" y="170" width="124" height="30">
+                <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|`}
-                    className="math-inline math-white text-lg"
+                    className="math-inline math-white text-base"
                   />
                 </div>
               </foreignObject>
@@ -748,17 +763,17 @@ export default function AlgebraStaticVisual({
 
         {variant === "vector-normalization" && (
           <div className="relative">
-            <svg viewBox="0 0 700 430" className="h-auto w-full">
+            <svg viewBox="0 0 540 410" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("vector-normalization-axis-arrow")}
                 {renderFilledArrowMarker("vector-normalization-v-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("vector-normalization-unit-arrow", "rgba(244,114,182,1)")}
               </defs>
-              <line x1="120" y1="340" x2="620" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
-              <line x1="120" y1="340" x2="120" y2="70" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
+              <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
+              <line x1="80" y1="340" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
-                const x = 120 + tick * 65;
+                const x = 80 + tick * 64;
                 return renderXAxisTick({
                   key: `vector-normalization-x-${tick}`,
                   x,
@@ -769,36 +784,38 @@ export default function AlgebraStaticVisual({
               })}
 
               {[1, 2, 3, 4].map((tick) => {
-                const y = 340 - tick * 65;
+                const y = 340 - tick * 64;
                 return renderYAxisTick({
                   key: `vector-normalization-y-${tick}`,
-                  axisX: 120,
+                  axisX: 80,
                   y,
                   label: tick,
                   labelOffset: 22,
                 });
               })}
 
-              <path d="M120 340 L380 145" stroke="rgba(231,238,248,0.88)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
-              <path d="M120 340 L172 301" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
+              <path d="M80 340 L336 148" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
+              <path d="M80 340 L131.2 301.6" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
+              <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <path d="M336 326 L322 326 L322 340" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
 
-              <circle cx="120" cy="340" r="5.5" fill="#ffffff" />
-              <circle cx="380" cy="145" r="7" fill="#e7eef8" />
-              <circle cx="380" cy="145" r="12" fill="none" stroke="rgba(231,238,248,0.22)" strokeWidth="2" />
-              <circle cx="172" cy="301" r="6.5" fill="#f472b6" />
-              <circle cx="172" cy="301" r="11" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+              <circle cx="80" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="336" cy="148" r="7" fill="#22d3ee" />
+              <circle cx="336" cy="148" r="12" fill="none" stroke="rgba(34,211,238,0.2)" strokeWidth="2" />
+              <circle cx="131.2" cy="301.6" r="6.5" fill="#f472b6" />
+              <circle cx="131.2" cy="301.6" r="11" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
 
-              <text x="380" y="126" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">v</text>
-              <text x="626" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="134" y="62" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="336" y="128" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="208" y="328" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
+              <text x="350" y="246" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
+              <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="112" y="250" width="140" height="38">
-                <div
-                  className="flex h-full items-center justify-center text-center"
-                >
+              <foreignObject x="98" y="250" width="112" height="30">
+                <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|`}
-                    className="math-inline math-white text-lg"
+                    className="math-inline math-white text-base"
                   />
                 </div>
               </foreignObject>
