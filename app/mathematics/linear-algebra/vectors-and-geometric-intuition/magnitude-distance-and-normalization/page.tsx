@@ -148,7 +148,7 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In the vector picture, the horizontal movement is 4, the vertical
-          movement is 3, and the vector itself is the hypotenuse. So the
+          movement is 3, and the vector itself is the hypotenuse. So the{" "}
           <span className="text-white font-semibold">Pythagorean theorem</span>{" "}
           is not being imported from nowhere. The geometry of the picture is
           already forcing it on us.

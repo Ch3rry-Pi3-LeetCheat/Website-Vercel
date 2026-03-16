@@ -621,7 +621,19 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 420 180" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("pythag-side-arrow", "rgba(231,238,248,1)", {
+                {renderFilledArrowMarker("pythag-side-arrow-a", "rgba(244,114,182,1)", {
+                  markerWidth: 6,
+                  markerHeight: 6,
+                  refX: 5.2,
+                  refY: 3,
+                })}
+                {renderFilledArrowMarker("pythag-side-arrow-b", "rgba(34,211,238,1)", {
+                  markerWidth: 6,
+                  markerHeight: 6,
+                  refX: 5.2,
+                  refY: 3,
+                })}
+                {renderFilledArrowMarker("pythag-side-arrow-c", "rgba(192,132,252,1)", {
                   markerWidth: 6,
                   markerHeight: 6,
                   refX: 5.2,
@@ -629,56 +641,58 @@ export default function AlgebraStaticVisual({
                 })}
               </defs>
 
-              {/* Triangle geometry. Change these three points first if the overall shape needs to move or resize. */}
-              <path
-                d="M92 156 L92 56 L306 156 Z"
-                fill="none"
-                stroke="rgba(231,238,248,1)"
-                strokeWidth="2.2"
-                strokeLinejoin="round"
-              />
-              {/* Right-angle marker at the bottom-left corner of the triangle. */}
-              <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
+              <g transform="translate(0 -12)">
+                {/* Triangle geometry. Change these three points first if the overall shape needs to move or resize. */}
+                <path
+                  d="M92 156 L92 56 L306 156 Z"
+                  fill="none"
+                  stroke="rgba(231,238,248,1)"
+                  strokeWidth="2.2"
+                  strokeLinejoin="round"
+                />
+                {/* Right-angle marker at the bottom-left corner of the triangle. */}
+                <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
-              {/* Split measurement arrows for side a. Use the repeated x=80 values to move the whole pair left/right. */}
-              <line x1="75" y1="90" x2="75" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="75" y1="122" x2="75" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+                {/* Split measurement arrows for side a. Use the repeated x values to move the whole pair left/right. */}
+                <line x1="75" y1="90" x2="75" y2="56" stroke="rgba(244,114,182,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-a)" />
+                <line x1="75" y1="122" x2="75" y2="156" stroke="rgba(244,114,182,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-a)" />
 
-              {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
-              <line x1="182" y1="172" x2="92" y2="172" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="216" y1="172" x2="306" y2="172" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+                {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
+                <line x1="182" y1="172" x2="92" y2="172" stroke="rgba(34,211,238,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-b)" />
+                <line x1="216" y1="172" x2="306" y2="172" stroke="rgba(34,211,238,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-b)" />
 
-              {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
-              <line x1="194" y1="83" x2="100" y2="39" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="222" y1="97" x2="314" y2="141" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+                {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
+                <line x1="194" y1="83" x2="100" y2="39" stroke="rgba(192,132,252,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-c)" />
+                <line x1="222" y1="97" x2="314" y2="141" stroke="rgba(192,132,252,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow-c)" />
 
-              {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
-              <foreignObject x="63" y="90" width="24" height="28">
-                <div className="flex h-full items-center justify-center text-center">
-                  <MathInline
-                    tex={String.raw`{\color{#f472b6}a}`}
-                    className="math-inline math-white text-base"
-                  />
-                </div>
-              </foreignObject>
+                {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
+                <foreignObject x="63" y="90" width="24" height="28">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`a`}
+                      className="math-inline math-white text-base"
+                    />
+                  </div>
+                </foreignObject>
 
-              <foreignObject x="187" y="158" width="24" height="28">
-                <div className="flex h-full items-center justify-center text-center">
-                  <MathInline
-                    tex={String.raw`{\color{#22d3ee}b}`}
-                    className="math-inline math-white text-base"
-                  />
-                </div>
-              </foreignObject>
+                <foreignObject x="187" y="158" width="24" height="28">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`b`}
+                      className="math-inline math-white text-base"
+                    />
+                  </div>
+                </foreignObject>
 
-              <foreignObject x="195" y="75" width="24" height="28">
-                <div className="flex h-full items-center justify-center text-center">
-                  <MathInline
-                    tex={String.raw`{\color{#c084fc}c}`}
-                    className="math-inline math-white text-base"
-                  />
-                </div>
-              </foreignObject>
+                <foreignObject x="195" y="75" width="24" height="28">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`c`}
+                      className="math-inline math-white text-base"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
             </svg>
           </div>
         )}
