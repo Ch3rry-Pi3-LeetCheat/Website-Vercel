@@ -614,8 +614,8 @@ export default function AlgebraStaticVisual({
               />
               <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
-              <line x1="70" y1="102" x2="56" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="70" y1="116" x2="56" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="80" y1="102" x2="80" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="80" y1="116" x2="80" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="206" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
