@@ -595,7 +595,7 @@ export default function AlgebraStaticVisual({
 
         {variant === "pythagorean-triangle" && (
           <div className="relative">
-            <svg viewBox="0 0 420 220" className="h-auto w-full">
+            <svg viewBox="0 0 420 180" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("pythag-side-arrow", "rgba(231,238,248,1)", {
                   markerWidth: 6,
@@ -606,24 +606,24 @@ export default function AlgebraStaticVisual({
               </defs>
 
               <path
-                d="M92 174 L92 74 L306 174 Z"
+                d="M92 156 L92 56 L306 156 Z"
                 fill="none"
                 stroke="rgba(231,238,248,1)"
                 strokeWidth="2.2"
                 strokeLinejoin="round"
               />
-              <path d="M92 160 L106 160 L106 174" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
+              <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
-              <line x1="56" y1="120" x2="56" y2="74" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="56" y1="134" x2="56" y2="174" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="56" y1="102" x2="56" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="56" y1="116" x2="56" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
-              <line x1="170" y1="196" x2="92" y2="196" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="206" y1="196" x2="306" y2="196" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="206" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
-              <line x1="190" y1="120" x2="92" y2="74" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="226" y1="136" x2="306" y2="174" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="178" y1="98" x2="92" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="214" y1="114" x2="306" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
-              <foreignObject x="34" y="114" width="24" height="28">
+              <foreignObject x="34" y="96" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#f472b6}a}`}
@@ -632,7 +632,7 @@ export default function AlgebraStaticVisual({
                 </div>
               </foreignObject>
 
-              <foreignObject x="176" y="186" width="24" height="28">
+              <foreignObject x="176" y="160" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#22d3ee}b}`}
@@ -641,7 +641,7 @@ export default function AlgebraStaticVisual({
                 </div>
               </foreignObject>
 
-              <foreignObject x="202" y="114" width="24" height="28">
+              <foreignObject x="184" y="88" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#c084fc}c}`}
@@ -699,7 +699,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="188" y="208" width="88" height="30">
+              <foreignObject x="146" y="228" width="88" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{v}}\right\|`}
@@ -759,7 +759,7 @@ export default function AlgebraStaticVisual({
               <text x="546" y="396" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="234" y="142" width="104" height="24">
+              <foreignObject x="216" y="118" width="104" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|`}
@@ -804,8 +804,8 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              <path d="M80 340 L336 148" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
-              <path d="M80 340 L131.2 301.6" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
+              <path d="M80 340 L330.4 152.2" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
+              <path d="M80 340 L126 305.5" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
               <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
               <path d="M336 326 L322 326 L322 340" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
 
@@ -821,7 +821,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="122" y="218" width="74" height="24">
+              <foreignObject x="94" y="262" width="74" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|`}
