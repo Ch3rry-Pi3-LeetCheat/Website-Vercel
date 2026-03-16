@@ -620,8 +620,8 @@ export default function AlgebraStaticVisual({
               <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="206" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
-              <line x1="178" y1="98" x2="92" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="214" y1="114" x2="306" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="168" y1="82" x2="102" y2="51" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="222" y1="108" x2="316" y2="152" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               <foreignObject x="34" y="96" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
@@ -641,7 +641,7 @@ export default function AlgebraStaticVisual({
                 </div>
               </foreignObject>
 
-              <foreignObject x="184" y="88" width="24" height="28">
+              <foreignObject x="214" y="78" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#c084fc}c}`}
@@ -699,7 +699,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
-              <foreignObject x="146" y="228" width="88" height="28">
+              <foreignObject x="112" y="262" width="92" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{v}}\right\|`}
