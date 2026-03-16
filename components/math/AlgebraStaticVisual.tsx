@@ -33,9 +33,127 @@ type MappingDiagramConfig = {
   rightStroke?: string;
 };
 
+const AXIS_TICK_STROKE = "rgba(226,232,240,0.55)";
+const AXIS_LABEL_FILL = "rgba(226,232,240,0.85)";
+
 function getMappingPositions(count: number, center = 200, spacing = 70) {
   const start = center - ((count - 1) * spacing) / 2;
   return Array.from({ length: count }, (_, idx) => start + idx * spacing);
+}
+
+function renderFilledArrowMarker(
+  id: string,
+  fill: string,
+  {
+    markerWidth = 5,
+    markerHeight = 5,
+    refX = 4.6,
+    refY = 2.5,
+  }: {
+    markerWidth?: number;
+    markerHeight?: number;
+    refX?: number;
+    refY?: number;
+  } = {}
+) {
+  return (
+    <marker
+      id={id}
+      markerWidth={markerWidth}
+      markerHeight={markerHeight}
+      refX={refX}
+      refY={refY}
+      orient="auto"
+      markerUnits="strokeWidth"
+    >
+      <path d={`M0,0 L${markerWidth},${markerHeight / 2} L0,${markerHeight} z`} fill={fill} />
+    </marker>
+  );
+}
+
+function renderAxisArrowMarker(id: string, fill = "rgba(231,238,248,0.84)") {
+  return renderFilledArrowMarker(id, fill, {
+    markerWidth: 7,
+    markerHeight: 7,
+    refX: 6.1,
+    refY: 3.5,
+  });
+}
+
+function renderXAxisTick({
+  key,
+  x,
+  axisY,
+  label,
+  labelOffset = 20,
+  tickLength = 8,
+}: {
+  key: string;
+  x: number;
+  axisY: number;
+  label: number | string;
+  labelOffset?: number;
+  tickLength?: number;
+}) {
+  return (
+    <g key={key}>
+      <line
+        x1={x}
+        y1={axisY}
+        x2={x}
+        y2={axisY + tickLength}
+        stroke={AXIS_TICK_STROKE}
+        strokeWidth={1.1}
+      />
+      <text
+        x={x}
+        y={axisY + labelOffset}
+        textAnchor="middle"
+        fill={AXIS_LABEL_FILL}
+        fontSize="12"
+      >
+        {label}
+      </text>
+    </g>
+  );
+}
+
+function renderYAxisTick({
+  key,
+  axisX,
+  y,
+  label,
+  labelOffset = 10,
+  tickLength = 8,
+}: {
+  key: string;
+  axisX: number;
+  y: number;
+  label: number | string;
+  labelOffset?: number;
+  tickLength?: number;
+}) {
+  return (
+    <g key={key}>
+      <line
+        x1={axisX - tickLength}
+        y1={y}
+        x2={axisX}
+        y2={y}
+        stroke={AXIS_TICK_STROKE}
+        strokeWidth={1.1}
+      />
+      <text
+        x={axisX - labelOffset}
+        y={y + 4}
+        textAnchor="end"
+        fill={AXIS_LABEL_FILL}
+        fontSize="12"
+      >
+        {label}
+      </text>
+    </g>
+  );
 }
 
 function renderMappingDiagram({
@@ -53,12 +171,8 @@ function renderMappingDiagram({
     <div className="relative">
       <svg viewBox="0 0 760 330" className="h-auto w-full">
         <defs>
-          <marker id="mapping-arrow-default" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.9)" />
-          </marker>
-          <marker id="mapping-arrow-red" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(248,113,113,0.95)" />
-          </marker>
+          {renderFilledArrowMarker("mapping-arrow-default", "rgba(231,238,248,0.9)")}
+          {renderFilledArrowMarker("mapping-arrow-red", "rgba(248,113,113,0.95)")}
         </defs>
         <ellipse
           cx="160"
@@ -229,32 +343,29 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 760 540" className="h-auto w-full">
               <defs>
-                <marker id="line-graph-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.8)" />
-                </marker>
+                {renderAxisArrowMarker("line-graph-axis-arrow", "rgba(231,238,248,0.8)")}
               </defs>
               <line x1="90" y1="452" x2="710" y2="452" stroke="rgba(231,238,248,0.8)" strokeWidth="2" markerEnd="url(#line-graph-axis-arrow)" />
               <line x1="90" y1="452" x2="90" y2="62" stroke="rgba(231,238,248,0.8)" strokeWidth="2" markerEnd="url(#line-graph-axis-arrow)" />
 
               {[0, 1, 2, 3, 4].map((tick) => {
                 const x = 90 + tick * 140;
-                return (
-                  <g key={`x-${tick}`}>
-                    <line x1={x} y1="452" x2={x} y2="462" stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
-                    <text x={x} y="490" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `x-${tick}`,
+                  x,
+                  axisY: 452,
+                  label: tick,
+                  labelOffset: 38,
+                });
               })}
 
               {[0, 2, 4, 6, 8].map((tick) => {
                 const y = 452 - tick * 48;
                 return (
                   <g key={`y-${tick}`}>
-                    <line x1="82" y1={y} x2="90" y2={y} stroke="rgba(231,238,248,0.7)" strokeWidth="1.5" />
+                    <line x1="82" y1={y} x2="90" y2={y} stroke={AXIS_TICK_STROKE} strokeWidth="1.1" />
                     <line x1="90" y1={y} x2="710" y2={y} stroke="rgba(231,238,248,0.12)" strokeWidth="1" strokeDasharray="5 7" />
-                    <text x="72" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
+                    <text x="72" y={y + 4} textAnchor="end" fill={AXIS_LABEL_FILL} fontSize="12">
                       {tick}
                     </text>
                   </g>
@@ -317,38 +428,32 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
-                <marker id="vector-basic-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
-                </marker>
-                <marker id="vector-basic-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
-                </marker>
+                {renderAxisArrowMarker("vector-basic-axis-arrow")}
+                {renderFilledArrowMarker("vector-basic-vector-arrow", "rgba(231,238,248,0.95)")}
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
               <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-basic-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 110 + tick * 90;
-                return (
-                  <g key={`vector-basic-x-${tick}`}>
-                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `vector-basic-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
               })}
 
               {[1, 2, 3].map((tick) => {
                 const y = 340 - tick * 90;
-                return (
-                  <g key={`vector-basic-y-${tick}`}>
-                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `vector-basic-y-${tick}`,
+                  axisX: 110,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
               })}
 
               <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-basic-vector-arrow)" />
@@ -359,7 +464,6 @@ export default function AlgebraStaticVisual({
               <circle cx="290" cy="250" r="7" fill="#22d3ee" />
               <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <text x="116" y="370" fill="rgba(231,238,248,0.8)" fontSize="12">0</text>
               <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
               <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
@@ -373,44 +477,34 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
-                <marker id="vector-addition-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
-                </marker>
-                <marker id="vector-addition-blue-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(34,211,238,0.95)" />
-                </marker>
-                <marker id="vector-addition-pink-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(244,114,182,0.95)" />
-                </marker>
-                <marker id="vector-addition-white-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
-                </marker>
+                {renderAxisArrowMarker("vector-addition-axis-arrow")}
+                {renderFilledArrowMarker("vector-addition-blue-arrow", "rgba(34,211,238,0.95)")}
+                {renderFilledArrowMarker("vector-addition-pink-arrow", "rgba(244,114,182,0.95)")}
+                {renderFilledArrowMarker("vector-addition-white-arrow", "rgba(231,238,248,0.95)")}
               </defs>
               <line x1="140" y1="340" x2="580" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
               <line x1="140" y1="340" x2="140" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-addition-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 140 + tick * 85;
-                return (
-                  <g key={`vector-addition-x-${tick}`}>
-                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `vector-addition-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
               })}
 
               {[1, 2, 3].map((tick) => {
                 const y = 340 - tick * 80;
-                return (
-                  <g key={`vector-addition-y-${tick}`}>
-                    <line x1="132" y1={y} x2="148" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="118" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `vector-addition-y-${tick}`,
+                  axisX: 140,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
               })}
 
               <path d="M140 340 L294 268" stroke="rgba(34,211,238,0.95)" strokeWidth="1.9" fill="none" markerEnd="url(#vector-addition-blue-arrow)" />
@@ -430,9 +524,9 @@ export default function AlgebraStaticVisual({
               <text x="310" y="242" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="225" y="162" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
               <text x="395" y="78" textAnchor="middle" fontSize="14" fontWeight="700">
-                <tspan fill="#22d3ee">v</tspan>
-                <tspan fill="#ffffff"> + </tspan>
                 <tspan fill="#f472b6">u</tspan>
+                <tspan fill="#ffffff"> + </tspan>
+                <tspan fill="#22d3ee">v</tspan>
               </text>
               <text x="586" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="154" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
@@ -444,38 +538,32 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
-                <marker id="vector-scaling-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
-                </marker>
-                <marker id="vector-scaling-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
-                </marker>
+                {renderAxisArrowMarker("vector-scaling-axis-arrow")}
+                {renderFilledArrowMarker("vector-scaling-vector-arrow", "rgba(231,238,248,0.95)")}
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
               <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-scaling-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 110 + tick * 90;
-                return (
-                  <g key={`vector-scaling-x-${tick}`}>
-                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `vector-scaling-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
               })}
 
               {[1, 2, 3].map((tick) => {
                 const y = 340 - tick * 90;
-                return (
-                  <g key={`vector-scaling-y-${tick}`}>
-                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `vector-scaling-y-${tick}`,
+                  axisX: 110,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
               })}
 
               <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-scaling-vector-arrow)" />
@@ -505,38 +593,32 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 700 430" className="h-auto w-full">
               <defs>
-                <marker id="vector-two-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.82)" />
-                </marker>
-                <marker id="vector-two-vector-arrow" markerWidth="5" markerHeight="5" refX="4.6" refY="2.5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L5,2.5 L0,5 z" fill="rgba(231,238,248,0.95)" />
-                </marker>
+                {renderAxisArrowMarker("vector-two-axis-arrow")}
+                {renderFilledArrowMarker("vector-two-vector-arrow", "rgba(231,238,248,0.95)")}
               </defs>
               <line x1="110" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
               <line x1="110" y1="340" x2="110" y2="60" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-two-axis-arrow)" />
 
               {[1, 2, 3, 4].map((tick) => {
                 const x = 110 + tick * 90;
-                return (
-                  <g key={`vector-two-x-${tick}`}>
-                    <line x1={x} y1="332" x2={x} y2="348" stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x={x} y="374" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `vector-two-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
               })}
 
               {[1, 2, 3].map((tick) => {
                 const y = 340 - tick * 90;
-                return (
-                  <g key={`vector-two-y-${tick}`}>
-                    <line x1="102" y1={y} x2="118" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.4" />
-                    <text x="88" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `vector-two-y-${tick}`,
+                  axisX: 110,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
               })}
 
               <path d="M110 340 L278 256" stroke="rgba(231,238,248,0.95)" strokeWidth="1.8" fill="none" markerEnd="url(#vector-two-vector-arrow)" />
@@ -567,12 +649,13 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 760 430" className="h-auto w-full">
               <defs>
-                <marker id="vector-3d-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.5" />
-                </marker>
-                <marker id="vector-3d-vector-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(231,238,248,0.95)" strokeWidth="1.5" />
-                </marker>
+                {renderAxisArrowMarker("vector-3d-axis-arrow")}
+                {renderFilledArrowMarker("vector-3d-vector-arrow", "rgba(231,238,248,0.95)", {
+                  markerWidth: 7,
+                  markerHeight: 7,
+                  refX: 6.1,
+                  refY: 3.5,
+                })}
               </defs>
 
               <line x1="250" y1="320" x2="520" y2="320" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-3d-axis-arrow)" />
@@ -581,12 +664,13 @@ export default function AlgebraStaticVisual({
 
               {[1, 2, 3].map((tick) => {
                 const x = 250 + tick * 58;
-                return (
-                  <g key={`vector-3d-x-${tick}`}>
-                    <line x1={x} y1="314" x2={x} y2="326" stroke="rgba(231,238,248,0.6)" strokeWidth="1.2" />
-                    <text x={x} y="346" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">{tick}</text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `vector-3d-x-${tick}`,
+                  x,
+                  axisY: 320,
+                  label: tick,
+                  labelOffset: 26,
+                });
               })}
 
               {[1, 2].map((tick) => {
@@ -594,20 +678,21 @@ export default function AlgebraStaticVisual({
                 const y = 320 - tick * 30;
                 return (
                   <g key={`vector-3d-y-${tick}`}>
-                    <line x1={x - 5} y1={y + 5} x2={x + 5} y2={y - 5} stroke="rgba(231,238,248,0.6)" strokeWidth="1.2" />
-                    <text x={x + 14} y={y + 2} fill="rgba(231,238,248,0.8)" fontSize="12">{tick}</text>
+                    <line x1={x} y1={y} x2={x + 8} y2={y - 8} stroke={AXIS_TICK_STROKE} strokeWidth="1.1" />
+                    <text x={x + 16} y={y + 2} fill={AXIS_LABEL_FILL} fontSize="12">{tick}</text>
                   </g>
                 );
               })}
 
               {[1, 2, 3, 4].map((tick) => {
                 const y = 320 - tick * 48;
-                return (
-                  <g key={`vector-3d-z-${tick}`}>
-                    <line x1="244" y1={y} x2="256" y2={y} stroke="rgba(231,238,248,0.6)" strokeWidth="1.2" />
-                    <text x="232" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">{tick}</text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `vector-3d-z-${tick}`,
+                  axisX: 250,
+                  y,
+                  label: tick,
+                  labelOffset: 18,
+                });
               })}
 
               <path d="M250 320 L402 98" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-3d-vector-arrow)" />
@@ -631,35 +716,31 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 760 560" className="h-auto w-full">
               <defs>
-                <marker id="coordinate-basic-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.85)" />
-                </marker>
+                {renderAxisArrowMarker("coordinate-basic-axis-arrow", "rgba(231,238,248,0.85)")}
               </defs>
               <line x1="120" y1="280" x2="640" y2="280" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
               <line x1="380" y1="520" x2="380" y2="40" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-basic-axis-arrow)" />
 
               {[-4, -3, -2, -1, 1, 2, 3, 4].map((tick) => {
                 const x = 380 + tick * 48;
-                return (
-                  <g key={`xtick-${tick}`}>
-                    <line x1={x} y1="274" x2={x} y2="286" stroke="rgba(231,238,248,0.65)" strokeWidth="1.5" />
-                    <text x={x} y="306" textAnchor="middle" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderXAxisTick({
+                  key: `xtick-${tick}`,
+                  x,
+                  axisY: 280,
+                  label: tick,
+                  labelOffset: 26,
+                });
               })}
 
               {[-4, -3, -2, -1, 1, 2, 3, 4].map((tick) => {
                 const y = 280 - tick * 48;
-                return (
-                  <g key={`ytick-${tick}`}>
-                    <line x1="374" y1={y} x2="386" y2={y} stroke="rgba(231,238,248,0.65)" strokeWidth="1.5" />
-                    <text x="360" y={y + 4} textAnchor="end" fill="rgba(231,238,248,0.8)" fontSize="12">
-                      {tick}
-                    </text>
-                  </g>
-                );
+                return renderYAxisTick({
+                  key: `ytick-${tick}`,
+                  axisX: 380,
+                  y,
+                  label: tick,
+                  labelOffset: 20,
+                });
               })}
 
               <circle cx="476" cy="136" r="7" fill="#f472b6" />
@@ -701,12 +782,32 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 760 520" className="h-auto w-full">
               <defs>
-                <marker id="coordinate-move-axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L10,5 L0,10 z" fill="rgba(231,238,248,0.85)" />
-                </marker>
+                {renderAxisArrowMarker("coordinate-move-axis-arrow", "rgba(231,238,248,0.85)")}
               </defs>
               <line x1="28" y1="360" x2="540" y2="360" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
               <line x1="220" y1="440" x2="220" y2="80" stroke="rgba(231,238,248,0.85)" strokeWidth="2" markerEnd="url(#coordinate-move-axis-arrow)" />
+
+              {[-3, -2, -1, 1, 2, 3, 4, 5, 6].map((tick) => {
+                const x = 220 + tick * 48;
+                return renderXAxisTick({
+                  key: `coordinate-move-x-${tick}`,
+                  x,
+                  axisY: 360,
+                  label: tick,
+                  labelOffset: 28,
+                });
+              })}
+
+              {[-1, 1, 2, 3, 4, 5].map((tick) => {
+                const y = 360 - tick * 48;
+                return renderYAxisTick({
+                  key: `coordinate-move-y-${tick}`,
+                  axisX: 220,
+                  y,
+                  label: tick,
+                  labelOffset: 20,
+                });
+              })}
 
               <path d="M316 312 L412 312" stroke="#22d3ee" strokeWidth="3" strokeDasharray="7 6" />
               <path d="M412 312 L412 216" stroke="#f472b6" strokeWidth="3" strokeDasharray="7 6" />
