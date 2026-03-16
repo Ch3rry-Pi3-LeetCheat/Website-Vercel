@@ -641,16 +641,16 @@ export default function AlgebraStaticVisual({
               <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
               {/* Split measurement arrows for side a. Use the repeated x=80 values to move the whole pair left/right. */}
-              <line x1="75" y1="96" x2="75" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="75" y1="116" x2="75" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="75" y1="90" x2="75" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="75" y1="122" x2="75" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
               <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="216" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
-              <line x1="196" y1="88" x2="102" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="222" y1="101" x2="316" y2="145" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="186" y1="88" x2="92" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="212" y1="101" x2="306" y2="145" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
               <foreignObject x="65" y="92" width="24" height="28">
