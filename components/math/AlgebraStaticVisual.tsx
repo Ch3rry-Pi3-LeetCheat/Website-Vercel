@@ -645,15 +645,15 @@ export default function AlgebraStaticVisual({
               <line x1="75" y1="116" x2="75" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
-              <line x1="170" y1="180" x2="92" y2="175" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="216" y1="180" x2="306" y2="175" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="216" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
               <line x1="168" y1="75" x2="102" y2="44" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="222" y1="101" x2="316" y2="145" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
-              <foreignObject x="70" y="82" width="24" height="28">
+              <foreignObject x="65" y="92" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#f472b6}a}`}
