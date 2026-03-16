@@ -493,7 +493,7 @@ export default function AlgebraStaticVisual({
               <circle cx="290" cy="250" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
               <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="96" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="88" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
               <text x="290" y="232" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="210" y="330" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">+2 in x</text>
               <text x="302" y="296" fill="#f472b6" fontSize="13" fontWeight="700">+1 in y</text>
@@ -557,7 +557,7 @@ export default function AlgebraStaticVisual({
                 <tspan fill="#22d3ee">v</tspan>
               </text>
               <text x="586" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="126" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="118" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
@@ -612,7 +612,7 @@ export default function AlgebraStaticVisual({
               <text x="470" y="142" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">2v</text>
 
               <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="96" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="88" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
@@ -743,7 +743,7 @@ export default function AlgebraStaticVisual({
               <text x="350" y="246" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
               <text x="336" y="128" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="66" y="82" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="58" y="82" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Magnitude label. Move x/y here when the label should shift without changing the vector itself. */}
               <foreignObject x="155" y="207" width="92" height="24">
@@ -806,7 +806,7 @@ export default function AlgebraStaticVisual({
               <text x="272" y="286" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
               <text x="414" y="208" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
               <text x="546" y="396" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="66" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="58" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Distance label. Adjust only this foreignObject when the label placement is wrong relative to the diagonal. */}
               <foreignObject x="190" y="165" width="104" height="24">
@@ -871,7 +871,7 @@ export default function AlgebraStaticVisual({
               <text x="208" y="328" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">4</text>
               <text x="350" y="246" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="66" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="58" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Unit-vector magnitude label. This is independent from the pink point label, so move it here only. */}
               <foreignObject x="94" y="262" width="74" height="24">
@@ -937,7 +937,7 @@ export default function AlgebraStaticVisual({
               <text x="380" y="52" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
 
               <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="96" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="88" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
@@ -1056,7 +1056,7 @@ export default function AlgebraStaticVisual({
               <text x="394" y="266" fill="rgba(231,238,248,0.82)" fontSize="12" fontWeight="700">origin</text>
 
               <text x="646" y="304" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="368" y="36" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="360" y="36" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
             <div className="pointer-events-none absolute right-[14%] top-[10%] grid gap-2 rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3">
               <div className="inline-flex items-center gap-2">
@@ -1121,7 +1121,7 @@ export default function AlgebraStaticVisual({
               <text x="412" y="196" textAnchor="middle" fill="#e7eef8" fontSize="14" fontWeight="700">Q</text>
 
               <text x="546" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="208" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="200" y="76" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
             <div className="pointer-events-none absolute right-[6%] top-[16%] max-w-[180px] rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-sm leading-6 text-[color:var(--color-muted)]">
               <p>
