@@ -611,7 +611,6 @@ export default function AlgebraStaticVisual({
 
               <foreignObject x="86" y="18" width="348" height="44">
                 <div
-                  xmlns="http://www.w3.org/1999/xhtml"
                   className="flex h-full items-center justify-center text-center"
                 >
                   <MathInline
@@ -673,7 +672,6 @@ export default function AlgebraStaticVisual({
 
               <foreignObject x="212" y="198" width="120" height="38">
                 <div
-                  xmlns="http://www.w3.org/1999/xhtml"
                   className="flex h-full items-center justify-center text-center"
                 >
                   <MathInline
@@ -736,7 +734,6 @@ export default function AlgebraStaticVisual({
 
               <foreignObject x="220" y="202" width="180" height="38">
                 <div
-                  xmlns="http://www.w3.org/1999/xhtml"
                   className="flex h-full items-center justify-center text-center"
                 >
                   <MathInline
@@ -797,7 +794,6 @@ export default function AlgebraStaticVisual({
 
               <foreignObject x="112" y="250" width="140" height="38">
                 <div
-                  xmlns="http://www.w3.org/1999/xhtml"
                   className="flex h-full items-center justify-center text-center"
                 >
                   <MathInline
