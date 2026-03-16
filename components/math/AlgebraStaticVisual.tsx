@@ -731,7 +731,7 @@ export default function AlgebraStaticVisual({
               })}
 
               {/* Main vector from origin to (4,3). Endpoint circle is centered at (336,148). */}
-              <path d="M80 340 L336 148" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
+              <path d="M80 340 L330.4 152.2" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
               <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
               <path d="M336 326 L322 326 L322 340" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
 
