@@ -809,7 +809,7 @@ export default function AlgebraStaticVisual({
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
               {/* Distance label. Adjust only this foreignObject when the label placement is wrong relative to the diagonal. */}
-              <foreignObject x="150" y="150" width="104" height="24">
+              <foreignObject x="175" y="150" width="104" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|`}
