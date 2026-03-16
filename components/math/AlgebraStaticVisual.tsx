@@ -40,11 +40,21 @@ type MappingDiagramConfig = {
 const AXIS_TICK_STROKE = "rgba(226,232,240,0.55)";
 const AXIS_LABEL_FILL = "rgba(226,232,240,0.85)";
 
+/**
+ * Evenly spaces labels/nodes around a vertical center line.
+ * Useful when debugging mapping diagrams: `center` moves the whole column,
+ * `spacing` changes the gap between rows.
+ */
 function getMappingPositions(count: number, center = 200, spacing = 70) {
   const start = center - ((count - 1) * spacing) / 2;
   return Array.from({ length: count }, (_, idx) => start + idx * spacing);
 }
 
+/**
+ * Shared SVG arrowhead marker.
+ * When arrow tips look too buried inside a line endpoint, `refX` is the main
+ * value to adjust. Larger `markerWidth`/`markerHeight` makes the head bigger.
+ */
 function renderFilledArrowMarker(
   id: string,
   fill: string,
@@ -75,6 +85,10 @@ function renderFilledArrowMarker(
   );
 }
 
+/**
+ * Axis arrows use a slightly larger marker than vector arrows.
+ * Keep this separate so axis heads can be tuned without disturbing vectors.
+ */
 function renderAxisArrowMarker(id: string, fill = "rgba(231,238,248,1)") {
   return renderFilledArrowMarker(id, fill, {
     markerWidth: 7,
@@ -84,6 +98,11 @@ function renderAxisArrowMarker(id: string, fill = "rgba(231,238,248,1)") {
   });
 }
 
+/**
+ * Standard x-axis tick and label.
+ * `x` controls horizontal placement, `axisY` controls the baseline, and
+ * `tickLength`/`labelOffset` are the first values to tweak when spacing looks off.
+ */
 function renderXAxisTick({
   key,
   x,
@@ -122,6 +141,11 @@ function renderXAxisTick({
   );
 }
 
+/**
+ * Standard y-axis tick and label.
+ * `axisX` controls the axis position, `y` controls the row, and `labelOffset`
+ * is the quickest way to move labels away from the axis without moving the tick.
+ */
 function renderYAxisTick({
   key,
   axisX,
@@ -605,6 +629,7 @@ export default function AlgebraStaticVisual({
                 })}
               </defs>
 
+              {/* Triangle geometry. Change these three points first if the overall shape needs to move or resize. */}
               <path
                 d="M92 156 L92 56 L306 156 Z"
                 fill="none"
@@ -612,17 +637,22 @@ export default function AlgebraStaticVisual({
                 strokeWidth="2.2"
                 strokeLinejoin="round"
               />
+              {/* Right-angle marker at the bottom-left corner of the triangle. */}
               <path d="M92 142 L106 142 L106 156" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
 
-              <line x1="80" y1="102" x2="80" y2="56" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              {/* Split measurement arrows for side a. Use the repeated x=80 values to move the whole pair left/right. */}
+              <line x1="80" y1="102" x2="80" y2="50" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="80" y1="116" x2="80" y2="156" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
+              {/* Split measurement arrows for side b. The gap between the arrows leaves room for the b label. */}
               <line x1="170" y1="170" x2="92" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="206" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
+              {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
               <line x1="168" y1="82" x2="102" y2="51" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
               <line x1="222" y1="108" x2="316" y2="152" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
+              {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
               <foreignObject x="34" y="96" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
@@ -660,8 +690,9 @@ export default function AlgebraStaticVisual({
                 {renderAxisArrowMarker("vector-magnitude-axis-arrow")}
                 {renderFilledArrowMarker("vector-magnitude-vector-arrow", "rgba(231,238,248,1)")}
               </defs>
-              <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
-              <line x1="80" y1="340" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              {/* Magnitude plot uses 64 units per grid step on both axes, so x/y distances stay visually square. */}
+              <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="1" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              <line x1="80" y1="340" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="1" markerEnd="url(#vector-magnitude-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
                 const x = 80 + tick * 64;
@@ -685,6 +716,7 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
+              {/* Main vector from origin to (4,3). Endpoint circle is centered at (336,148). */}
               <path d="M80 340 L336 148" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
               <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
               <path d="M336 326 L322 326 L322 340" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
@@ -699,6 +731,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
+              {/* Magnitude label. Move x/y here when the label should shift without changing the vector itself. */}
               <foreignObject x="112" y="262" width="92" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
@@ -717,6 +750,7 @@ export default function AlgebraStaticVisual({
               <defs>
                 {renderAxisArrowMarker("vector-distance-axis-arrow")}
               </defs>
+              {/* Distance plot also uses 64 units per grid step to keep the right triangle visually honest. */}
               <line x1="80" y1="360" x2="522" y2="360" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
               <line x1="80" y1="360" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
 
@@ -742,6 +776,7 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
+              {/* Segment from A=(1,1) to B=(5,4). Keep point coordinates and dashed-guide coordinates in sync. */}
               <path d="M144 296 L400 104" stroke="rgba(231,238,248,1)" strokeWidth="2" fill="none" />
               <path d="M144 296 L400 296" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
               <path d="M400 296 L400 104" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
@@ -759,6 +794,7 @@ export default function AlgebraStaticVisual({
               <text x="546" y="396" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
+              {/* Distance label. Adjust only this foreignObject when the label placement is wrong relative to the diagonal. */}
               <foreignObject x="216" y="118" width="104" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
@@ -779,6 +815,7 @@ export default function AlgebraStaticVisual({
                 {renderFilledArrowMarker("vector-normalization-v-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("vector-normalization-unit-arrow", "rgba(244,114,182,1)")}
               </defs>
+              {/* Normalization plot reuses the same 64-unit square grid as magnitude so the unit vector is comparable. */}
               <line x1="80" y1="340" x2="474" y2="340" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
               <line x1="80" y1="340" x2="80" y2="40" stroke="rgba(231,238,248,1)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
 
@@ -804,6 +841,7 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
+              {/* White arrow is the original v; pink arrow is the normalized vector. Endpoints are shortened so arrow tips just touch the dots. */}
               <path d="M80 340 L330.4 152.2" stroke="rgba(231,238,248,0.82)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
               <path d="M80 340 L126 305.5" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
               <path d="M336 340 L336 148" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
@@ -821,6 +859,7 @@ export default function AlgebraStaticVisual({
               <text x="498" y="376" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="94" y="32" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
 
+              {/* Unit-vector magnitude label. This is independent from the pink point label, so move it here only. */}
               <foreignObject x="94" y="262" width="74" height="24">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
