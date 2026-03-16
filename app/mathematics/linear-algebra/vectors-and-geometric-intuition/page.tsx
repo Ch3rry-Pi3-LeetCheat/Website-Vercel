@@ -10,7 +10,7 @@ import {
 export const metadata: Metadata = {
   title: "Linear Algebra Vectors and Geometric Intuition",
   description:
-    "The first true vector phase of the linear algebra track: scalars, vectors, notation, and the first geometric mental models.",
+    "The first true vector phase of the linear algebra track: scalars, vectors, notation, magnitude, distance, normalization, and the first geometric mental models.",
 };
 
 export default function LinearAlgebraVectorsPhasePage() {
@@ -25,7 +25,7 @@ export default function LinearAlgebraVectorsPhasePage() {
     <ArticleLayout
       eyebrow="Mathematics - Linear Algebra"
       title="Vectors and geometric intuition"
-      description="This phase is where linear algebra starts feeling like its own subject. The notation is already in place. Now the focus shifts to the core objects themselves: vectors, their geometry, and the visual language that later supports spaces, matrices, and transformations."
+      description="This phase is where linear algebra starts feeling like its own subject. The notation is already in place. Now the focus shifts to the core objects themselves: vectors, their geometry, their size, and the visual language that later supports spaces, dot products, matrices, and transformations."
       tocItems={tocItems}
       rightRail={
         <RightRail

@@ -97,7 +97,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                   How the main ideas on this page already combine into
                   expressions such as{" "}
                   <MathInline
-                    tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />{" "}
                   ,{" "}
@@ -107,7 +107,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                   />{" "}
                   , and{" "}
                   <MathInline
-                    tex={String.raw`a{\color{#f472b6}\mathbf{u}}{\color{white}+}b{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />{" "}
                   .
@@ -130,7 +130,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           <span className="text-white font-semibold">what we can do with it</span>.
         </p>
         <MathBlock
-          tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad -{\color{#22d3ee}\mathbf{v}},\qquad a{\color{#f472b6}\mathbf{u}}{\color{white}+}b{\color{#22d3ee}\mathbf{v}}`}
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad -{\color{#22d3ee}\mathbf{v}},\qquad a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
           className="math-center math-lg text-white/90"
         />
         <p>
@@ -177,14 +177,14 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
             add the vertical parts together.
           </p>
           <MathBlock
-            tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}=(1,2)+(2,1)`}
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}=(1,2)\mathbin{\color{white}{+}}(2,1)`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
             Now add the first components and the second components separately:
           </p>
           <MathBlock
-            tex={String.raw`(1,2)+(2,1)=(1+2,\,2+1)=(3,3)`}
+            tex={String.raw`(1,2)\mathbin{\color{white}{+}}(2,1)=\left(1\mathbin{\color{white}{+}}2,\,2\mathbin{\color{white}{+}}1\right)=(3,3)`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -192,13 +192,16 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}
+{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}
 &=
 \begin{bmatrix}1\\[0.35em]2\end{bmatrix}
-{\color{white}+}
+\mathbin{\color{white}{+}}
 \begin{bmatrix}2\\[0.35em]1\end{bmatrix}\\[0.55em]
 &=
-\begin{bmatrix}1+2\\[0.35em]2+1\end{bmatrix}\\[0.55em]
+\begin{bmatrix}
+1\mathbin{\color{white}{+}}2\\[0.35em]
+2\mathbin{\color{white}{+}}1
+\end{bmatrix}\\[0.55em]
 &=
 \begin{bmatrix}3\\[0.35em]3\end{bmatrix}
 \end{aligned}`}
@@ -257,7 +260,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
             The single arrow from the origin to the final endpoint is the sum
             {" "}
             <MathInline
-              tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}`}
+              tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}`}
               className="math-inline math-white"
             />
             . That picture also makes the{" "}
@@ -285,7 +288,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
             .
           </p>
           <MathBlock
-            tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}={\color{#f472b6}\mathbf{u}}{\color{white}+}(-{\color{#22d3ee}\mathbf{v}})`}
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}={\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}(-{\color{#22d3ee}\mathbf{v}})`}
             className="math-center math-lg text-white/90"
           />
           <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -305,9 +308,9 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}
-&=(1,2)-(2,1)\\[0.55em]
-&=(1-2,\,2-1)\\[0.55em]
+{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}
+&=(1,2)\mathbin{\color{white}{-}}(2,1)\\[0.55em]
+&=\left(1\mathbin{\color{white}{-}}2,\,2\mathbin{\color{white}{-}}1\right)\\[0.55em]
 &=(-1,1)
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -317,13 +320,16 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}
+{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}
 &=
 \begin{bmatrix}1\\[0.35em]2\end{bmatrix}
-{\color{white}-}
+\mathbin{\color{white}{-}}
 \begin{bmatrix}2\\[0.35em]1\end{bmatrix}\\[0.55em]
 &=
-\begin{bmatrix}1-2\\[0.35em]2-1\end{bmatrix}\\[0.55em]
+\begin{bmatrix}
+1\mathbin{\color{white}{-}}2\\[0.35em]
+2\mathbin{\color{white}{-}}1
+\end{bmatrix}\\[0.55em]
 &=
 \begin{bmatrix}-1\\[0.35em]1\end{bmatrix}
 \end{aligned}`}
@@ -424,6 +430,25 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
 \end{aligned}`}
             className="math-center math-lg text-white/90"
           />
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            This is the gentlest kind of scaling. Multiplying by{" "}
+            <MathInline
+              tex={String.raw`\tfrac{1}{2}`}
+              className="math-inline math-white"
+            />{" "}
+            keeps the direction of the vector the same, but it cuts every
+            component in half.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            Geometrically, that means the arrow still points the same way, but
+            it no longer reaches as far from the origin. The vector is being
+            shrunk, not turned around.
+          </p>
+          <p className="text-base leading-7 text-[color:var(--color-muted)]">
+            A negative scalar changes something different. It still acts on each
+            component, but now the signs flip as well, so the vector points in
+            the opposite direction.
+          </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
 -{\color{#22d3ee}\mathbf{v}}
@@ -460,7 +485,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 </td>
                 <td className="py-2">
                   <MathInline
-                    tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}={\color{#22d3ee}\mathbf{v}}{\color{white}+}{\color{#f472b6}\mathbf{u}}`}
+                    tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}={\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}{\color{#f472b6}\mathbf{u}}`}
                     className="math-inline math-white"
                   />
                   . The order of vector addition does not change the result.
@@ -472,7 +497,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 </td>
                 <td className="py-2">
                   <MathInline
-                    tex={String.raw`({\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}})+\mathbf{w}={\color{#f472b6}\mathbf{u}}{\color{white}+}({\color{#22d3ee}\mathbf{v}}+\mathbf{w})`}
+                    tex={String.raw`({\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}})\mathbin{\color{white}{+}}{\color{#c084fc}\mathbf{w}}={\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}({\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}{\color{#c084fc}\mathbf{w}})`}
                     className="math-inline math-white"
                   />
                   . Grouping does not change the total vector.
@@ -484,7 +509,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 </td>
                 <td className="py-2">
                   <MathInline
-                    tex={String.raw`{\color{#22d3ee}\mathbf{v}}+\mathbf{0}={\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`{\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}\mathbf{0}={\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   . Adding the zero vector changes nothing.
@@ -496,7 +521,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 </td>
                 <td className="py-2">
                   <MathInline
-                    tex={String.raw`{\color{#22d3ee}\mathbf{v}}+(-{\color{#22d3ee}\mathbf{v}})=\mathbf{0}`}
+                    tex={String.raw`{\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}(-{\color{#22d3ee}\mathbf{v}})=\mathbf{0}`}
                     className="math-inline math-white"
                   />
                   . Every vector has an opposite vector.
@@ -508,12 +533,12 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 </td>
                 <td className="py-2">
                   <MathInline
-                    tex={String.raw`a({\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}})=a{\color{#f472b6}\mathbf{u}}{\color{white}+}a{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`a({\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}})=a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}a{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   {" "}and{" "}
                   <MathInline
-                    tex={String.raw`(a+b){\color{#22d3ee}\mathbf{v}}=a{\color{#22d3ee}\mathbf{v}}+b{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`(a\mathbin{\color{white}{+}}b){\color{#22d3ee}\mathbf{v}}=a{\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   .
@@ -540,7 +565,12 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                     tex={String.raw`1{\color{#22d3ee}\mathbf{v}}={\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
-                  . Multiplying by 1 leaves the vector unchanged.
+                  . Multiplying by{" "}
+                  <MathInline
+                    tex={String.raw`1`}
+                    className="math-inline math-white"
+                  />{" "}
+                  leaves the vector unchanged.
                 </td>
               </tr>
             </tbody>
@@ -565,11 +595,11 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}
-&=(1,2)+(2,1)\\[0.55em]
+{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}
+&=(1,2)\mathbin{\color{white}{+}}(2,1)\\[0.55em]
 &=(3,3)\\[0.75em]
-{\color{#22d3ee}\mathbf{v}}{\color{white}+}{\color{#f472b6}\mathbf{u}}
-&=(2,1)+(1,2)\\[0.55em]
+{\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}{\color{#f472b6}\mathbf{u}}
+&=(2,1)\mathbin{\color{white}{+}}(1,2)\\[0.55em]
 &=(3,3)
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -578,18 +608,18 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
             <span className="text-white font-semibold">Associative addition</span>{" "}
             says regrouping does not change the total. If{" "}
             <MathInline
-              tex={String.raw`\mathbf{w}=(1,0)`}
+              tex={String.raw`{\color{#c084fc}\mathbf{w}}=(1,0)`}
               className="math-inline math-white"
             />
             , then:
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-({\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}})+\mathbf{w}
-&=(3,3)+(1,0)\\[0.55em]
+({\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}})\mathbin{\color{white}{+}}{\color{#c084fc}\mathbf{w}}
+&=(3,3)\mathbin{\color{white}{+}}(1,0)\\[0.55em]
 &=(4,3)\\[0.75em]
-{\color{#f472b6}\mathbf{u}}{\color{white}+}({\color{#22d3ee}\mathbf{v}}+\mathbf{w})
-&=(1,2)+(3,1)\\[0.55em]
+{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}({\color{#22d3ee}\mathbf{v}}\mathbin{\color{white}{+}}{\color{#c084fc}\mathbf{w}})
+&=(1,2)\mathbin{\color{white}{+}}(3,1)\\[0.55em]
 &=(4,3)
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -600,11 +630,11 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           </p>
           <MathBlock
             tex={String.raw`\begin{aligned}
-2({\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}})
+2({\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}})
 &=2(3,3)\\[0.55em]
 &=(6,6)\\[0.75em]
-2{\color{#f472b6}\mathbf{u}}{\color{white}+}2{\color{#22d3ee}\mathbf{v}}
-&=(2,4)+(4,2)\\[0.55em]
+2{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}2{\color{#22d3ee}\mathbf{v}}
+&=(2,4)\mathbin{\color{white}{+}}(4,2)\\[0.55em]
 &=(6,6)
 \end{aligned}`}
             className="math-center math-lg text-white/90"
@@ -625,7 +655,7 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           into one expression language for vectors.
         </p>
         <MathBlock
-          tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}},\qquad {\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad a{\color{#f472b6}\mathbf{u}}{\color{white}+}b{\color{#22d3ee}\mathbf{v}}`}
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}},\qquad {\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}},\qquad 2{\color{#22d3ee}\mathbf{v}},\qquad a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -641,21 +671,21 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
           />
           , then{" "}
           <MathInline
-            tex={String.raw`a{\color{#f472b6}\mathbf{u}}{\color{white}+}b{\color{#22d3ee}\mathbf{v}}`}
+            tex={String.raw`a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
             className="math-inline math-white"
           />{" "}
           becomes{" "}
           <MathInline
-            tex={String.raw`2{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}`}
+            tex={String.raw`2{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}`}
             className="math-inline math-white"
           />
           .
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-2{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}
-&=2(1,2)-(2,1)\\[0.55em]
-&=(2,4)-(2,1)\\[0.55em]
+2{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}
+&=2(1,2)\mathbin{\color{white}{-}}(2,1)\\[0.55em]
+&=(2,4)\mathbin{\color{white}{-}}(2,1)\\[0.55em]
 &=(0,3)
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -713,17 +743,17 @@ export default function VectorAdditionAndScalarMultiplicationPage() {
                 <td className="py-2">
                   These ideas already combine into expressions such as{" "}
                   <MathInline
-                    tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}+}{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   {", "}
                   <MathInline
-                    tex={String.raw`{\color{#f472b6}\mathbf{u}}{\color{white}-}{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{-}}{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   {", and "}
                   <MathInline
-                    tex={String.raw`a{\color{#f472b6}\mathbf{u}}{\color{white}+}b{\color{#22d3ee}\mathbf{v}}`}
+                    tex={String.raw`a{\color{#f472b6}\mathbf{u}}\mathbin{\color{white}{+}}b{\color{#22d3ee}\mathbf{v}}`}
                     className="math-inline math-white"
                   />
                   .

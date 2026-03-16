@@ -23,7 +23,7 @@ export const linearAlgebraPhases: TopicLink[] = [
   {
     label: "Vectors and geometric intuition",
     description:
-      "Scalars, vectors, magnitude, dot product, and the first geometric mental models.",
+      "Scalars, vectors, magnitude, distance, normalization, dot products, and the first geometric mental models.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition",
   },
   {
@@ -91,5 +91,11 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
     description:
       "Combine vectors component by component, scale them with numbers, and connect the algebra to the geometric picture.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/vector-addition-and-scalar-multiplication",
+  },
+  {
+    label: "Magnitude, distance, and normalization",
+    description:
+      "Measure vector length, interpret distance as the size of a difference, and turn nonzero vectors into unit vectors.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/magnitude-distance-and-normalization",
   },
 ];

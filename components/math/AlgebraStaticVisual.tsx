@@ -11,6 +11,9 @@ type AlgebraStaticVisualProps = {
     | "vector-addition"
     | "vector-two"
     | "vector-scaling"
+    | "vector-magnitude"
+    | "vector-distance"
+    | "vector-normalization"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -585,6 +588,160 @@ export default function AlgebraStaticVisual({
 
               <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="124" y="52" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "vector-magnitude" && (
+          <div className="relative">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("vector-magnitude-axis-arrow")}
+                {renderFilledArrowMarker("vector-magnitude-vector-arrow", "rgba(231,238,248,0.95)")}
+              </defs>
+              <line x1="120" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
+              <line x1="120" y1="340" x2="120" y2="70" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-magnitude-axis-arrow)" />
+
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 120 + tick * 78;
+                return renderXAxisTick({
+                  key: `vector-magnitude-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
+              })}
+
+              {[1, 2, 3, 4].map((tick) => {
+                const y = 340 - tick * 52;
+                return renderYAxisTick({
+                  key: `vector-magnitude-y-${tick}`,
+                  axisX: 120,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
+              })}
+
+              <path d="M120 340 L354 132" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-magnitude-vector-arrow)" />
+              <path d="M120 340 L354 340" stroke="rgba(34,211,238,0.62)" strokeWidth="1.4" strokeDasharray="6 5" fill="none" />
+              <path d="M354 340 L354 132" stroke="rgba(244,114,182,0.62)" strokeWidth="1.4" strokeDasharray="6 5" fill="none" />
+
+              <circle cx="120" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="354" cy="132" r="7" fill="#22d3ee" />
+              <circle cx="354" cy="132" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="240" y="330" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">3</text>
+              <text x="366" y="242" fill="#f472b6" fontSize="13" fontWeight="700">4</text>
+              <text x="256" y="214" fill="#ffffff" fontSize="14" fontWeight="700">length 5</text>
+              <text x="354" y="114" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="134" y="62" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "vector-distance" && (
+          <div className="relative">
+            <svg viewBox="0 0 760 450" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("vector-distance-axis-arrow")}
+                {renderFilledArrowMarker("vector-distance-arrow", "rgba(231,238,248,0.95)")}
+              </defs>
+              <line x1="120" y1="360" x2="640" y2="360" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
+              <line x1="120" y1="360" x2="120" y2="80" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-distance-axis-arrow)" />
+
+              {[1, 2, 3, 4, 5, 6].map((tick) => {
+                const x = 120 + tick * 72;
+                return renderXAxisTick({
+                  key: `vector-distance-x-${tick}`,
+                  x,
+                  axisY: 360,
+                  label: tick,
+                  labelOffset: 34,
+                });
+              })}
+
+              {[1, 2, 3, 4, 5].map((tick) => {
+                const y = 360 - tick * 52;
+                return renderYAxisTick({
+                  key: `vector-distance-y-${tick}`,
+                  axisX: 120,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
+              })}
+
+              <path d="M192 308 L408 100" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-distance-arrow)" />
+              <path d="M192 308 L408 308" stroke="rgba(34,211,238,0.58)" strokeWidth="1.35" strokeDasharray="6 5" fill="none" />
+              <path d="M408 308 L408 100" stroke="rgba(244,114,182,0.58)" strokeWidth="1.35" strokeDasharray="6 5" fill="none" />
+
+              <circle cx="192" cy="308" r="7" fill="#f472b6" />
+              <circle cx="192" cy="308" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="408" cy="100" r="7" fill="#22d3ee" />
+              <circle cx="408" cy="100" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="182" y="286" fill="#f472b6" fontSize="14" fontWeight="700">A</text>
+              <text x="420" y="88" fill="#22d3ee" fontSize="14" fontWeight="700">B</text>
+              <text x="300" y="298" textAnchor="middle" fill="#22d3ee" fontSize="13" fontWeight="700">3</text>
+              <text x="420" y="208" fill="#f472b6" fontSize="13" fontWeight="700">4</text>
+              <text x="292" y="188" fill="#ffffff" fontSize="14" fontWeight="700">distance 5</text>
+              <text x="646" y="394" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="134" y="72" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "vector-normalization" && (
+          <div className="relative">
+            <svg viewBox="0 0 700 430" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("vector-normalization-axis-arrow")}
+                {renderFilledArrowMarker("vector-normalization-v-arrow", "rgba(231,238,248,0.95)")}
+                {renderFilledArrowMarker("vector-normalization-unit-arrow", "rgba(244,114,182,0.95)")}
+              </defs>
+              <line x1="120" y1="340" x2="590" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
+              <line x1="120" y1="340" x2="120" y2="70" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#vector-normalization-axis-arrow)" />
+
+              {[1, 2, 3, 4].map((tick) => {
+                const x = 120 + tick * 78;
+                return renderXAxisTick({
+                  key: `vector-normalization-x-${tick}`,
+                  x,
+                  axisY: 340,
+                  label: tick,
+                  labelOffset: 34,
+                });
+              })}
+
+              {[1, 2, 3, 4].map((tick) => {
+                const y = 340 - tick * 52;
+                return renderYAxisTick({
+                  key: `vector-normalization-y-${tick}`,
+                  axisX: 120,
+                  y,
+                  label: tick,
+                  labelOffset: 22,
+                });
+              })}
+
+              <path d="M120 340 L354 132" stroke="rgba(231,238,248,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-v-arrow)" />
+              <path d="M120 340 L166.8 298.4" stroke="rgba(244,114,182,0.95)" strokeWidth="2" fill="none" markerEnd="url(#vector-normalization-unit-arrow)" />
+
+              <circle cx="120" cy="340" r="5.5" fill="#ffffff" />
+              <circle cx="354" cy="132" r="7" fill="#22d3ee" />
+              <circle cx="354" cy="132" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="166.8" cy="298.4" r="6.5" fill="#f472b6" />
+              <circle cx="166.8" cy="298.4" r="11" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+
+              <text x="354" y="114" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="182" y="288" fill="#f472b6" fontSize="14" fontWeight="700">unit v</text>
+              <text x="222" y="254" fill="#ffffff" fontSize="13" fontWeight="700">same direction</text>
+              <text x="186" y="318" fill="#f472b6" fontSize="13" fontWeight="700">length 1</text>
+              <text x="596" y="374" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
+              <text x="134" y="62" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
