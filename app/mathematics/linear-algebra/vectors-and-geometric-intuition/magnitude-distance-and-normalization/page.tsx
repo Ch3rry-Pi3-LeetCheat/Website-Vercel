@@ -125,33 +125,30 @@ export default function MagnitudeDistanceAndNormalizationPage() {
             className="math-inline math-white"
           />
           , the horizontal and vertical changes make a right triangle. That is
-          why the Pythagorean theorem appears immediately.
+          why the{" "}
+          <span className="text-white font-semibold">Pythagorean theorem</span>{" "}
+          appears immediately.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The Pythagorean theorem says that in any right triangle, if the two
-          shorter sides have lengths{" "}
-          <MathInline tex={String.raw`a`} className="math-inline math-white" />{" "}
-          and{" "}
-          <MathInline tex={String.raw`b`} className="math-inline math-white" />, and
-          the long slanted side has length{" "}
-          <MathInline tex={String.raw`c`} className="math-inline math-white" />,
-          then{" "}
-          <MathInline
-            tex={String.raw`a^{2}\mathbin{\color{white}{+}}b^{2}=c^{2}`}
-            className="math-inline math-white"
-          />
-          .
+          The{" "}
+          <span className="text-white font-semibold">Pythagorean theorem</span>{" "}
+          says that in any right triangle, the two shorter sides and the
+          hypotenuse are tied together by one fixed rule:
         </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}a}^{2}\mathbin{\color{white}{+}}{\color{#22d3ee}b}^{2}={\color{#c084fc}c}^{2}`}
+          className="math-center math-lg text-white/90"
+        />
         <AlgebraStaticVisual
           variant="pythagorean-triangle"
           framed={false}
-          caption="A right triangle turns two perpendicular side lengths into one total length by the rule a^2 + b^2 = c^2."
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In the vector picture, the horizontal movement is 4, the vertical
           movement is 3, and the vector itself is the hypotenuse. So the
-          Pythagorean theorem is not being imported from nowhere. The geometry
-          of the picture is already forcing it on us.
+          <span className="text-white font-semibold">Pythagorean theorem</span>{" "}
+          is not being imported from nowhere. The geometry of the picture is
+          already forcing it on us.
         </p>
         <MathBlock
           tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{4^{2}+3^{2}}=\sqrt{16+9}=\sqrt{25}=5`}
@@ -204,8 +201,10 @@ export default function MagnitudeDistanceAndNormalizationPage() {
             tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})`}
             className="math-inline math-white"
           />{" "}
-          for the distance function: it takes two points as input and returns a
-          single number telling you how far apart they are.
+          for the{" "}
+          <span className="text-white font-semibold">distance function</span>:
+          it takes two points as input and returns a single number telling you
+          how far apart they are.
         </p>
         <MathBlock
           tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})=\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|=\sqrt{(5-1)^{2}+(4-1)^{2}}=\sqrt{4^{2}+3^{2}}=5`}
@@ -228,7 +227,9 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           Normalization
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Sometimes the direction of a vector matters more than its size.
+          Sometimes the{" "}
+          <span className="text-white font-semibold">direction</span> of a
+          vector matters more than its size.
           Normalization is the process of taking a{" "}
           <span className="text-white font-semibold">nonzero vector</span> and
           making its length equal to 1 without changing its direction.
@@ -260,10 +261,10 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           <span className="text-white font-semibold">unit vector</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A good way to picture normalization is this: keep the arrow on the
-          same ray, but slide its tip inward or outward until it sits exactly 1
-          unit from the origin. Nothing about the direction changes. Only the
-          scale changes.
+          A good way to picture normalization is this: keep the arrow on the{" "}
+          <span className="text-white font-semibold">same ray</span>, but slide
+          its tip inward or outward until it sits exactly 1 unit from the
+          origin. Nothing about the direction changes. Only the scale changes.
         </p>
         <MathBlock
           tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|=\sqrt{\left(\frac{4}{5}\right)^{2}+\left(\frac{3}{5}\right)^{2}}=\sqrt{\frac{16}{25}+\frac{9}{25}}=\sqrt{1}=1`}
