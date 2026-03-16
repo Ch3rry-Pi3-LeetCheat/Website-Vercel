@@ -649,8 +649,8 @@ export default function AlgebraStaticVisual({
               <line x1="216" y1="170" x2="306" y2="170" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Split measurement arrows for side c. These are intentionally offset from the hypotenuse so the c label can sit above them. */}
-              <line x1="186" y1="83" x2="92" y2="39" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
-              <line x1="212" y1="97" x2="306" y2="141" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="196" y1="83" x2="102" y2="39" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
+              <line x1="222" y1="97" x2="316" y2="141" stroke="rgba(231,238,248,1)" strokeWidth="1.8" markerEnd="url(#pythag-side-arrow)" />
 
               {/* Side labels are positioned with foreignObject x/y only; width/height rarely need touching. */}
               <foreignObject x="63" y="90" width="24" height="28">
@@ -671,7 +671,7 @@ export default function AlgebraStaticVisual({
                 </div>
               </foreignObject>
 
-              <foreignObject x="185" y="74" width="24" height="28">
+              <foreignObject x="195" y="74" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#c084fc}c}`}
