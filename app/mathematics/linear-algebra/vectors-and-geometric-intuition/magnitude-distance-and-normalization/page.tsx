@@ -200,16 +200,29 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Once that difference vector is found, the distance is just its
-          magnitude. We write{" "}
+          We choose{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}`}
+            className="math-inline math-white"
+          />{" "}
+          because we are moving from{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{A}}`} className="math-inline math-white" /> to{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{B}}`} className="math-inline math-white" />.
+          If you swapped the order, the arrow would point the opposite way, but
+          the final distance would stay the same once you take the magnitude.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Once that difference vector is found, the distance is just its{" "}
+          <span className="text-white font-semibold">magnitude</span>. We write{" "}
           <MathInline
             tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})`}
             className="math-inline math-white"
           />{" "}
           for the{" "}
           <span className="text-white font-semibold">distance function</span>:
-          it takes two points as input and returns a single number telling you
-          how far apart they are.
+          it takes two points as input and returns a{" "}
+          <span className="text-white font-semibold">single number</span>{" "}
+          telling you how far apart they are.
         </p>
         <MathBlock
           tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})=\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|=\sqrt{(5-1)^{2}+(4-1)^{2}}=\sqrt{4^{2}+3^{2}}=5`}
@@ -218,12 +231,24 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <AlgebraStaticVisual
           variant="vector-distance"
           framed={false}
-          caption="Distance ignores direction and keeps only size. The segment between A and B forms the same 4-3-5 right triangle."
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This is an important bridge idea. A point difference becomes a vector,
-          and the magnitude of that vector becomes a distance. So geometry and
-          vector language are already starting to merge.
+          <span className="text-white font-semibold">Distance</span> ignores{" "}
+          <span className="text-white font-semibold">direction</span> and keeps
+          only <span className="text-white font-semibold">size</span>. The
+          segment between{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{A}}`} className="math-inline math-white" />{" "}
+          and{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{B}}`} className="math-inline math-white" />{" "}
+          forms the same 4-3-5 right triangle.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This is an important{" "}
+          <span className="text-white font-semibold">bridge idea</span>. A
+          point difference becomes a vector, and the magnitude of that vector
+          becomes a distance. For a beginner, this is the moment where points,
+          arrows, and geometry stop feeling like separate topics and start
+          fitting into one picture.
         </p>
       </section>
 
@@ -237,7 +262,11 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           vector matters more than its size.
           Normalization is the process of taking a{" "}
           <span className="text-white font-semibold">nonzero vector</span> and
-          making its length equal to 1 without changing its direction.
+          making its length equal to 1 without changing its direction. In other
+          words, normalization keeps the part that says{" "}
+          <span className="text-white font-semibold">where to point</span> and
+          strips away the part that says{" "}
+          <span className="text-white font-semibold">how far to go</span>.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For{" "}
@@ -250,7 +279,8 @@ export default function MagnitudeDistanceAndNormalizationPage() {
             tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=5`}
             className="math-inline math-white"
           />
-          . So divide every component by 5:
+          . So divide every component by 5. Because every component is scaled by
+          the same factor, the arrow shrinks without rotating:
         </p>
         <MathBlock
           tex={String.raw`\widehat{{\color{#f472b6}\mathbf{v}}}=\frac{{\color{#22d3ee}\mathbf{v}}}{\|{\color{#22d3ee}\mathbf{v}}\|}=\frac{1}{5}(4,3)=\left(\frac{4}{5},\frac{3}{5}\right)`}
@@ -264,12 +294,15 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           />
           , but now its length is 1. That is why it is called a{" "}
           <span className="text-white font-semibold">unit vector</span>.
+          Normalization keeps the direction and throws away the size.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A good way to picture normalization is this: keep the arrow on the{" "}
           <span className="text-white font-semibold">same ray</span>, but slide
           its tip inward or outward until it sits exactly 1 unit from the
           origin. Nothing about the direction changes. Only the scale changes.
+          That is why normalization is so useful later: it gives you a clean way
+          to compare directions without letting long vectors dominate short ones.
         </p>
         <MathBlock
           tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|=\sqrt{\left(\frac{4}{5}\right)^{2}+\left(\frac{3}{5}\right)^{2}}=\sqrt{\frac{16}{25}+\frac{9}{25}}=\sqrt{1}=1`}
@@ -283,7 +316,9 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           One important warning belongs here: the{" "}
           <span className="text-white font-semibold">zero vector cannot be normalized</span>,
-          because dividing by its magnitude would mean dividing by 0.
+          because dividing by its magnitude would mean dividing by 0. More
+          deeply, the zero vector has no direction to preserve in the first
+          place.
         </p>
       </section>
 
@@ -295,7 +330,9 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           Unit vectors let you separate{" "}
           <span className="text-white font-semibold">direction</span> from{" "}
           <span className="text-white font-semibold">size</span>. That is useful
-          because many later ideas need to compare directions cleanly.
+          because many later ideas need to compare directions cleanly. Once all
+          vectors have the same standard length, you can focus on orientation
+          instead of being distracted by scale.
         </p>
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
