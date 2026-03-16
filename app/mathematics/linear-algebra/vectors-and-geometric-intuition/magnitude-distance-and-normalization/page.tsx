@@ -121,14 +121,40 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For a two-dimensional vector such as{" "}
           <MathInline
-            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`}
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(4,3)`}
             className="math-inline math-white"
           />
           , the horizontal and vertical changes make a right triangle. That is
           why the Pythagorean theorem appears immediately.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The Pythagorean theorem says that in any right triangle, if the two
+          shorter sides have lengths{" "}
+          <MathInline tex={String.raw`a`} className="math-inline math-white" />{" "}
+          and{" "}
+          <MathInline tex={String.raw`b`} className="math-inline math-white" />, and
+          the long slanted side has length{" "}
+          <MathInline tex={String.raw`c`} className="math-inline math-white" />,
+          then{" "}
+          <MathInline
+            tex={String.raw`a^{2}\mathbin{\color{white}{+}}b^{2}=c^{2}`}
+            className="math-inline math-white"
+          />
+          .
+        </p>
+        <AlgebraStaticVisual
+          variant="pythagorean-triangle"
+          framed={false}
+          caption="A right triangle turns two perpendicular side lengths into one total length by the rule a^2 + b^2 = c^2."
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          In the vector picture, the horizontal movement is 4, the vertical
+          movement is 3, and the vector itself is the hypotenuse. So the
+          Pythagorean theorem is not being imported from nowhere. The geometry
+          of the picture is already forcing it on us.
+        </p>
         <MathBlock
-          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{3^{2}+4^{2}}=\sqrt{9+16}=\sqrt{25}=5`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{4^{2}+3^{2}}=\sqrt{16+9}=\sqrt{25}=5`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -139,7 +165,7 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <AlgebraStaticVisual
           variant="vector-magnitude"
           framed={false}
-          caption="The components 3 and 4 form a right triangle, so the vector length is 5."
+          caption="The components 4 and 3 form a right triangle, so the vector length is 5."
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In general, if{" "}
@@ -161,28 +187,34 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         </h2>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Distance is the same idea seen between two points. If point{" "}
-          <MathInline tex={String.raw`A=(1,1)`} className="math-inline math-white" /> and point{" "}
-          <MathInline tex={String.raw`B=(4,5)`} className="math-inline math-white" /> are plotted on the plane,
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{A}}=(1,1)`} className="math-inline math-white" /> and point{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{B}}=(5,4)`} className="math-inline math-white" /> are plotted on the plane,
           the distance between them is the length of the displacement from{" "}
-          <MathInline tex={String.raw`A`} className="math-inline math-white" /> to{" "}
-          <MathInline tex={String.raw`B`} className="math-inline math-white" />.
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{A}}`} className="math-inline math-white" /> to{" "}
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{B}}`} className="math-inline math-white" />.
         </p>
         <MathBlock
-          tex={String.raw`B-A=(4,5)-(1,1)=(3,4)`}
+          tex={String.raw`{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}=(5,4)-(1,1)=(4,3)`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Once that difference vector is found, the distance is just its
-          magnitude:
+          magnitude. We write{" "}
+          <MathInline
+            tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})`}
+            className="math-inline math-white"
+          />{" "}
+          for the distance function: it takes two points as input and returns a
+          single number telling you how far apart they are.
         </p>
         <MathBlock
-          tex={String.raw`d(A,B)=\|B-A\|=\sqrt{(4-1)^{2}+(5-1)^{2}}=\sqrt{3^{2}+4^{2}}=5`}
+          tex={String.raw`d({\color{#f472b6}\mathbf{A}},{\color{#22d3ee}\mathbf{B}})=\left\|{\color{#22d3ee}\mathbf{B}}-{\color{#f472b6}\mathbf{A}}\right\|=\sqrt{(5-1)^{2}+(4-1)^{2}}=\sqrt{4^{2}+3^{2}}=5`}
           className="math-center math-lg text-white/90"
         />
         <AlgebraStaticVisual
           variant="vector-distance"
           framed={false}
-          caption="Distance between two points is the magnitude of the displacement from one point to the other."
+          caption="Distance ignores direction and keeps only size. The segment between A and B forms the same 4-3-5 right triangle."
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This is an important bridge idea. A point difference becomes a vector,
@@ -204,7 +236,7 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For{" "}
           <MathInline
-            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`}
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(4,3)`}
             className="math-inline math-white"
           />
           , we already know that{" "}
@@ -215,7 +247,7 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           . So divide every component by 5:
         </p>
         <MathBlock
-          tex={String.raw`\widehat{{\color{#22d3ee}\mathbf{v}}}=\frac{{\color{#22d3ee}\mathbf{v}}}{\|{\color{#22d3ee}\mathbf{v}}\|}=\frac{1}{5}(3,4)=\left(\frac{3}{5},\frac{4}{5}\right)`}
+          tex={String.raw`\widehat{{\color{#f472b6}\mathbf{v}}}=\frac{{\color{#22d3ee}\mathbf{v}}}{\|{\color{#22d3ee}\mathbf{v}}\|}=\frac{1}{5}(4,3)=\left(\frac{4}{5},\frac{3}{5}\right)`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -227,8 +259,14 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           , but now its length is 1. That is why it is called a{" "}
           <span className="text-white font-semibold">unit vector</span>.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          A good way to picture normalization is this: keep the arrow on the
+          same ray, but slide its tip inward or outward until it sits exactly 1
+          unit from the origin. Nothing about the direction changes. Only the
+          scale changes.
+        </p>
         <MathBlock
-          tex={String.raw`\left\|\widehat{{\color{#22d3ee}\mathbf{v}}}\right\|=\sqrt{\left(\frac{3}{5}\right)^{2}+\left(\frac{4}{5}\right)^{2}}=\sqrt{\frac{9}{25}+\frac{16}{25}}=\sqrt{1}=1`}
+          tex={String.raw`\left\|\widehat{{\color{#f472b6}\mathbf{v}}}\right\|=\sqrt{\left(\frac{4}{5}\right)^{2}+\left(\frac{3}{5}\right)^{2}}=\sqrt{\frac{16}{25}+\frac{9}{25}}=\sqrt{1}=1`}
           className="math-center math-lg text-white/90"
         />
         <AlgebraStaticVisual
@@ -256,11 +294,11 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Original vector</td>
                 <td className="py-2">Tells you both direction and length.</td>
               </tr>
-              <tr className="border-b border-white/10">
+              <tr>
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Normalized vector</td>
                 <td className="py-2">Keeps the direction but standardizes the length to 1.</td>
               </tr>
@@ -287,13 +325,14 @@ export default function MagnitudeDistanceAndNormalizationPage() {
           natural question is how two vectors compare in direction and alignment.
         </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|,\qquad \|{\color{#22d3ee}\mathbf{v}}\|,\qquad \widehat{{\color{#22d3ee}\mathbf{v}}},\qquad {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}`}
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=u_{1}v_{1}\mathbin{\color{white}{+}}u_{2}v_{2},\qquad {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=\|{\color{#f472b6}\mathbf{u}}\|\,\|{\color{#22d3ee}\mathbf{v}}\|\cos\theta`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          That is exactly why the next lesson can move into the dot product and
-          its geometric meaning. Magnitude gives the size, normalization gives a
-          clean direction, and the dot product will connect both ideas.
+          Those are genuinely next-step equations, not just a recap of this
+          page. Magnitude gives the size information, normalization sharpens the
+          idea of direction, and the dot product is what combines both into one
+          operation.
         </p>
       </section>
 
@@ -304,24 +343,24 @@ export default function MagnitudeDistanceAndNormalizationPage() {
         <div className="ml-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Magnitude measures the length of a vector.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">In two dimensions, magnitude comes from the Pythagorean theorem.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Distance between points is the magnitude of a difference vector.</td>
               </tr>
-              <tr className="border-b border-white/10">
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+              <tr>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Normalization turns a nonzero vector into a unit vector with the same direction.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">These ideas prepare the way for dot products, angles, and projections.</td>
               </tr>
             </tbody>

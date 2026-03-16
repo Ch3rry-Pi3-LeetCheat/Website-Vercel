@@ -278,6 +278,20 @@ Example:
   - `Not a function`
   stand as the real subheadings
 
+## 8.1. Bridge / What Comes Next
+
+The `What comes next` section should point forward, not sideways.
+
+Rules:
+
+- the equations in that section should preview the next lesson's real symbols or operations
+- do not simply repeat the notation from the current page unless it is needed as setup for the next one
+- if the next lesson is dot product, show dot-product notation there rather than another block of magnitude-only expressions
+
+Reason:
+
+- that section works best when it feels like a clean handoff into the next concept instead of a recap with a different heading
+
 ## 9. Tables
 
 General table pattern for math pages:
