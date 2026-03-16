@@ -671,7 +671,7 @@ export default function AlgebraStaticVisual({
                 </div>
               </foreignObject>
 
-              <foreignObject x="197" y="75" width="24" height="28">
+              <foreignObject x="195" y="75" width="24" height="28">
                 <div className="flex h-full items-center justify-center text-center">
                   <MathInline
                     tex={String.raw`{\color{#c084fc}c}`}
