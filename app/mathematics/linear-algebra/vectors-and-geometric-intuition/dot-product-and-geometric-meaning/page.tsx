@@ -181,6 +181,47 @@ export default function DotProductAndGeometricMeaningPage() {
           trying to measure how much the two arrows line up.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          If you switch from tuple form to{" "}
+          <span className="text-white font-semibold">column-vector form</span>,
+          the same dot product is often written by transposing one vector into a
+          row:
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+{\color{#f472b6}\mathbf{u}}&=\begin{bmatrix}{\color{#f472b6}u}_{1}\\[0.35em]{\color{#f472b6}u}_{2}\end{bmatrix},
+\qquad
+{\color{#22d3ee}\mathbf{v}}=\begin{bmatrix}{\color{#22d3ee}v}_{1}\\[0.35em]{\color{#22d3ee}v}_{2}\end{bmatrix} \\[0.85em]
+{\color{#f472b6}\mathbf{u}}^{T}{\color{#22d3ee}\mathbf{v}}
+&=\begin{bmatrix}{\color{#f472b6}u}_{1} & {\color{#f472b6}u}_{2}\end{bmatrix}
+\begin{bmatrix}{\color{#22d3ee}v}_{1}\\[0.35em]{\color{#22d3ee}v}_{2}\end{bmatrix}
+= {\color{#f472b6}u}_{1}{\color{#22d3ee}v}_{1}+{\color{#f472b6}u}_{2}{\color{#22d3ee}v}_{2}
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}^{T}{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          is not a different idea. It is just the same dot product written in a
+          form that will become very useful later when vectors and matrices are
+          written together.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For the same example as before, you could also write:
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+{\color{#f472b6}\mathbf{u}}^{T}{\color{#22d3ee}\mathbf{v}}
+&=\begin{bmatrix}1 & 2\end{bmatrix}
+\begin{bmatrix}4\\[0.35em]3\end{bmatrix} \\
+&=1\cdot4\mathbin{\color{white}{+}}2\cdot3 \\
+&=10
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           In higher dimensions the notation grows, but the idea does not
           change. You might write{" "}
           <MathInline
@@ -269,17 +310,12 @@ export default function DotProductAndGeometricMeaningPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A very intuitive way to say it is this:
           <span className="text-white font-semibold">
-            {" "}the dot product measures how much of{" "}
+            {" "}the dot product tells you how much of{" "}
             <MathInline
               tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
               className="math-inline math-white"
             />{" "}
-            goes in the direction of{" "}
-            <MathInline
-              tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
-              className="math-inline math-white"
-            />
-            , and then scales that by the length of{" "}
+            lies in the direction of{" "}
             <MathInline
               tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
               className="math-inline math-white"
@@ -328,6 +364,24 @@ export default function DotProductAndGeometricMeaningPage() {
           direction.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          If{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          is not a unit vector, that directional amount is scaled by{" "}
+          <MathInline
+            tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|`}
+            className="math-inline math-white"
+          />
+          . But when{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          has length 1, the meaning becomes especially clean.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
           For example, let{" "}
           <MathInline
             tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,0)`}
@@ -343,8 +397,8 @@ export default function DotProductAndGeometricMeaningPage() {
             tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
             className="math-inline math-white"
           />{" "}
-          has length 1 and points directly to the right, so it is a unit vector
-          in that direction.
+          has length 1 and points directly to the right, so it is the unit
+          vector in the x-direction.
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -361,7 +415,40 @@ export default function DotProductAndGeometricMeaningPage() {
             className="math-inline math-white"
           />{" "}
           contains <span className="text-white font-semibold">3 units of
-          rightward movement</span>. In other words, when{" "}
+          rightward movement</span>.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          You can also read that answer as the{" "}
+          <span className="text-white font-semibold">first component of</span>{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />
+          , namely{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}v}_{1}=3`}
+            className="math-inline math-white"
+          />
+          . In the usual x-y basis, the first component measures horizontal
+          movement, so taking the dot product with{" "}
+          <MathInline
+            tex={String.raw`(1,0)`}
+            className="math-inline math-white"
+          />{" "}
+          picks out the horizontal part of the vector.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So this is the component-form version of the same idea: dotting{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          with a unit vector in the x-direction tells you how much of{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          lies in that direction. In other words, when{" "}
           <MathInline
             tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
             className="math-inline math-white"

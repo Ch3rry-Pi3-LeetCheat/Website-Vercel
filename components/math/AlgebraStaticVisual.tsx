@@ -901,7 +901,7 @@ export default function AlgebraStaticVisual({
                 <path d="M100 270 L292 270" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-u-arrow)" />
                 <path d="M100 270 L243.4 78.8" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-v-arrow)" />
                 <path d="M250 270 L250 70" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M250 258 L262 258 L262 270" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
+                <path d="M250 258 L238 258 L238 270" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
                 <path d="M140 270 A40 40 0 0 0 124 238" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
 
                 <line x1="100" y1="304" x2="250" y2="304" stroke="rgba(231,238,248,0.85)" strokeWidth="1.6" />
