@@ -1050,47 +1050,47 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "projection-decomposition" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 360" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="108 136 354 186" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("projection-decomposition-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-decomposition-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-decomposition-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
-              <g transform="translate(24 0)">
-                <path d="M280.4 256.8 L289.2 258.2 L290.6 249.4" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.7" />
-                <path d="M110 300 L278.2 259.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
-                <path d="M110 300 L400 230" stroke="rgba(244,114,182,0.82)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
-                <path d="M110 300 L292.2 201.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
-                <path d="M278.2 259.4 L292.2 201.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <g transform="translate(30 0)">
+                <path d="M294 280 L294 154" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+                <path d="M294 272 L306 272 L306 260" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M90 280 L294 280" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
+                <path d="M90 280 L414 280" stroke="rgba(244,114,182,0.9)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
+                <path d="M90 280 L294 156" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
 
-                <circle cx="110" cy="300" r="5.5" fill="#ffffff" />
+                <circle cx="90" cy="280" r="5.5" fill="#ffffff" />
 
-                <circle cx="410" cy="228" r="7" fill="#f472b6" />
-                <circle cx="410" cy="228" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="424" cy="280" r="7" fill="#f472b6" />
+                <circle cx="424" cy="280" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
-                <circle cx="296" cy="199" r="7" fill="#22d3ee" />
-                <circle cx="296" cy="199" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <circle cx="298" cy="154" r="7" fill="#22d3ee" />
+                <circle cx="298" cy="154" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-                <circle cx="278.2" cy="259.4" r="6.5" fill="#ffffff" />
-                <circle cx="278.2" cy="259.4" r="9.5" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+                <circle cx="294" cy="280" r="6" fill="#ffffff" />
+                <circle cx="294" cy="280" r="8.5" fill="none" stroke="rgba(231,238,248,0.15)" strokeWidth="2" />
 
-                <text x="422" y="220" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-                <text x="305" y="190" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <foreignObject x="188" y="270" width="140" height="28">
+                <text x="436" y="270" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="312" y="145" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="146" y="292" width="126" height="28">
                   <div className="flex h-full items-center justify-center">
                     <MathInline
-                      tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`}
+                      tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
                       className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
-                <foreignObject x="300" y="220" width="180" height="28">
+                <foreignObject x="314" y="196" width="156" height="34">
                   <div className="flex h-full items-center justify-start">
                     <MathInline
                       tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
-                      className="math-inline math-white text-sm"
+                      className="math-inline text-sm text-slate-400"
                     />
                   </div>
                 </foreignObject>
@@ -1100,47 +1100,47 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "projection-negative" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 360" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="96 148 384 168" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
-              <g transform="translate(18 0)">
-                <path d="M96.2 259.7 L105 261.1 L106.4 252.3" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.7" />
-                <path d="M170 244 L98.6 261.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M170 244 L460 174" stroke="rgba(244,114,182,0.82)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
-                <path d="M170 244 L112.6 317.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
-                <path d="M98.6 261.4 L112.6 317.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+              <g transform="translate(20 0)">
+                <path d="M114 260 L114 166" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+                <path d="M114 252 L126 252 L126 240" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M180 260 L114 260" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
+                <path d="M180 260 L504 260" stroke="rgba(244,114,182,0.9)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
+                <path d="M180 260 L114 168" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
 
-                <circle cx="170" cy="244" r="5.5" fill="#ffffff" />
+                <circle cx="180" cy="260" r="5.5" fill="#ffffff" />
 
-                <circle cx="470" cy="172" r="7" fill="#f472b6" />
-                <circle cx="470" cy="172" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="514" cy="260" r="7" fill="#f472b6" />
+                <circle cx="514" cy="260" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
-                <circle cx="116" cy="321" r="7" fill="#22d3ee" />
-                <circle cx="116" cy="321" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <circle cx="114" cy="164" r="7" fill="#22d3ee" />
+                <circle cx="114" cy="164" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-                <circle cx="98.6" cy="261.4" r="6.5" fill="#ffffff" />
-                <circle cx="98.6" cy="261.4" r="9.5" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+                <circle cx="114" cy="260" r="6" fill="#ffffff" />
+                <circle cx="114" cy="260" r="8.5" fill="none" stroke="rgba(231,238,248,0.15)" strokeWidth="2" />
 
-                <text x="482" y="164" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-                <text x="126" y="334" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <foreignObject x="8" y="274" width="140" height="28">
-                  <div className="flex h-full items-center justify-start">
+                <text x="526" y="250" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="126" y="154" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="34" y="274" width="126" height="28">
+                  <div className="flex h-full items-center justify-center">
                     <MathInline
-                      tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`}
+                      tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
                       className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
-                <foreignObject x="130" y="284" width="180" height="28">
+                <foreignObject x="138" y="192" width="156" height="34">
                   <div className="flex h-full items-center justify-start">
                     <MathInline
                       tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
-                      className="math-inline math-white text-sm"
+                      className="math-inline text-sm text-slate-400"
                     />
                   </div>
                 </foreignObject>
