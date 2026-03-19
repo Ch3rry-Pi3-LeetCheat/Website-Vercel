@@ -269,8 +269,22 @@ export default function DotProductAndGeometricMeaningPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           A very intuitive way to say it is this:
           <span className="text-white font-semibold">
-            {" "}the dot product measures how much of one vector goes in the
-            direction of the other.
+            {" "}the dot product measures how much of{" "}
+            <MathInline
+              tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+              className="math-inline math-white"
+            />{" "}
+            goes in the direction of{" "}
+            <MathInline
+              tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+              className="math-inline math-white"
+            />
+            , and then scales that by the length of{" "}
+            <MathInline
+              tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+              className="math-inline math-white"
+            />
+            .
           </span>{" "}
           If{" "}
           <MathInline
@@ -312,6 +326,47 @@ export default function DotProductAndGeometricMeaningPage() {
             className="math-inline math-white"
           />{" "}
           direction.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For example, let{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,0)`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`}
+            className="math-inline math-white"
+          />
+          . The vector{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          has length 1 and points directly to the right, so it is a unit vector
+          in that direction.
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
+&=1\cdot3\mathbin{\color{white}{+}}0\cdot4 \\
+&=3
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          That answer means{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          contains <span className="text-white font-semibold">3 units of
+          rightward movement</span>. In other words, when{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          is a unit vector, the dot product becomes a signed directional amount.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           To make that picture concrete, use{" "}
