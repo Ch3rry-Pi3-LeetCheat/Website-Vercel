@@ -215,8 +215,8 @@ export default function DotProductAndGeometricMeaningPage() {
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}^{T}{\color{#22d3ee}\mathbf{v}}
 &=\begin{bmatrix}1 & 2\end{bmatrix}
-\begin{bmatrix}4\\[0.35em]3\end{bmatrix} \\
-&=1\cdot4\mathbin{\color{white}{+}}2\cdot3 \\
+\begin{bmatrix}4\\[0.35em]3\end{bmatrix} \\[0.55em]
+&=1\cdot4\mathbin{\color{white}{+}}2\cdot3 \\[0.35em]
 &=10
 \end{aligned}`}
           className="math-center math-lg text-white/90"

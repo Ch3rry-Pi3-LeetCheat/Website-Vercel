@@ -17,6 +17,7 @@ type AlgebraStaticVisualProps = {
     | "vector-normalization"
     | "dot-product-projection"
     | "dot-product-sign-cases"
+    | "angle-between-vectors"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -884,6 +885,41 @@ export default function AlgebraStaticVisual({
                   />
                 </div>
               </foreignObject>
+            </svg>
+          </div>
+        )}
+
+        {variant === "angle-between-vectors" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 330" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("angle-between-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("angle-between-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+
+              <g transform="translate(35 0)">
+                <path d="M110 250 L382 250" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-u-arrow)" />
+                <path d="M110 250 L296 74" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-v-arrow)" />
+                <path d="M168 250 A58 58 0 0 0 148 207" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
+
+                <circle cx="110" cy="250" r="5.5" fill="#ffffff" />
+                <circle cx="392" cy="250" r="7" fill="#f472b6" />
+                <circle cx="392" cy="250" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="304" cy="66" r="7" fill="#22d3ee" />
+                <circle cx="304" cy="66" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+                <text x="392" y="228" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="304" y="42" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+
+                <foreignObject x="150" y="198" width="30" height="24">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`\theta`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
             </svg>
           </div>
         )}

@@ -104,4 +104,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Compute dot products component by component, read them as alignment, and connect the algebra to angles and perpendicularity.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/dot-product-and-geometric-meaning",
   },
+  {
+    label: "Angles between vectors",
+    description:
+      "Use the dot product and magnitudes to solve for the actual angle between two nonzero vectors.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/angles-between-vectors",
+  },
 ];
