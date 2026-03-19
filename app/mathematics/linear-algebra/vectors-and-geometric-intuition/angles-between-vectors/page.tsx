@@ -23,6 +23,10 @@ export default function AnglesBetweenVectorsPage() {
     { id: "solving", label: "How to solve for the angle" },
     { id: "unit", label: "Unit-vector shortcut" },
     { id: "examples", label: "Worked examples" },
+    { id: "example-right", label: "Example 1: a right angle", level: 2 },
+    { id: "example-acute", label: "Example 2: an acute angle", level: 2 },
+    { id: "example-obtuse", label: "Example 3: an obtuse angle", level: 2 },
+    { id: "example-approx", label: "Example 4: an approximate angle", level: 2 },
     { id: "checks", label: "Checks and special cases" },
     { id: "why-matters", label: "Why it matters" },
     { id: "bridge", label: "What comes next" },
@@ -220,7 +224,7 @@ export default function AnglesBetweenVectorsPage() {
           Worked examples
         </h2>
 
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h3 id="example-right" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
           Example 1: a right angle
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -274,14 +278,14 @@ export default function AnglesBetweenVectorsPage() {
           caption="With faint axes in the background, you can see the two vectors meeting at a right angle even before finishing the algebra."
         />
 
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h3 id="example-acute" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
           Example 2: an acute angle
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Let{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,0)`} className="math-inline math-white" />{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(2,1)`} className="math-inline math-white" />{" "}
           and{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(1,1)`} className="math-inline math-white" />.
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(1,2)`} className="math-inline math-white" />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Start with the dot product:
@@ -289,8 +293,8 @@ export default function AnglesBetweenVectorsPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
-&=1\cdot1\mathbin{\color{white}{+}}0\cdot1 \\
-&=1
+&=2\cdot1\mathbin{\color{white}{+}}1\cdot2 \\
+&=4
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -298,11 +302,11 @@ export default function AnglesBetweenVectorsPage() {
           Next find the magnitudes:
         </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1`}
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=\sqrt{2^{2}+1^{2}}=\sqrt{5}`}
           className="math-center math-lg text-white/90"
         />
         <MathBlock
-          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+1^{2}}=\sqrt{2}`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+2^{2}}=\sqrt{5}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -310,34 +314,35 @@ export default function AnglesBetweenVectorsPage() {
           <MathInline tex={String.raw`\cos\theta`} className="math-inline math-white" />:
         </p>
         <MathBlock
-          tex={String.raw`\cos\theta=\frac{1}{1\cdot\sqrt{2}}=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2}`}
+          tex={String.raw`\cos\theta=\frac{4}{\sqrt{5}\cdot\sqrt{5}}=\frac{4}{5}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           That cosine value corresponds to:
         </p>
         <MathBlock
-          tex={String.raw`\theta=45^\circ`}
+          tex={String.raw`\theta\approx36.87^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The positive cosine tells you the angle is acute, and the exact value
-          identifies it as 45 degrees.
+          The positive cosine tells you the angle is acute, and the value{" "}
+          <MathInline tex={String.raw`\frac{4}{5}`} className="math-inline math-white" />{" "}
+          shows the two vectors point fairly strongly in the same direction.
         </p>
         <AlgebraStaticVisual
           variant="angle-example-acute"
           framed={false}
-          caption="The coordinate-plane view makes the 45-degree acute angle easy to picture: one vector lies on the x-axis and the other rises equally in x and y."
+          caption="Both vectors tilt upward and to the right, but not by the same amount, so the angle between them is clearly acute without either vector lying on an axis."
         />
 
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h3 id="example-obtuse" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
           Example 3: an obtuse angle
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Now take{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,0)`} className="math-inline math-white" />{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,2)`} className="math-inline math-white" />{" "}
           and{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(-1,1)`} className="math-inline math-white" />.
+          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(1,-2)`} className="math-inline math-white" />.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           First compute the dot product:
@@ -345,8 +350,8 @@ export default function AnglesBetweenVectorsPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
-&=1\cdot(-1)\mathbin{\color{white}{+}}0\cdot1 \\
-&=-1
+&=1\cdot1\mathbin{\color{white}{+}}2\cdot(-2) \\
+&=-3
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
@@ -354,37 +359,38 @@ export default function AnglesBetweenVectorsPage() {
           Now compute the magnitudes:
         </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1`}
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=\sqrt{1^{2}+2^{2}}=\sqrt{5}`}
           className="math-center math-lg text-white/90"
         />
         <MathBlock
-          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{(-1)^{2}+1^{2}}=\sqrt{2}`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+(-2)^{2}}=\sqrt{5}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Substitute into the cosine formula:
         </p>
         <MathBlock
-          tex={String.raw`\cos\theta=\frac{-1}{1\cdot\sqrt{2}}=-\frac{1}{\sqrt{2}}=-\frac{\sqrt{2}}{2}`}
+          tex={String.raw`\cos\theta=\frac{-3}{\sqrt{5}\cdot\sqrt{5}}=-\frac{3}{5}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           Then solve for the angle:
         </p>
         <MathBlock
-          tex={String.raw`\theta=135^\circ`}
+          tex={String.raw`\theta\approx126.87^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          The negative cosine shows immediately that the angle must be obtuse.
+          The negative cosine shows immediately that the angle must be obtuse,
+          because the vectors point partly against each other.
         </p>
         <AlgebraStaticVisual
           variant="angle-example-obtuse"
           framed={false}
-          caption="Here the second vector points into the upper-left direction, so the angle from the pink vector to the blue vector is clearly obtuse."
+          caption="The pink vector leans upward while the blue vector leans downward, both off the axes, so their opening is naturally wider than 90 degrees."
         />
 
-        <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
+        <h3 id="example-approx" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
           Example 4: an approximate angle
         </h3>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
