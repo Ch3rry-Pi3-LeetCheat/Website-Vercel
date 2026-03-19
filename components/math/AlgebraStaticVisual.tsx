@@ -1053,7 +1053,7 @@ export default function AlgebraStaticVisual({
           <div className="relative mx-auto max-w-[560px]">
             <svg viewBox="96 136 428 198" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("projection-decomposition-u-arrow", "rgba(244,114,182,0.72)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-decomposition-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-decomposition-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-decomposition-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
@@ -1103,17 +1103,17 @@ export default function AlgebraStaticVisual({
           <div className="relative mx-auto max-w-[560px]">
             <svg viewBox="56 140 424 206" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,0.72)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
               <g transform="translate(8 0)">
                 <path d="M114 260 L114 166" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M118 248 L130 248 L130 260" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M116 248 L128 248 L128 260" fill="none" stroke="rgba(148,163,184,0.92)" strokeWidth="1.8" />
                 <path d="M180 260 L366 260" stroke="rgba(244,114,182,0.58)" strokeWidth="2.1" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
                 <path d="M180 260 L114 260" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M180 260 L114 168" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
+                <path d="M180 260 L120 172" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
 
                 <circle cx="180" cy="260" r="5.5" fill="#ffffff" />
 

@@ -270,9 +270,20 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           direction:
         </p>
         <MathBlock
-          tex={String.raw`\widehat{{\color{#f472b6}\mathbf{u}}}=\frac{{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|},\qquad
-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
+          tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
 =\operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})\,\widehat{{\color{#f472b6}\mathbf{u}}}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Here{" "}
+          <MathInline tex={String.raw`\widehat{{\color{#f472b6}\mathbf{u}}}`} className="math-inline math-white" />{" "}
+          means the unit vector in the{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />{" "}
+          direction:
+        </p>
+        <MathBlock
+          tex={String.raw`\widehat{{\color{#f472b6}\mathbf{u}}}
+=\frac{{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -319,11 +330,20 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />{" "}
           already has length 1. Then:
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The scalar projection collapses to the dot product itself:
+        </p>
         <MathBlock
           tex={String.raw`\operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}},
-\qquad
-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
+={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          And the vector projection is just that signed amount placed along{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />:
+        </p>
+        <MathBlock
+          tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
 =({\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}})\,{\color{#f472b6}\mathbf{u}}`}
           className="math-center math-lg text-white/90"
         />
@@ -357,9 +377,9 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 \operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-&=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|} \\
-&=\frac{(3,4)\cdot(1,0)}{1} \\
-&=\frac{3\cdot1+4\cdot0}{1} \\
+&=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|} \\[4pt]
+&=\frac{(3,4)\cdot(1,0)}{1} \\[4pt]
+&=\frac{3\cdot1+4\cdot0}{1} \\[4pt]
 &=3
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -370,7 +390,7 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 \operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-&=3(1,0) \\
+&=3(1,0) \\[4pt]
 &=(3,0)
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -426,9 +446,9 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 \operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-&=\frac{6}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}(1,1) \\
-&=\frac{6}{2}(1,1) \\
-&=3(1,1) \\
+&=\frac{6}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}(1,1) \\[4pt]
+&=\frac{6}{2}(1,1) \\[4pt]
+&=3(1,1) \\[4pt]
 &=(3,3)
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -488,8 +508,8 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
         <MathBlock
           tex={String.raw`\begin{aligned}
 \operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-&=\frac{-2}{2}(1,1) \\
-&=-1(1,1) \\
+&=\frac{-2}{2}(1,1) \\[4pt]
+&=-1(1,1) \\[4pt]
 &=(-1,-1)
 \end{aligned}`}
           className="math-center math-lg text-white/90"
