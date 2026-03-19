@@ -1051,7 +1051,7 @@ export default function AlgebraStaticVisual({
 
         {variant === "projection-decomposition" && (
           <div className="relative mx-auto max-w-[560px]">
-            <svg viewBox="108 136 354 186" className="h-auto w-full">
+            <svg viewBox="100 136 412 196" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("projection-decomposition-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-decomposition-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
@@ -1078,19 +1078,19 @@ export default function AlgebraStaticVisual({
 
                 <text x="436" y="270" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="312" y="145" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <foreignObject x="146" y="292" width="126" height="28">
+                <foreignObject x="142" y="292" width="132" height="28">
                   <div className="flex h-full items-center justify-center">
                     <MathInline
-                      tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
+                      tex={String.raw`\color{#e7eef8}{\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})}`}
                       className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
-                <foreignObject x="314" y="196" width="156" height="34">
+                <foreignObject x="312" y="196" width="164" height="34">
                   <div className="flex h-full items-center justify-start">
                     <MathInline
-                      tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
-                      className="math-inline text-sm text-slate-400"
+                      tex={String.raw`\color{#94a3b8}{{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})}`}
+                      className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
@@ -1101,24 +1101,24 @@ export default function AlgebraStaticVisual({
 
         {variant === "projection-negative" && (
           <div className="relative mx-auto max-w-[560px]">
-            <svg viewBox="96 148 384 168" className="h-auto w-full">
+            <svg viewBox="88 144 348 172" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
-              <g transform="translate(20 0)">
+              <g transform="translate(8 0)">
                 <path d="M114 260 L114 166" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
                 <path d="M114 252 L126 252 L126 240" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
                 <path d="M180 260 L114 260" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M180 260 L504 260" stroke="rgba(244,114,182,0.9)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
+                <path d="M180 260 L366 260" stroke="rgba(244,114,182,0.9)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
                 <path d="M180 260 L114 168" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
 
                 <circle cx="180" cy="260" r="5.5" fill="#ffffff" />
 
-                <circle cx="514" cy="260" r="7" fill="#f472b6" />
-                <circle cx="514" cy="260" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="376" cy="260" r="7" fill="#f472b6" />
+                <circle cx="376" cy="260" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
                 <circle cx="114" cy="164" r="7" fill="#22d3ee" />
                 <circle cx="114" cy="164" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
@@ -1126,21 +1126,21 @@ export default function AlgebraStaticVisual({
                 <circle cx="114" cy="260" r="6" fill="#ffffff" />
                 <circle cx="114" cy="260" r="8.5" fill="none" stroke="rgba(231,238,248,0.15)" strokeWidth="2" />
 
-                <text x="526" y="250" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="390" y="250" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="126" y="154" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <foreignObject x="34" y="274" width="126" height="28">
+                <foreignObject x="26" y="274" width="132" height="28">
                   <div className="flex h-full items-center justify-center">
                     <MathInline
-                      tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
+                      tex={String.raw`\color{#e7eef8}{\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})}`}
                       className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
-                <foreignObject x="138" y="192" width="156" height="34">
+                <foreignObject x="136" y="192" width="164" height="34">
                   <div className="flex h-full items-center justify-start">
                     <MathInline
-                      tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
-                      className="math-inline text-sm text-slate-400"
+                      tex={String.raw`\color{#94a3b8}{{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})}`}
+                      className="math-inline math-white text-sm"
                     />
                   </div>
                 </foreignObject>
