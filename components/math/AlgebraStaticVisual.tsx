@@ -1059,9 +1059,9 @@ export default function AlgebraStaticVisual({
               </defs>
 
               <g transform="translate(24 0)">
-                <path d="M282 259.4 L296 261.5 L298.1 247.5" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M280.4 256.8 L289.2 258.2 L290.6 249.4" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.7" />
                 <path d="M110 300 L278.2 259.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
-                <path d="M110 300 L400 230" stroke="rgba(244,114,182,0.58)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
+                <path d="M110 300 L400 230" stroke="rgba(244,114,182,0.82)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
                 <path d="M110 300 L292.2 201.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
                 <path d="M278.2 259.4 L292.2 201.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
 
@@ -1074,12 +1074,26 @@ export default function AlgebraStaticVisual({
                 <circle cx="296" cy="199" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
                 <circle cx="278.2" cy="259.4" r="6.5" fill="#ffffff" />
-                <circle cx="278.2" cy="259.4" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+                <circle cx="278.2" cy="259.4" r="9.5" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
 
                 <text x="422" y="220" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-                <text x="306" y="192" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <text x="218" y="278" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
-                <text x="302" y="238" fill="rgba(148,163,184,0.92)" fontSize="13" fontWeight="700">v - proj_u(v)</text>
+                <text x="305" y="190" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <foreignObject x="188" y="270" width="140" height="28">
+                  <div className="flex h-full items-center justify-center">
+                    <MathInline
+                      tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+                <foreignObject x="300" y="220" width="180" height="28">
+                  <div className="flex h-full items-center justify-start">
+                    <MathInline
+                      tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
               </g>
             </svg>
           </div>
@@ -1095,9 +1109,9 @@ export default function AlgebraStaticVisual({
               </defs>
 
               <g transform="translate(18 0)">
-                <path d="M94 262.4 L108 264.5 L110.1 250.5" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M96.2 259.7 L105 261.1 L106.4 252.3" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.7" />
                 <path d="M170 244 L98.6 261.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M170 244 L460 174" stroke="rgba(244,114,182,0.58)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
+                <path d="M170 244 L460 174" stroke="rgba(244,114,182,0.82)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
                 <path d="M170 244 L112.6 317.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
                 <path d="M98.6 261.4 L112.6 317.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
 
@@ -1110,12 +1124,26 @@ export default function AlgebraStaticVisual({
                 <circle cx="116" cy="321" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
                 <circle cx="98.6" cy="261.4" r="6.5" fill="#ffffff" />
-                <circle cx="98.6" cy="261.4" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+                <circle cx="98.6" cy="261.4" r="9.5" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
 
                 <text x="482" y="164" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="126" y="334" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <text x="26" y="284" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
-                <text x="120" y="286" fill="rgba(148,163,184,0.92)" fontSize="13" fontWeight="700">v - proj_u(v)</text>
+                <foreignObject x="8" y="274" width="140" height="28">
+                  <div className="flex h-full items-center justify-start">
+                    <MathInline
+                      tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+                <foreignObject x="130" y="284" width="180" height="28">
+                  <div className="flex h-full items-center justify-start">
+                    <MathInline
+                      tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
               </g>
             </svg>
           </div>
