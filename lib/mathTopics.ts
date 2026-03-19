@@ -110,4 +110,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Use the dot product and magnitudes to solve for the actual angle between two nonzero vectors.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/angles-between-vectors",
   },
+  {
+    label: "Projections of one vector onto another",
+    description:
+      "Extract the part of one vector that lies along a chosen direction, as either a signed amount or a new vector.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/projections-of-one-vector-onto-another",
+  },
 ];

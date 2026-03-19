@@ -22,6 +22,8 @@ type AlgebraStaticVisualProps = {
     | "angle-example-acute"
     | "angle-example-obtuse"
     | "angle-example-approx"
+    | "projection-decomposition"
+    | "projection-negative"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -1043,6 +1045,78 @@ export default function AlgebraStaticVisual({
               <text x="218" y="236" fill="#e7eef8" fontSize="16" fontWeight="700">≈ 53°</text>
               <text x="438" y="296" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
               <text x="158" y="78" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "projection-decomposition" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 360" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("projection-decomposition-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-decomposition-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-decomposition-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
+              </defs>
+
+              <g transform="translate(40 0)">
+                <path d="M100 280 L312 104" stroke="rgba(244,114,182,0.5)" strokeWidth="2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
+                <path d="M100 280 L250 205" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
+                <path d="M100 280 L285 190" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
+                <path d="M250 205 L285 190" stroke="rgba(148,163,184,0.9)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+                <path d="M250 205 L258 217 L270 209" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+
+                <circle cx="100" cy="280" r="5.5" fill="#ffffff" />
+
+                <circle cx="320" cy="98" r="7" fill="#f472b6" />
+                <circle cx="320" cy="98" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+
+                <circle cx="290" cy="188" r="7" fill="#22d3ee" />
+                <circle cx="290" cy="188" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+                <circle cx="250" cy="205" r="6.5" fill="#ffffff" />
+                <circle cx="250" cy="205" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+
+                <text x="326" y="88" fill="#f472b6" fontSize="14" fontWeight="700">u direction</text>
+                <text x="300" y="180" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <text x="214" y="228" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
+                <text x="276" y="216" fill="rgba(148,163,184,0.9)" fontSize="13" fontWeight="700">perpendicular leftover</text>
+              </g>
+            </svg>
+          </div>
+        )}
+
+        {variant === "projection-negative" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 360" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-negative-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("projection-negative-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
+              </defs>
+
+              <g transform="translate(55 0)">
+                <path d="M130 200 L276 54" stroke="rgba(244,114,182,0.55)" strokeWidth="2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
+                <path d="M130 200 L191 321" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
+                <path d="M130 200 L86 244" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
+                <path d="M86 244 L191 321" stroke="rgba(148,163,184,0.9)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+                <path d="M86 244 L99 247 L102 234" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+
+                <circle cx="130" cy="200" r="5.5" fill="#ffffff" />
+
+                <circle cx="284" cy="46" r="7" fill="#f472b6" />
+                <circle cx="284" cy="46" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+
+                <circle cx="194" cy="327" r="7" fill="#22d3ee" />
+                <circle cx="194" cy="327" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+                <circle cx="82" cy="248" r="6.5" fill="#ffffff" />
+                <circle cx="82" cy="248" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+
+                <text x="292" y="38" fill="#f472b6" fontSize="14" fontWeight="700">u direction</text>
+                <text x="203" y="339" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <text x="30" y="268" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">negative proj_u(v)</text>
+                <text x="182" y="278" fill="rgba(148,163,184,0.9)" fontSize="13" fontWeight="700">still perpendicular</text>
+              </g>
             </svg>
           </div>
         )}
