@@ -26,7 +26,6 @@ export default function AnglesBetweenVectorsPage() {
     { id: "example-right", label: "Example 1: a right angle", level: 2 },
     { id: "example-acute", label: "Example 2: an acute angle", level: 2 },
     { id: "example-obtuse", label: "Example 3: an obtuse angle", level: 2 },
-    { id: "example-approx", label: "Example 4: an approximate angle", level: 2 },
     { id: "checks", label: "Checks and special cases" },
     { id: "why-matters", label: "Why it matters" },
     { id: "bridge", label: "What comes next" },
@@ -81,7 +80,7 @@ export default function AnglesBetweenVectorsPage() {
               </tr>
               <tr className="border-b border-white/10">
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Worked examples</td>
-                <td className="py-2">How to compute exact and approximate angles in several beginner-friendly cases.</td>
+                <td className="py-2">How to compute angles in several beginner-friendly cases.</td>
               </tr>
               <tr className="border-b border-white/10">
                 <td className="w-56 py-2 pr-4 font-semibold text-white">Checks and special cases</td>
@@ -390,49 +389,6 @@ export default function AnglesBetweenVectorsPage() {
           caption="The pink vector leans upward while the blue vector leans downward, both off the axes, so their opening is naturally wider than 90 degrees."
         />
 
-        <h3 id="example-approx" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
-          Example 4: an approximate angle
-        </h3>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Reuse the familiar pair{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}=(4,0)`} className="math-inline math-white" />{" "}
-          and{" "}
-          <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`} className="math-inline math-white" />.
-        </p>
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          First collect the quantities you need:
-        </p>
-        <MathBlock
-          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=12`}
-          className="math-center math-lg text-white/90"
-        />
-        <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=4,\qquad \|{\color{#22d3ee}\mathbf{v}}\|=5`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now compute the cosine:
-        </p>
-        <MathBlock
-          tex={String.raw`\cos\theta=\frac{12}{4\cdot5}=\frac{3}{5}=0.6`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Finally, use inverse cosine:
-        </p>
-        <MathBlock
-          tex={String.raw`\theta=\cos^{-1}(0.6)\approx 53.13^\circ`}
-          className="math-center math-lg text-white/90"
-        />
-        <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          This is a good reminder that not every angle comes out as a neat exact
-          value. Sometimes the correct final answer is an approximation.
-        </p>
-        <AlgebraStaticVisual
-          variant="angle-example-approx"
-          framed={false}
-          caption="This example is still easy to picture on axes, but the angle is not a special exact one, so the final answer is approximate."
-        />
       </section>
 
       <section id="checks" className="scroll-mt-28 grid gap-4">
