@@ -229,6 +229,9 @@ export default function AnglesBetweenVectorsPage() {
           and{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(1,-2)`} className="math-inline math-white" />.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          First compute the dot product:
+        </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
@@ -238,19 +241,38 @@ export default function AnglesBetweenVectorsPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now compute the magnitudes:
+          Now compute each magnitude separately:
         </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=\sqrt{2^{2}+1^{2}}=\sqrt{5},\qquad \|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+(-2)^{2}}=\sqrt{5}`}
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=\sqrt{2^{2}+1^{2}}=\sqrt{5}`}
           className="math-center math-lg text-white/90"
         />
         <MathBlock
-          tex={String.raw`\cos\theta=\frac{0}{\sqrt{5}\sqrt{5}}=0,\qquad \theta=90^\circ`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+(-2)^{2}}=\sqrt{5}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Put those results into the cosine formula:
+        </p>
+        <MathBlock
+          tex={String.raw`\cos\theta=\frac{0}{\sqrt{5}\sqrt{5}}=0`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Finally, convert that cosine value into an angle:
+        </p>
+        <MathBlock
+          tex={String.raw`\theta=90^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This matches the previous lesson: zero dot product means a right angle.
         </p>
+        <AlgebraStaticVisual
+          variant="angle-example-right"
+          framed={false}
+          caption="With faint axes in the background, you can see the two vectors meeting at a right angle even before finishing the algebra."
+        />
 
         <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Example 2: an acute angle
@@ -261,6 +283,9 @@ export default function AnglesBetweenVectorsPage() {
           and{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(1,1)`} className="math-inline math-white" />.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Start with the dot product:
+        </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
@@ -269,18 +294,41 @@ export default function AnglesBetweenVectorsPage() {
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Next find the magnitudes:
+        </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1,\qquad \|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+1^{2}}=\sqrt{2}`}
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1`}
           className="math-center math-lg text-white/90"
         />
         <MathBlock
-          tex={String.raw`\cos\theta=\frac{1}{1\cdot\sqrt{2}}=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2},\qquad \theta=45^\circ`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{1^{2}+1^{2}}=\sqrt{2}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Substitute those into the formula for{" "}
+          <MathInline tex={String.raw`\cos\theta`} className="math-inline math-white" />:
+        </p>
+        <MathBlock
+          tex={String.raw`\cos\theta=\frac{1}{1\cdot\sqrt{2}}=\frac{1}{\sqrt{2}}=\frac{\sqrt{2}}{2}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          That cosine value corresponds to:
+        </p>
+        <MathBlock
+          tex={String.raw`\theta=45^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The positive cosine tells you the angle is acute, and the exact value
           identifies it as 45 degrees.
         </p>
+        <AlgebraStaticVisual
+          variant="angle-example-acute"
+          framed={false}
+          caption="The coordinate-plane view makes the 45-degree acute angle easy to picture: one vector lies on the x-axis and the other rises equally in x and y."
+        />
 
         <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Example 3: an obtuse angle
@@ -291,6 +339,9 @@ export default function AnglesBetweenVectorsPage() {
           and{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(-1,1)`} className="math-inline math-white" />.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          First compute the dot product:
+        </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
 {\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
@@ -299,17 +350,39 @@ export default function AnglesBetweenVectorsPage() {
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now compute the magnitudes:
+        </p>
         <MathBlock
-          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1,\qquad \|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{(-1)^{2}+1^{2}}=\sqrt{2}`}
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=1`}
           className="math-center math-lg text-white/90"
         />
         <MathBlock
-          tex={String.raw`\cos\theta=\frac{-1}{1\cdot\sqrt{2}}=-\frac{1}{\sqrt{2}}=-\frac{\sqrt{2}}{2},\qquad \theta=135^\circ`}
+          tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=\sqrt{(-1)^{2}+1^{2}}=\sqrt{2}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Substitute into the cosine formula:
+        </p>
+        <MathBlock
+          tex={String.raw`\cos\theta=\frac{-1}{1\cdot\sqrt{2}}=-\frac{1}{\sqrt{2}}=-\frac{\sqrt{2}}{2}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Then solve for the angle:
+        </p>
+        <MathBlock
+          tex={String.raw`\theta=135^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           The negative cosine shows immediately that the angle must be obtuse.
         </p>
+        <AlgebraStaticVisual
+          variant="angle-example-obtuse"
+          framed={false}
+          caption="Here the second vector points into the upper-left direction, so the angle from the pink vector to the blue vector is clearly obtuse."
+        />
 
         <h3 className="text-xl font-semibold text-white font-[var(--font-display)]">
           Example 4: an approximate angle
@@ -320,14 +393,27 @@ export default function AnglesBetweenVectorsPage() {
           and{" "}
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`} className="math-inline math-white" />.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          First collect the quantities you need:
+        </p>
         <MathBlock
-          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=12,\qquad \|{\color{#f472b6}\mathbf{u}}\|=4,\qquad \|{\color{#22d3ee}\mathbf{v}}\|=5`}
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=12`}
           className="math-center math-lg text-white/90"
         />
+        <MathBlock
+          tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=4,\qquad \|{\color{#22d3ee}\mathbf{v}}\|=5`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now compute the cosine:
+        </p>
         <MathBlock
           tex={String.raw`\cos\theta=\frac{12}{4\cdot5}=\frac{3}{5}=0.6`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Finally, use inverse cosine:
+        </p>
         <MathBlock
           tex={String.raw`\theta=\cos^{-1}(0.6)\approx 53.13^\circ`}
           className="math-center math-lg text-white/90"
@@ -336,6 +422,11 @@ export default function AnglesBetweenVectorsPage() {
           This is a good reminder that not every angle comes out as a neat exact
           value. Sometimes the correct final answer is an approximation.
         </p>
+        <AlgebraStaticVisual
+          variant="angle-example-approx"
+          framed={false}
+          caption="This example is still easy to picture on axes, but the angle is not a special exact one, so the final answer is approximate."
+        />
       </section>
 
       <section id="checks" className="scroll-mt-28 grid gap-4">
@@ -442,23 +533,23 @@ export default function AnglesBetweenVectorsPage() {
           <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
             <tbody>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">The angle formula comes from solving the geometric dot-product identity for <MathInline tex={String.raw`\cos\theta`} className="math-inline math-white" />.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">For nonzero vectors, <MathInline tex={String.raw`\theta=\cos^{-1}\!\left(\frac{{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}}{\|{\color{#f472b6}\mathbf{u}}\|\,\|{\color{#22d3ee}\mathbf{v}}\|}\right)`} className="math-inline math-white" />.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">If both vectors are unit vectors, the dot product equals the cosine of the angle directly.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">Positive, zero, and negative dot products correspond to acute, right, and obtuse angles.</td>
               </tr>
               <tr>
-                <td className="w-12 py-2 text-center text-lg">OK</td>
+                <td className="w-12 py-2 text-center text-lg">✅</td>
                 <td className="py-2">This topic leads directly into projections of one vector onto another.</td>
               </tr>
             </tbody>

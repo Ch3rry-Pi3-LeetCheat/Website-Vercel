@@ -18,6 +18,10 @@ type AlgebraStaticVisualProps = {
     | "dot-product-projection"
     | "dot-product-sign-cases"
     | "angle-between-vectors"
+    | "angle-example-right"
+    | "angle-example-acute"
+    | "angle-example-obtuse"
+    | "angle-example-approx"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -900,7 +904,7 @@ export default function AlgebraStaticVisual({
               <g transform="translate(35 0)">
                 <path d="M110 250 L382 250" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-u-arrow)" />
                 <path d="M110 250 L296 74" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-v-arrow)" />
-                <path d="M168 250 A58 58 0 0 0 148 207" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
+                <path d="M160 250 A50 50 0 0 0 145.8 215.8" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
                 <circle cx="110" cy="250" r="5.5" fill="#ffffff" />
                 <circle cx="392" cy="250" r="7" fill="#f472b6" />
@@ -911,7 +915,7 @@ export default function AlgebraStaticVisual({
                 <text x="392" y="228" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="304" y="42" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
 
-                <foreignObject x="150" y="198" width="30" height="24">
+                <foreignObject x="141" y="214" width="30" height="24">
                   <div className="flex h-full items-center justify-center text-center">
                     <MathInline
                       tex={String.raw`\theta`}
@@ -920,6 +924,126 @@ export default function AlgebraStaticVisual({
                   </div>
                 </foreignObject>
               </g>
+            </svg>
+          </div>
+        )}
+
+        {variant === "angle-example-right" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 400" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("angle-example-right-axis-arrow", "rgba(231,238,248,0.45)")}
+                {renderFilledArrowMarker("angle-example-right-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("angle-example-right-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+              <line x1="60" y1="220" x2="540" y2="220" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
+              <line x1="180" y1="360" x2="180" y2="40" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
+
+              <path d="M180 220 L295 162.5" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-u-arrow)" />
+              <path d="M180 220 L237.5 335" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-v-arrow)" />
+              <path d="M205.1 207.4 L217.6 232.5 L192.5 245.1" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="1.8" />
+
+              <circle cx="180" cy="220" r="5.5" fill="#ffffff" />
+              <circle cx="300" cy="160" r="7" fill="#f472b6" />
+              <circle cx="300" cy="160" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="240" cy="340" r="7" fill="#22d3ee" />
+              <circle cx="240" cy="340" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="306" y="148" fill="#f472b6" fontSize="14" fontWeight="700">u = (2, 1)</text>
+              <text x="250" y="352" fill="#22d3ee" fontSize="14" fontWeight="700">v = (1, -2)</text>
+              <text x="228" y="205" fill="#e7eef8" fontSize="16" fontWeight="700">90°</text>
+              <text x="548" y="236" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
+              <text x="168" y="34" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "angle-example-acute" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 400" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("angle-example-acute-axis-arrow", "rgba(231,238,248,0.45)")}
+                {renderFilledArrowMarker("angle-example-acute-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("angle-example-acute-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+              <line x1="60" y1="240" x2="540" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
+              <line x1="180" y1="360" x2="180" y2="50" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
+
+              <path d="M180 240 L290 240" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-u-arrow)" />
+              <path d="M180 240 L286 134" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-v-arrow)" />
+              <path d="M230 240 A50 50 0 0 0 215.4 204.6" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
+
+              <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
+              <circle cx="295" cy="240" r="7" fill="#f472b6" />
+              <circle cx="295" cy="240" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="290" cy="130" r="7" fill="#22d3ee" />
+              <circle cx="290" cy="130" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="300" y="228" fill="#f472b6" fontSize="14" fontWeight="700">u = (1, 0)</text>
+              <text x="300" y="118" fill="#22d3ee" fontSize="14" fontWeight="700">v = (1, 1)</text>
+              <text x="226" y="203" fill="#e7eef8" fontSize="16" fontWeight="700">45°</text>
+              <text x="548" y="256" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
+              <text x="168" y="44" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "angle-example-obtuse" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 400" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("angle-example-obtuse-axis-arrow", "rgba(231,238,248,0.45)")}
+                {renderFilledArrowMarker("angle-example-obtuse-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("angle-example-obtuse-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+              <line x1="60" y1="240" x2="540" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
+              <line x1="180" y1="360" x2="180" y2="50" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
+
+              <path d="M180 240 L290 240" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-u-arrow)" />
+              <path d="M180 240 L74 134" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-v-arrow)" />
+              <path d="M230 240 A50 50 0 1 0 144.6 204.6" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
+
+              <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
+              <circle cx="295" cy="240" r="7" fill="#f472b6" />
+              <circle cx="295" cy="240" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="70" cy="130" r="7" fill="#22d3ee" />
+              <circle cx="70" cy="130" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="300" y="228" fill="#f472b6" fontSize="14" fontWeight="700">u = (1, 0)</text>
+              <text x="28" y="118" fill="#22d3ee" fontSize="14" fontWeight="700">v = (-1, 1)</text>
+              <text x="162" y="170" fill="#e7eef8" fontSize="16" fontWeight="700">135°</text>
+              <text x="548" y="256" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
+              <text x="168" y="44" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "angle-example-approx" && (
+          <div className="relative">
+            <svg viewBox="0 0 620 400" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("angle-example-approx-axis-arrow", "rgba(231,238,248,0.45)")}
+                {renderFilledArrowMarker("angle-example-approx-u-arrow", "rgba(244,114,182,1)")}
+                {renderFilledArrowMarker("angle-example-approx-v-arrow", "rgba(34,211,238,1)")}
+              </defs>
+              <line x1="60" y1="280" x2="550" y2="280" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
+              <line x1="170" y1="360" x2="170" y2="40" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
+
+              <path d="M170 280 L385 280" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-u-arrow)" />
+              <path d="M170 280 L331.2 65.1" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-v-arrow)" />
+              <path d="M224 280 A54 54 0 0 0 202.4 237" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
+
+              <circle cx="170" cy="280" r="5.5" fill="#ffffff" />
+              <circle cx="390" cy="280" r="7" fill="#f472b6" />
+              <circle cx="390" cy="280" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="335" cy="60" r="7" fill="#22d3ee" />
+              <circle cx="335" cy="60" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+
+              <text x="400" y="266" fill="#f472b6" fontSize="14" fontWeight="700">u = (4, 0)</text>
+              <text x="344" y="46" fill="#22d3ee" fontSize="14" fontWeight="700">v = (3, 4)</text>
+              <text x="218" y="236" fill="#e7eef8" fontSize="16" fontWeight="700">≈ 53°</text>
+              <text x="558" y="296" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
+              <text x="158" y="34" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
             </svg>
           </div>
         )}
