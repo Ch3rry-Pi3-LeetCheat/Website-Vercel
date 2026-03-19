@@ -897,8 +897,8 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 620 330" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("angle-between-u-arrow", "rgba(244,114,182,1)", { refX: 4.5 })}
-                {renderFilledArrowMarker("angle-between-v-arrow", "rgba(34,211,238,1)", { refX: 4.5 })}
+                {renderFilledArrowMarker("angle-between-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("angle-between-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
 
               <g transform="translate(35 0)">
@@ -933,8 +933,8 @@ export default function AlgebraStaticVisual({
             <svg viewBox="110 60 280 310" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-right-axis-arrow", "rgba(231,238,248,1)")}
-                {renderFilledArrowMarker("angle-example-right-u-arrow", "rgba(244,114,182,1)", { refX: 4.5 })}
-                {renderFilledArrowMarker("angle-example-right-v-arrow", "rgba(34,211,238,1)", { refX: 4.5 })}
+                {renderFilledArrowMarker("angle-example-right-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("angle-example-right-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
               <line x1="120" y1="220" x2="348" y2="220" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
               <line x1="180" y1="342" x2="180" y2="78" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
@@ -962,8 +962,8 @@ export default function AlgebraStaticVisual({
             <svg viewBox="130 85 255 200" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-acute-axis-arrow", "rgba(231,238,248,1)")}
-                {renderFilledArrowMarker("angle-example-acute-u-arrow", "rgba(244,114,182,1)", { refX: 4.5 })}
-                {renderFilledArrowMarker("angle-example-acute-v-arrow", "rgba(34,211,238,1)", { refX: 4.5 })}
+                {renderFilledArrowMarker("angle-example-acute-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("angle-example-acute-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
               <line x1="135" y1="240" x2="350" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
               <line x1="180" y1="326" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
@@ -992,8 +992,8 @@ export default function AlgebraStaticVisual({
             <svg viewBox="130 90 255 280" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-obtuse-axis-arrow", "rgba(231,238,248,1)")}
-                {renderFilledArrowMarker("angle-example-obtuse-u-arrow", "rgba(244,114,182,1)", { refX: 4.5 })}
-                {renderFilledArrowMarker("angle-example-obtuse-v-arrow", "rgba(34,211,238,1)", { refX: 4.5 })}
+                {renderFilledArrowMarker("angle-example-obtuse-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("angle-example-obtuse-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
               <line x1="135" y1="240" x2="360" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
               <line x1="180" y1="350" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
@@ -1022,8 +1022,8 @@ export default function AlgebraStaticVisual({
             <svg viewBox="125 70 330 250" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-approx-axis-arrow", "rgba(231,238,248,1)")}
-                {renderFilledArrowMarker("angle-example-approx-u-arrow", "rgba(244,114,182,1)", { refX: 4.5 })}
-                {renderFilledArrowMarker("angle-example-approx-v-arrow", "rgba(34,211,238,1)", { refX: 4.5 })}
+                {renderFilledArrowMarker("angle-example-approx-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("angle-example-approx-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
               <line x1="130" y1="280" x2="430" y2="280" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
               <line x1="170" y1="338" x2="170" y2="82" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
