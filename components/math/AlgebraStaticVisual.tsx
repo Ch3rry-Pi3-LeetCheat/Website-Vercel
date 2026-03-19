@@ -896,31 +896,37 @@ export default function AlgebraStaticVisual({
                 {renderFilledArrowMarker("dot-product-projection-v-arrow", "rgba(34,211,238,1)")}
               </defs>
 
-              {/* Geometric dot-product picture: u is the baseline, v is the diagonal, and the dashed line shows v's shadow on u. */}
-              <path d="M100 270 L292 270" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-u-arrow)" />
-              <path d="M100 270 L243.4 78.8" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-v-arrow)" />
-              <path d="M250 270 L250 70" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-              <path d="M250 258 L238 258 L238 270" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
-              <path d="M140 270 A40 40 0 0 0 124 238" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
+              {/* Geometric dot-product picture: u is the baseline, v is the diagonal, and the dashed drop marks the part of v that lies along u. */}
+              <g transform="translate(110 0)">
+                <path d="M100 270 L292 270" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-u-arrow)" />
+                <path d="M100 270 L243.4 78.8" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-v-arrow)" />
+                <path d="M250 270 L250 70" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
+                <path d="M250 270 L238 270 L238 258" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
+                <path d="M140 270 A40 40 0 0 0 124 238" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
 
-              <circle cx="100" cy="270" r="5.5" fill="#ffffff" />
-              <circle cx="300" cy="270" r="7" fill="#f472b6" />
-              <circle cx="300" cy="270" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
-              <circle cx="250" cy="70" r="7" fill="#22d3ee" />
-              <circle cx="250" cy="70" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <line x1="100" y1="304" x2="250" y2="304" stroke="rgba(231,238,248,0.85)" strokeWidth="1.6" />
+                <line x1="100" y1="296" x2="100" y2="312" stroke="rgba(231,238,248,0.85)" strokeWidth="1.6" />
+                <line x1="250" y1="296" x2="250" y2="312" stroke="rgba(231,238,248,0.85)" strokeWidth="1.6" />
 
-              <text x="300" y="248" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-              <text x="250" y="48" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="176" y="256" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">shadow = 3</text>
+                <circle cx="100" cy="270" r="5.5" fill="#ffffff" />
+                <circle cx="300" cy="270" r="7" fill="#f472b6" />
+                <circle cx="300" cy="270" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="250" cy="70" r="7" fill="#22d3ee" />
+                <circle cx="250" cy="70" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-              <foreignObject x="130" y="220" width="32" height="24">
-                <div className="flex h-full items-center justify-center text-center">
-                  <MathInline
-                    tex={String.raw`\theta`}
-                    className="math-inline math-white text-sm"
-                  />
-                </div>
-              </foreignObject>
+                <text x="300" y="248" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="250" y="48" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <text x="175" y="328" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="700">3</text>
+
+                <foreignObject x="130" y="220" width="32" height="24">
+                  <div className="flex h-full items-center justify-center text-center">
+                    <MathInline
+                      tex={String.raw`\theta`}
+                      className="math-inline math-white text-sm"
+                    />
+                  </div>
+                </foreignObject>
+              </g>
             </svg>
           </div>
         )}
@@ -956,7 +962,7 @@ export default function AlgebraStaticVisual({
                 <text x="110" y="30" textAnchor="middle" fill="#e7eef8" fontSize="15" fontWeight="700">Right angle</text>
                 <path d="M70 190 L146 190" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-u-arrow)" />
                 <path d="M70 190 L70 112" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-sign-v-arrow)" />
-                <path d="M82 178 L82 166 L70 166" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
+                <path d="M70 178 L82 178 L82 190" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="1.8" />
                 <circle cx="70" cy="190" r="5.5" fill="#ffffff" />
                 <text x="150" y="178" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="82" y="104" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>

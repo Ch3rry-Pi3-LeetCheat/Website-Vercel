@@ -127,7 +127,32 @@ export default function DotProductAndGeometricMeaningPage() {
           products together.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          For{" "}
+          If two vectors are written in component form as{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}=({\color{#f472b6}u}_{1},{\color{#f472b6}u}_{2})`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=({\color{#22d3ee}v}_{1},{\color{#22d3ee}v}_{2})`}
+            className="math-inline math-white"
+          />
+          , then the first component usually tracks the{" "}
+          <span className="text-white font-semibold">x-direction</span> and the
+          second tracks the{" "}
+          <span className="text-white font-semibold">y-direction</span> on a
+          two-dimensional plot.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          That means the dot product compares the x-parts with each other and
+          the y-parts with each other:
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}={\color{#f472b6}u}_{1}{\color{#22d3ee}v}_{1}\mathbin{\color{white}{+}}{\color{#f472b6}u}_{2}{\color{#22d3ee}v}_{2}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now make that rule concrete. For{" "}
           <MathInline
             tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,2)`}
             className="math-inline math-white"
@@ -153,17 +178,50 @@ export default function DotProductAndGeometricMeaningPage() {
           The output is not another vector. It is a{" "}
           <span className="text-white font-semibold">scalar</span>. That matters
           a lot. The dot product is not trying to build a new arrow. It is
-          trying to measure a relationship between two existing arrows.
+          trying to measure how much the two arrows line up.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          In general, for two-dimensional vectors,
+          In higher dimensions the notation grows, but the idea does not
+          change. You might write{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}=({\color{#f472b6}u}_{1},{\color{#f472b6}u}_{2},\ldots,{\color{#f472b6}u}_{n})`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=({\color{#22d3ee}v}_{1},{\color{#22d3ee}v}_{2},\ldots,{\color{#22d3ee}v}_{n})`}
+            className="math-inline math-white"
+          />
+          .
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          For example, with{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,2,0,3)`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(4,-1,5,2)`}
+            className="math-inline math-white"
+          />
+          ,
         </p>
         <MathBlock
-          tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}={\color{#f472b6}u}_{1}{\color{#22d3ee}v}_{1}\mathbin{\color{white}{+}}{\color{#f472b6}u}_{2}{\color{#22d3ee}v}_{2}`}
+          tex={String.raw`\begin{aligned}
+{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}
+&=1\cdot4\mathbin{\color{white}{+}}2\cdot(-1)\mathbin{\color{white}{+}}0\cdot5\mathbin{\color{white}{+}}3\cdot2 \\
+&=4\mathbin{\color{white}{+}}(-2)\mathbin{\color{white}{+}}0\mathbin{\color{white}{+}}6 \\
+&=8
+\end{aligned}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          And in higher dimensions the same idea just keeps going:
+          There is no easy 4D picture to draw, but the coordinate rule is still
+          the same: multiply matching components and add the results.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          In full generality, that becomes:
         </p>
         <MathBlock
           tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=\sum_{i=1}^{n}{\color{#f472b6}u}_{i}{\color{#22d3ee}v}_{i}`}
@@ -171,7 +229,8 @@ export default function DotProductAndGeometricMeaningPage() {
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So the rule is simple, but the meaning is deeper: the dot product
-          turns matching coordinates into one summary number.
+          turns matching coordinates into one summary number that tells you how
+          much one vector goes in the direction of the other.
         </p>
       </section>
 
@@ -208,19 +267,54 @@ export default function DotProductAndGeometricMeaningPage() {
           between them.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          A beginner-friendly way to picture it is this: imagine dropping the
-          blue vector down onto the pink direction. The dot product measures the
-          length of that{" "}
-          <span className="text-white font-semibold">signed shadow</span>, then
-          scales it by the length of the pink vector.
+          A very intuitive way to say it is this:
+          <span className="text-white font-semibold">
+            {" "}the dot product measures how much of one vector goes in the
+            direction of the other.
+          </span>{" "}
+          If{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          points strongly along{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />
+          , the value is large and positive. If it points sideways, the value
+          drops to 0. If it points partly against{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />
+          , the value becomes negative.
         </p>
-        <AlgebraStaticVisual
-          variant="dot-product-projection"
-          framed={false}
-          caption="The blue vector casts a shadow of length 3 onto the pink direction. That is the geometric part of the dot product."
-        />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Take{" "}
+          An especially helpful special case is when{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          has length 1. Then{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          is literally the signed amount of{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          in the{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />{" "}
+          direction.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          To make that picture concrete, use{" "}
           <MathInline
             tex={String.raw`{\color{#f472b6}\mathbf{u}}=(4,0)`}
             className="math-inline math-white"
@@ -230,7 +324,17 @@ export default function DotProductAndGeometricMeaningPage() {
             tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(3,4)`}
             className="math-inline math-white"
           />
-          . First compute it from components:
+          . The blue vector goes 3 units along the pink direction and 4 units
+          upward, so when you drop it straight down to the pink line, it lands
+          3 units from the origin.
+        </p>
+        <AlgebraStaticVisual
+          variant="dot-product-projection"
+          framed={false}
+          caption="For this specific example, the dashed drop lands 3 units from the origin along the pink direction. That 3 is the part of the blue vector that lies along the pink direction."
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now compute the same example from components:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -241,23 +345,41 @@ export default function DotProductAndGeometricMeaningPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now read the same picture geometrically. Here{" "}
+          Geometrically, the same picture says that{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}`}
+            className="math-inline math-white"
+          />{" "}
+          has a length-3 component in the direction of{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />
+          . Since{" "}
           <MathInline
             tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=4`}
             className="math-inline math-white"
           />
-          ,{" "}
+          , the dot product becomes{" "}
           <MathInline
-            tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|=5`}
+            tex={String.raw`4\cdot3`}
             className="math-inline math-white"
           />
-          , and the right triangle gives
-          {" "}
+          , which is 12. That is exactly what the formula{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}=\|{\color{#f472b6}\mathbf{u}}\|\,\|{\color{#22d3ee}\mathbf{v}}\|\cos\theta`}
+            className="math-inline math-white"
+          />
+          encodes.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          In this example,{" "}
           <MathInline
             tex={String.raw`\cos\theta=\frac{3}{5}`}
             className="math-inline math-white"
           />
-          . So:
+          {" "}because the right triangle has adjacent side 3 and hypotenuse 5,
+          so the full geometric formula becomes:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
