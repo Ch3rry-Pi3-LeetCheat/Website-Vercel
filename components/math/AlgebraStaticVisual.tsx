@@ -904,9 +904,9 @@ export default function AlgebraStaticVisual({
               </defs>
 
               <g transform="translate(35 0)">
+                <path d="M160 250 A50 50 0 0 0 145.8 215.8" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
                 <path d="M110 250 L385 250" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-u-arrow)" />
                 <path d="M110 250 L299 71" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-v-arrow)" />
-                <path d="M160 250 A50 50 0 0 0 145.8 215.8" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
                 <circle cx="110" cy="250" r="5.5" fill="#ffffff" />
                 <circle cx="392" cy="250" r="7" fill="#f472b6" />
@@ -970,9 +970,9 @@ export default function AlgebraStaticVisual({
               <line x1="135" y1="240" x2="350" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
               <line x1="180" y1="326" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
 
+              <path d="M222.9 218.5 A48 48 0 0 0 201.5 197.1" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
               <path d="M180 240 L273.7 193.1" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-u-arrow)" />
               <path d="M180 240 L226.9 146.3" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-v-arrow)" />
-              <path d="M222.9 218.5 A48 48 0 0 0 201.5 197.1" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
               <circle cx="280" cy="190" r="7" fill="#f472b6" />
@@ -1000,9 +1000,9 @@ export default function AlgebraStaticVisual({
               <line x1="135" y1="240" x2="360" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
               <line x1="180" y1="350" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
 
+              <path d="M202.4 195.3 A50 50 0 0 1 202.4 284.7" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
               <path d="M180 240 L226.9 146.3" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-u-arrow)" />
               <path d="M180 240 L226.9 333.7" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-v-arrow)" />
-              <path d="M202.4 195.3 A50 50 0 0 1 202.4 284.7" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
               <circle cx="230" cy="140" r="7" fill="#f472b6" />
@@ -1030,9 +1030,9 @@ export default function AlgebraStaticVisual({
               <line x1="130" y1="280" x2="430" y2="280" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
               <line x1="170" y1="338" x2="170" y2="82" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
 
+              <path d="M224 280 A54 54 0 0 0 202.4 237" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
               <path d="M170 280 L383 280" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-u-arrow)" />
               <path d="M170 280 L330.8 65.6" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-v-arrow)" />
-              <path d="M224 280 A54 54 0 0 0 202.4 237" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="170" cy="280" r="5.5" fill="#ffffff" />
               <circle cx="390" cy="280" r="7" fill="#f472b6" />
@@ -1058,28 +1058,28 @@ export default function AlgebraStaticVisual({
                 {renderFilledArrowMarker("projection-decomposition-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
-              <g transform="translate(40 0)">
-                <path d="M100 280 L312 104" stroke="rgba(244,114,182,0.5)" strokeWidth="2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
-                <path d="M100 280 L250 205" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
-                <path d="M100 280 L285 190" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
-                <path d="M250 205 L285 190" stroke="rgba(148,163,184,0.9)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M250 205 L258 217 L270 209" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+              <g transform="translate(24 0)">
+                <path d="M282 259.4 L296 261.5 L298.1 247.5" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M110 300 L278.2 259.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
+                <path d="M110 300 L400 230" stroke="rgba(244,114,182,0.58)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
+                <path d="M110 300 L292.2 201.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
+                <path d="M278.2 259.4 L292.2 201.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
 
-                <circle cx="100" cy="280" r="5.5" fill="#ffffff" />
+                <circle cx="110" cy="300" r="5.5" fill="#ffffff" />
 
-                <circle cx="320" cy="98" r="7" fill="#f472b6" />
-                <circle cx="320" cy="98" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="410" cy="228" r="7" fill="#f472b6" />
+                <circle cx="410" cy="228" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
-                <circle cx="290" cy="188" r="7" fill="#22d3ee" />
-                <circle cx="290" cy="188" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <circle cx="296" cy="199" r="7" fill="#22d3ee" />
+                <circle cx="296" cy="199" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-                <circle cx="250" cy="205" r="6.5" fill="#ffffff" />
-                <circle cx="250" cy="205" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+                <circle cx="278.2" cy="259.4" r="6.5" fill="#ffffff" />
+                <circle cx="278.2" cy="259.4" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
 
-                <text x="326" y="88" fill="#f472b6" fontSize="14" fontWeight="700">u direction</text>
-                <text x="300" y="180" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <text x="214" y="228" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
-                <text x="276" y="216" fill="rgba(148,163,184,0.9)" fontSize="13" fontWeight="700">perpendicular leftover</text>
+                <text x="422" y="220" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="306" y="192" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <text x="218" y="278" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
+                <text x="302" y="238" fill="rgba(148,163,184,0.92)" fontSize="13" fontWeight="700">v - proj_u(v)</text>
               </g>
             </svg>
           </div>
@@ -1094,28 +1094,28 @@ export default function AlgebraStaticVisual({
                 {renderFilledArrowMarker("projection-negative-proj-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
-              <g transform="translate(55 0)">
-                <path d="M130 200 L276 54" stroke="rgba(244,114,182,0.55)" strokeWidth="2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
-                <path d="M130 200 L191 321" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
-                <path d="M130 200 L86 244" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M86 244 L191 321" stroke="rgba(148,163,184,0.9)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M86 244 L99 247 L102 234" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+              <g transform="translate(18 0)">
+                <path d="M94 262.4 L108 264.5 L110.1 250.5" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M170 244 L98.6 261.4" stroke="rgba(231,238,248,1)" strokeWidth="2.5" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
+                <path d="M170 244 L460 174" stroke="rgba(244,114,182,0.58)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
+                <path d="M170 244 L112.6 317.4" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
+                <path d="M98.6 261.4 L112.6 317.4" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
 
-                <circle cx="130" cy="200" r="5.5" fill="#ffffff" />
+                <circle cx="170" cy="244" r="5.5" fill="#ffffff" />
 
-                <circle cx="284" cy="46" r="7" fill="#f472b6" />
-                <circle cx="284" cy="46" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+                <circle cx="470" cy="172" r="7" fill="#f472b6" />
+                <circle cx="470" cy="172" r="12" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
-                <circle cx="194" cy="327" r="7" fill="#22d3ee" />
-                <circle cx="194" cy="327" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+                <circle cx="116" cy="321" r="7" fill="#22d3ee" />
+                <circle cx="116" cy="321" r="12" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
-                <circle cx="82" cy="248" r="6.5" fill="#ffffff" />
-                <circle cx="82" cy="248" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+                <circle cx="98.6" cy="261.4" r="6.5" fill="#ffffff" />
+                <circle cx="98.6" cy="261.4" r="11" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
 
-                <text x="292" y="38" fill="#f472b6" fontSize="14" fontWeight="700">u direction</text>
-                <text x="203" y="339" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <text x="30" y="268" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">negative proj_u(v)</text>
-                <text x="182" y="278" fill="rgba(148,163,184,0.9)" fontSize="13" fontWeight="700">still perpendicular</text>
+                <text x="482" y="164" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+                <text x="126" y="334" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+                <text x="26" y="284" fill="rgba(231,238,248,1)" fontSize="13" fontWeight="700">proj_u(v)</text>
+                <text x="120" y="286" fill="rgba(148,163,184,0.92)" fontSize="13" fontWeight="700">v - proj_u(v)</text>
               </g>
             </svg>
           </div>

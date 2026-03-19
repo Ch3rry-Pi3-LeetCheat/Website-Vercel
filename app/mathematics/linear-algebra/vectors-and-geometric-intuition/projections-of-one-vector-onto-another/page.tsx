@@ -160,12 +160,48 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           </span>
           , and throws away the perpendicular part.
         </p>
+        <div className="ml-8 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-base leading-7 text-[color:var(--color-muted)]">
+            <tbody>
+              <tr>
+                <td className="w-48 py-2 pr-4 font-semibold text-white">Parallel fact</td>
+                <td className="py-2"><MathInline tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})\parallel \mathbf{u}`} className="math-inline math-white" />. The projected vector lies along the same line as <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" />.</td>
+              </tr>
+              <tr>
+                <td className="w-48 py-2 pr-4 font-semibold text-white">Perpendicular fact</td>
+                <td className="py-2"><MathInline tex={String.raw`\mathbf{v}-\operatorname{proj}_{\mathbf{u}}(\mathbf{v})\perp \mathbf{u}`} className="math-inline math-white" />. The dropped segment and the leftover vector are perpendicular to the <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" /> line.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id="formulas" className="scroll-mt-28 grid gap-4">
         <h2 className="text-2xl font-semibold text-white font-[var(--font-display)]">
           Scalar projection and vector projection
         </h2>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          There are really two closely related outputs, and the{" "}
+          <span className="text-white font-semibold">subscript tells you the chosen direction</span>.
+          In{" "}
+          <MathInline tex={String.raw`\operatorname{comp}_{\mathbf{u}}(\mathbf{v})`} className="math-inline math-white" />{" "}
+          and{" "}
+          <MathInline tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`} className="math-inline math-white" />,
+          the vector{" "}
+          <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" />{" "}
+          is the direction you are projecting onto.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          That is why the denominator involves{" "}
+          <MathInline tex={String.raw`\|\mathbf{u}\|`} className="math-inline math-white" />,
+          not{" "}
+          <MathInline tex={String.raw`\|\mathbf{v}\|`} className="math-inline math-white" />.
+          You are measuring how much of{" "}
+          <MathInline tex={String.raw`\mathbf{v}`} className="math-inline math-white" />{" "}
+          lies in the{" "}
+          <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" />{" "}
+          direction.
+        </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           There are really two closely related outputs:
         </p>
@@ -188,9 +224,8 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}`} className="math-inline math-white" />{" "}
           onto{" "}
           <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />.
-          Since the adjacent side in the projection picture is{" "}
-          <MathInline tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|\cos\theta`} className="math-inline math-white" />,
-          you get:
+          In the right-triangle picture, that projected length is just the
+          adjacent side:
         </p>
         <MathBlock
           tex={String.raw`\operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
@@ -198,17 +233,32 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now replace{" "}
-          <MathInline tex={String.raw`\cos\theta`} className="math-inline math-white" />{" "}
-          using the dot-product formula:
+          This is where the previous lesson enters directly. From the angle
+          formula,
+        </p>
+        <MathBlock
+          tex={String.raw`{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
+=\|{\color{#22d3ee}\mathbf{v}}\|\,\|{\color{#f472b6}\mathbf{u}}\|\cos\theta`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          solve for{" "}
+          <MathInline tex={String.raw`\|{\color{#22d3ee}\mathbf{v}}\|\cos\theta`} className="math-inline math-white" />:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
-\operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
-&=\|{\color{#22d3ee}\mathbf{v}}\|\cdot
-\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#22d3ee}\mathbf{v}}\|\,\|{\color{#f472b6}\mathbf{u}}\|} \\
+\|{\color{#22d3ee}\mathbf{v}}\|\cos\theta
 &=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|}
 \end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So the scalar projection formula is not new magic. It is exactly the
+          old dot-product identity, rearranged:
+        </p>
+        <MathBlock
+          tex={String.raw`\operatorname{comp}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
+=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -237,6 +287,33 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This formula immediately explains two geometric facts:
+        </p>
+        <ul className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+          <li><MathInline tex={String.raw`\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`} className="math-inline math-white" /> is a scalar multiple of <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" />, so it is parallel to <MathInline tex={String.raw`\mathbf{u}`} className="math-inline math-white" />.</li>
+          <li>The leftover <MathInline tex={String.raw`\mathbf{v}-\operatorname{proj}_{\mathbf{u}}(\mathbf{v})`} className="math-inline math-white" /> is the perpendicular part that got removed.</li>
+        </ul>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          You can even verify the perpendicular fact algebraically:
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+\left({\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})\right)\cdot{\color{#f472b6}\mathbf{u}}
+&={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
+-\left(\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}{\color{#f472b6}\mathbf{u}}\right)\cdot{\color{#f472b6}\mathbf{u}} \\
+&={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
+-\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\left({\color{#f472b6}\mathbf{u}}\cdot{\color{#f472b6}\mathbf{u}}\right) \\
+&={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
+-\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\|{\color{#f472b6}\mathbf{u}}\|^{2} \\
+&=0
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So the leftover really is orthogonal. That connects projections
+          directly back to the dot-product test for perpendicularity.
+        </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           One especially clean special case is when{" "}
           <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />{" "}
