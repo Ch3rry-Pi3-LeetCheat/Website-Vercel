@@ -1062,8 +1062,8 @@ export default function AlgebraStaticVisual({
                 <path d="M294 280 L294 154" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
                 <path d="M294 268 L306 268 L306 280" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
                 <path d="M90 280 L414 280" stroke="rgba(244,114,182,0.58)" strokeWidth="2.1" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
-                <path d="M90 280 L288 280" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
-                <path d="M90 280 L292 158" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
+                <path d="M90 280 L290 280" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
+                <path d="M90 280 L293 157" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
 
                 <circle cx="90" cy="280" r="5.5" fill="#ffffff" />
 
@@ -1112,8 +1112,8 @@ export default function AlgebraStaticVisual({
                 <path d="M114 260 L114 166" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
                 <path d="M116 248 L128 248 L128 260" fill="none" stroke="rgba(148,163,184,0.92)" strokeWidth="1.8" />
                 <path d="M180 260 L366 260" stroke="rgba(244,114,182,0.58)" strokeWidth="2.1" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
-                <path d="M180 260 L120 260" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
-                <path d="M180 260 L118 170" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
+                <path d="M180 260 L118 260" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
+                <path d="M180 260 L117 168" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
 
                 <circle cx="180" cy="260" r="5.5" fill="#ffffff" />
 

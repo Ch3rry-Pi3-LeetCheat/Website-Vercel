@@ -417,8 +417,7 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           This time the chosen direction is diagonal rather than horizontal.
         </p>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Start with the dot product and the length of{" "}
-          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />:
+          Start with the dot product:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -428,6 +427,10 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
 \end{aligned}`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now compute the length of{" "}
+          <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />:
+        </p>
         <MathBlock
           tex={String.raw`\|{\color{#f472b6}\mathbf{u}}\|=\sqrt{1^{2}+1^{2}}=\sqrt{2}`}
           className="math-center math-lg text-white/90"
@@ -465,6 +468,43 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           tex={String.raw`(4,2)=(3,3)+(1,-1)`}
           className="math-center math-lg text-white/90"
         />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Here is the idea in plain language. The vector{" "}
+          <MathInline tex={String.raw`(3,3)`} className="math-inline math-white" />{" "}
+          is the part that really points along the chosen diagonal, because its
+          two coordinates match, so it lies exactly on the{" "}
+          <MathInline tex={String.raw`(1,1)`} className="math-inline math-white" />{" "}
+          line.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          The leftover piece is whatever remains after removing that diagonal
+          part:
+        </p>
+        <MathBlock
+          tex={String.raw`(4,2)-(3,3)=(1,-1)`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So you can picture{" "}
+          <MathInline tex={String.raw`(4,2)`} className="math-inline math-white" />{" "}
+          as having one{" "}
+          <span className="text-white font-semibold">useful diagonal part</span>{" "}
+          and one{" "}
+          <span className="text-white font-semibold">sideways leftover</span>.
+          That sideways part is{" "}
+          <MathInline tex={String.raw`(1,-1)`} className="math-inline math-white" />{" "}
+          , and it is perpendicular to{" "}
+          <MathInline tex={String.raw`(1,1)`} className="math-inline math-white" />{" "}
+          because
+        </p>
+        <MathBlock
+          tex={String.raw`(1,-1)\cdot(1,1)=1\cdot1+(-1)\cdot1=0`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          That is why the split is useful: projection separates a vector into
+          the part that helps in the chosen direction and the part that does not.
+        </p>
         <AlgebraStaticVisual
           variant="projection-decomposition"
           framed={false}
