@@ -897,13 +897,13 @@ export default function AlgebraStaticVisual({
           <div className="relative">
             <svg viewBox="0 0 620 330" className="h-auto w-full">
               <defs>
-                {renderFilledArrowMarker("angle-between-u-arrow", "rgba(244,114,182,1)")}
-                {renderFilledArrowMarker("angle-between-v-arrow", "rgba(34,211,238,1)")}
+                {renderFilledArrowMarker("angle-between-u-arrow", "rgba(244,114,182,1)", { refX: 5 })}
+                {renderFilledArrowMarker("angle-between-v-arrow", "rgba(34,211,238,1)", { refX: 5 })}
               </defs>
 
               <g transform="translate(35 0)">
-                <path d="M110 250 L382 250" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-u-arrow)" />
-                <path d="M110 250 L296 74" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-v-arrow)" />
+                <path d="M110 250 L385 250" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-u-arrow)" />
+                <path d="M110 250 L299 71" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-between-v-arrow)" />
                 <path d="M160 250 A50 50 0 0 0 145.8 215.8" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
                 <circle cx="110" cy="250" r="5.5" fill="#ffffff" />
@@ -915,7 +915,7 @@ export default function AlgebraStaticVisual({
                 <text x="392" y="228" textAnchor="middle" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="304" y="42" textAnchor="middle" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
 
-                <foreignObject x="151" y="213" width="30" height="24">
+                <foreignObject x="151" y="208" width="30" height="24">
                   <div className="flex h-full items-center justify-center text-center">
                     <MathInline
                       tex={String.raw`\theta`}
@@ -929,19 +929,19 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "angle-example-right" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 400" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="110 60 280 310" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-right-axis-arrow", "rgba(231,238,248,0.45)")}
-                {renderFilledArrowMarker("angle-example-right-u-arrow", "rgba(244,114,182,1)")}
-                {renderFilledArrowMarker("angle-example-right-v-arrow", "rgba(34,211,238,1)")}
+                {renderFilledArrowMarker("angle-example-right-u-arrow", "rgba(244,114,182,1)", { refX: 5 })}
+                {renderFilledArrowMarker("angle-example-right-v-arrow", "rgba(34,211,238,1)", { refX: 5 })}
               </defs>
               <line x1="120" y1="220" x2="348" y2="220" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
               <line x1="180" y1="342" x2="180" y2="78" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-right-axis-arrow)" />
 
-              <path d="M180 220 L295 162.5" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-u-arrow)" />
-              <path d="M180 220 L237.5 335" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-v-arrow)" />
-              <path d="M189.4 215.3 L195.4 227.3 L183.4 233.3" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="1.6" />
+              <path d="M180 220 L293.7 163.1" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-u-arrow)" />
+              <path d="M180 220 L236.9 333.7" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-right-v-arrow)" />
+              <path d="M190.7 214.6 L196.1 225.4 L185.4 230.7" fill="none" stroke="rgba(231,238,248,0.9)" strokeWidth="1.6" />
 
               <circle cx="180" cy="220" r="5.5" fill="#ffffff" />
               <circle cx="300" cy="160" r="7" fill="#f472b6" />
@@ -958,18 +958,18 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "angle-example-acute" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 400" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="130 85 255 200" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-acute-axis-arrow", "rgba(231,238,248,0.45)")}
-                {renderFilledArrowMarker("angle-example-acute-u-arrow", "rgba(244,114,182,1)")}
-                {renderFilledArrowMarker("angle-example-acute-v-arrow", "rgba(34,211,238,1)")}
+                {renderFilledArrowMarker("angle-example-acute-u-arrow", "rgba(244,114,182,1)", { refX: 5 })}
+                {renderFilledArrowMarker("angle-example-acute-v-arrow", "rgba(34,211,238,1)", { refX: 5 })}
               </defs>
               <line x1="135" y1="240" x2="350" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
               <line x1="180" y1="326" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-acute-axis-arrow)" />
 
-              <path d="M180 240 L276 192" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-u-arrow)" />
-              <path d="M180 240 L228 144" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-v-arrow)" />
+              <path d="M180 240 L273.7 193.1" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-u-arrow)" />
+              <path d="M180 240 L226.9 146.3" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-acute-v-arrow)" />
               <path d="M222.9 218.5 A48 48 0 0 0 201.5 197.1" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
@@ -980,7 +980,7 @@ export default function AlgebraStaticVisual({
 
               <text x="292" y="185" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
               <text x="238" y="132" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="205" y="204" fill="rgba(231,238,248,0.55)" fontSize="12" fontWeight="700">≈37°</text>
+              <text x="215" y="209" fill="rgba(231,238,248,0.55)" fontSize="12" fontWeight="700">37°</text>
               <text x="358" y="256" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
               <text x="168" y="94" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
             </svg>
@@ -988,18 +988,18 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "angle-example-obtuse" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 400" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="130 90 255 280" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-obtuse-axis-arrow", "rgba(231,238,248,0.45)")}
-                {renderFilledArrowMarker("angle-example-obtuse-u-arrow", "rgba(244,114,182,1)")}
-                {renderFilledArrowMarker("angle-example-obtuse-v-arrow", "rgba(34,211,238,1)")}
+                {renderFilledArrowMarker("angle-example-obtuse-u-arrow", "rgba(244,114,182,1)", { refX: 5 })}
+                {renderFilledArrowMarker("angle-example-obtuse-v-arrow", "rgba(34,211,238,1)", { refX: 5 })}
               </defs>
               <line x1="135" y1="240" x2="360" y2="240" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
               <line x1="180" y1="350" x2="180" y2="104" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-obtuse-axis-arrow)" />
 
-              <path d="M180 240 L228 144" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-u-arrow)" />
-              <path d="M180 240 L228 336" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-v-arrow)" />
+              <path d="M180 240 L226.9 146.3" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-u-arrow)" />
+              <path d="M180 240 L226.9 333.7" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-obtuse-v-arrow)" />
               <path d="M202.4 195.3 A50 50 0 0 1 202.4 284.7" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="180" cy="240" r="5.5" fill="#ffffff" />
@@ -1010,7 +1010,7 @@ export default function AlgebraStaticVisual({
 
               <text x="238" y="132" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
               <text x="238" y="352" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="194" y="243" fill="rgba(231,238,248,0.55)" fontSize="12" fontWeight="700">≈127°</text>
+              <text x="194" y="243" fill="rgba(231,238,248,0.55)" fontSize="12" fontWeight="700">127°</text>
               <text x="368" y="256" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">x</text>
               <text x="168" y="94" fill="rgba(231,238,248,0.55)" fontSize="13" fontWeight="700">y</text>
             </svg>
@@ -1018,18 +1018,18 @@ export default function AlgebraStaticVisual({
         )}
 
         {variant === "angle-example-approx" && (
-          <div className="relative">
-            <svg viewBox="0 0 620 400" className="h-auto w-full">
+          <div className="relative mx-auto max-w-[560px]">
+            <svg viewBox="125 70 330 250" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("angle-example-approx-axis-arrow", "rgba(231,238,248,0.45)")}
-                {renderFilledArrowMarker("angle-example-approx-u-arrow", "rgba(244,114,182,1)")}
-                {renderFilledArrowMarker("angle-example-approx-v-arrow", "rgba(34,211,238,1)")}
+                {renderFilledArrowMarker("angle-example-approx-u-arrow", "rgba(244,114,182,1)", { refX: 5 })}
+                {renderFilledArrowMarker("angle-example-approx-v-arrow", "rgba(34,211,238,1)", { refX: 5 })}
               </defs>
               <line x1="130" y1="280" x2="430" y2="280" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
               <line x1="170" y1="338" x2="170" y2="82" stroke="rgba(231,238,248,0.22)" strokeWidth="1.4" markerEnd="url(#angle-example-approx-axis-arrow)" />
 
-              <path d="M170 280 L385 280" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-u-arrow)" />
-              <path d="M170 280 L331.2 65.1" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-v-arrow)" />
+              <path d="M170 280 L383 280" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-u-arrow)" />
+              <path d="M170 280 L330.8 65.6" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#angle-example-approx-v-arrow)" />
               <path d="M224 280 A54 54 0 0 0 202.4 237" fill="none" stroke="rgba(231,238,248,0.82)" strokeWidth="1.7" />
 
               <circle cx="170" cy="280" r="5.5" fill="#ffffff" />

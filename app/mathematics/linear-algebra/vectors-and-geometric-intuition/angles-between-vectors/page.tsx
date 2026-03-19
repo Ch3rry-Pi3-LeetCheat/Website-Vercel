@@ -321,7 +321,7 @@ export default function AnglesBetweenVectorsPage() {
           That cosine value corresponds to:
         </p>
         <MathBlock
-          tex={String.raw`\theta\approx36.87^\circ`}
+          tex={String.raw`\theta\approx37^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
@@ -377,7 +377,7 @@ export default function AnglesBetweenVectorsPage() {
           Then solve for the angle:
         </p>
         <MathBlock
-          tex={String.raw`\theta\approx126.87^\circ`}
+          tex={String.raw`\theta\approx127^\circ`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
