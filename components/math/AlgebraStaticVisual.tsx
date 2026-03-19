@@ -1060,7 +1060,7 @@ export default function AlgebraStaticVisual({
 
               <g transform="translate(30 0)">
                 <path d="M294 280 L294 154" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M294 272 L306 272 L306 260" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M294 268 L306 268 L306 280" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
                 <path d="M90 280 L414 280" stroke="rgba(244,114,182,0.58)" strokeWidth="2.1" fill="none" markerEnd="url(#projection-decomposition-u-arrow)" />
                 <path d="M90 280 L294 280" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-decomposition-proj-arrow)" />
                 <path d="M90 280 L294 156" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-decomposition-v-arrow)" />
@@ -1101,7 +1101,7 @@ export default function AlgebraStaticVisual({
 
         {variant === "projection-negative" && (
           <div className="relative mx-auto max-w-[560px]">
-            <svg viewBox="82 142 372 194" className="h-auto w-full">
+            <svg viewBox="56 140 424 206" className="h-auto w-full">
               <defs>
                 {renderFilledArrowMarker("projection-negative-u-arrow", "rgba(244,114,182,0.72)", { refX: 4.35 })}
                 {renderFilledArrowMarker("projection-negative-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
@@ -1110,7 +1110,7 @@ export default function AlgebraStaticVisual({
 
               <g transform="translate(8 0)">
                 <path d="M114 260 L114 166" stroke="rgba(148,163,184,0.92)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M118 254 L130 254 L130 242" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
+                <path d="M118 248 L130 248 L130 260" fill="none" stroke="rgba(231,238,248,0.92)" strokeWidth="1.8" />
                 <path d="M180 260 L366 260" stroke="rgba(244,114,182,0.58)" strokeWidth="2.1" fill="none" markerEnd="url(#projection-negative-u-arrow)" />
                 <path d="M180 260 L114 260" stroke="rgba(231,238,248,1)" strokeWidth="2.6" fill="none" markerEnd="url(#projection-negative-proj-arrow)" />
                 <path d="M180 260 L114 168" stroke="rgba(34,211,238,1)" strokeWidth="2.2" fill="none" markerEnd="url(#projection-negative-v-arrow)" />
@@ -1128,7 +1128,7 @@ export default function AlgebraStaticVisual({
 
                 <text x="390" y="250" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
                 <text x="126" y="154" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-                <foreignObject x="26" y="274" width="132" height="28">
+                <foreignObject x="40" y="274" width="132" height="28">
                   <div className="flex h-full items-center justify-center">
                     <MathInline
                       tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
@@ -1136,7 +1136,7 @@ export default function AlgebraStaticVisual({
                     />
                   </div>
                 </foreignObject>
-                <foreignObject x="138" y="186" width="164" height="34">
+                <foreignObject x="148" y="186" width="164" height="34">
                   <div className="flex h-full items-center justify-start">
                     <MathInline
                       tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`}
@@ -1162,7 +1162,7 @@ export default function AlgebraStaticVisual({
                 <path d="M100 270 L292 270" stroke="rgba(244,114,182,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-u-arrow)" />
                 <path d="M100 270 L243.4 78.8" stroke="rgba(34,211,238,1)" strokeWidth="2" fill="none" markerEnd="url(#dot-product-projection-v-arrow)" />
                 <path d="M250 270 L250 70" stroke="rgba(148,163,184,0.88)" strokeWidth="1.5" strokeDasharray="6 5" fill="none" />
-                <path d="M250 258 L238 258 L238 270" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
+                <path d="M238 270 L238 258 L250 258" fill="none" stroke="rgba(231,238,248,1)" strokeWidth="2" />
                 <path d="M140 270 A40 40 0 0 0 124 238" fill="none" stroke="rgba(231,238,248,0.8)" strokeWidth="1.5" />
 
                 <line x1="100" y1="304" x2="250" y2="304" stroke="rgba(231,238,248,0.85)" strokeWidth="1.6" />
