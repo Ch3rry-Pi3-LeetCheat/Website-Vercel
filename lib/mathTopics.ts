@@ -116,4 +116,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Extract the part of one vector that lies along a chosen direction, as either a signed amount or a new vector.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/projections-of-one-vector-onto-another",
   },
+  {
+    label: "Linear combinations",
+    description:
+      "Build new vectors by scaling and adding existing ones, and see how coefficients act like a recipe for direction.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/linear-combinations",
+  },
 ];
