@@ -293,7 +293,7 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           tex={String.raw`\begin{aligned}
 \operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})
 &=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|}\cdot
-\frac{{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|} \\
+\frac{{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|} \\[8pt]
 &=\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\,{\color{#f472b6}\mathbf{u}}
 \end{aligned}`}
           className="math-center math-lg text-white/90"
@@ -301,7 +301,10 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           This formula immediately explains two geometric facts:
         </p>
-        <ul className="ml-6 grid gap-3 text-base leading-7 text-[color:var(--color-muted)]">
+        <ul
+          className="ml-8 grid gap-4 pl-4 text-base leading-7 text-[color:var(--color-muted)] marker:text-white/60"
+          style={{ listStyleType: "disc" }}
+        >
           <li><MathInline tex={String.raw`\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`} className="math-inline math-white" /> is a scalar multiple of <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />, so it is parallel to <MathInline tex={String.raw`{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />.</li>
           <li>The leftover <MathInline tex={String.raw`{\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})`} className="math-inline math-white" /> is the perpendicular part that got removed.</li>
         </ul>
@@ -312,11 +315,11 @@ export default function ProjectionsOfOneVectorOntoAnotherPage() {
           tex={String.raw`\begin{aligned}
 \left({\color{#22d3ee}\mathbf{v}}-\operatorname{proj}_{{\color{#f472b6}\mathbf{u}}}({\color{#22d3ee}\mathbf{v}})\right)\cdot{\color{#f472b6}\mathbf{u}}
 &={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
--\left(\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}{\color{#f472b6}\mathbf{u}}\right)\cdot{\color{#f472b6}\mathbf{u}} \\
+-\left(\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}{\color{#f472b6}\mathbf{u}}\right)\cdot{\color{#f472b6}\mathbf{u}} \\[8pt]
 &={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
--\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\left({\color{#f472b6}\mathbf{u}}\cdot{\color{#f472b6}\mathbf{u}}\right) \\
+-\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\left({\color{#f472b6}\mathbf{u}}\cdot{\color{#f472b6}\mathbf{u}}\right) \\[8pt]
 &={\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}
--\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\|{\color{#f472b6}\mathbf{u}}\|^{2} \\
+-\frac{{\color{#22d3ee}\mathbf{v}}\cdot{\color{#f472b6}\mathbf{u}}}{\|{\color{#f472b6}\mathbf{u}}\|^{2}}\|{\color{#f472b6}\mathbf{u}}\|^{2} \\[8pt]
 &=0
 \end{aligned}`}
           className="math-center math-lg text-white/90"
