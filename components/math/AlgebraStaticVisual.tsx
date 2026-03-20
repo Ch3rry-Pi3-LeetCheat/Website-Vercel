@@ -1782,7 +1782,7 @@ export default function AlgebraStaticVisual({
 
         {variant === "span-two-vectors" && (
           <div className="relative mx-auto w-4/5">
-            <svg viewBox="0 0 520 340" className="h-auto w-full">
+            <svg viewBox="0 28 520 282" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("span-two-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("span-two-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
@@ -1790,19 +1790,21 @@ export default function AlgebraStaticVisual({
                 {renderFilledArrowMarker("span-two-sample-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
                 <radialGradient
                   id="span-two-field-gradient"
-                  cx="250"
-                  cy="190"
-                  r="230"
                   gradientUnits="userSpaceOnUse"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientTransform="translate(250 190) scale(194 112)"
                 >
-                  <stop offset="0%" stopColor="rgba(231,238,248,0.075)" />
-                  <stop offset="38%" stopColor="rgba(231,238,248,0.048)" />
-                  <stop offset="68%" stopColor="rgba(231,238,248,0.02)" />
+                  <stop offset="0%" stopColor="rgba(231,238,248,0.055)" />
+                  <stop offset="28%" stopColor="rgba(231,238,248,0.034)" />
+                  <stop offset="52%" stopColor="rgba(231,238,248,0.015)" />
+                  <stop offset="74%" stopColor="rgba(231,238,248,0)" />
                   <stop offset="100%" stopColor="rgba(231,238,248,0)" />
                 </radialGradient>
               </defs>
 
-              <rect x="42" y="34" width="436" height="272" fill="url(#span-two-field-gradient)" />
+              <rect x="32" y="42" width="456" height="256" fill="url(#span-two-field-gradient)" />
 
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
               <line x1="250" y1="294" x2="250" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
