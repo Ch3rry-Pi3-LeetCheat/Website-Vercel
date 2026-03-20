@@ -1794,7 +1794,7 @@ export default function AlgebraStaticVisual({
                   cx="0"
                   cy="0"
                   r="1"
-                  gradientTransform="translate(250 190) scale(194 112)"
+                  gradientTransform="translate(250 190) scale(212 124)"
                 >
                   <stop offset="0%" stopColor="rgba(231,238,248,0.055)" />
                   <stop offset="28%" stopColor="rgba(231,238,248,0.034)" />
