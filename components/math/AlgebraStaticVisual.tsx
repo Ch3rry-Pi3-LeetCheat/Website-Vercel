@@ -29,6 +29,8 @@ type AlgebraStaticVisualProps = {
     | "span-one-vector"
     | "span-two-vectors"
     | "span-dependent-vectors"
+    | "line-set-shifted"
+    | "plane-set-shifted"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -1875,6 +1877,124 @@ export default function AlgebraStaticVisual({
               <text x="378" y="228" fill="#e7eef8" fontSize="13" fontWeight="700">not in span</text>
               <text x="472" y="206" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
               <text x="206" y="40" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "line-set-shifted" && (
+          <div className="relative mx-auto w-4/5">
+            <svg viewBox="0 0 520 320" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("line-set-axis-arrow", "rgba(231,238,248,1)")}
+                {renderFilledArrowMarker("line-set-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("line-set-sample-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
+              </defs>
+
+              <line x1="54" y1="214" x2="468" y2="214" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#line-set-axis-arrow)" />
+              <line x1="182" y1="284" x2="182" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#line-set-axis-arrow)" />
+
+              <line x1="82" y1="260" x2="446" y2="108" stroke="rgba(231,238,248,0.26)" strokeWidth="3" />
+
+              {[
+                { x: 118, y: 245, label: "p - u", lx: 86, ly: 232 },
+                { x: 334, y: 155, label: "p + u", lx: 342, ly: 144 },
+              ].map((point, idx) => {
+                const dx = point.x - 226;
+                const dy = point.y - 200;
+                const length = Math.hypot(dx, dy) || 1;
+                const inset = 7;
+                const endX = point.x - (dx / length) * inset;
+                const endY = point.y - (dy / length) * inset;
+                return (
+                  <g key={`line-set-sample-${idx}`}>
+                    <path
+                      d={`M226 200 L${endX} ${endY}`}
+                      stroke="rgba(231,238,248,0.3)"
+                      strokeWidth="2.2"
+                      fill="none"
+                      markerEnd="url(#line-set-sample-arrow)"
+                    />
+                    <circle cx={point.x} cy={point.y} r="5.5" fill="rgba(231,238,248,0.7)" />
+                    <text x={point.lx} y={point.ly} fill="rgba(231,238,248,0.72)" fontSize="12" fontWeight="700">
+                      {point.label}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path d="M226 200 L300 169" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#line-set-u-arrow)" />
+
+              <circle cx="226" cy="200" r="7" fill="#ffffff" />
+              <circle cx="226" cy="200" r="13" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+              <circle cx="306" cy="166" r="7.5" fill="#f472b6" />
+              <circle cx="306" cy="166" r="13" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+
+              <text x="214" y="188" fill="#e7eef8" fontSize="14" fontWeight="700">p</text>
+              <text x="316" y="158" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="472" y="230" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
+              <text x="168" y="40" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "plane-set-shifted" && (
+          <div className="relative mx-auto w-4/5">
+            <svg viewBox="0 0 520 340" className="h-auto w-full">
+              <defs>
+                {renderFilledArrowMarker("plane-set-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("plane-set-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("plane-set-sample-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
+              </defs>
+
+              <polygon
+                points="106,252 296,168 420,236 230,320"
+                fill="rgba(231,238,248,0.045)"
+                stroke="rgba(231,238,248,0.14)"
+                strokeWidth="2"
+              />
+
+              {[
+                { x: 182, y: 260 },
+                { x: 250, y: 228 },
+                { x: 322, y: 200 },
+                { x: 286, y: 272 },
+                { x: 358, y: 244 },
+              ].map((point, idx) => {
+                const dx = point.x - 218;
+                const dy = point.y - 238;
+                const length = Math.hypot(dx, dy) || 1;
+                const inset = 6;
+                const endX = point.x - (dx / length) * inset;
+                const endY = point.y - (dy / length) * inset;
+
+                return (
+                  <g key={`plane-set-sample-${idx}`}>
+                    <path
+                      d={`M218 238 L${endX} ${endY}`}
+                      stroke="rgba(231,238,248,0.2)"
+                      strokeWidth="2"
+                      fill="none"
+                      markerEnd="url(#plane-set-sample-arrow)"
+                    />
+                    <circle cx={point.x} cy={point.y} r="5.5" fill="rgba(231,238,248,0.6)" />
+                  </g>
+                );
+              })}
+
+              <path d="M218 238 L308 199" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#plane-set-u-arrow)" />
+              <path d="M218 238 L170 184" stroke="rgba(34,211,238,1)" strokeWidth="2.3" fill="none" markerEnd="url(#plane-set-v-arrow)" />
+
+              <circle cx="218" cy="238" r="7" fill="#ffffff" />
+              <circle cx="218" cy="238" r="13" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+              <circle cx="314" cy="196" r="7.5" fill="#f472b6" />
+              <circle cx="314" cy="196" r="13" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+              <circle cx="166" cy="180" r="7.5" fill="#22d3ee" />
+              <circle cx="166" cy="180" r="13" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+
+              <text x="206" y="226" fill="#e7eef8" fontSize="14" fontWeight="700">p</text>
+              <text x="324" y="188" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="176" y="172" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="342" y="88" fill="rgba(231,238,248,0.62)" fontSize="12" fontWeight="700">sample points in the plane</text>
             </svg>
           </div>
         )}

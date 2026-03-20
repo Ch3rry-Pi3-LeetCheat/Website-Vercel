@@ -129,3 +129,12 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/span-of-vectors",
   },
 ];
+
+export const linearAlgebraSubspaceLessons: TopicLink[] = [
+  {
+    label: "Lines and planes as sets of vectors",
+    description:
+      "See lines and planes as whole sets generated from a point and one or two direction vectors.",
+    href: "/mathematics/linear-algebra/subspaces-basis-and-dimension/lines-and-planes-as-sets-of-vectors",
+  },
+];
