@@ -1583,19 +1583,19 @@ export default function AlgebraStaticVisual({
           })}
 
         {variant === "linear-combination-basic" && (
-          <div className="relative">
+          <div className="relative mx-auto w-4/5">
             <svg viewBox="56 52 420 320" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("linear-combo-basic-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("linear-combo-basic-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("linear-combo-basic-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("linear-combo-basic-result-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
-                {renderFilledArrowMarker("linear-combo-basic-ghost-u-arrow", "rgba(244,114,182,0.42)", { refX: 4.35 })}
-                {renderFilledArrowMarker("linear-combo-basic-ghost-v-arrow", "rgba(34,211,238,0.42)", { refX: 4.35 })}
+                {renderFilledArrowMarker("linear-combo-basic-ghost-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("linear-combo-basic-ghost-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
               </defs>
 
               <line x1="110" y1="340" x2="446" y2="340" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-basic-axis-arrow)" />
-              <line x1="110" y1="340" x2="110" y2="82" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-basic-axis-arrow)" />
+              <line x1="110" y1="340" x2="110" y2="106" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-basic-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
                 const x = 110 + tick * 54;
@@ -1628,30 +1628,34 @@ export default function AlgebraStaticVisual({
 
               <circle cx="110" cy="340" r="6" fill="#ffffff" />
 
-              <circle cx="224" cy="289" r="7" fill="#f472b6" />
-              <circle cx="224" cy="289" r="13" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
+              <circle cx="218" cy="292" r="7" fill="#f472b6" />
+              <circle cx="218" cy="292" r="13" fill="none" stroke="rgba(244,114,182,0.26)" strokeWidth="2" />
 
-              <circle cx="169" cy="237" r="7" fill="#22d3ee" />
-              <circle cx="169" cy="237" r="13" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
+              <circle cx="164" cy="244" r="7" fill="#22d3ee" />
+              <circle cx="164" cy="244" r="13" fill="none" stroke="rgba(34,211,238,0.26)" strokeWidth="2" />
 
               <circle cx="326" cy="244" r="6.5" fill="rgba(244,114,182,0.68)" />
               <circle cx="326" cy="244" r="12" fill="none" stroke="rgba(244,114,182,0.18)" strokeWidth="2" />
 
-              <circle cx="386" cy="144" r="7.5" fill="#ffffff" />
-              <circle cx="386" cy="144" r="13" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+              <circle cx="380" cy="148" r="7.5" fill="#ffffff" />
+              <circle cx="380" cy="148" r="13" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
 
-              <text x="234" y="280" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-              <text x="180" y="226" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="230" y="284" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="178" y="230" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
               <text x="336" y="236" fill="rgba(244,114,182,0.8)" fontSize="13" fontWeight="700">2u</text>
-              <text x="398" y="136" fill="#e7eef8" fontSize="14" fontWeight="700">2u + v</text>
+              <text x="394" y="138" fontSize="14" fontWeight="700">
+                <tspan fill="#f472b6">2u</tspan>
+                <tspan fill="#e7eef8"> + </tspan>
+                <tspan fill="#22d3ee">v</tspan>
+              </text>
               <text x="454" y="365" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="94" y="78" textAnchor="end" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="94" y="102" textAnchor="end" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
 
         {variant === "linear-combination-family" && (
-          <div className="relative">
+          <div className="relative mx-auto w-4/5">
             <svg viewBox="56 56 420 340" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("linear-combo-family-axis-arrow", "rgba(231,238,248,1)")}
@@ -1663,7 +1667,7 @@ export default function AlgebraStaticVisual({
               </defs>
 
               <line x1="130" y1="360" x2="444" y2="360" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-family-axis-arrow)" />
-              <line x1="130" y1="360" x2="130" y2="86" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-family-axis-arrow)" />
+              <line x1="130" y1="360" x2="130" y2="136" stroke="rgba(231,238,248,0.82)" strokeWidth="2" markerEnd="url(#linear-combo-family-axis-arrow)" />
 
               {[1, 2, 3, 4, 5].map((tick) => {
                 const x = 130 + tick * 52;
@@ -1676,7 +1680,7 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              {[1, 2, 3, 4, 5].map((tick) => {
+              {[1, 2, 3, 4].map((tick) => {
                 const y = 360 - tick * 44;
                 return renderYAxisTick({
                   key: `linear-combo-family-y-${tick}`,
@@ -1687,34 +1691,34 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              <path d="M130 360 L214 318" stroke="rgba(244,114,182,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-u-arrow)" />
-              <path d="M130 360 L172 276" stroke="rgba(34,211,238,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-v-arrow)" />
+              <path d="M130 360 L234 316" stroke="rgba(244,114,182,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-u-arrow)" />
+              <path d="M130 360 L182 272" stroke="rgba(34,211,238,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-v-arrow)" />
 
-              <path d="M130 360 L256 234" stroke="rgba(231,238,248,0.68)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-a-arrow)" />
-              <path d="M130 360 L382 192" stroke="rgba(168,85,247,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-b-arrow)" />
+              <path d="M130 360 L286 228" stroke="rgba(231,238,248,0.68)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-a-arrow)" />
+              <path d="M130 360 L390 184" stroke="rgba(168,85,247,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-b-arrow)" />
               <path d="M130 360 L130 234" stroke="rgba(52,211,153,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-c-arrow)" />
 
               <circle cx="130" cy="360" r="6" fill="#ffffff" />
 
-              <circle cx="220" cy="314" r="7" fill="#f472b6" />
-              <circle cx="220" cy="314" r="12" fill="none" stroke="rgba(244,114,182,0.22)" strokeWidth="2" />
-              <circle cx="176" cy="268" r="7" fill="#22d3ee" />
-              <circle cx="176" cy="268" r="12" fill="none" stroke="rgba(34,211,238,0.22)" strokeWidth="2" />
+              <circle cx="234" cy="316" r="7" fill="#f472b6" />
+              <circle cx="234" cy="316" r="12" fill="none" stroke="rgba(244,114,182,0.22)" strokeWidth="2" />
+              <circle cx="182" cy="272" r="7" fill="#22d3ee" />
+              <circle cx="182" cy="272" r="12" fill="none" stroke="rgba(34,211,238,0.22)" strokeWidth="2" />
 
-              <circle cx="262" cy="228" r="6.5" fill="#ffffff" />
-              <circle cx="262" cy="228" r="11.5" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
-              <circle cx="388" cy="186" r="6.5" fill="#a855f7" />
-              <circle cx="388" cy="186" r="11.5" fill="none" stroke="rgba(168,85,247,0.22)" strokeWidth="2" />
+              <circle cx="286" cy="228" r="6.5" fill="#ffffff" />
+              <circle cx="286" cy="228" r="11.5" fill="none" stroke="rgba(231,238,248,0.2)" strokeWidth="2" />
+              <circle cx="390" cy="184" r="6.5" fill="#a855f7" />
+              <circle cx="390" cy="184" r="11.5" fill="none" stroke="rgba(168,85,247,0.22)" strokeWidth="2" />
               <circle cx="130" cy="228" r="6.5" fill="#34d399" />
               <circle cx="130" cy="228" r="11.5" fill="none" stroke="rgba(52,211,153,0.22)" strokeWidth="2" />
 
-              <text x="230" y="305" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
-              <text x="186" y="258" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
-              <text x="272" y="220" fill="#e7eef8" fontSize="13" fontWeight="700">u + v</text>
-              <text x="398" y="180" fill="#a855f7" fontSize="13" fontWeight="700">2u + v</text>
+              <text x="244" y="306" fill="#f472b6" fontSize="14" fontWeight="700">u</text>
+              <text x="192" y="260" fill="#22d3ee" fontSize="14" fontWeight="700">v</text>
+              <text x="296" y="220" fill="#e7eef8" fontSize="13" fontWeight="700">u + v</text>
+              <text x="400" y="178" fill="#a855f7" fontSize="13" fontWeight="700">2u + v</text>
               <text x="142" y="220" fill="#34d399" fontSize="13" fontWeight="700">-u + 2v</text>
               <text x="454" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
-              <text x="114" y="76" textAnchor="end" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+              <text x="114" y="128" textAnchor="end" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
             </svg>
           </div>
         )}
