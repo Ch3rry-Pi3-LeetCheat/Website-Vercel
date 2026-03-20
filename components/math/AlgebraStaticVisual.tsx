@@ -1795,7 +1795,7 @@ export default function AlgebraStaticVisual({
                   cx="0"
                   cy="0"
                   r="1"
-                  gradientTransform="translate(250 190) scale(232 136)"
+                  gradientTransform="translate(250 190) scale(250 148)"
                 >
                   <stop offset="0%" stopColor="rgba(231,238,248,0.055)" />
                   <stop offset="28%" stopColor="rgba(231,238,248,0.034)" />
@@ -1868,7 +1868,7 @@ export default function AlgebraStaticVisual({
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-dep-axis-arrow)" />
               <line x1="220" y1="294" x2="220" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-dep-axis-arrow)" />
 
-              <line x1="96" y1="252" x2="438" y2="81" stroke="rgba(231,238,248,0.26)" strokeWidth="3" />
+              <line x1="96" y1="252" x2="438" y2="81" stroke="rgba(231,238,248,0.26)" strokeWidth="3" strokeDasharray="10 8" />
 
               <path d="M220 190 L300 150" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-dep-u-arrow)" />
               <path d="M220 190 L380 110" stroke="rgba(34,211,238,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-dep-v-arrow)" />

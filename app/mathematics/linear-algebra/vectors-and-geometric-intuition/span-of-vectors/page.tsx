@@ -198,6 +198,22 @@ a\in\mathbb{R}
           That means the span of one nonzero vector is a{" "}
           <span className="text-white font-semibold">line through the origin</span>.
         </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          To picture that, start with the vector{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}`}
+            className="math-inline math-white"
+          />
+          . If{" "}
+          <MathInline tex={String.raw`a=2`} className="math-inline math-white" />,
+          you get{" "}
+          <MathInline tex={String.raw`2{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />.
+          If{" "}
+          <MathInline tex={String.raw`a=-1`} className="math-inline math-white" />,
+          you get{" "}
+          <MathInline tex={String.raw`-{\color{#f472b6}\mathbf{u}}`} className="math-inline math-white" />.
+          Both stay on the same line.
+        </p>
         <AlgebraStaticVisual
           variant="span-one-vector"
           framed={false}
