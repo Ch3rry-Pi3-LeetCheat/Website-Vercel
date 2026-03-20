@@ -1740,8 +1740,6 @@ export default function AlgebraStaticVisual({
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
               <line x1="220" y1="288" x2="220" y2="54" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
 
-              <path d="M220 190 L314 143" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-one-u-arrow)" />
-
               {[
                 { x: 126, y: 237, r: 5.5, fill: "rgba(231,238,248,0.7)" },
                 { x: 408, y: 96, r: 5.5, fill: "rgba(231,238,248,0.7)" },
@@ -1759,6 +1757,7 @@ export default function AlgebraStaticVisual({
                       d={`M220 190 L${endX} ${endY}`}
                       stroke="rgba(231,238,248,0.34)"
                       strokeWidth="2.2"
+                      strokeDasharray="7 7"
                       fill="none"
                       markerEnd="url(#span-one-multiple-arrow)"
                     />
@@ -1766,6 +1765,8 @@ export default function AlgebraStaticVisual({
                   </g>
                 );
               })}
+
+              <path d="M220 190 L314 143" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-one-u-arrow)" />
 
               <circle cx="220" cy="190" r="6.5" fill="#ffffff" />
               <circle cx="320" cy="140" r="7.5" fill="#f472b6" />
@@ -1794,7 +1795,7 @@ export default function AlgebraStaticVisual({
                   cx="0"
                   cy="0"
                   r="1"
-                  gradientTransform="translate(250 190) scale(212 124)"
+                  gradientTransform="translate(250 190) scale(232 136)"
                 >
                   <stop offset="0%" stopColor="rgba(231,238,248,0.055)" />
                   <stop offset="28%" stopColor="rgba(231,238,248,0.034)" />
