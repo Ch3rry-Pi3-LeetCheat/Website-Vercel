@@ -328,11 +328,14 @@ export default function LinearCombinationsPage() {
           Substitute the vectors:
         </p>
         <MathBlock
-          tex={String.raw`a(1,1)+b(1,-1)=(4,2)`}
+          tex={String.raw`a\begin{bmatrix}1\\[2pt]1\end{bmatrix}
++b\begin{bmatrix}1\\[2pt]-1\end{bmatrix}
+=\begin{bmatrix}4\\[2pt]2\end{bmatrix}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Match components:
+          In column-vector form, you can now read the top row and bottom row as
+          two ordinary simultaneous equations:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
