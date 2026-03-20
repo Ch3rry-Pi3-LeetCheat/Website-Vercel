@@ -26,6 +26,7 @@ export default function SpanOfVectorsPage() {
     { id: "example-line", label: "Example 1: one-vector span", level: 2 },
     { id: "example-plane", label: "Example 2: two non-parallel vectors", level: 2 },
     { id: "example-dependent", label: "Example 3: dependent directions", level: 2 },
+    { id: "example-3d", label: "Example 4: a 3D span check", level: 2 },
     { id: "checks", label: "Checks and common mistakes" },
     { id: "bridge", label: "What comes next" },
     { id: "summary", label: "Summary" },
@@ -229,6 +230,24 @@ a\in\mathbb{R}
           This matches ordinary movement intuition. If you are stuck on one rail,
           you can move only along that rail. If you have two genuinely different
           movement directions on a flat surface, you can reach the whole surface.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          There is also a useful dot-product test here. Two nonzero vectors are
+          parallel exactly when the angle between them is{" "}
+          <span className="text-white font-semibold">0° or 180°</span>. Using the
+          dot-product formula, that means
+        </p>
+        <MathBlock
+          tex={String.raw`\left|{\color{#f472b6}\mathbf{u}}\cdot{\color{#22d3ee}\mathbf{v}}\right|
+=\|{\color{#f472b6}\mathbf{u}}\|\,\|{\color{#22d3ee}\mathbf{v}}\|`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          So the dot product does help detect parallel directions, but the full
+          test uses the{" "}
+          <span className="text-white font-semibold">magnitudes as well</span>.
+          A positive or negative dot product by itself does not automatically mean
+          the vectors are parallel.
         </p>
         <AlgebraStaticVisual
           variant="span-two-vectors"
@@ -442,6 +461,67 @@ a{\color{#f472b6}\mathbf{u}}+b{\color{#22d3ee}\mathbf{v}}
           is <span className="text-white font-semibold">not</span> in the span.
           Two vectors do not automatically span the plane. They must provide two
           genuinely different directions.
+        </p>
+
+        <h3 id="example-3d" className="scroll-mt-28 text-xl font-semibold text-white font-[var(--font-display)]">
+          Example 4: a 3D span check
+        </h3>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Span is not only a 2D idea. Let{" "}
+          <MathInline
+            tex={String.raw`{\color{#f472b6}\mathbf{u}}=(1,0,1)`}
+            className="math-inline math-white"
+          />{" "}
+          and{" "}
+          <MathInline
+            tex={String.raw`{\color{#22d3ee}\mathbf{v}}=(0,1,1)`}
+            className="math-inline math-white"
+          />.
+          Check whether{" "}
+          <MathInline tex={String.raw`(3,2,5)`} className="math-inline math-white" />{" "}
+          lies in their span.
+        </p>
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          We need coefficients{" "}
+          <MathInline tex={String.raw`a`} className="math-inline math-white" />{" "}
+          and{" "}
+          <MathInline tex={String.raw`b`} className="math-inline math-white" />{" "}
+          such that
+        </p>
+        <MathBlock
+          tex={String.raw`a\begin{bmatrix}1\\[2pt]0\\[2pt]1\end{bmatrix}
++b\begin{bmatrix}0\\[2pt]1\\[2pt]1\end{bmatrix}
+=\begin{bmatrix}3\\[2pt]2\\[2pt]5\end{bmatrix}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Read off the rows one by one:
+        </p>
+        <MathBlock
+          tex={String.raw`\begin{aligned}
+a&=3 \\[4pt]
+b&=2
+\end{aligned}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          Now check the third row:
+        </p>
+        <MathBlock
+          tex={String.raw`a+b=3+2=5`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          It works, so
+        </p>
+        <MathBlock
+          tex={String.raw`(3,2,5)=3{\color{#f472b6}\mathbf{u}}+2{\color{#22d3ee}\mathbf{v}}`}
+          className="math-center math-lg text-white/90"
+        />
+        <p className="text-base leading-7 text-[color:var(--color-muted)]">
+          This is a useful reminder: in 3D, the span of two independent vectors
+          is usually a <span className="text-white font-semibold">plane inside 3D space</span>,
+          not the whole of 3D.
         </p>
       </section>
 

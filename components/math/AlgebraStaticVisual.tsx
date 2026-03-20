@@ -1782,19 +1782,19 @@ export default function AlgebraStaticVisual({
 
         {variant === "span-two-vectors" && (
           <div className="relative mx-auto w-4/5">
-            <svg viewBox="0 0 520 340" className="h-auto w-full">
+            <svg viewBox="28 54 464 252" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("span-two-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("span-two-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("span-two-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("span-two-sample-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
-                <filter id="span-two-field-blur" x="-12%" y="-18%" width="124%" height="136%">
-                  <feGaussianBlur stdDeviation="14" />
+                <filter id="span-two-field-blur" x="-28%" y="-36%" width="156%" height="172%">
+                  <feGaussianBlur stdDeviation="30" />
                 </filter>
               </defs>
 
-              <rect x="66" y="58" width="390" height="224" fill="rgba(231,238,248,0.085)" filter="url(#span-two-field-blur)" />
-              <rect x="78" y="70" width="366" height="200" fill="rgba(231,238,248,0.02)" />
+              <rect x="44" y="42" width="430" height="252" fill="rgba(231,238,248,0.06)" filter="url(#span-two-field-blur)" />
+              <rect x="76" y="74" width="368" height="188" fill="rgba(231,238,248,0.022)" />
 
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
               <line x1="250" y1="294" x2="250" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
@@ -1839,7 +1839,6 @@ export default function AlgebraStaticVisual({
 
               <text x="352" y="136" fill="#f472b6" fontSize="15" fontWeight="700">u</text>
               <text x="212" y="88" fill="#22d3ee" fontSize="15" fontWeight="700">v</text>
-              <text x="64" y="66" fill="rgba(231,238,248,0.62)" fontSize="12" fontWeight="700">sample combinations</text>
               <text x="472" y="206" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
               <text x="236" y="40" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
             </svg>
