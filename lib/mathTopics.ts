@@ -122,4 +122,10 @@ export const linearAlgebraVectorLessons: TopicLink[] = [
       "Build new vectors by scaling and adding existing ones, and see how coefficients act like a recipe for direction.",
     href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/linear-combinations",
   },
+  {
+    label: "Span of vectors",
+    description:
+      "Move from one recipe to the whole set of reachable vectors, and see when directions give a line or a plane.",
+    href: "/mathematics/linear-algebra/vectors-and-geometric-intuition/span-of-vectors",
+  },
 ];

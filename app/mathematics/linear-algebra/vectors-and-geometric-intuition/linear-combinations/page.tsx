@@ -206,11 +206,13 @@ export default function LinearCombinationsPage() {
           With the same two directions, different coefficients give different
           final arrows:
         </p>
-        <AlgebraStaticVisual
-          variant="linear-combination-family"
-          framed={false}
-          caption="The pink and blue directions stay fixed. Changing the coefficients changes which vector you build from them."
-        />
+        <div className="-mt-2">
+          <AlgebraStaticVisual
+            variant="linear-combination-family"
+            framed={false}
+            caption="The pink and blue directions stay fixed. Changing the coefficients changes which vector you build from them."
+          />
+        </div>
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
           So a linear combination is not just one vector expression. It is a{" "}
           <span className="text-white font-semibold">whole family of possible outputs</span>,

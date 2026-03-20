@@ -26,6 +26,9 @@ type AlgebraStaticVisualProps = {
     | "projection-negative"
     | "linear-combination-basic"
     | "linear-combination-family"
+    | "span-one-vector"
+    | "span-two-vectors"
+    | "span-dependent-vectors"
     | "equation-balance"
     | "function-machine"
     | "mapping-diagram"
@@ -1619,12 +1622,12 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              <path d="M110 340 L218 292" stroke="rgba(244,114,182,1)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-basic-u-arrow)" />
-              <path d="M110 340 L164 244" stroke="rgba(34,211,238,1)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-basic-v-arrow)" />
+              <path d="M110 340 L211 295" stroke="rgba(244,114,182,1)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-basic-u-arrow)" />
+              <path d="M110 340 L160 251" stroke="rgba(34,211,238,1)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-basic-v-arrow)" />
 
-              <path d="M218 292 L320 247" stroke="rgba(244,114,182,0.38)" strokeWidth="1.9" strokeDasharray="6 6" fill="none" markerEnd="url(#linear-combo-basic-ghost-u-arrow)" />
-              <path d="M329 238 L380 148" stroke="rgba(34,211,238,0.38)" strokeWidth="1.9" strokeDasharray="6 6" fill="none" markerEnd="url(#linear-combo-basic-ghost-v-arrow)" />
-              <path d="M110 340 L380 148" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#linear-combo-basic-result-arrow)" />
+              <path d="M218 292 L319 247" stroke="rgba(244,114,182,0.38)" strokeWidth="1.9" strokeDasharray="6 6" fill="none" markerEnd="url(#linear-combo-basic-ghost-u-arrow)" />
+              <path d="M329 238 L376 155" stroke="rgba(34,211,238,0.38)" strokeWidth="1.9" strokeDasharray="6 6" fill="none" markerEnd="url(#linear-combo-basic-ghost-v-arrow)" />
+              <path d="M110 340 L374 152" stroke="rgba(231,238,248,1)" strokeWidth="2.4" fill="none" markerEnd="url(#linear-combo-basic-result-arrow)" />
 
               <circle cx="110" cy="340" r="6" fill="#ffffff" />
 
@@ -1691,12 +1694,12 @@ export default function AlgebraStaticVisual({
                 });
               })}
 
-              <path d="M130 360 L234 316" stroke="rgba(244,114,182,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-u-arrow)" />
-              <path d="M130 360 L182 272" stroke="rgba(34,211,238,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-v-arrow)" />
+              <path d="M130 360 L227 319" stroke="rgba(244,114,182,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-u-arrow)" />
+              <path d="M130 360 L178 279" stroke="rgba(34,211,238,0.88)" strokeWidth="2" fill="none" markerEnd="url(#linear-combo-family-v-arrow)" />
 
-              <path d="M130 360 L286 228" stroke="rgba(231,238,248,0.68)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-a-arrow)" />
-              <path d="M130 360 L390 184" stroke="rgba(168,85,247,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-b-arrow)" />
-              <path d="M130 360 L130 234" stroke="rgba(52,211,153,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-c-arrow)" />
+              <path d="M130 360 L281 232" stroke="rgba(231,238,248,0.68)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-a-arrow)" />
+              <path d="M130 360 L385 188" stroke="rgba(168,85,247,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-b-arrow)" />
+              <path d="M130 360 L130 235" stroke="rgba(52,211,153,0.72)" strokeWidth="2.1" fill="none" markerEnd="url(#linear-combo-family-c-arrow)" />
 
               <circle cx="130" cy="360" r="6" fill="#ffffff" />
 
@@ -1719,6 +1722,119 @@ export default function AlgebraStaticVisual({
               <text x="142" y="220" fill="#34d399" fontSize="13" fontWeight="700">-u + 2v</text>
               <text x="454" y="384" fill="#22d3ee" fontSize="14" fontWeight="700">x</text>
               <text x="114" y="128" textAnchor="end" fill="#f472b6" fontSize="14" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "span-one-vector" && (
+          <div className="relative mx-auto w-4/5">
+            <svg viewBox="0 0 520 340" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("span-one-axis-arrow", "rgba(231,238,248,1)")}
+                {renderFilledArrowMarker("span-one-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+              </defs>
+
+              <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
+              <line x1="220" y1="288" x2="220" y2="54" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
+
+              <line x1="72" y1="264" x2="440" y2="80" stroke="rgba(231,238,248,0.28)" strokeWidth="3" />
+
+              <path d="M220 190 L314 143" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-one-u-arrow)" />
+
+              {[
+                { x: 126, y: 237, r: 5.5, fill: "rgba(231,238,248,0.7)" },
+                { x: 408, y: 96, r: 5.5, fill: "rgba(231,238,248,0.7)" },
+              ].map((point, idx) => (
+                <circle key={`span-one-multiple-${idx}`} cx={point.x} cy={point.y} r={point.r} fill={point.fill} />
+              ))}
+
+              <circle cx="220" cy="190" r="6.5" fill="#ffffff" />
+              <circle cx="320" cy="140" r="7.5" fill="#f472b6" />
+              <circle cx="320" cy="140" r="13" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+
+              <text x="332" y="132" fill="#f472b6" fontSize="15" fontWeight="700">u</text>
+              <text x="86" y="228" fill="rgba(231,238,248,0.72)" fontSize="12" fontWeight="700">-u</text>
+              <text x="418" y="88" fill="rgba(231,238,248,0.72)" fontSize="12" fontWeight="700">2u</text>
+              <text x="472" y="206" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
+              <text x="206" y="48" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "span-two-vectors" && (
+          <div className="relative mx-auto w-4/5">
+            <svg viewBox="0 0 520 340" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("span-two-axis-arrow", "rgba(231,238,248,1)")}
+                {renderFilledArrowMarker("span-two-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("span-two-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+              </defs>
+
+              <rect x="54" y="46" width="414" height="248" rx="18" fill="rgba(231,238,248,0.035)" />
+
+              <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
+              <line x1="250" y1="294" x2="250" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
+
+              <path d="M250 190 L336 147" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-two-u-arrow)" />
+              <path d="M250 190 L206 102" stroke="rgba(34,211,238,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-two-v-arrow)" />
+
+              {[
+                { x: 292, y: 58 },
+                { x: 378, y: 104 },
+                { x: 164, y: 144 },
+                { x: 122, y: 234 },
+                { x: 336, y: 236 },
+                { x: 208, y: 278 },
+              ].map((point, idx) => (
+                <circle key={`span-two-sample-${idx}`} cx={point.x} cy={point.y} r="5.5" fill="rgba(231,238,248,0.54)" />
+              ))}
+
+              <circle cx="250" cy="190" r="6.5" fill="#ffffff" />
+              <circle cx="342" cy="144" r="7.5" fill="#f472b6" />
+              <circle cx="342" cy="144" r="13" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+              <circle cx="202" cy="96" r="7.5" fill="#22d3ee" />
+              <circle cx="202" cy="96" r="13" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+
+              <text x="352" y="136" fill="#f472b6" fontSize="15" fontWeight="700">u</text>
+              <text x="212" y="88" fill="#22d3ee" fontSize="15" fontWeight="700">v</text>
+              <text x="64" y="66" fill="rgba(231,238,248,0.62)" fontSize="12" fontWeight="700">sample combinations</text>
+              <text x="472" y="206" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
+              <text x="236" y="40" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
+            </svg>
+          </div>
+        )}
+
+        {variant === "span-dependent-vectors" && (
+          <div className="relative mx-auto w-4/5">
+            <svg viewBox="0 0 520 340" className="h-auto w-full">
+              <defs>
+                {renderAxisArrowMarker("span-dep-axis-arrow", "rgba(231,238,248,1)")}
+                {renderFilledArrowMarker("span-dep-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("span-dep-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+              </defs>
+
+              <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-dep-axis-arrow)" />
+              <line x1="220" y1="294" x2="220" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-dep-axis-arrow)" />
+
+              <line x1="96" y1="252" x2="438" y2="81" stroke="rgba(231,238,248,0.26)" strokeWidth="3" />
+
+              <path d="M220 190 L300 150" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-dep-u-arrow)" />
+              <path d="M220 190 L380 110" stroke="rgba(34,211,238,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-dep-v-arrow)" />
+
+              <circle cx="220" cy="190" r="6.5" fill="#ffffff" />
+              <circle cx="306" cy="147" r="7.5" fill="#f472b6" />
+              <circle cx="306" cy="147" r="13" fill="none" stroke="rgba(244,114,182,0.24)" strokeWidth="2" />
+              <circle cx="386" cy="107" r="7.5" fill="#22d3ee" />
+              <circle cx="386" cy="107" r="13" fill="none" stroke="rgba(34,211,238,0.24)" strokeWidth="2" />
+
+              <circle cx="364" cy="236" r="7" fill="#ffffff" />
+              <circle cx="364" cy="236" r="13" fill="none" stroke="rgba(231,238,248,0.18)" strokeWidth="2" />
+
+              <text x="316" y="139" fill="#f472b6" fontSize="15" fontWeight="700">u</text>
+              <text x="396" y="99" fill="#22d3ee" fontSize="15" fontWeight="700">v</text>
+              <text x="378" y="228" fill="#e7eef8" fontSize="13" fontWeight="700">not in span</text>
+              <text x="472" y="206" fill="#22d3ee" fontSize="15" fontWeight="700">x</text>
+              <text x="206" y="40" textAnchor="end" fill="#f472b6" fontSize="15" fontWeight="700">y</text>
             </svg>
           </div>
         )}

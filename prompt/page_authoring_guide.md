@@ -274,9 +274,23 @@ Example:
   - `One-to-one (injective)`
   - `Many-to-one`
   - `Onto (surjective)`
-  - `Bijective`
-  - `Not a function`
+- `Bijective`
+- `Not a function`
   stand as the real subheadings
+
+## 8.2. Worked Examples And TOC
+
+When a lesson has a `Worked examples` section:
+
+- make the overall section an `h2`
+- make each individual example an `h3`
+- give each example its own `id`
+- add each example to `tocItems` as a level-2 entry when the page uses a table of contents
+
+Reason:
+
+- learners often want to jump straight back to a specific example
+- this keeps the left-hand table of contents useful without flattening the whole page into too many top-level sections
 
 ## 8.1. Bridge / What Comes Next
 
@@ -375,7 +389,7 @@ Current vector-plot pattern:
 - slim white vector lines
 - SVG markers for arrowheads
 - positive-quadrant-only layout when the example is introductory
-- shorten vector paths slightly so the marker arrowhead finishes cleanly before the endpoint dot
+- shorten vector paths so the arrow tip just touches the endpoint dot rather than crashing into the point marker
 - short component annotations like `+2 in x` or `+1 in y` only when they are being directly explained
 - in geometric addition pictures, use dashed helper copies only where they clarify the triangle / parallelogram construction; avoid overloading the picture with extra arrowheads on every helper segment
 
