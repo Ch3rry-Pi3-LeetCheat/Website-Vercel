@@ -1659,7 +1659,7 @@ export default function AlgebraStaticVisual({
 
         {variant === "linear-combination-family" && (
           <div className="relative mx-auto w-4/5">
-            <svg viewBox="56 56 420 340" className="h-auto w-full">
+            <svg viewBox="56 120 420 276" className="h-auto w-full">
               <defs>
                 {renderAxisArrowMarker("linear-combo-family-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("linear-combo-family-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
@@ -1732,21 +1732,38 @@ export default function AlgebraStaticVisual({
               <defs>
                 {renderAxisArrowMarker("span-one-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("span-one-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("span-one-multiple-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
               </defs>
 
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
               <line x1="220" y1="288" x2="220" y2="54" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-one-axis-arrow)" />
-
-              <line x1="72" y1="264" x2="440" y2="80" stroke="rgba(231,238,248,0.28)" strokeWidth="3" />
 
               <path d="M220 190 L314 143" stroke="rgba(244,114,182,1)" strokeWidth="2.3" fill="none" markerEnd="url(#span-one-u-arrow)" />
 
               {[
                 { x: 126, y: 237, r: 5.5, fill: "rgba(231,238,248,0.7)" },
                 { x: 408, y: 96, r: 5.5, fill: "rgba(231,238,248,0.7)" },
-              ].map((point, idx) => (
-                <circle key={`span-one-multiple-${idx}`} cx={point.x} cy={point.y} r={point.r} fill={point.fill} />
-              ))}
+              ].map((point, idx) => {
+                const dx = point.x - 220;
+                const dy = point.y - 190;
+                const length = Math.hypot(dx, dy) || 1;
+                const inset = 7;
+                const endX = point.x - (dx / length) * inset;
+                const endY = point.y - (dy / length) * inset;
+
+                return (
+                  <g key={`span-one-multiple-${idx}`}>
+                    <path
+                      d={`M220 190 L${endX} ${endY}`}
+                      stroke="rgba(231,238,248,0.34)"
+                      strokeWidth="2.2"
+                      fill="none"
+                      markerEnd="url(#span-one-multiple-arrow)"
+                    />
+                    <circle cx={point.x} cy={point.y} r={point.r} fill={point.fill} />
+                  </g>
+                );
+              })}
 
               <circle cx="220" cy="190" r="6.5" fill="#ffffff" />
               <circle cx="320" cy="140" r="7.5" fill="#f472b6" />
@@ -1768,9 +1785,14 @@ export default function AlgebraStaticVisual({
                 {renderAxisArrowMarker("span-two-axis-arrow", "rgba(231,238,248,1)")}
                 {renderFilledArrowMarker("span-two-u-arrow", "rgba(244,114,182,1)", { refX: 4.35 })}
                 {renderFilledArrowMarker("span-two-v-arrow", "rgba(34,211,238,1)", { refX: 4.35 })}
+                {renderFilledArrowMarker("span-two-sample-arrow", "rgba(231,238,248,1)", { refX: 4.35 })}
+                <filter id="span-two-field-blur" x="-12%" y="-18%" width="124%" height="136%">
+                  <feGaussianBlur stdDeviation="14" />
+                </filter>
               </defs>
 
-              <rect x="54" y="46" width="414" height="248" rx="18" fill="rgba(231,238,248,0.035)" />
+              <rect x="66" y="58" width="390" height="224" fill="rgba(231,238,248,0.085)" filter="url(#span-two-field-blur)" />
+              <rect x="78" y="70" width="366" height="200" fill="rgba(231,238,248,0.02)" />
 
               <line x1="54" y1="190" x2="468" y2="190" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
               <line x1="250" y1="294" x2="250" y2="46" stroke="rgba(231,238,248,0.72)" strokeWidth="2" markerEnd="url(#span-two-axis-arrow)" />
@@ -1785,9 +1807,27 @@ export default function AlgebraStaticVisual({
                 { x: 122, y: 234 },
                 { x: 336, y: 236 },
                 { x: 208, y: 278 },
-              ].map((point, idx) => (
-                <circle key={`span-two-sample-${idx}`} cx={point.x} cy={point.y} r="5.5" fill="rgba(231,238,248,0.54)" />
-              ))}
+              ].map((point, idx) => {
+                const dx = point.x - 250;
+                const dy = point.y - 190;
+                const length = Math.hypot(dx, dy) || 1;
+                const inset = 7;
+                const endX = point.x - (dx / length) * inset;
+                const endY = point.y - (dy / length) * inset;
+
+                return (
+                  <g key={`span-two-sample-${idx}`}>
+                    <path
+                      d={`M250 190 L${endX} ${endY}`}
+                      stroke="rgba(231,238,248,0.24)"
+                      strokeWidth="2.1"
+                      fill="none"
+                      markerEnd="url(#span-two-sample-arrow)"
+                    />
+                    <circle cx={point.x} cy={point.y} r="5.5" fill="rgba(231,238,248,0.54)" />
+                  </g>
+                );
+              })}
 
               <circle cx="250" cy="190" r="6.5" fill="#ffffff" />
               <circle cx="342" cy="144" r="7.5" fill="#f472b6" />

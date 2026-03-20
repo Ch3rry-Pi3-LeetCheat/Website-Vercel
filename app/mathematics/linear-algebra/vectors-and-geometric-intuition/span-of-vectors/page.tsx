@@ -270,11 +270,13 @@ a\in\mathbb{R}
           such that
         </p>
         <MathBlock
-          tex={String.raw`a(2,1)=(6,3)`}
+          tex={String.raw`a\begin{bmatrix}2\\[2pt]1\end{bmatrix}
+=\begin{bmatrix}6\\[2pt]3\end{bmatrix}`}
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Match the first component:
+          Read the top row and bottom row as the two component equations. Start
+          with the top row:
         </p>
         <MathBlock
           tex={String.raw`\begin{aligned}
@@ -284,7 +286,7 @@ a&=3
           className="math-center math-lg text-white/90"
         />
         <p className="text-base leading-7 text-[color:var(--color-muted)]">
-          Now check the second component:
+          Now check the bottom row:
         </p>
         <MathBlock
           tex={String.raw`1\cdot 3=3`}
